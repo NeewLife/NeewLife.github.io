@@ -1,5 +1,5 @@
 ---
-title: "2022-06-21 메모(6장)"
+title: "6장"
 output:
   html_document:
     keep_md: true
