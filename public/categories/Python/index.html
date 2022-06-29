@@ -205,6 +205,1023 @@
                     
                         <a
                             class="link-unstyled"
+                            href="/2022/06/29/day0629/"
+                            aria-label=": day 0629"
+                        >
+                            day 0629
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2022-06-29T11:59:30+09:00">
+	
+		    Jun 29, 2022
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Python/">Python</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <h1 id="pandas"><a href="#pandas" class="headerlink" title="pandas"></a>pandas</h1><ul>
+<li>pandas 에서 Index 값은 중복값을 허용하지 않는다.</li>
+</ul>
+<p><img src="/images/0629/Untitled.png"></p>
+<ul>
+<li>DataFrame, Series는 같아 보이지만 다르다(DataFrame 에는 info 메소드가 있지만, Series에는 info 메소드가 없다).</li>
+<li>데이터프레임.groupby() —&gt; groupby 클래스</li>
+<li>A가 클래스 정의한 메소드<ul>
+<li>예) 데이터 프레임 info()</li>
+</ul>
+</li>
+<li>B의 클래스 정의한 메소드<ul>
+<li>예) info() 메소드 존재 하지 않음</li>
+</ul>
+</li>
+<li>클래스는 패키지의 하위호환 개념이다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">temp_dict = &#123;</span><br><span class="line">    <span class="string">&#x27;col1&#x27;</span> : [<span class="number">1</span>, <span class="number">2</span>], </span><br><span class="line">    <span class="string">&#x27;col2&#x27;</span> : [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(temp_dict)</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(df))</span><br></pre></td></tr></table></figure>
+
+<pre><code>   col1  col2
+0     1     3
+1     2     4
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd </span><br><span class="line"><span class="built_in">print</span>(pd.__version__)</span><br></pre></td></tr></table></figure>
+
+<pre><code>1.3.5
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> google.colab <span class="keyword">import</span> drive </span><br><span class="line">drive.mount(<span class="string">&#x27;/content/drive&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(&quot;/content/drive&quot;, force_remount=True).
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">DATA_PATH = <span class="string">&#x27;/content/drive/MyDrive/Colab Notebooks/human_ai/Basic/Chapter 3. pandas/data/&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(DATA_PATH + <span class="string">&#x27;Lemonade2016.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line">lemonade = pd.read_csv(DATA_PATH + <span class="string">&#x27;Lemonade2016.csv&#x27;</span>)</span><br><span class="line"><span class="comment"># covid_df = pd.read_csv(DATA_PATH + &#x27;owid-covid-data.csv&#x27;)</span></span><br><span class="line"></span><br><span class="line">lemonade.info() <span class="comment"># str()</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>/content/drive/MyDrive/Colab Notebooks/human_ai/Basic/Chapter 3. pandas/data/Lemonade2016.csv
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 32 entries, 0 to 31
+Data columns (total 7 columns):
+ #   Column       Non-Null Count  Dtype  
+---  ------       --------------  -----  
+ 0   Date         31 non-null     object 
+ 1   Location     32 non-null     object 
+ 2   Lemon        32 non-null     int64  
+ 3   Orange       32 non-null     int64  
+ 4   Temperature  32 non-null     int64  
+ 5   Leaflets     31 non-null     float64
+ 6   Price        32 non-null     float64
+dtypes: float64(2), int64(3), object(2)
+memory usage: 1.9+ KB
+</code></pre>
+<h2 id="라이브러리-불러오기"><a href="#라이브러리-불러오기" class="headerlink" title="라이브러리 불러오기"></a>라이브러리 불러오기</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;pandas version : &quot;</span>, pd.__version__)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;numpy version : &quot;</span>, np.__version__)</span><br></pre></td></tr></table></figure>
+
+<pre><code>pandas version :  1.3.5
+numpy version :  1.21.6
+</code></pre>
+<h2 id="구글-드라이브-연결하기"><a href="#구글-드라이브-연결하기" class="headerlink" title="구글 드라이브 연결하기"></a>구글 드라이브 연결하기</h2><h4 id="Series-클래스인지-DataFrame-클래스인지-신경-쓰기"><a href="#Series-클래스인지-DataFrame-클래스인지-신경-쓰기" class="headerlink" title="Series 클래스인지 DataFrame 클래스인지 신경 쓰기"></a>Series 클래스인지 DataFrame 클래스인지 신경 쓰기</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> google.colab <span class="keyword">import</span> drive</span><br><span class="line">drive.mount(<span class="string">&#x27;/content/drive&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Drive already mounted at /content/drive; to attempt to forcibly remount, call drive.mount(&quot;/content/drive&quot;, force_remount=True).
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">DATA_PATH = <span class="string">&#x27;/content/drive/MyDrive/Colab Notebooks/human_ai/Basic/Chapter 3. pandas/data/Lemonade2016.csv&#x27;</span></span><br><span class="line">lomonade = pd.read_csv(DATA_PATH)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(lemonade))</span><br><span class="line"><span class="built_in">print</span>(lemonade.info())</span><br><span class="line"><span class="comment"># Dtype 은 데이터 타입인데 &#x27;int64&#x27;에서 64는 64비트를 의미한다.</span></span><br><span class="line"><span class="comment"># 데이터가 너무 커지면 64비트를 8비트로 조절하든지 해서 데이터를 줄인다.</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 32 entries, 0 to 31
+Data columns (total 7 columns):
+ #   Column       Non-Null Count  Dtype  
+---  ------       --------------  -----  
+ 0   Date         31 non-null     object 
+ 1   Location     32 non-null     object 
+ 2   Lemon        32 non-null     int64  
+ 3   Orange       32 non-null     int64  
+ 4   Temperature  32 non-null     int64  
+ 5   Leaflets     31 non-null     float64
+ 6   Price        32 non-null     float64
+dtypes: float64(2), int64(3), object(2)
+memory usage: 1.9+ KB
+</code></pre>
+<ul>
+<li>데이터 맛보기</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(lemonade.head())</span><br></pre></td></tr></table></figure>
+
+<pre><code>       Date Location  Lemon  Orange  Temperature  Leaflets  Price
+0  7/1/2016     Park     97      67           70      90.0   0.25
+1  7/2/2016     Park     98      67           72      90.0   0.25
+2  7/3/2016     Park    110      77           71     104.0   0.25
+3  7/4/2016    Beach    134      99           76      98.0   0.25
+4  7/5/2016    Beach    159     118           78     135.0   0.25
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(lemonade.tail())</span><br></pre></td></tr></table></figure>
+
+<pre><code>         Date Location  Lemon  Orange  Temperature  Leaflets  Price
+27  7/27/2016     Park    104      68           80      99.0   0.35
+28  7/28/2016     Park     96      63           82      90.0   0.35
+29  7/29/2016     Park    100      66           81      95.0   0.35
+30  7/30/2016    Beach     88      57           82      81.0   0.35
+31  7/31/2016    Beach     76      47           82      68.0   0.35
+</code></pre>
+<ul>
+<li>기술통계량 보는 함수</li>
+<li>describe()</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(lemonade.describe())</span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">std = 표준편차</span></span><br><span class="line"><span class="string">사분위값, 평균 등등 볼 수 있다.</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>            Lemon      Orange  Temperature    Leaflets      Price
+count   32.000000   32.000000    32.000000   31.000000  32.000000
+mean   116.156250   80.000000    78.968750  108.548387   0.354688
+std     25.823357   21.863211     4.067847   20.117718   0.113137
+min     71.000000   42.000000    70.000000   68.000000   0.250000
+25%     98.000000   66.750000    77.000000   90.000000   0.250000
+50%    113.500000   76.500000    80.500000  108.000000   0.350000
+75%    131.750000   95.000000    82.000000  124.000000   0.500000
+max    176.000000  129.000000    84.000000  158.000000   0.500000
+</code></pre>
+<ul>
+<li>범주형 데이터 빈도수 구하기</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(lemonade[<span class="string">&#x27;Location&#x27;</span>].value_counts())   <span class="comment"># .value_counts() : &quot;lemonade[&#x27;Location&#x27;]&quot; 함수의 숫자를 세준다는 뜻</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>Beach    17
+Park     15
+Name: Location, dtype: int64
+</code></pre>
+<h2 id="행과-열-다루기"><a href="#행과-열-다루기" class="headerlink" title="행과 열 다루기"></a>행과 열 다루기</h2><ul>
+<li>Sold(판매량) 컬럼<br>(&#x3D;피처&#x3D;feature)을 추가</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lemonade[<span class="string">&#x27;Sold&#x27;</span>] = <span class="number">0</span>     <span class="comment"># Sold 라는 새로운 변수 추가</span></span><br><span class="line"><span class="built_in">print</span>(lemonade.head(<span class="number">3</span>))  <span class="comment"># 데이터 확인</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>       Date Location  Lemon  Orange  Temperature  Leaflets  Price  Sold
+0  7/1/2016     Park     97      67           70      90.0   0.25     0
+1  7/2/2016     Park     98      67           72      90.0   0.25     0
+2  7/3/2016     Park    110      77           71     104.0   0.25     0
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lemonade[<span class="string">&#x27;Sold&#x27;</span>] = lemonade[<span class="string">&#x27;Lemon&#x27;</span>] + lemonade[<span class="string">&#x27;Orange&#x27;</span>]   <span class="comment"># Sold 값 정의 (오렌지 + 레몬)</span></span><br><span class="line"><span class="built_in">print</span>(lemonade.head(<span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+
+<pre><code>       Date Location  Lemon  Orange  Temperature  Leaflets  Price  Sold
+0  7/1/2016     Park     97      67           70      90.0   0.25   164
+1  7/2/2016     Park     98      67           72      90.0   0.25   165
+2  7/3/2016     Park    110      77           71     104.0   0.25   187
+</code></pre>
+<ul>
+<li>Revenue(매출) &#x3D; 단가 x 판매량   변수 만들어보기</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">lemonade[<span class="string">&#x27;Lemon Revenue&#x27;</span>] = lemonade[<span class="string">&#x27;Price&#x27;</span>] * lemonade[<span class="string">&#x27;Lemon&#x27;</span>]</span><br><span class="line">lemonade[<span class="string">&#x27;Orange Revenue&#x27;</span>] = lemonade[<span class="string">&#x27;Price&#x27;</span>] * lemonade[<span class="string">&#x27;Orange&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(lemonade.head())</span><br><span class="line"><span class="comment"># print(lemonade[[&#x27;Lemon Revenue&#x27;, &#x27;Orange Revenue&#x27;, &#x27;Price&#x27;, &#x27;Sold&#x27;]])</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>       Date Location  Lemon  Orange  Temperature  Leaflets  Price  Sold  \
+0  7/1/2016     Park     97      67           70      90.0   0.25   164   
+1  7/2/2016     Park     98      67           72      90.0   0.25   165   
+2  7/3/2016     Park    110      77           71     104.0   0.25   187   
+3  7/4/2016    Beach    134      99           76      98.0   0.25   233   
+4  7/5/2016    Beach    159     118           78     135.0   0.25   277   
+
+   Lemon Revenue  Orange Revenue  
+0          24.25           16.75  
+1          24.50           16.75  
+2          27.50           19.25  
+3          33.50           24.75  
+4          39.75           29.50  
+</code></pre>
+<ul>
+<li>drop() 함수 사용해서 열 제거(axis 값을 1로 둔다)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 컬럼 제거</span></span><br><span class="line">col_drop = lemonade.drop(<span class="string">&#x27;Sold&#x27;</span>, axis = <span class="number">1</span>)   <span class="comment"># Sold 열을 제거한다.</span></span><br><span class="line"><span class="built_in">print</span>(col_drop.head())</span><br></pre></td></tr></table></figure>
+
+<pre><code>       Date Location  Lemon  Orange  Temperature  Leaflets  Price  \
+0  7/1/2016     Park     97      67           70      90.0   0.25   
+1  7/2/2016     Park     98      67           72      90.0   0.25   
+2  7/3/2016     Park    110      77           71     104.0   0.25   
+3  7/4/2016    Beach    134      99           76      98.0   0.25   
+4  7/5/2016    Beach    159     118           78     135.0   0.25   
+
+   Lemon Revenue  Orange Revenue  
+0          24.25           16.75  
+1          24.50           16.75  
+2          27.50           19.25  
+3          33.50           24.75  
+4          39.75           29.50  
+</code></pre>
+<ul>
+<li>drop() 함수 사용해서 행 제거(axis 값을 0으로 둔다)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 행 제거</span></span><br><span class="line">row_drop = lomonade.drop([<span class="number">0</span>, <span class="number">1</span>, <span class="number">3</span>], axis = <span class="number">0</span>)   <span class="comment"># 0, 1, 3의 행을 제거한다.</span></span><br><span class="line"><span class="built_in">print</span>(row_drop.head())</span><br></pre></td></tr></table></figure>
+
+<pre><code>       Date Location  Lemon  Orange  Temperature  Leaflets  Price
+2  7/3/2016     Park    110      77           71     104.0   0.25
+4  7/5/2016    Beach    159     118           78     135.0   0.25
+5  7/6/2016    Beach    103      69           82      90.0   0.25
+6  7/6/2016    Beach    103      69           82      90.0   0.25
+7  7/7/2016    Beach    143     101           81     135.0   0.25
+</code></pre>
+<h2 id="데이터-인덱싱"><a href="#데이터-인덱싱" class="headerlink" title="데이터 인덱싱"></a>데이터 인덱싱</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(lemonade[<span class="number">4</span>:<span class="number">7</span>])</span><br></pre></td></tr></table></figure>
+
+<pre><code>       Date Location  Lemon  Orange  Temperature  Leaflets  Price  Sold  \
+4  7/5/2016    Beach    159     118           78     135.0   0.25   277   
+5  7/6/2016    Beach    103      69           82      90.0   0.25   172   
+6  7/6/2016    Beach    103      69           82      90.0   0.25   172   
+
+   Lemon Revenue  Orange Revenue  
+4          39.75           29.50  
+5          25.75           17.25  
+6          25.75           17.25  
+</code></pre>
+<ul>
+<li>특정 값만 추출 (필터링)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lemonade[<span class="string">&#x27;Location&#x27;</span>] == <span class="string">&#x27;Beach&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>0     False
+1     False
+2     False
+3      True
+4      True
+5      True
+6      True
+7      True
+8      True
+9      True
+10     True
+11     True
+12     True
+13     True
+14     True
+15     True
+16     True
+17     True
+18    False
+19    False
+20    False
+21    False
+22    False
+23    False
+24    False
+25    False
+26    False
+27    False
+28    False
+29    False
+30     True
+31     True
+Name: Location, dtype: bool
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 데이터[데이터 컬럼 == 특정값]</span></span><br><span class="line">lemonade[lemonade[<span class="string">&#x27;Location&#x27;</span>] == <span class="string">&#x27;Beach&#x27;</span>]   <span class="comment"># lemonade[&#x27;Location&#x27;] == &#x27;Beach&#x27; 이 True인 값만 가져오는 식</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+  <div id="df-eb442b9f-c5c8-44b1-b3bd-9dd7b0012761">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>Lemon</th>
+      <th>Orange</th>
+      <th>Temperature</th>
+      <th>Leaflets</th>
+      <th>Price</th>
+      <th>Sold</th>
+      <th>Lemon Revenue</th>
+      <th>Orange Revenue</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>3</th>
+      <td>7/4/2016</td>
+      <td>Beach</td>
+      <td>134</td>
+      <td>99</td>
+      <td>76</td>
+      <td>98.0</td>
+      <td>0.25</td>
+      <td>233</td>
+      <td>33.50</td>
+      <td>24.75</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>7/5/2016</td>
+      <td>Beach</td>
+      <td>159</td>
+      <td>118</td>
+      <td>78</td>
+      <td>135.0</td>
+      <td>0.25</td>
+      <td>277</td>
+      <td>39.75</td>
+      <td>29.50</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>7/6/2016</td>
+      <td>Beach</td>
+      <td>103</td>
+      <td>69</td>
+      <td>82</td>
+      <td>90.0</td>
+      <td>0.25</td>
+      <td>172</td>
+      <td>25.75</td>
+      <td>17.25</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7/6/2016</td>
+      <td>Beach</td>
+      <td>103</td>
+      <td>69</td>
+      <td>82</td>
+      <td>90.0</td>
+      <td>0.25</td>
+      <td>172</td>
+      <td>25.75</td>
+      <td>17.25</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7/7/2016</td>
+      <td>Beach</td>
+      <td>143</td>
+      <td>101</td>
+      <td>81</td>
+      <td>135.0</td>
+      <td>0.25</td>
+      <td>244</td>
+      <td>35.75</td>
+      <td>25.25</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>NaN</td>
+      <td>Beach</td>
+      <td>123</td>
+      <td>86</td>
+      <td>82</td>
+      <td>113.0</td>
+      <td>0.25</td>
+      <td>209</td>
+      <td>30.75</td>
+      <td>21.50</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>7/9/2016</td>
+      <td>Beach</td>
+      <td>134</td>
+      <td>95</td>
+      <td>80</td>
+      <td>126.0</td>
+      <td>0.25</td>
+      <td>229</td>
+      <td>33.50</td>
+      <td>23.75</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>7/10/2016</td>
+      <td>Beach</td>
+      <td>140</td>
+      <td>98</td>
+      <td>82</td>
+      <td>131.0</td>
+      <td>0.25</td>
+      <td>238</td>
+      <td>35.00</td>
+      <td>24.50</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>7/11/2016</td>
+      <td>Beach</td>
+      <td>162</td>
+      <td>120</td>
+      <td>83</td>
+      <td>135.0</td>
+      <td>0.25</td>
+      <td>282</td>
+      <td>40.50</td>
+      <td>30.00</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>7/12/2016</td>
+      <td>Beach</td>
+      <td>130</td>
+      <td>95</td>
+      <td>84</td>
+      <td>99.0</td>
+      <td>0.25</td>
+      <td>225</td>
+      <td>32.50</td>
+      <td>23.75</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>7/13/2016</td>
+      <td>Beach</td>
+      <td>109</td>
+      <td>75</td>
+      <td>77</td>
+      <td>99.0</td>
+      <td>0.25</td>
+      <td>184</td>
+      <td>27.25</td>
+      <td>18.75</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>7/14/2016</td>
+      <td>Beach</td>
+      <td>122</td>
+      <td>85</td>
+      <td>78</td>
+      <td>113.0</td>
+      <td>0.25</td>
+      <td>207</td>
+      <td>30.50</td>
+      <td>21.25</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>7/15/2016</td>
+      <td>Beach</td>
+      <td>98</td>
+      <td>62</td>
+      <td>75</td>
+      <td>108.0</td>
+      <td>0.50</td>
+      <td>160</td>
+      <td>49.00</td>
+      <td>31.00</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>7/16/2016</td>
+      <td>Beach</td>
+      <td>81</td>
+      <td>50</td>
+      <td>74</td>
+      <td>90.0</td>
+      <td>0.50</td>
+      <td>131</td>
+      <td>40.50</td>
+      <td>25.00</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>7/17/2016</td>
+      <td>Beach</td>
+      <td>115</td>
+      <td>76</td>
+      <td>77</td>
+      <td>126.0</td>
+      <td>0.50</td>
+      <td>191</td>
+      <td>57.50</td>
+      <td>38.00</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>7/30/2016</td>
+      <td>Beach</td>
+      <td>88</td>
+      <td>57</td>
+      <td>82</td>
+      <td>81.0</td>
+      <td>0.35</td>
+      <td>145</td>
+      <td>30.80</td>
+      <td>19.95</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>7/31/2016</td>
+      <td>Beach</td>
+      <td>76</td>
+      <td>47</td>
+      <td>82</td>
+      <td>68.0</td>
+      <td>0.35</td>
+      <td>123</td>
+      <td>26.60</td>
+      <td>16.45</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-eb442b9f-c5c8-44b1-b3bd-9dd7b0012761')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+<p>  &lt;svg xmlns&#x3D;”<a target="_blank" rel="noopener" href="http://www.w3.org/2000/svg&quot;">http://www.w3.org/2000/svg&quot;</a> height&#x3D;”24px”viewBox&#x3D;”0 0 24 24”<br>       width&#x3D;”24px”&gt;<br>    <path d="M0 0h24v24H0V0z" fill="none"/><br>    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/><br>  </svg><br>      </button></p>
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+<pre><code>  &lt;script&gt;
+    const buttonEl =
+      document.querySelector(&#39;#df-eb442b9f-c5c8-44b1-b3bd-9dd7b0012761 button.colab-df-convert&#39;);
+    buttonEl.style.display =
+      google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
+
+    async function convertToInteractive(key) &#123;
+      const element = document.querySelector(&#39;#df-eb442b9f-c5c8-44b1-b3bd-9dd7b0012761&#39;);
+      const dataTable =
+        await google.colab.kernel.invokeFunction(&#39;convertToInteractive&#39;,
+                                                 [key], &#123;&#125;);
+      if (!dataTable) return;
+
+      const docLinkHtml = &#39;Like what you see? Visit the &#39; +
+        &#39;&lt;a target=&quot;_blank&quot; href=https://colab.research.google.com/notebooks/data_table.ipynb&gt;data table notebook&lt;/a&gt;&#39;
+        + &#39; to learn more about interactive tables.&#39;;
+      element.innerHTML = &#39;&#39;;
+      dataTable[&#39;output_type&#39;] = &#39;display_data&#39;;
+      await google.colab.output.renderOutput(dataTable, element);
+      const docLink = document.createElement(&#39;div&#39;);
+      docLink.innerHTML = docLinkHtml;
+      element.appendChild(docLink);
+    &#125;
+  &lt;/script&gt;
+&lt;/div&gt;
+</code></pre>
+  </div>
+
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># lemonade[(조건식1) &amp;/| (조건식2) &amp;/| (조건식3) ....]   </span></span><br><span class="line"><span class="comment"># &amp;/| 에서 &quot;|&quot;은 \표시 위에 있는키다</span></span><br><span class="line">lemonade[(lemonade[<span class="string">&#x27;Price&#x27;</span>] &gt;= <span class="number">0.35</span>) &amp; (lemonade[<span class="string">&#x27;Temperature&#x27;</span>] &gt;= <span class="number">80</span>) &amp; (lemonade[<span class="string">&#x27;Sold&#x27;</span>] &gt;= <span class="number">220</span>)]</span><br><span class="line"><span class="comment"># Price &gt;= 0.35 이고 Temperature &gt;= 80 이고 Sold &gt;= 220 이 True &amp; True &amp; True 인 값을 도출하는 식</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+  <div id="df-19a1d4f9-6805-45a9-9054-6cb00682f880">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>Lemon</th>
+      <th>Orange</th>
+      <th>Temperature</th>
+      <th>Leaflets</th>
+      <th>Price</th>
+      <th>Sold</th>
+      <th>Lemon Revenue</th>
+      <th>Orange Revenue</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>18</th>
+      <td>7/18/2016</td>
+      <td>Park</td>
+      <td>131</td>
+      <td>92</td>
+      <td>81</td>
+      <td>122.0</td>
+      <td>0.50</td>
+      <td>223</td>
+      <td>65.5</td>
+      <td>46.00</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>7/25/2016</td>
+      <td>Park</td>
+      <td>156</td>
+      <td>113</td>
+      <td>84</td>
+      <td>135.0</td>
+      <td>0.50</td>
+      <td>269</td>
+      <td>78.0</td>
+      <td>56.50</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>7/26/2016</td>
+      <td>Park</td>
+      <td>176</td>
+      <td>129</td>
+      <td>83</td>
+      <td>158.0</td>
+      <td>0.35</td>
+      <td>305</td>
+      <td>61.6</td>
+      <td>45.15</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-19a1d4f9-6805-45a9-9054-6cb00682f880')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+<p>  &lt;svg xmlns&#x3D;”<a target="_blank" rel="noopener" href="http://www.w3.org/2000/svg&quot;">http://www.w3.org/2000/svg&quot;</a> height&#x3D;”24px”viewBox&#x3D;”0 0 24 24”<br>       width&#x3D;”24px”&gt;<br>    <path d="M0 0h24v24H0V0z" fill="none"/><br>    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/><br>  </svg><br>      </button></p>
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+<pre><code>  &lt;script&gt;
+    const buttonEl =
+      document.querySelector(&#39;#df-19a1d4f9-6805-45a9-9054-6cb00682f880 button.colab-df-convert&#39;);
+    buttonEl.style.display =
+      google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
+
+    async function convertToInteractive(key) &#123;
+      const element = document.querySelector(&#39;#df-19a1d4f9-6805-45a9-9054-6cb00682f880&#39;);
+      const dataTable =
+        await google.colab.kernel.invokeFunction(&#39;convertToInteractive&#39;,
+                                                 [key], &#123;&#125;);
+      if (!dataTable) return;
+
+      const docLinkHtml = &#39;Like what you see? Visit the &#39; +
+        &#39;&lt;a target=&quot;_blank&quot; href=https://colab.research.google.com/notebooks/data_table.ipynb&gt;data table notebook&lt;/a&gt;&#39;
+        + &#39; to learn more about interactive tables.&#39;;
+      element.innerHTML = &#39;&#39;;
+      dataTable[&#39;output_type&#39;] = &#39;display_data&#39;;
+      await google.colab.output.renderOutput(dataTable, element);
+      const docLink = document.createElement(&#39;div&#39;);
+      docLink.innerHTML = docLinkHtml;
+      element.appendChild(docLink);
+    &#125;
+  &lt;/script&gt;
+&lt;/div&gt;
+</code></pre>
+  </div>
+
+
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lemonade[lemonade[<span class="string">&#x27;Temperature&#x27;</span>] &gt;= <span class="number">80</span>]   <span class="comment"># lemonade[&#x27;Temperature&#x27;] &gt;= 80 이 True인 값만 가져오는 식</span></span><br><span class="line"><span class="comment"># 즉, 조건 맞춰서 True, False 짜고 맘대로 가져올 수 있다.</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="iloc와-loc의-차이-데이터-추출하는-함수"><a href="#iloc와-loc의-차이-데이터-추출하는-함수" class="headerlink" title="iloc와 loc의 차이(데이터 추출하는 함수)"></a>iloc와 loc의 차이(데이터 추출하는 함수)</h2><ul>
+<li>iloc &#x3D; 컬럼명이 숫자일 때</li>
+<li>loc &#x3D; 컬럼명이 문자일 때</li>
+<li>대부분 loc를 쓰면 된다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 데이터.loc[데이터 컬럼 == 특정값]</span></span><br><span class="line">lemonade.loc[lemonade[<span class="string">&#x27;Temperature&#x27;</span>] &gt;= <span class="number">80</span>, [<span class="string">&#x27;Date&#x27;</span>, <span class="string">&#x27;Sold&#x27;</span>]]</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+  <div id="df-2e605a53-7a9f-4358-b1fb-d00205464d2f">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+<pre><code>.dataframe tbody tr th &#123;
+    vertical-align: top;
+&#125;
+
+.dataframe thead th &#123;
+    text-align: right;
+&#125;
+</code></pre>
+<p></style></p>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>Sold</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>7/6/2016</td>
+      <td>172</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>7/6/2016</td>
+      <td>172</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7/7/2016</td>
+      <td>244</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>NaN</td>
+      <td>209</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>7/9/2016</td>
+      <td>229</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>7/10/2016</td>
+      <td>238</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>7/11/2016</td>
+      <td>282</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>7/12/2016</td>
+      <td>225</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>7/18/2016</td>
+      <td>223</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>7/22/2016</td>
+      <td>187</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>7/23/2016</td>
+      <td>202</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>7/24/2016</td>
+      <td>203</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>7/25/2016</td>
+      <td>269</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>7/26/2016</td>
+      <td>305</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>7/27/2016</td>
+      <td>172</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>7/28/2016</td>
+      <td>159</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>7/29/2016</td>
+      <td>166</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>7/30/2016</td>
+      <td>145</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>7/31/2016</td>
+      <td>123</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-2e605a53-7a9f-4358-b1fb-d00205464d2f')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+<p>  &lt;svg xmlns&#x3D;”<a target="_blank" rel="noopener" href="http://www.w3.org/2000/svg&quot;">http://www.w3.org/2000/svg&quot;</a> height&#x3D;”24px”viewBox&#x3D;”0 0 24 24”<br>       width&#x3D;”24px”&gt;<br>    <path d="M0 0h24v24H0V0z" fill="none"/><br>    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/><br>  </svg><br>      </button></p>
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+<pre><code>  &lt;script&gt;
+    const buttonEl =
+      document.querySelector(&#39;#df-2e605a53-7a9f-4358-b1fb-d00205464d2f button.colab-df-convert&#39;);
+    buttonEl.style.display =
+      google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
+
+    async function convertToInteractive(key) &#123;
+      const element = document.querySelector(&#39;#df-2e605a53-7a9f-4358-b1fb-d00205464d2f&#39;);
+      const dataTable =
+        await google.colab.kernel.invokeFunction(&#39;convertToInteractive&#39;,
+                                                 [key], &#123;&#125;);
+      if (!dataTable) return;
+
+      const docLinkHtml = &#39;Like what you see? Visit the &#39; +
+        &#39;&lt;a target=&quot;_blank&quot; href=https://colab.research.google.com/notebooks/data_table.ipynb&gt;data table notebook&lt;/a&gt;&#39;
+        + &#39; to learn more about interactive tables.&#39;;
+      element.innerHTML = &#39;&#39;;
+      dataTable[&#39;output_type&#39;] = &#39;display_data&#39;;
+      await google.colab.output.renderOutput(dataTable, element);
+      const docLink = document.createElement(&#39;div&#39;);
+      docLink.innerHTML = docLinkHtml;
+      element.appendChild(docLink);
+    &#125;
+  &lt;/script&gt;
+&lt;/div&gt;
+</code></pre>
+  </div>
+
+
+
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/2022/06/29/day0629/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+            <a
+                href="/2022/06/29/day0629/"
+                aria-label=": day 0629"
+            >
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" src="http://neewlife.github.io/2022/06/29/day0629/source/images/0629/Untitled.png"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
                             href="/2022/06/28/day0628/"
                             aria-label=": day 0628"
                         >
@@ -425,6 +1442,445 @@ total: 15
             >
                 <div class="postShorten-thumbnailimg">
                     <img alt="" src="http://neewlife.github.io/2022/06/28/day0628/source/_posts/20211211070332_pkknkybf.jpg"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/2022/06/28/day0628_1/"
+                            aria-label=": day 0628 원본"
+                        >
+                            day 0628 원본
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2022-06-28T12:31:30+09:00">
+	
+		    Jun 28, 2022
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Python/">Python</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <h2 id="반복문-복습"><a href="#반복문-복습" class="headerlink" title="반복문 복습"></a>반복문 복습</h2><ul>
+<li>for loop and while loop</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;안녕하세요&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Hello World
+안녕하세요
+Hello World
+안녕하세요
+Hello World
+안녕하세요
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &quot;K&quot; in &quot;Kaggle&quot;</span></span><br><span class="line"><span class="keyword">if</span> <span class="string">&quot;K&quot;</span> == <span class="string">&quot;a&quot;</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;출력이 되나요?&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>: </span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;출력이 안된듯&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>출력이 안된듯
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&quot;Kaggle&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">  <span class="built_in">print</span>(i)</span><br><span class="line">  <span class="keyword">if</span> i == <span class="string">&quot;a&quot;</span>:</span><br><span class="line">    <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>K
+a
+</code></pre>
+<ul>
+<li>리스트의 값이 존재</li>
+<li>전체 총합 구하기</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="built_in">sum</span> = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> numbers:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;numbers: &quot;</span>, num)</span><br><span class="line">  <span class="built_in">sum</span> = <span class="built_in">sum</span> + num </span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;total:&quot;</span>, <span class="built_in">sum</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;----최종 결괏값----&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">sum</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>numbers:  1
+total: 1
+numbers:  2
+total: 3
+numbers:  3
+total: 6
+numbers:  4
+total: 10
+numbers:  5
+total: 15
+----최종 결괏값----
+15
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">fruits = [<span class="string">&#x27;apple&#x27;</span>, <span class="string">&#x27;kiwi&#x27;</span>, <span class="string">&#x27;mango&#x27;</span>]</span><br><span class="line">newlist = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># apple : a가 있나요? 있네요, newlist에 추가하세요. </span></span><br><span class="line"><span class="comment"># kiwi : a가 있나요? 없네요. 그럼 넘어가요</span></span><br><span class="line"><span class="comment"># mango : a가 있나요? 있네요. newlist에 추가하세요. </span></span><br><span class="line"><span class="keyword">for</span> fruit <span class="keyword">in</span> fruits:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;조건문 밖 : &quot;</span>, fruit)</span><br><span class="line">  <span class="keyword">if</span> <span class="string">&quot;a&quot;</span> <span class="keyword">in</span> fruit:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;조건문 안쪽 : &quot;</span>, fruit)</span><br><span class="line">    newlist.append(fruit)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(newlist)</span><br></pre></td></tr></table></figure>
+
+<pre><code>조건문 밖 :  apple
+조건문 안쪽 :  apple
+조건문 밖 :  kiwi
+조건문 밖 :  mango
+조건문 안쪽 :  mango
+[&#39;apple&#39;, &#39;mango&#39;]
+</code></pre>
+<h3 id="While-Loop"><a href="#While-Loop" class="headerlink" title="While Loop"></a>While Loop</h3><p>while문 : 분석할 때? 거의 쓸일이 없음</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">i = <span class="number">1</span></span><br><span class="line"><span class="keyword">while</span> i &lt; <span class="number">10</span>: <span class="comment"># 참일때만 반복문 코드가 돔</span></span><br><span class="line">  <span class="comment"># 코드</span></span><br><span class="line">  <span class="built_in">print</span>(i)</span><br><span class="line">  i += <span class="number">1</span> <span class="comment"># 1씩 증감</span></span><br><span class="line">  <span class="comment"># i -= 1 # 1씩 감소</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>1
+2
+3
+4
+5
+6
+7
+8
+9
+</code></pre>
+<h2 id="사용자-정의-함수"><a href="#사용자-정의-함수" class="headerlink" title="사용자 정의 함수"></a>사용자 정의 함수</h2><ul>
+<li>내가 필요에 의해 직접 함수를 작성</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">함수명</span>(<span class="params">param1, param2</span>):</span><br><span class="line">  <span class="comment"># 코드 </span></span><br><span class="line">  <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">add</span>(<span class="params">a = <span class="number">0</span>, b = <span class="number">1</span></span>):</span><br><span class="line">  <span class="comment"># c = a + b </span></span><br><span class="line">  <span class="comment"># return c</span></span><br><span class="line">  <span class="keyword">return</span> a + b</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(add(a = <span class="number">5</span>, b = <span class="number">4</span>))</span><br><span class="line"><span class="built_in">print</span>(add())</span><br></pre></td></tr></table></figure>
+
+<pre><code>9
+1
+</code></pre>
+<ul>
+<li>사칙연산 사용자 정의 함수 만들기</li>
+<li>함수 문서화<ul>
+<li>키워드 : Docstring</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">subtract</span>(<span class="params">a, b</span>):</span><br><span class="line">  <span class="string">&quot;&quot;&quot;a, b를 빼는 함수</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  Parameters:</span></span><br><span class="line"><span class="string">  a (int): int형 숫자 a가 입력</span></span><br><span class="line"><span class="string">  </span></span><br><span class="line"><span class="string">  b (int): int형 숫자 b가 입력</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  Returns:</span></span><br><span class="line"><span class="string">    int : 반환값</span></span><br><span class="line"><span class="string">  &quot;&quot;&quot;</span></span><br><span class="line">  <span class="keyword">return</span> a-b</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(subtract(a = <span class="number">5</span>, b = <span class="number">10</span>))</span><br><span class="line"><span class="built_in">print</span>(subtract.__doc__)</span><br></pre></td></tr></table></figure>
+
+<pre><code>-5
+a, b를 빼는 함수
+
+  Parameters:
+  a (int): int형 숫자 a가 입력
+  
+  b (int): int형 숫자 b가 입력
+
+  Returns:
+    int : 반환값
+
+  
+</code></pre>
+<h2 id="NumPy"><a href="#NumPy" class="headerlink" title="NumPy"></a>NumPy</h2><ul>
+<li>내장 모듈(&#x3D;라이브러리&#x3D;패키지) (X)</li>
+<li>별도 라이브러리 설치 필요</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="built_in">print</span>(np.__version__)</span><br></pre></td></tr></table></figure>
+
+<pre><code>1.21.6
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">temp = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line">temp_array = np.array(temp) <span class="comment"># 리스트에서 배열로 변환</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(temp))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(temp_array))</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &#39;list&#39;&gt;
+&lt;class &#39;numpy.ndarray&#39;&gt;
+</code></pre>
+<h2 id="사칙연산"><a href="#사칙연산" class="headerlink" title="사칙연산"></a>사칙연산</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">math_score = [<span class="number">90</span>, <span class="number">80</span>, <span class="number">100</span>, <span class="number">60</span>]</span><br><span class="line">eng_score = [<span class="number">80</span>, <span class="number">90</span>, <span class="number">100</span>, <span class="number">50</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># math_score + eng_score</span></span><br><span class="line">math_array = np.array(math_score)</span><br><span class="line">eng_array = np.array(eng_score)</span><br><span class="line"></span><br><span class="line">total = math_array + eng_array</span><br><span class="line"><span class="built_in">print</span>(total)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(total))</span><br></pre></td></tr></table></figure>
+
+<pre><code>[170 170 200 110]
+&lt;class &#39;numpy.ndarray&#39;&gt;
+</code></pre>
+<h2 id="집계함수"><a href="#집계함수" class="headerlink" title="집계함수"></a>집계함수</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(np.<span class="built_in">min</span>(total))</span><br><span class="line"><span class="built_in">print</span>(np.<span class="built_in">max</span>(total))</span><br><span class="line"><span class="built_in">print</span>(np.<span class="built_in">sum</span>(total))</span><br></pre></td></tr></table></figure>
+
+<pre><code>110
+200
+650
+</code></pre>
+<h2 id="차원-확인"><a href="#차원-확인" class="headerlink" title="차원 확인"></a>차원 확인</h2><ul>
+<li>배열의 차원 확인 필요</li>
+<li></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1차원 배열 생성</span></span><br><span class="line">temp_arr = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="built_in">print</span>(temp_arr.shape)</span><br><span class="line"><span class="built_in">print</span>(temp_arr.ndim)</span><br><span class="line"><span class="built_in">print</span>(temp_arr)</span><br></pre></td></tr></table></figure>
+
+<pre><code>(3,)
+1
+[1 2 3]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2차원 배열 생성</span></span><br><span class="line">temp_arr = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line"><span class="built_in">print</span>(temp_arr.shape)</span><br><span class="line"><span class="built_in">print</span>(temp_arr.ndim)</span><br><span class="line"><span class="built_in">print</span>(temp_arr)</span><br></pre></td></tr></table></figure>
+
+<pre><code>(2, 3)
+2
+[[1 2 3]
+ [4 5 6]]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 3차원 배열 -&gt; 이미지</span></span><br><span class="line">temp_arr = np.array([[[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]], [[<span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>], [<span class="number">10</span>, <span class="number">11</span>, <span class="number">12</span>]]])</span><br><span class="line"><span class="built_in">print</span>(temp_arr.shape)</span><br><span class="line"><span class="built_in">print</span>(temp_arr.ndim)</span><br><span class="line"><span class="built_in">print</span>(temp_arr)</span><br></pre></td></tr></table></figure>
+
+<pre><code>(2, 2, 3)
+3
+[[[ 1  2  3]
+  [ 4  5  6]]
+
+ [[ 7  8  9]
+  [10 11 12]]]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">255</span>, <span class="number">255</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="배열-생성의-다양한-방법들"><a href="#배열-생성의-다양한-방법들" class="headerlink" title="배열 생성의 다양한 방법들"></a>배열 생성의 다양한 방법들</h2><ul>
+<li>모두 0으로 채운다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line"><span class="built_in">print</span>(np.__version__)</span><br></pre></td></tr></table></figure>
+
+<pre><code>1.21.6
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">temp_arr = np.zeros((<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line">temp_arr</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[0., 0., 0.],
+       [0., 0., 0.]])
+</code></pre>
+<ul>
+<li>모두 1로 채운다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">temp_arr = np.ones((<span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line">temp_arr</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[1., 1., 1.],
+       [1., 1., 1.]])
+</code></pre>
+<ul>
+<li>임의의 상수값으로 채운다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">temp_arr = np.full((<span class="number">3</span>, <span class="number">3</span>), <span class="number">100</span>)</span><br><span class="line">temp_arr</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[100, 100, 100],
+       [100, 100, 100],
+       [100, 100, 100]])
+</code></pre>
+<ul>
+<li>최소, 최대 숫자의 범위를 정해두고, 각 구간별로 값을 생성</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">temp_arr = np.linspace(<span class="number">5</span>, <span class="number">10</span>, <span class="number">10</span>)</span><br><span class="line">temp_arr</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([ 5.        ,  5.55555556,  6.11111111,  6.66666667,  7.22222222,
+        7.77777778,  8.33333333,  8.88888889,  9.44444444, 10.        ])
+</code></pre>
+<ul>
+<li>반복문 시, 자주 등장하는 배열</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">temp_arr = np.arange(<span class="number">1</span>, <span class="number">11</span>, <span class="number">1</span>)</span><br><span class="line">temp_arr</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10])
+</code></pre>
+<h2 id="난수-생성"><a href="#난수-생성" class="headerlink" title="난수 생성"></a>난수 생성</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> random</span><br><span class="line">x = random.rand()</span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<pre><code>0.11621638529248979
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy </span><br><span class="line">x = numpy.random.rand()</span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<pre><code>0.3315584451465583
+</code></pre>
+<ul>
+<li>랜덤 정수값 추출</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> random </span><br><span class="line"><span class="comment"># x = random.randint(100, size = (5))</span></span><br><span class="line">x = random.randint(<span class="number">100</span>, size = (<span class="number">3</span>, <span class="number">5</span>))</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(x))</span><br></pre></td></tr></table></figure>
+
+<pre><code>[[88  2 19 78 13]
+ [92 80 62 22 96]
+ [66 71 89 62 76]]
+&lt;class &#39;numpy.ndarray&#39;&gt;
+</code></pre>
+<ul>
+<li>랜덤 배열, 실숫값 추출</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> random </span><br><span class="line">x = random.rand(<span class="number">2</span>, <span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(x))</span><br></pre></td></tr></table></figure>
+
+<pre><code>[[0.06336531 0.34486775 0.66923826 0.31566607 0.84566463]
+ [0.61713876 0.67541796 0.65161201 0.04912466 0.45433901]]
+&lt;class &#39;numpy.ndarray&#39;&gt;
+</code></pre>
+<h2 id="NumPy-사칙-연산"><a href="#NumPy-사칙-연산" class="headerlink" title="NumPy 사칙 연산"></a>NumPy 사칙 연산</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">array_01 = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">array_02 = np.array([<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>])</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 덧셈</span></span><br><span class="line">newArr = np.add(array_01, array_02)</span><br><span class="line"><span class="built_in">print</span>(newArr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 뺄셈</span></span><br><span class="line">newArr = np.subtract(array_01, array_02)</span><br><span class="line"><span class="built_in">print</span>(newArr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 곱셈</span></span><br><span class="line">newArr = np.multiply(array_01, array_02)</span><br><span class="line"><span class="built_in">print</span>(newArr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 나누기</span></span><br><span class="line">newArr = np.divide(array_01, array_02)</span><br><span class="line"><span class="built_in">print</span>(newArr)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 거듭제곱</span></span><br><span class="line">array_01 = np.array([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line">array_02 = np.array([<span class="number">2</span>, <span class="number">4</span>, <span class="number">2</span>])</span><br><span class="line">newArr = np.power(array_01, array_02)</span><br><span class="line"><span class="built_in">print</span>(newArr)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[3 5 5]
+[-1 -1  1]
+[2 6 6]
+[0.5        0.66666667 1.5       ]
+[ 1 16  9]
+</code></pre>
+<h2 id="소숫점-정렬"><a href="#소숫점-정렬" class="headerlink" title="소숫점 정렬"></a>소숫점 정렬</h2><ul>
+<li>소숫점을 정렬하는 다양한 방법</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 소숫점 제거 </span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">temp_arr = np.trunc([-<span class="number">1.23</span>, <span class="number">1.23</span>])</span><br><span class="line"><span class="built_in">print</span>(temp_arr)</span><br><span class="line"></span><br><span class="line">temp_arr = np.fix([-<span class="number">1.23</span>, <span class="number">1.23</span>])</span><br><span class="line"><span class="built_in">print</span>(temp_arr)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[-1.  1.]
+[-1.  1.]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 임의의 소숫점 자리에서 반올림</span></span><br><span class="line">temp_arr = np.around([-<span class="number">1.234546123</span>, <span class="number">1.238791631</span>], <span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(temp_arr)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[-1.23455  1.23879]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 소숫점 모두 내림</span></span><br><span class="line">temp_arr = np.floor([-<span class="number">1.234546123</span>, <span class="number">1.238791631</span>])</span><br><span class="line"><span class="built_in">print</span>(temp_arr)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[-2.  1.]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 소숫점 모두 올림</span></span><br><span class="line">temp_arr = np.ceil([-<span class="number">1.234546123</span>, <span class="number">1.238791631</span>])</span><br><span class="line"><span class="built_in">print</span>(temp_arr)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[-1.  2.]
+</code></pre>
+<h2 id="조건식"><a href="#조건식" class="headerlink" title="조건식"></a>조건식</h2><ul>
+<li>pandas 가공</li>
+<li>numpy</li>
+<li>조건식<ul>
+<li>하나의 조건식 (&#x3D; np.where)</li>
+<li>다중 조건식</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">temp_arr = np.arange(<span class="number">10</span>)</span><br><span class="line">temp_arr</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 5보다 작으면 원 값 유지</span></span><br><span class="line"><span class="comment"># 5보다 크면 곱하기 10을 해줌</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># np.where(조건식, 참일 때, 거짓일 때)</span></span><br><span class="line">np.where(temp_arr &lt; <span class="number">5</span>, temp_arr, temp_arr * <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([ 0,  1,  2,  3,  4, 50, 60, 70, 80, 90])
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">temp_arr = np.arange(<span class="number">10</span>)</span><br><span class="line"><span class="comment"># temp_arr</span></span><br><span class="line">cond_list   = [temp_arr &gt; <span class="number">5</span> , temp_arr &lt; <span class="number">2</span>]</span><br><span class="line">choice_list = [temp_arr  * <span class="number">2</span>, temp_arr + <span class="number">100</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># np.select(조건식 리스트, 결괏값 리스트, default = )</span></span><br><span class="line">np.select(cond_list, choice_list, default = temp_arr)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([100, 101,   2,   3,   4,   5,  12,  14,  16,  18])
+</code></pre>
+<h2 id="Reshape"><a href="#Reshape" class="headerlink" title="Reshape"></a>Reshape</h2><ul>
+<li>배열의 차원 또는 크기를 바꾼다. </li>
+<li>곱셈만 할줄 알면 끝.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np </span><br><span class="line">temp_array = np.ones((<span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line"><span class="built_in">print</span>(temp_array.shape)</span><br><span class="line"><span class="built_in">print</span>(temp_array)</span><br></pre></td></tr></table></figure>
+
+<pre><code>(3, 4)
+[[1. 1. 1. 1.]
+ [1. 1. 1. 1.]
+ [1. 1. 1. 1.]]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">after_reshape = temp_array.reshape(<span class="number">2</span>, <span class="number">2</span>, <span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(after_reshape.shape)</span><br><span class="line"><span class="built_in">print</span>(after_reshape)</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-50-d57dd065a075&gt; in &lt;module&gt;()
+----&gt; 1 after_reshape = temp_array.reshape(2, 2, 5)
+      2 print(after_reshape.shape)
+      3 print(after_reshape)
+
+
+ValueError: cannot reshape array of size 12 into shape (2,2,5)
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">after_reshape = temp_array.reshape(<span class="number">7</span>, -<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(after_reshape.shape)</span><br><span class="line"><span class="built_in">print</span>(after_reshape)</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>---------------------------------------------------------------------------
+
+ValueError                                Traceback (most recent call last)
+
+&lt;ipython-input-53-00ad0ee6a004&gt; in &lt;module&gt;()
+----&gt; 1 after_reshape = temp_array.reshape(7, -1)
+      2 print(after_reshape.shape)
+      3 print(after_reshape)
+
+
+ValueError: cannot reshape array of size 12 into shape (7,newaxis)
+</code></pre>
+<h1 id="브로드-캐스팅"><a href="#브로드-캐스팅" class="headerlink" title="브로드 캐스팅"></a>브로드 캐스팅</h1><h1 id="pandas-튜토리얼"><a href="#pandas-튜토리얼" class="headerlink" title="pandas 튜토리얼"></a>pandas 튜토리얼</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd </span><br><span class="line"><span class="built_in">print</span>(pd.__version__)</span><br></pre></td></tr></table></figure>
+
+<pre><code>1.3.5
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">temp_dict = &#123;</span><br><span class="line">    <span class="string">&#x27;col1&#x27;</span> : [<span class="number">1</span>, <span class="number">2</span>], </span><br><span class="line">    <span class="string">&#x27;col2&#x27;</span> : [<span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(temp_dict)</span><br><span class="line"><span class="built_in">print</span>(df)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(df))</span><br></pre></td></tr></table></figure>
+
+<pre><code>   col1  col2
+0     1     3
+1     2     4
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+</code></pre>
+<h2 id="구글-드라이브-연동"><a href="#구글-드라이브-연동" class="headerlink" title="구글 드라이브 연동"></a>구글 드라이브 연동</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> google.colab <span class="keyword">import</span> drive </span><br><span class="line">drive.mount(<span class="string">&#x27;/content/drive&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Mounted at /content/drive
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">DATA_PATH = <span class="string">&#x27;/content/drive/MyDrive/Colab Notebooks/human_AI/Basic/Chapter 3. pandas/data/&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(DATA_PATH + <span class="string">&#x27;Lemonade2016.csv&#x27;</span>)</span><br><span class="line"></span><br><span class="line">lemonade = pd.read_csv(DATA_PATH + <span class="string">&#x27;Lemonade2016.csv&#x27;</span>)</span><br><span class="line"><span class="comment"># covid_df = pd.read_csv(DATA_PATH + &#x27;owid-covid-data.csv&#x27;)</span></span><br><span class="line"></span><br><span class="line">lemonade.info() <span class="comment"># str()</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>/content/drive/MyDrive/Colab Notebooks/human_AI/Basic/Chapter 3. pandas/data/Lemonade2016.csv
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 32 entries, 0 to 31
+Data columns (total 7 columns):
+ #   Column       Non-Null Count  Dtype  
+---  ------       --------------  -----  
+ 0   Date         31 non-null     object 
+ 1   Location     32 non-null     object 
+ 2   Lemon        32 non-null     int64  
+ 3   Orange       32 non-null     int64  
+ 4   Temperature  32 non-null     int64  
+ 5   Leaflets     31 non-null     float64
+ 6   Price        32 non-null     float64
+dtypes: float64(2), int64(3), object(2)
+memory usage: 1.9+ KB
+</code></pre>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/2022/06/28/day0628_1/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+            <a
+                href="/2022/06/28/day0628_1/"
+                aria-label=": day 0628 원본"
+            >
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" src="http://neewlife.github.io/2022/06/28/day0628_1/source/_posts/20211211070332_pkknkybf.jpg"/>
                 </div>
             </a>
             

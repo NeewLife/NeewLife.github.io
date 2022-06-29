@@ -205,6 +205,485 @@
                     
                         <a
                             class="link-unstyled"
+                            href="/2022/06/22/day0622_1/"
+                            aria-label=": 9장"
+                        >
+                            9장
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2022-06-22T09:30:00+09:00">
+	
+		    Jun 22, 2022
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <h1 id="9장"><a href="#9장" class="headerlink" title="9장"></a>9장</h1><h2 id="ggplot2-강의"><a href="#ggplot2-강의" class="headerlink" title="ggplot2 강의"></a>ggplot2 강의</h2><ul>
+<li>데이터 불러오기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">library<span class="punctuation">(</span>readxl<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>ggplot2<span class="punctuation">)</span></span><br><span class="line">who_disease <span class="operator">&lt;-</span> read_xlsx<span class="punctuation">(</span><span class="string">&quot;data/who_disease.xlsx&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>기본 시각화</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># x축에 year, y축에 cases 라는 값을 넣겠다.</span></span><br><span class="line">ggplot<span class="punctuation">(</span>who_disease<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> year<span class="punctuation">,</span> y <span class="operator">=</span> cases<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  <span class="comment">#그래프 종류</span></span><br><span class="line">  geom_point<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-2-1.png"><!-- --></p>
+<ul>
+<li>옵션 변화 주기(투명도)</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>who_disease<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> year<span class="punctuation">,</span> y <span class="operator">=</span> cases<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  <span class="comment">#그래프 종류</span></span><br><span class="line">  geom_point<span class="punctuation">(</span>alpha <span class="operator">=</span> <span class="number">0.1</span><span class="punctuation">)</span>  <span class="comment"># alpha 는 투명도</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-3-1.png"><!-- --></p>
+<ul>
+<li>옵션 색상 변화</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>who_disease<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> year<span class="punctuation">,</span> y <span class="operator">=</span> cases<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  <span class="comment">#그래프 종류</span></span><br><span class="line">  geom_point<span class="punctuation">(</span>alpha <span class="operator">=</span> <span class="number">0.1</span><span class="punctuation">,</span> colour <span class="operator">=</span> <span class="string">&quot;#A243F5&quot;</span><span class="punctuation">)</span>  <span class="comment"># &quot;#A243F5&quot; 색상으로 변경</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-4-1.png"><!-- --></p>
+<ul>
+<li>colour 입력 위치<ul>
+<li>geom_point(colour&#x3D;”red”)       -&gt;  색상명 작성</li>
+<li>aes(x, y, colour &#x3D; 컬럼이름)   -&gt;  aes 안에는 컬럼 이름작성</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str<span class="punctuation">(</span>iris<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">## &#x27;data.frame&#x27;:	150 obs. of  5 variables:</span><br><span class="line">##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...</span><br><span class="line">##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...</span><br><span class="line">##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...</span><br><span class="line">##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...</span><br><span class="line">##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>iris<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> Sepal.Length<span class="punctuation">,</span></span><br><span class="line">                 y <span class="operator">=</span> Sepal.Width<span class="punctuation">,</span></span><br><span class="line">                 colour <span class="operator">=</span> Species<span class="punctuation">,</span></span><br><span class="line">                 size <span class="operator">=</span> Petal.Length<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  geom_point<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-5-1.png"><!-- --></p>
+<ul>
+<li><p>원하는 색상값 참조 사이트</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://color.adobe.com/ko/create/color-wheel">https://color.adobe.com/ko/create/color-wheel</a></li>
+</ul>
+</li>
+<li><p>산점도 : x축 수치형 연속형 데이터, y축 수치형 연속형 데이터</p>
+</li>
+<li><p>연속형 데이터 : 숫자 같이 연속하는 데이터</p>
+</li>
+<li><p>이산형 데이터 : 문자 같이 연속하지 않는 데이터</p>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>who_disease<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> year<span class="punctuation">,</span> y <span class="operator">=</span> cases<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  <span class="comment">#그래프 종류</span></span><br><span class="line">  geom_point<span class="punctuation">(</span>alpha <span class="operator">=</span> <span class="number">0.1</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-6-1.png"><!-- --></p>
+<ul>
+<li>커널 밀도 곡선</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>data<span class="operator">=</span>diamonds<span class="punctuation">,</span> aes<span class="punctuation">(</span>x<span class="operator">=</span>carat<span class="punctuation">)</span><span class="punctuation">)</span><span class="operator">+</span></span><br><span class="line">  geom_density<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-7-1.png"><!-- --></p>
+<ul>
+<li>상자 그래프<ul>
+<li>전체 데이터 기준의 그림</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>data<span class="operator">=</span>diamonds<span class="punctuation">,</span> aes<span class="punctuation">(</span>x<span class="operator">=</span><span class="number">1</span><span class="punctuation">,</span> y<span class="operator">=</span>price<span class="punctuation">)</span><span class="punctuation">)</span><span class="operator">+</span>  <span class="comment">#통상 x값에 1을 부여한다</span></span><br><span class="line">  geom_boxplot<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-8-1.png"><!-- --></p>
+<ul>
+<li>범주형 변수 기준의 그림</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>data<span class="operator">=</span>diamonds<span class="punctuation">,</span>aes<span class="punctuation">(</span>x<span class="operator">=</span>cut<span class="punctuation">,</span>y<span class="operator">=</span>price<span class="punctuation">)</span><span class="punctuation">)</span><span class="operator">+</span></span><br><span class="line">  geom_boxplot<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-9-1.png"><!-- --></p>
+<ul>
+<li>선 그래프<ul>
+<li>속도에 따른 제동거리의 그래프</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>data<span class="operator">=</span>cars<span class="punctuation">,</span> aes<span class="punctuation">(</span>x<span class="operator">=</span>speed<span class="punctuation">,</span>y<span class="operator">=</span>dist<span class="punctuation">)</span><span class="punctuation">)</span><span class="operator">+</span></span><br><span class="line">  geom_line<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-10-1.png"><!-- --></p>
+<ul>
+<li>실업자수 변화 그래프</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>data<span class="operator">=</span>economics<span class="punctuation">,</span>aes<span class="punctuation">(</span>x<span class="operator">=</span>date<span class="punctuation">,</span>y<span class="operator">=</span>unemploy<span class="punctuation">)</span><span class="punctuation">)</span><span class="operator">+</span></span><br><span class="line">  geom_line<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-11-1.png"><!-- --></p>
+<ul>
+<li>개인 저축률 변화</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>data<span class="operator">=</span>economics<span class="punctuation">,</span>aes<span class="punctuation">(</span>x<span class="operator">=</span>date<span class="punctuation">,</span> y<span class="operator">=</span>psavert<span class="punctuation">)</span><span class="punctuation">)</span><span class="operator">+</span></span><br><span class="line">  geom_line<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-12-1.png"><!-- --></p>
+<ul>
+<li>두 선 그래프를 연결해서 그리기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span><span class="punctuation">)</span><span class="operator">+</span></span><br><span class="line">  geom_line<span class="punctuation">(</span>data<span class="operator">=</span>economics<span class="punctuation">,</span>aes<span class="punctuation">(</span>x<span class="operator">=</span>date<span class="punctuation">,</span>y<span class="operator">=</span>uempmed<span class="punctuation">,</span>color<span class="operator">=</span><span class="string">&quot;red&quot;</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="operator">+</span></span><br><span class="line">  geom_line<span class="punctuation">(</span>data<span class="operator">=</span>economics<span class="punctuation">,</span>aes<span class="punctuation">(</span>x<span class="operator">=</span>date<span class="punctuation">,</span>y<span class="operator">=</span>psavert<span class="punctuation">,</span>color<span class="operator">=</span><span class="string">&quot;blue&quot;</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-13-1.png"><!-- --></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 빨간색이 주당평균실업기간</span></span><br><span class="line"><span class="comment"># 파란색이 개인저축률</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>히스토그램<ul>
+<li>질병데이터<br>region &#x3D; AMR, year &#x3D; 1980, disease &#x3D; 백일해(pertussis)<br>cases &gt; 0</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">library<span class="punctuation">(</span>dplyr<span class="punctuation">)</span></span><br><span class="line">str<span class="punctuation">(</span>who_disease<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">## tibble [43,262 × 6] (S3: tbl_df/tbl/data.frame)</span><br><span class="line">##  $ region     : chr [1:43262] &quot;EMR&quot; &quot;EUR&quot; &quot;AFR&quot; &quot;EUR&quot; ...</span><br><span class="line">##  $ countryCode: chr [1:43262] &quot;AFG&quot; &quot;ALB&quot; &quot;DZA&quot; &quot;AND&quot; ...</span><br><span class="line">##  $ country    : chr [1:43262] &quot;Afghanistan&quot; &quot;Albania&quot; &quot;Algeria&quot; &quot;Andorra&quot; ...</span><br><span class="line">##  $ disease    : chr [1:43262] &quot;measles&quot; &quot;measles&quot; &quot;measles&quot; &quot;measles&quot; ...</span><br><span class="line">##  $ year       : num [1:43262] 2016 2016 2016 2016 2016 ...</span><br><span class="line">##  $ cases      : num [1:43262] 638 17 41 0 53 0 0 2 99 27 ...</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">who_disease <span class="operator">%&gt;%</span> </span><br><span class="line">  filter<span class="punctuation">(</span>region <span class="operator">==</span> <span class="string">&#x27;AMR&#x27;</span><span class="punctuation">,</span></span><br><span class="line">         year <span class="operator">==</span> <span class="number">1980</span><span class="punctuation">,</span></span><br><span class="line">         disease <span class="operator">==</span> <span class="string">&#x27;pertussis&#x27;</span><span class="punctuation">,</span></span><br><span class="line">         cases <span class="operator">&gt;</span> <span class="number">0</span><span class="punctuation">)</span> <span class="operator">-&gt;</span> data2</span><br></pre></td></tr></table></figure>
+<ul>
+<li>data2 시각화(histogram)</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>data2<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> cases<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  <span class="comment"># 빨간색으로 채운다.</span></span><br><span class="line">  geom_histogram<span class="punctuation">(</span>fill <span class="operator">=</span> <span class="string">&quot;red&quot;</span><span class="punctuation">)</span>    <span class="comment"># 분포가 어느 지역에 몰려 있는지에 집중</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-15-1.png"><!-- --></p>
+<ul>
+<li>data2 시각화(col)</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>data2<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span>country<span class="punctuation">,</span> y <span class="operator">=</span>cases<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  geom_col<span class="punctuation">(</span>fill <span class="operator">=</span> <span class="string">&quot;blue&quot;</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  <span class="comment"># 옵션(가로로 그래프 나타내기)</span></span><br><span class="line">  coord_flip<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-16-1.png"><!-- --></p>
+<h2 id="ggplot-정교하게-그리기"><a href="#ggplot-정교하게-그리기" class="headerlink" title="ggplot() 정교하게 그리기"></a>ggplot() 정교하게 그리기</h2><ul>
+<li>산점도 그리기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>data <span class="operator">=</span> diamonds<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> carat<span class="punctuation">,</span> </span><br><span class="line">                            y <span class="operator">=</span> price<span class="punctuation">,</span> </span><br><span class="line">                            col <span class="operator">=</span> cut<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  geom_point<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-17-1.png"><!-- --></p>
+<ul>
+<li>막대그래프에 2개 범주 내용 반영하기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>diamonds<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> color<span class="punctuation">,</span> fill <span class="operator">=</span> cut<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  geom_bar<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-18-1.png"><!-- --></p>
+<ul>
+<li>position을 이용한 막대그래프(특정 그래프 모양에만 적용된다)</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>diamonds<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> color<span class="punctuation">,</span> fill <span class="operator">=</span> cut<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  geom_bar<span class="punctuation">(</span>position<span class="operator">=</span><span class="string">&quot;dodge&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-19-1.png"><!-- --></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>diamonds<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> color<span class="punctuation">,</span> fill <span class="operator">=</span> cut<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  geom_bar<span class="punctuation">(</span>position<span class="operator">=</span><span class="string">&quot;fill&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-20-1.png"><!-- --></p>
+<ul>
+<li>선 그래프에 2개 범주 내용 반영</li>
+<li>데이터 불러오기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">leisure <span class="operator">&lt;-</span> read.csv<span class="punctuation">(</span><span class="string">&quot;data/leisure.csv&quot;</span><span class="punctuation">)</span></span><br><span class="line">str<span class="punctuation">(</span>leisure<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">## &#x27;data.frame&#x27;:	200 obs. of  3 variables:</span><br><span class="line">##  $ age    : int  2 2 3 3 4 4 5 5 6 6 ...</span><br><span class="line">##  $ sex    : chr  &quot;female&quot; &quot;male&quot; &quot;female&quot; &quot;male&quot; ...</span><br><span class="line">##  $ expense: num  25.8 21 30 16.3 25.7 ...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>연령별 교양오락지출비 그래프 그리기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>data<span class="operator">=</span>leisure<span class="punctuation">,</span> aes<span class="punctuation">(</span>x<span class="operator">=</span>age<span class="punctuation">,</span> y<span class="operator">=</span>expense<span class="punctuation">,</span> col <span class="operator">=</span> sex<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  geom_line<span class="punctuation">(</span>size<span class="operator">=</span><span class="number">1</span><span class="punctuation">,</span> linetype<span class="operator">=</span><span class="number">2</span><span class="punctuation">)</span>   <span class="comment">#사이즈, 선 타입 조절</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-22-1.png"><!-- --></p>
+<h3 id="막대그래프의-순서-변경"><a href="#막대그래프의-순서-변경" class="headerlink" title="막대그래프의 순서 변경"></a>막대그래프의 순서 변경</h3><ul>
+<li>reorder()</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mpg1 <span class="operator">&lt;-</span> read.csv<span class="punctuation">(</span><span class="string">&quot;data/mpg1.csv&quot;</span><span class="punctuation">,</span></span><br><span class="line">                 stringsAsFactors <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#데이터 가공</span></span><br><span class="line">drv_hwy <span class="operator">&lt;-</span> mpg1 <span class="operator">%&gt;%</span> </span><br><span class="line">  group_by<span class="punctuation">(</span>drv<span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  summarise<span class="punctuation">(</span>mean_hwy <span class="operator">=</span> mean<span class="punctuation">(</span>hwy<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 기본 그래프</span></span><br><span class="line">ggplot<span class="punctuation">(</span>data <span class="operator">=</span> drv_hwy<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> drv<span class="punctuation">,</span> </span><br><span class="line">                           y <span class="operator">=</span> mean_hwy<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  geom_col<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-24-1.png"><!-- --></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#오름차순</span></span><br><span class="line">ggplot<span class="punctuation">(</span>data <span class="operator">=</span> drv_hwy<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> reorder<span class="punctuation">(</span>drv<span class="punctuation">,</span> mean_hwy<span class="punctuation">)</span><span class="punctuation">,</span>  </span><br><span class="line">                           y <span class="operator">=</span> mean_hwy<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  geom_col<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-24-2.png"><!-- --></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#내림차순</span></span><br><span class="line">ggplot<span class="punctuation">(</span>data <span class="operator">=</span> drv_hwy<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> reorder<span class="punctuation">(</span>drv<span class="punctuation">,</span> <span class="operator">-</span>mean_hwy<span class="punctuation">)</span><span class="punctuation">,</span> </span><br><span class="line">                           y <span class="operator">=</span> mean_hwy<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  geom_col<span class="punctuation">(</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 그래프와 축에 이름 붙이기</span></span><br><span class="line">  labs<span class="punctuation">(</span>            </span><br><span class="line">    title <span class="operator">=</span> <span class="string">&quot;그래프 제목을 입력하세요&quot;</span><span class="punctuation">,</span></span><br><span class="line">    subtitle <span class="operator">=</span> <span class="string">&quot;그래프 소제목을 입력하세요&quot;</span><span class="punctuation">,</span></span><br><span class="line">    x <span class="operator">=</span> <span class="string">&quot;x변수명을 입력하세요&quot;</span><span class="punctuation">,</span></span><br><span class="line">    y <span class="operator">=</span> <span class="string">&quot;y변수명을 입력하세요&quot;</span><span class="punctuation">,</span></span><br><span class="line">    caption <span class="operator">=</span> <span class="string">&quot;데이터 출처를 입력하세요&quot;</span></span><br><span class="line">  <span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622_1/unnamed-chunk-24-3.png"><!-- --></p>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/2022/06/22/day0622_1/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/2022/06/22/day0622/"
+                            aria-label=": 7장"
+                        >
+                            7장
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2022-06-22T09:00:00+09:00">
+	
+		    Jun 22, 2022
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <h1 id="7장"><a href="#7장" class="headerlink" title="7장"></a>7장</h1><h3 id="라이브러리-불러오기"><a href="#라이브러리-불러오기" class="headerlink" title="라이브러리 불러오기"></a>라이브러리 불러오기</h3><ul>
+<li>작업할 때 항상 라이브러리 불러오기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">library<span class="punctuation">(</span>dplyr<span class="punctuation">)</span></span><br><span class="line">glimpse<span class="punctuation">(</span>iris<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">## Rows: 150</span><br><span class="line">## Columns: 5</span><br><span class="line">## $ Sepal.Length &lt;dbl&gt; 5.1, 4.9, 4.7, 4.6, 5.0, 5.4, 4.6, 5.0, 4.4, 4.9, 5.4, 4.…</span><br><span class="line">## $ Sepal.Width  &lt;dbl&gt; 3.5, 3.0, 3.2, 3.1, 3.6, 3.9, 3.4, 3.4, 2.9, 3.1, 3.7, 3.…</span><br><span class="line">## $ Petal.Length &lt;dbl&gt; 1.4, 1.4, 1.3, 1.5, 1.4, 1.7, 1.4, 1.5, 1.4, 1.5, 1.5, 1.…</span><br><span class="line">## $ Petal.Width  &lt;dbl&gt; 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.…</span><br><span class="line">## $ Species      &lt;fct&gt; setosa, setosa, setosa, setosa, setosa, setosa, setosa, s…</span><br></pre></td></tr></table></figure>
+
+<h3 id="데이터-불러오기"><a href="#데이터-불러오기" class="headerlink" title="데이터 불러오기"></a>데이터 불러오기</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exam_na <span class="operator">&lt;-</span> read.csv<span class="punctuation">(</span><span class="string">&quot;data/exam_na.csv&quot;</span><span class="punctuation">)</span></span><br><span class="line">str<span class="punctuation">(</span>exam_na<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">## &#x27;data.frame&#x27;:	5 obs. of  5 variables:</span><br><span class="line">##  $ id     : int  1 2 3 4 5</span><br><span class="line">##  $ sex    : chr  &quot;M&quot; &quot;F&quot; &quot;F&quot; &quot;M&quot; ...</span><br><span class="line">##  $ korean : int  87 92 95 NA 87</span><br><span class="line">##  $ english: int  NA 95 92 84 NA</span><br><span class="line">##  $ math   : int  82 93 90 80 88</span><br></pre></td></tr></table></figure>
+<h3 id="1-결측치-확인"><a href="#1-결측치-확인" class="headerlink" title="(1) 결측치 확인"></a>(1) 결측치 확인</h3><ul>
+<li>is.na() : 결측치가 있습니까? &#x2F; TRUE or FALSE</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">is.na</span><span class="punctuation">(</span>exam_na<span class="punctuation">)</span>  <span class="comment"># TRUE 가 결측치</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##         id   sex korean english  math</span><br><span class="line">## [1,] FALSE FALSE  FALSE    TRUE FALSE</span><br><span class="line">## [2,] FALSE FALSE  FALSE   FALSE FALSE</span><br><span class="line">## [3,] FALSE FALSE  FALSE   FALSE FALSE</span><br><span class="line">## [4,] FALSE FALSE   TRUE   FALSE FALSE</span><br><span class="line">## [5,] FALSE FALSE  FALSE    TRUE FALSE</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-결측치-빈도-구하기"><a href="#2-결측치-빈도-구하기" class="headerlink" title="(2) 결측치 빈도 구하기"></a>(2) 결측치 빈도 구하기</h3><ul>
+<li>table(is.na()) : 빈도 구하기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span><span class="built_in">is.na</span><span class="punctuation">(</span>exam_na<span class="punctuation">)</span><span class="punctuation">)</span>          <span class="comment">#FALSE 는 결측치가 아닌것, TRUE 는 결측치</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## FALSE  TRUE </span><br><span class="line">##    22     3</span><br></pre></td></tr></table></figure>
+<ul>
+<li>korean 항목의 결측치 구하기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span><span class="built_in">is.na</span><span class="punctuation">(</span>exam_na<span class="operator">$</span>korean<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## FALSE  TRUE </span><br><span class="line">##     4     1</span><br></pre></td></tr></table></figure>
+<ul>
+<li>변수별로 결측치 빈도 구하기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">summary<span class="punctuation">(</span><span class="built_in">is.na</span><span class="punctuation">(</span>exam_na<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">##      id             sex            korean         english       </span><br><span class="line">##  Mode :logical   Mode :logical   Mode :logical   Mode :logical  </span><br><span class="line">##  FALSE:5         FALSE:5         FALSE:4         FALSE:3        </span><br><span class="line">##                                  TRUE :1         TRUE :2        </span><br><span class="line">##     math        </span><br><span class="line">##  Mode :logical  </span><br><span class="line">##  FALSE:5        </span><br><span class="line">## </span><br></pre></td></tr></table></figure>
+<ul>
+<li>결측치 포함한 전체 통계</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">summary<span class="punctuation">(</span>exam_na<span class="punctuation">)</span>   <span class="comment"># NA&#x27;s 값이 결측치의 개수</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">##        id        sex                korean         english           math     </span><br><span class="line">##  Min.   :1   Length:5           Min.   :87.00   Min.   :84.00   Min.   :80.0  </span><br><span class="line">##  1st Qu.:2   Class :character   1st Qu.:87.00   1st Qu.:88.00   1st Qu.:82.0  </span><br><span class="line">##  Median :3   Mode  :character   Median :89.50   Median :92.00   Median :88.0  </span><br><span class="line">##  Mean   :3                      Mean   :90.25   Mean   :90.33   Mean   :86.6  </span><br><span class="line">##  3rd Qu.:4                      3rd Qu.:92.75   3rd Qu.:93.50   3rd Qu.:90.0  </span><br><span class="line">##  Max.   :5                      Max.   :95.00   Max.   :95.00   Max.   :93.0  </span><br><span class="line">##                                 NA&#x27;s   :1       NA&#x27;s   :2</span><br></pre></td></tr></table></figure>
+
+<h1 id="결측치-처리-방법"><a href="#결측치-처리-방법" class="headerlink" title="결측치 처리 방법"></a>결측치 처리 방법</h1><h3 id="1-제거하고-처리하기"><a href="#1-제거하고-처리하기" class="headerlink" title="(1) 제거하고 처리하기"></a>(1) 제거하고 처리하기</h3><ul>
+<li>na.rm &#x3D; T : ‘rm’은 remove의 약자. 즉, 결측치를 제거 할 것이냐는 함수</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mean<span class="punctuation">(</span>exam_na<span class="operator">$</span>korean<span class="punctuation">,</span> na.rm <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">)</span>  <span class="comment">#TRUE는 제거, FALSE는 제거 안함</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 90.25</span><br></pre></td></tr></table></figure>
+<ul>
+<li>na.omit() : 결측치가 있는 행을 모두 제거<br>+가급적 쓰지 말 것</li>
+<li>filter() 함수 활용<ul>
+<li>(!is.na(korean))</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam_na <span class="operator">%&gt;%</span> filter<span class="punctuation">(</span><span class="built_in">is.na</span><span class="punctuation">(</span>korean<span class="punctuation">)</span><span class="punctuation">)</span>   <span class="comment">#결측치가 있는 열</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##   id sex korean english math</span><br><span class="line">## 1  4   M     NA      84   80</span><br></pre></td></tr></table></figure>
+<ul>
+<li>이번에는 !is.na(korean))을 활용한다</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam_na <span class="operator">%&gt;%</span> filter<span class="punctuation">(</span><span class="operator">!</span><span class="built_in">is.na</span><span class="punctuation">(</span>korean<span class="punctuation">)</span><span class="punctuation">)</span>  <span class="comment">#!는 not의 의미</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">##   id sex korean english math</span><br><span class="line">## 1  1   M     87      NA   82</span><br><span class="line">## 2  2   F     92      95   93</span><br><span class="line">## 3  3   F     95      92   90</span><br><span class="line">## 4  5   F     87      NA   88</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-다른-값으로-대체하기"><a href="#2-다른-값으로-대체하기" class="headerlink" title="(2) 다른 값으로 대체하기"></a>(2) 다른 값으로 대체하기</h3><ul>
+<li>imputation 참고자료<ul>
+<li><a target="_blank" rel="noopener" href="https://www.kdnuggets.com/2017/09/missing-data-imputation-using-r.html">https://www.kdnuggets.com/2017/09/missing-data-imputation-using-r.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://velog.io/@lifeisbeautiful/R-%EA%B2%B0%EC%B8%A1%EA%B0%92NA-%EC%A0%9C%EA%B1%B0-%EB%8C%80%EC%B2%B4-%EB%B0%A9%EB%B2%95">R 결측치(NA) 제거, 대체 방법</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="평균-입력"><a href="#평균-입력" class="headerlink" title="평균 입력"></a>평균 입력</h4><ul>
+<li>ifelse()를 이용할 때</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam_na<span class="operator">$</span>korean   <span class="comment"># korean 성적에서 4번째가 NA</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 87 92 95 NA 87</span><br></pre></td></tr></table></figure>
+<ul>
+<li>결측값을 제외한 값의 평균 구하기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mean<span class="punctuation">(</span>exam_na<span class="operator">$</span>korean<span class="punctuation">,</span> na.rm <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 90.25</span><br></pre></td></tr></table></figure>
+<ul>
+<li>결측값에 평균 입력</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam_na<span class="operator">$</span>korean <span class="operator">&lt;-</span> ifelse<span class="punctuation">(</span><span class="built_in">is.na</span><span class="punctuation">(</span>exam_na<span class="operator">$</span>korean<span class="punctuation">)</span><span class="punctuation">,</span><span class="number">90.25</span><span class="punctuation">,</span>exam_na<span class="operator">$</span>korean<span class="punctuation">)</span>  <span class="comment">#ifelse()함수 이용</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>korean 성적 확인</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam_na<span class="operator">$</span>korean </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 87.00 92.00 95.00 90.25 87.00</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="이상치"><a href="#이상치" class="headerlink" title="이상치"></a>이상치</h2><ul>
+<li>데이터의 특정 값이 뭔가 ‘이상’이 있다.</li>
+<li>Case 1 : 정해진 범주에서 벗어난 데이터<ul>
+<li>2000년 4월 30일 &#x2F; 2000년 40월 30일 —&gt; 9999</li>
+</ul>
+</li>
+<li>Case 2 : 숫자 &#x2F; 아웃라이어(Outlier) &#x2F; 극단값<ul>
+<li>평균임금 320만원 &#x2F; 손흥민 몇십억원?</li>
+</ul>
+</li>
+</ul>
+<p>-자료 불러오기</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mpg1_out <span class="operator">&lt;-</span> read.csv<span class="punctuation">(</span><span class="string">&quot;data/mpg1_out.csv&quot;</span><span class="punctuation">)</span></span><br><span class="line">glimpse<span class="punctuation">(</span>mpg1_out<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## Rows: 234</span><br><span class="line">## Columns: 3</span><br><span class="line">## $ trans &lt;int&gt; 1, 2, 2, 1, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 1, 1, 1, 3, 1, 1…</span><br><span class="line">## $ drv   &lt;chr&gt; &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;4&quot;, &quot;4&quot;, &quot;4&quot;, &quot;4&quot;, &quot;4&quot;, &quot;5&quot;,…</span><br><span class="line">## $ cty   &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 15, 15, …</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>trans의 갯수를 구하자.</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mpg1_out<span class="operator">$</span>trans<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">##   1   2   3 </span><br><span class="line">## 154  76   4</span><br></pre></td></tr></table></figure>
+<ul>
+<li>쉽게 하는 방법</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mpg1_out <span class="operator">%&gt;%</span> filter<span class="punctuation">(</span>trans <span class="operator">!=</span> <span class="number">3</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ifelse</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mpg1_out<span class="operator">$</span>trans <span class="operator">&lt;-</span> ifelse<span class="punctuation">(</span>mpg1_out<span class="operator">$</span>trans <span class="operator">==</span> <span class="number">3</span><span class="punctuation">,</span> <span class="literal">NA</span><span class="punctuation">,</span> mpg1_out<span class="operator">$</span>trans<span class="punctuation">)</span></span><br><span class="line"><span class="comment"># trans의 값이 3이면 결측치(NA)로 바꿔주고, 아니면 그대로 두어라</span></span><br><span class="line">table<span class="punctuation">(</span><span class="built_in">is.na</span><span class="punctuation">(</span>mpg1_out<span class="operator">$</span>trans<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## FALSE  TRUE </span><br><span class="line">##   230     4</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>결측치 제거</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">result <span class="operator">&lt;-</span> mpg1_out <span class="operator">%&gt;%</span> filter<span class="punctuation">(</span><span class="operator">!</span><span class="built_in">is.na</span><span class="punctuation">(</span>trans<span class="punctuation">)</span><span class="punctuation">)</span>  <span class="comment"># 결측치가 아닌 것들을 &#x27;result&#x27; 데이터로 지정</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>결측치가 아닌 것들을 표현</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span><span class="built_in">is.na</span><span class="punctuation">(</span>result<span class="operator">$</span>trans<span class="punctuation">)</span><span class="punctuation">)</span> </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## FALSE </span><br><span class="line">##   230</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="극단치-처리"><a href="#극단치-처리" class="headerlink" title="극단치 처리"></a>극단치 처리</h3><ul>
+<li>숫자 데이터 boxplot()</li>
+<li>boxplot() 함수를 통해서 극단치가 있는지 없는 확인지 가능</li>
+<li>IQR : 1사분위 ~ 3사분위</li>
+<li>경계값 : IQR + IQR * 1.5 상한&#x2F; IQR - IQR * 1.5</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mpg1 <span class="operator">&lt;-</span> read.csv<span class="punctuation">(</span><span class="string">&quot;data/mpg1.csv&quot;</span><span class="punctuation">)</span></span><br><span class="line">boxplot<span class="punctuation">(</span>mpg1<span class="operator">$</span>cty<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622/unnamed-chunk-21-1.png"><!-- --></p>
+<ul>
+<li>cty 변수의 통계값</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boxplot<span class="punctuation">(</span>mpg1<span class="operator">$</span>cty<span class="punctuation">)</span><span class="operator">$</span>stats</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622/unnamed-chunk-22-1.png"><!-- --></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##      [,1]</span><br><span class="line">## [1,]    9</span><br><span class="line">## [2,]   14</span><br><span class="line">## [3,]   17</span><br><span class="line">## [4,]   19</span><br><span class="line">## [5,]   26</span><br></pre></td></tr></table></figure>
+<ul>
+<li>cty와 hwy의 통계값</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boxplot<span class="punctuation">(</span>mpg1<span class="operator">$</span>cty<span class="punctuation">,</span> mpg1<span class="operator">$</span>hwy<span class="punctuation">)</span><span class="operator">$</span>stats </span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622/unnamed-chunk-23-1.png"><!-- --></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##      [,1] [,2]</span><br><span class="line">## [1,]    9   12</span><br><span class="line">## [2,]   14   18</span><br><span class="line">## [3,]   17   24</span><br><span class="line">## [4,]   19   27</span><br><span class="line">## [5,]   26   37</span><br></pre></td></tr></table></figure>
+<ul>
+<li>drv 범주별 cty 통계값</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boxplot<span class="punctuation">(</span>mpg1<span class="operator">$</span>cty<span class="operator">~</span>mpg1<span class="operator">$</span>drv<span class="punctuation">)</span><span class="operator">$</span>stats </span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622/unnamed-chunk-24-1.png"><!-- --></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##      [,1] [,2] [,3]</span><br><span class="line">## [1,]    9   15   11</span><br><span class="line">## [2,]   13   18   12</span><br><span class="line">## [3,]   14   19   15</span><br><span class="line">## [4,]   16   21   15</span><br><span class="line">## [5,]   20   25   18</span><br></pre></td></tr></table></figure>
+<ul>
+<li>cty의 극단치 기준 알아보기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boxplot<span class="punctuation">(</span>mpg1<span class="operator">$</span>cty<span class="punctuation">)</span><span class="operator">$</span>stats      </span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0622/unnamed-chunk-25-1.png"><!-- --></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##      [,1]</span><br><span class="line">## [1,]    9</span><br><span class="line">## [2,]   14</span><br><span class="line">## [3,]   17</span><br><span class="line">## [4,]   19</span><br><span class="line">## [5,]   26</span><br></pre></td></tr></table></figure>
+<ul>
+<li>ifelse함수를 활용한다</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mpg1<span class="operator">$</span>cty <span class="operator">&lt;-</span> ifelse<span class="punctuation">(</span>mpg1<span class="operator">$</span>cty<span class="operator">&gt;</span><span class="number">26</span><span class="operator">|</span>mpg1<span class="operator">$</span>cty<span class="operator">&lt;</span><span class="number">9</span><span class="punctuation">,</span> <span class="literal">NA</span><span class="punctuation">,</span> mpg1<span class="operator">$</span>cty<span class="punctuation">)</span></span><br><span class="line"><span class="comment"># cty 값이 26 초과, 9 미만인 경우에 결측치(NA)로 처리하고, 아닌경우 그대로 둔다.</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>결측치 확인</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span><span class="built_in">is.na</span><span class="punctuation">(</span>mpg1<span class="operator">$</span>cty<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## FALSE  TRUE </span><br><span class="line">##   229     5</span><br></pre></td></tr></table></figure>
+<ul>
+<li>결측치를 제외한 cty 평균 구하기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mean<span class="punctuation">(</span>mpg1<span class="operator">$</span>cty<span class="punctuation">,</span>na.rm <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">)</span>  </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 16.55895</span><br></pre></td></tr></table></figure>
+<ul>
+<li>또는 이렇게 쓸 수도 있다</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mpg1<span class="operator">$</span>cty <span class="operator">&lt;-</span> ifelse<span class="punctuation">(</span>mpg1<span class="operator">$</span>cty<span class="operator">&gt;=</span><span class="number">9</span> <span class="operator">&amp;</span> mpg1<span class="operator">$</span>cty<span class="operator">&lt;=</span><span class="number">26</span><span class="punctuation">,</span> mpg1<span class="operator">$</span>cty<span class="punctuation">,</span> <span class="literal">NA</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># cty 값이 9 이상 26 이하인 경우 그대로 두고, 아닌경우 결측치(NA)로 처리한다.</span></span><br></pre></td></tr></table></figure>
+
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/2022/06/22/day0622/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
                             href="/2022/06/21/day0621_dplyr/"
                             aria-label=": 6장"
                         >
