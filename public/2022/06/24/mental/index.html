@@ -1,0 +1,757 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="작은 스터디">
+    <title>한국인의 정신건강 분석 - 작은 스터디</title>
+    <meta name="author" content="John Doe">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"John Doe","sameAs":["https://github.com/NeewLife?tab=repositories/"]},"articleBody":"\n연구 1 : 삶의 만족도와 외로움이 자살충동에 주는 영향을 알아본다.\n\n연구 2 : 삶의 만족도와 외로움의 상관관계를 알아본다.\n\n연구 3 : 가족신뢰도, 경제적 안정, 건강상태가 삶의 만족도와 외로움에 주는 영향을 알아본다.\n\n연구 4 : 성, 연령, 지역에 따라 삶의 만족도에 차이가 있는지를 알아본다.\n\n데이터 불러오기 전 사전준비\n\n\n12library(dplyr)library(ggplot2)\n\nspss 패키지 설치\n\n12install.packages(&quot;foreign&quot;,repos = &quot;http://cran.us.r-project.org&quot;)library(foreign)\n\n\n데이터 불러오기\n\n1mental &lt;- read.spss(&quot;한국행정연구원_사회통합실태조사_데이터_2019.sav&quot;)\n1class(mental)   # 데이터 유형 확인\n\n1## [1] &quot;list&quot;\n\n12mental &lt;- as.data.frame(mental)   #데이터프레임으로 변환하기class(mental)   # 데이터 유형 확인\n\n1## [1] &quot;data.frame&quot;\n\n\n분석 변수 추출 후 이름 변경하기\n\n1234567891011121314151617181920mental &lt;- mental %&gt;%   select(q32_2, q1_4, q32_1,q34_1, q52,d17,d1,d2,ara) %&gt;%   rename(#자살하고 싶은 생각이 드는 정도, 4점 척도         suicide=q32_2,         #요즘 느끼는 삶에 대한 만족도, 등현등간척도, 11점         satisfaction=q1_4,         #외롭다고 느끼는 정도, 4점 척도         loneliness=q32_1,         #본인의 가족에 대한 신뢰도, 4점 척도         family_belief=q34_1,         #본인 경제상황의 안정도, 등현등간척도, 0~10점         wealth=q52,         #건강상태, 5점         health=d17,         #성별         sex=d1,         #연령대, 5등 등급         age=d2,         #지역         area=ara)\n\n4점, 5점, 11점 척도별 응답빈도 확인\n\n1table(mental$suicide)\n\n123## ## 전혀 그렇지 않다 별로 그렇지 않다      약간 그렇다      매우 그렇다 ##             5592             1862              479               67\n\n1table(mental$health)\n\n123## ## 매우 나쁘다 나쁜 편이다    보통이다 좋은 편이다   매우 좋다 ##          87         509        2413        3730        1261\n\n1table(mental$satisfaction)\n\n123456789## ## 0점 전혀 만족하지 않는다                      1점                      2점 ##                       49                       79                      170 ##                      3점                      4점                 5점 보통 ##                      302                      440                     2053 ##                      6점                      7점                      8점 ##                     1611                     1761                     1040 ##                      9점       10점 매우 만족한다              모름/무응답 ##                      321                      174                        0\n\n12# 모름/무응답 항목때문에 11점 척도인데 범주수는 12개로 나옴# 결측치가 없으므로 패스\n\n\n범주 이름을 문자에서 숫자로 변환하기\n\n1234567mental$suicide &lt;- as.integer(mental$suicide)mental$satisfaction &lt;- as.integer(mental$satisfaction)mental$loneliness &lt;- as.integer(mental$loneliness)mental$family_belief &lt;- as.integer(mental$family_belief)mental$wealth &lt;- as.integer(mental$wealth)mental$health &lt;- as.integer(mental$health)table(mental$suicide)\n\n123## ##    1    2    3    4 ## 5592 1862  479   67\n\n1table(mental$health)\n\n123## ##    1    2    3    4    5 ##   87  509 2413 3730 1261\n\n1table(mental$satisfaction)\n\n123## ##    1    2    3    4    5    6    7    8    9   10   11 ##   49   79  170  302  440 2053 1611 1761 1040  321  174\n\n\nsatisfaction 변수는 범주가 0 ~ 10 점 척도인데, 1 ~ 11점으로 출력됨\n등현등간척도 변수(satisfaction, wealth)에서 -1점 보정작업\n\n123mental$satisfaction &lt;- mental$satisfaction-1mental$wealth &lt;- mental$wealth-1table(mental$satisfaction)\n\n123## ##    0    1    2    3    4    5    6    7    8    9   10 ##   49   79  170  302  440 2053 1611 1761 1040  321  174\n\n\nsex, age, area의 유형을 범주형에서 문자형으로 변경\n\n1234mental$age &lt;- as.character(mental$age)mental$sex &lt;- as.character(mental$sex)mental$area &lt;- as.character(mental$area)table(mental$sex)\n\n123## ## 남성 여성 ## 4011 3989\n\n1table(mental$age)\n\n123## ## 19~29세    30대    40대    50대 60~69세 ##    1542    1516    1769    1821    1352\n\n1table(mental$area)\n\n12345## ## 강원 경기 경남 경북 광주 대구 대전 부산 서울 세종 울산 인천 전남 전북 제주 충남 ##  388 1103  527  466  353  464  356  539  965  162  324  522  395  381  267  425 ## 충북 ##  363\n\n\nage 항목의 1929세, 6069세를 20대, 60대로 변경\n\n123mental$age &lt;- ifelse(mental$age==&quot;19~29세&quot;,&quot;20대&quot;,                     ifelse(mental$age==&quot;60~69세&quot;,&quot;60대&quot;,mental$age))table(mental$age)\n\n123## ## 20대 30대 40대 50대 60대 ## 1542 1516 1769 1821 1352\n\n\n결측치, 이상치 확인하기\n\n1summary(mental)\n\n123456789101112131415161718192021##     suicide       satisfaction      loneliness    family_belief  ##  Min.   :1.000   Min.   : 0.000   Min.   :1.000   Min.   :1.000  ##  1st Qu.:1.000   1st Qu.: 5.000   1st Qu.:1.000   1st Qu.:3.000  ##  Median :1.000   Median : 6.000   Median :2.000   Median :4.000  ##  Mean   :1.378   Mean   : 6.037   Mean   :1.795   Mean   :3.576  ##  3rd Qu.:2.000   3rd Qu.: 7.000   3rd Qu.:2.000   3rd Qu.:4.000  ##  Max.   :4.000   Max.   :10.000   Max.   :4.000   Max.   :4.000  ##      wealth           health          sex                age           ##  Min.   : 0.000   Min.   :1.000   Length:8000        Length:8000       ##  1st Qu.: 4.000   1st Qu.:3.000   Class :character   Class :character  ##  Median : 5.000   Median :4.000   Mode  :character   Mode  :character  ##  Mean   : 4.985   Mean   :3.696                                        ##  3rd Qu.: 6.000   3rd Qu.:4.000                                        ##  Max.   :10.000   Max.   :5.000                                        ##      area          ##  Length:8000       ##  Class :character  ##  Mode  :character  ##                    ##                    ## \n\n데이터 분석\n빈도분석\n성별 빈도분석\n\n\n\n12345mental %&gt;%   group_by(sex) %&gt;%                 # sex 변수로 분류  summarise(n=n()) %&gt;%              # sex 변수의 데이터를 세어서 빈도를 n에 입력한다  mutate(total=sum(n),              # total에 데이터 빈도 합을 넣고         pct=round(n/total*100,1))  # 데이터 빈도를 소숫점 1번째 자리까지 백분율로 구한다\n\n12345## # A tibble: 2 × 4##   sex       n total   pct##   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;## 1 남성   4011  8000  50.1## 2 여성   3989  8000  49.9\n\n연령대별 빈도분석\n\n123456# 성별 빈도분석이랑 동일하다.mental %&gt;%   group_by(age) %&gt;%   summarise(n=n()) %&gt;%   mutate(total=sum(n),         pct=round(n/total*100,1))\n\n12345678## # A tibble: 5 × 4##   age       n total   pct##   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;## 1 20대   1542  8000  19.3## 2 30대   1516  8000  19  ## 3 40대   1769  8000  22.1## 4 50대   1821  8000  22.8## 5 60대   1352  8000  16.9\n\n성별, 연령대 교차분석\n\n12# 성별 연령대 별로 고르게 분포되어 있는가?table(mental$sex, mental$age)\n\n1234##       ##        20대 30대 40대 50대 60대##   남성  822  745  900  891  653##   여성  720  771  869  930  699\n\n1round(prop.table(table(mental$sex, mental$age),1)*100,1)\n\n1234##       ##        20대 30대 40대 50대 60대##   남성 20.5 18.6 22.4 22.2 16.3##   여성 18.0 19.3 21.8 23.3 17.5\n\n1chisq.test(mental$sex, mental$age)\n\n12345## ## \tPearson&#x27;s Chi-squared test## ## data:  mental$sex and mental$age## X-squared = 10.076, df = 4, p-value = 0.03916\n\n1# p-value 값이 0.05 미만이므로 남녀 연령대 별로 분포비율은 다소 차이가 있다고 할 수 있다.\n\n\n평균분석\nsuicide, satisfaction, loneliness, family_belief, wealth, health 변수의 평균을 분석한다.\n\n\n\n1234567mental %&gt;%   summarise(자살충동=mean(suicide),            삶의_만족도 = mean(satisfaction),            외로움=mean(loneliness),            가족신뢰도=mean(family_belief),            경제안정도=mean(wealth),            건강상태=mean(health))\n\n12##   자살충동 삶의_만족도 외로움 가족신뢰도 경제안정도 건강상태## 1 1.377625      6.0365  1.795   3.576375   4.985125 3.696125\n연구문제 1\n삶의 만족도와 외로움이 자살충동에 미치는 영향\n\n1234# 삶의 만족도와 외로움을 독립변수, #             자살충동을 종속변수RA &lt;- lm(data=mental, suicide~satisfaction+loneliness)summary(RA)\n\n12345678910111213141516171819## ## Call:## lm(formula = suicide ~ satisfaction + loneliness, data = mental)## ## Residuals:##      Min       1Q   Median       3Q      Max ## -1.50517 -0.40228 -0.03487  0.17773  3.07029 ## ## Coefficients:##               Estimate Std. Error t value Pr(&gt;|t|)    ## (Intercept)   1.035551   0.029823   34.72   &lt;2e-16 ***## satisfaction -0.052583   0.003614  -14.55   &lt;2e-16 ***## loneliness    0.367405   0.007987   46.00   &lt;2e-16 ***## ---## Signif. codes:  0 &#x27;***&#x27; 0.001 &#x27;**&#x27; 0.01 &#x27;*&#x27; 0.05 &#x27;.&#x27; 0.1 &#x27; &#x27; 1## ## Residual standard error: 0.5451 on 7997 degrees of freedom## Multiple R-squared:  0.2668,\tAdjusted R-squared:  0.2666 ## F-statistic:  1455 on 2 and 7997 DF,  p-value: &lt; 2.2e-16\n\n\n자살충동 &#x3D; 1.035551 - 0.052583 x 만족도 + 0.367405 x 외로움    \n이 회귀식의 설명력은 0.2666 으로 낮은 편이다.\n\n연구문제2\n삶의 만족도와 외로움의 상관관계\n\n1cor.test(mental$satisfaction, mental$loneliness)\n\n1234567891011## ## \tPearson&#x27;s product-moment correlation## ## data:  mental$satisfaction and mental$loneliness## t = -25.374, df = 7998, p-value &lt; 2.2e-16## alternative hypothesis: true correlation is not equal to 0## 95 percent confidence interval:##  -0.2931116 -0.2525481## sample estimates:##        cor ## -0.2729512\n\n123# p-value 값이 0.05 미만이므로 유의미한 통계이다.# 삶의 만족도와 외로움은 약한 수준에서 부적인 상관관계에 있다.# 즉, 삶의 만족도가 높아지면 외로움이 약간 줄어드는 관계이다.\n\n연구문제3\n가족신뢰도, 경제안정도, 건강상태가 삶의 만족도와 외로움에 미치는 영향  \n3개 독립변수가 삶의 만족도에 미치는 영향\n\n12RA &lt;- lm(data = mental, satisfaction~family_belief+wealth+health)summary(RA)\n\n123456789101112131415161718192021## ## Call:## lm(formula = satisfaction ~ family_belief + wealth + health, ##     data = mental)## ## Residuals:##     Min      1Q  Median      3Q     Max ## -6.8274 -0.9431 -0.0425  1.0569  6.1986 ## ## Coefficients:##               Estimate Std. Error t value Pr(&gt;|t|)    ## (Intercept)    2.07613    0.13765   15.08   &lt;2e-16 ***## family_belief  0.36851    0.03196   11.53   &lt;2e-16 ***## wealth         0.26016    0.01089   23.88   &lt;2e-16 ***## health         0.36403    0.02206   16.50   &lt;2e-16 ***## ---## Signif. codes:  0 &#x27;***&#x27; 0.001 &#x27;**&#x27; 0.01 &#x27;*&#x27; 0.05 &#x27;.&#x27; 0.1 &#x27; &#x27; 1## ## Residual standard error: 1.627 on 7996 degrees of freedom## Multiple R-squared:  0.1386,\tAdjusted R-squared:  0.1383 ## F-statistic: 428.8 on 3 and 7996 DF,  p-value: &lt; 2.2e-16\n\n1# p-value 값이 0.05 미만이므로 유의미한 통계이다.\n\n\n삶의 만족도 &#x3D; 2.07613 + 0.36851 x 가족신뢰도 + 0.26016 x 경제안정도 + 0.36403 x 건강상태  \n영향력은 차이가 있지만 가족신뢰도, 경제안정도, 건강상태가 좋아지면 모두 삶의 만족도에 긍정적인 영향을 끼친다.\n이 회귀식의 설명력은 0.1383 으로 매우 낮은 편이다. \n3개 독립변수가 외로움에 미치는 영향\n\n12RA &lt;- lm(data=mental, loneliness~family_belief+wealth+health)summary(RA)\n\n1234567891011121314151617181920## ## Call:## lm(formula = loneliness ~ family_belief + wealth + health, data = mental)## ## Residuals:##      Min       1Q   Median       3Q      Max ## -2.24066 -0.64247  0.01863  0.43022  2.83959 ## ## Coefficients:##                Estimate Std. Error t value Pr(&gt;|t|)    ## (Intercept)    3.652247   0.063109   57.87   &lt;2e-16 ***## family_belief -0.220274   0.014654  -15.03   &lt;2e-16 ***## wealth        -0.072686   0.004995  -14.55   &lt;2e-16 ***## health        -0.191313   0.010116  -18.91   &lt;2e-16 ***## ---## Signif. codes:  0 &#x27;***&#x27; 0.001 &#x27;**&#x27; 0.01 &#x27;*&#x27; 0.05 &#x27;.&#x27; 0.1 &#x27; &#x27; 1## ## Residual standard error: 0.746 on 7996 degrees of freedom## Multiple R-squared:  0.1157,\tAdjusted R-squared:  0.1154 ## F-statistic: 348.9 on 3 and 7996 DF,  p-value: &lt; 2.2e-16\n\n1# p-value 값이 0.05 미만이므로 유의미한 통계이다.\n\n\n외로움 &#x3D; 3.652247 - 0.220274 x 가족신뢰도 - 0.072686 x 경제안정도 - 0.191313 x 건강상태  \n영향력은 다르지만 가족신뢰도, 경제안정도, 건강상태가 나빠질 수록 외로움도 커진다.\n이 회귀식의 설명력은 0.1154로 매우 낮은편이다.\n\n연구문제4\n성, 연령, 지역별 삶의 만족도 차이  \n성별로 삶의 만족도에서 차이가 있는지 독립표본 t 검정으로 알아본다.\n\n1t.test(data=mental, satisfaction~sex)\n\n1234567891011## ## \tWelch Two Sample t-test## ## data:  satisfaction by sex## t = -3.7719, df = 7997.6, p-value = 0.0001632## alternative hypothesis: true difference in means between group 남성 and group 여성 is not equal to 0## 95 percent confidence interval:##  -0.22446298 -0.07094075## sample estimates:## mean in group 남성 mean in group 여성 ##           5.962852           6.110554\n\n1# p-value 값이 0.05 미만이므로 유의미한 통계이다.\n\n\n남성 평균은 5.962852, 여성 평균은 6.110554 이므로 여성의 만족도가 남성보다 높다고 할 수 있다.  \n연령대별 삶의 만족도 차이\n\n1234mental %&gt;%   group_by(age) %&gt;%   summarise(삶의_만족도_평균=mean(satisfaction)) %&gt;%   arrange(desc(삶의_만족도_평균))\n\n12345678## # A tibble: 5 × 2##   age   삶의_만족도_평균##   &lt;chr&gt;            &lt;dbl&gt;## 1 30대              6.13## 2 50대              6.08## 3 40대              6.05## 4 20대              6.04## 5 60대              5.84\n\n\n30대가 평균 6.13점으로 가장 높고 60대가 되면 삶의 만족도가 낮아진다.\n  \n\n지역별 삶의 만족도 분석\n\n\n1234area_satisfaction &lt;- mental %&gt;%   group_by(area) %&gt;%   summarise(m=mean(satisfaction)) %&gt;%   arrange(desc(m))\n\n그래프로 나타내기\n\n1234567ggplot(data=area_satisfaction, aes(x = reorder(area, m),y=m))+  geom_col()+  ggtitle(&quot;지역별 만족도&quot;) +   labs(    x = &quot;지역&quot;,    y = &quot;만족도&quot;) +  coord_flip()\n\n\n","dateCreated":"2022-06-24T09:00:00+09:00","dateModified":"2022-06-24T16:14:17+09:00","datePublished":"2022-06-24T09:00:00+09:00","description":"","headline":"한국인의 정신건강 분석","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://neewlife.github.io/2022/06/24/mental/"},"publisher":{"@type":"Organization","name":"John Doe","sameAs":["https://github.com/NeewLife?tab=repositories/"]},"url":"http://neewlife.github.io/2022/06/24/mental/"}</script>
+    <meta name="description" content="연구 1 : 삶의 만족도와 외로움이 자살충동에 주는 영향을 알아본다.  연구 2 : 삶의 만족도와 외로움의 상관관계를 알아본다.  연구 3 : 가족신뢰도, 경제적 안정, 건강상태가 삶의 만족도와 외로움에 주는 영향을 알아본다.  연구 4 : 성, 연령, 지역에 따라 삶의 만족도에 차이가 있는지를 알아본다.  데이터 불러오기 전 사전준비   12librar">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="한국인의 정신건강 분석">
+<meta property="og:url" content="http://neewlife.github.io/2022/06/24/mental/index.html">
+<meta property="og:site_name" content="작은 스터디">
+<meta property="og:description" content="연구 1 : 삶의 만족도와 외로움이 자살충동에 주는 영향을 알아본다.  연구 2 : 삶의 만족도와 외로움의 상관관계를 알아본다.  연구 3 : 가족신뢰도, 경제적 안정, 건강상태가 삶의 만족도와 외로움에 주는 영향을 알아본다.  연구 4 : 성, 연령, 지역에 따라 삶의 만족도에 차이가 있는지를 알아본다.  데이터 불러오기 전 사전준비   12librar">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://neewlife.github.io/images/0624/unnamed-chunk-22-1.png">
+<meta property="article:published_time" content="2022-06-24T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-24T07:14:17.201Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://neewlife.github.io/images/0624/unnamed-chunk-22-1.png">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-3nkouozwe8vtu8c81mdnm03zdusg8chppv647kiomisiliyaela9skwqht91.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            작은 스터디
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="Open the link: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="Categories"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="Tags"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="Archives"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="Search"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/NeewLife?tab=repositories/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            한국인의 정신건강 분석
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2022-06-24T09:00:00+09:00">
+	
+		    Jun 24, 2022
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <ul>
+<li><p>연구 1 : 삶의 만족도와 외로움이 자살충동에 주는 영향을 알아본다.</p>
+</li>
+<li><p>연구 2 : 삶의 만족도와 외로움의 상관관계를 알아본다.</p>
+</li>
+<li><p>연구 3 : 가족신뢰도, 경제적 안정, 건강상태가 삶의 만족도와 외로움에 주는 영향을 알아본다.</p>
+</li>
+<li><p>연구 4 : 성, 연령, 지역에 따라 삶의 만족도에 차이가 있는지를 알아본다.</p>
+</li>
+<li><p>데이터 불러오기 전 사전준비</p>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">library<span class="punctuation">(</span>dplyr<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>ggplot2<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>spss 패키지 설치</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;foreign&quot;</span><span class="punctuation">,</span>repos <span class="operator">=</span> <span class="string">&quot;http://cran.us.r-project.org&quot;</span><span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>foreign<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>데이터 불러오기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mental <span class="operator">&lt;-</span> read.spss<span class="punctuation">(</span><span class="string">&quot;한국행정연구원_사회통합실태조사_데이터_2019.sav&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">class</span><span class="punctuation">(</span>mental<span class="punctuation">)</span>   <span class="comment"># 데이터 유형 확인</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;list&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mental <span class="operator">&lt;-</span> as.data.frame<span class="punctuation">(</span>mental<span class="punctuation">)</span>   <span class="comment">#데이터프레임으로 변환하기</span></span><br><span class="line"><span class="built_in">class</span><span class="punctuation">(</span>mental<span class="punctuation">)</span>   <span class="comment"># 데이터 유형 확인</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;data.frame&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>분석 변수 추출 후 이름 변경하기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mental <span class="operator">&lt;-</span> mental <span class="operator">%&gt;%</span> </span><br><span class="line">  select<span class="punctuation">(</span>q32_2<span class="punctuation">,</span> q1_4<span class="punctuation">,</span> q32_1<span class="punctuation">,</span>q34_1<span class="punctuation">,</span> q52<span class="punctuation">,</span>d17<span class="punctuation">,</span>d1<span class="punctuation">,</span>d2<span class="punctuation">,</span>ara<span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  rename<span class="punctuation">(</span><span class="comment">#자살하고 싶은 생각이 드는 정도, 4점 척도</span></span><br><span class="line">         suicide<span class="operator">=</span>q32_2<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#요즘 느끼는 삶에 대한 만족도, 등현등간척도, 11점</span></span><br><span class="line">         satisfaction<span class="operator">=</span>q1_4<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#외롭다고 느끼는 정도, 4점 척도</span></span><br><span class="line">         loneliness<span class="operator">=</span>q32_1<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#본인의 가족에 대한 신뢰도, 4점 척도</span></span><br><span class="line">         family_belief<span class="operator">=</span>q34_1<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#본인 경제상황의 안정도, 등현등간척도, 0~10점</span></span><br><span class="line">         wealth<span class="operator">=</span>q52<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#건강상태, 5점</span></span><br><span class="line">         health<span class="operator">=</span>d17<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#성별</span></span><br><span class="line">         sex<span class="operator">=</span>d1<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#연령대, 5등 등급</span></span><br><span class="line">         age<span class="operator">=</span>d2<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#지역</span></span><br><span class="line">         area<span class="operator">=</span>ara<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>4점, 5점, 11점 척도별 응답빈도 확인</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>suicide<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 전혀 그렇지 않다 별로 그렇지 않다      약간 그렇다      매우 그렇다 </span><br><span class="line">##             5592             1862              479               67</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>health<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 매우 나쁘다 나쁜 편이다    보통이다 좋은 편이다   매우 좋다 </span><br><span class="line">##          87         509        2413        3730        1261</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>satisfaction<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 0점 전혀 만족하지 않는다                      1점                      2점 </span><br><span class="line">##                       49                       79                      170 </span><br><span class="line">##                      3점                      4점                 5점 보통 </span><br><span class="line">##                      302                      440                     2053 </span><br><span class="line">##                      6점                      7점                      8점 </span><br><span class="line">##                     1611                     1761                     1040 </span><br><span class="line">##                      9점       10점 매우 만족한다              모름/무응답 </span><br><span class="line">##                      321                      174                        0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 모름/무응답 항목때문에 11점 척도인데 범주수는 12개로 나옴</span></span><br><span class="line"><span class="comment"># 결측치가 없으므로 패스</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>범주 이름을 문자에서 숫자로 변환하기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mental<span class="operator">$</span>suicide <span class="operator">&lt;-</span> <span class="built_in">as.integer</span><span class="punctuation">(</span>mental<span class="operator">$</span>suicide<span class="punctuation">)</span></span><br><span class="line">mental<span class="operator">$</span>satisfaction <span class="operator">&lt;-</span> <span class="built_in">as.integer</span><span class="punctuation">(</span>mental<span class="operator">$</span>satisfaction<span class="punctuation">)</span></span><br><span class="line">mental<span class="operator">$</span>loneliness <span class="operator">&lt;-</span> <span class="built_in">as.integer</span><span class="punctuation">(</span>mental<span class="operator">$</span>loneliness<span class="punctuation">)</span></span><br><span class="line">mental<span class="operator">$</span>family_belief <span class="operator">&lt;-</span> <span class="built_in">as.integer</span><span class="punctuation">(</span>mental<span class="operator">$</span>family_belief<span class="punctuation">)</span></span><br><span class="line">mental<span class="operator">$</span>wealth <span class="operator">&lt;-</span> <span class="built_in">as.integer</span><span class="punctuation">(</span>mental<span class="operator">$</span>wealth<span class="punctuation">)</span></span><br><span class="line">mental<span class="operator">$</span>health <span class="operator">&lt;-</span> <span class="built_in">as.integer</span><span class="punctuation">(</span>mental<span class="operator">$</span>health<span class="punctuation">)</span></span><br><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>suicide<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">##    1    2    3    4 </span><br><span class="line">## 5592 1862  479   67</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>health<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">##    1    2    3    4    5 </span><br><span class="line">##   87  509 2413 3730 1261</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>satisfaction<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">##    1    2    3    4    5    6    7    8    9   10   11 </span><br><span class="line">##   49   79  170  302  440 2053 1611 1761 1040  321  174</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>satisfaction 변수는 범주가 0 ~ 10 점 척도인데, 1 ~ 11점으로 출력됨</li>
+<li>등현등간척도 변수(satisfaction, wealth)에서 -1점 보정작업</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mental<span class="operator">$</span>satisfaction <span class="operator">&lt;-</span> mental<span class="operator">$</span>satisfaction<span class="operator">-</span><span class="number">1</span></span><br><span class="line">mental<span class="operator">$</span>wealth <span class="operator">&lt;-</span> mental<span class="operator">$</span>wealth<span class="operator">-</span><span class="number">1</span></span><br><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>satisfaction<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">##    0    1    2    3    4    5    6    7    8    9   10 </span><br><span class="line">##   49   79  170  302  440 2053 1611 1761 1040  321  174</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>sex, age, area의 유형을 범주형에서 문자형으로 변경</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mental<span class="operator">$</span>age <span class="operator">&lt;-</span> <span class="built_in">as.character</span><span class="punctuation">(</span>mental<span class="operator">$</span>age<span class="punctuation">)</span></span><br><span class="line">mental<span class="operator">$</span>sex <span class="operator">&lt;-</span> <span class="built_in">as.character</span><span class="punctuation">(</span>mental<span class="operator">$</span>sex<span class="punctuation">)</span></span><br><span class="line">mental<span class="operator">$</span>area <span class="operator">&lt;-</span> <span class="built_in">as.character</span><span class="punctuation">(</span>mental<span class="operator">$</span>area<span class="punctuation">)</span></span><br><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>sex<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 남성 여성 </span><br><span class="line">## 4011 3989</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>age<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 19~29세    30대    40대    50대 60~69세 </span><br><span class="line">##    1542    1516    1769    1821    1352</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>area<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 강원 경기 경남 경북 광주 대구 대전 부산 서울 세종 울산 인천 전남 전북 제주 충남 </span><br><span class="line">##  388 1103  527  466  353  464  356  539  965  162  324  522  395  381  267  425 </span><br><span class="line">## 충북 </span><br><span class="line">##  363</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>age 항목의 19<del>29세, 60</del>69세를 20대, 60대로 변경</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mental<span class="operator">$</span>age <span class="operator">&lt;-</span> ifelse<span class="punctuation">(</span>mental<span class="operator">$</span>age<span class="operator">==</span><span class="string">&quot;19~29세&quot;</span><span class="punctuation">,</span><span class="string">&quot;20대&quot;</span><span class="punctuation">,</span></span><br><span class="line">                     ifelse<span class="punctuation">(</span>mental<span class="operator">$</span>age<span class="operator">==</span><span class="string">&quot;60~69세&quot;</span><span class="punctuation">,</span><span class="string">&quot;60대&quot;</span><span class="punctuation">,</span>mental<span class="operator">$</span>age<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>age<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 20대 30대 40대 50대 60대 </span><br><span class="line">## 1542 1516 1769 1821 1352</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>결측치, 이상치 확인하기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">summary<span class="punctuation">(</span>mental<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">##     suicide       satisfaction      loneliness    family_belief  </span><br><span class="line">##  Min.   :1.000   Min.   : 0.000   Min.   :1.000   Min.   :1.000  </span><br><span class="line">##  1st Qu.:1.000   1st Qu.: 5.000   1st Qu.:1.000   1st Qu.:3.000  </span><br><span class="line">##  Median :1.000   Median : 6.000   Median :2.000   Median :4.000  </span><br><span class="line">##  Mean   :1.378   Mean   : 6.037   Mean   :1.795   Mean   :3.576  </span><br><span class="line">##  3rd Qu.:2.000   3rd Qu.: 7.000   3rd Qu.:2.000   3rd Qu.:4.000  </span><br><span class="line">##  Max.   :4.000   Max.   :10.000   Max.   :4.000   Max.   :4.000  </span><br><span class="line">##      wealth           health          sex                age           </span><br><span class="line">##  Min.   : 0.000   Min.   :1.000   Length:8000        Length:8000       </span><br><span class="line">##  1st Qu.: 4.000   1st Qu.:3.000   Class :character   Class :character  </span><br><span class="line">##  Median : 5.000   Median :4.000   Mode  :character   Mode  :character  </span><br><span class="line">##  Mean   : 4.985   Mean   :3.696                                        </span><br><span class="line">##  3rd Qu.: 6.000   3rd Qu.:4.000                                        </span><br><span class="line">##  Max.   :10.000   Max.   :5.000                                        </span><br><span class="line">##      area          </span><br><span class="line">##  Length:8000       </span><br><span class="line">##  Class :character  </span><br><span class="line">##  Mode  :character  </span><br><span class="line">##                    </span><br><span class="line">##                    </span><br><span class="line">## </span><br></pre></td></tr></table></figure>
+
+<h2 id="데이터-분석"><a href="#데이터-분석" class="headerlink" title="데이터 분석"></a>데이터 분석</h2><ul>
+<li>빈도분석<ul>
+<li>성별 빈도분석</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mental <span class="operator">%&gt;%</span> </span><br><span class="line">  group_by<span class="punctuation">(</span>sex<span class="punctuation">)</span> <span class="operator">%&gt;%</span>                 <span class="comment"># sex 변수로 분류</span></span><br><span class="line">  summarise<span class="punctuation">(</span>n<span class="operator">=</span>n<span class="punctuation">(</span><span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">%&gt;%</span>              <span class="comment"># sex 변수의 데이터를 세어서 빈도를 n에 입력한다</span></span><br><span class="line">  mutate<span class="punctuation">(</span>total<span class="operator">=</span><span class="built_in">sum</span><span class="punctuation">(</span>n<span class="punctuation">)</span><span class="punctuation">,</span>              <span class="comment"># total에 데이터 빈도 합을 넣고</span></span><br><span class="line">         pct<span class="operator">=</span><span class="built_in">round</span><span class="punctuation">(</span>n<span class="operator">/</span>total<span class="operator">*</span><span class="number">100</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="punctuation">)</span>  <span class="comment"># 데이터 빈도를 소숫점 1번째 자리까지 백분율로 구한다</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## # A tibble: 2 × 4</span><br><span class="line">##   sex       n total   pct</span><br><span class="line">##   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;</span><br><span class="line">## 1 남성   4011  8000  50.1</span><br><span class="line">## 2 여성   3989  8000  49.9</span><br></pre></td></tr></table></figure>
+<ul>
+<li>연령대별 빈도분석</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 성별 빈도분석이랑 동일하다.</span></span><br><span class="line">mental <span class="operator">%&gt;%</span> </span><br><span class="line">  group_by<span class="punctuation">(</span>age<span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  summarise<span class="punctuation">(</span>n<span class="operator">=</span>n<span class="punctuation">(</span><span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  mutate<span class="punctuation">(</span>total<span class="operator">=</span><span class="built_in">sum</span><span class="punctuation">(</span>n<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">         pct<span class="operator">=</span><span class="built_in">round</span><span class="punctuation">(</span>n<span class="operator">/</span>total<span class="operator">*</span><span class="number">100</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">## # A tibble: 5 × 4</span><br><span class="line">##   age       n total   pct</span><br><span class="line">##   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;</span><br><span class="line">## 1 20대   1542  8000  19.3</span><br><span class="line">## 2 30대   1516  8000  19  </span><br><span class="line">## 3 40대   1769  8000  22.1</span><br><span class="line">## 4 50대   1821  8000  22.8</span><br><span class="line">## 5 60대   1352  8000  16.9</span><br></pre></td></tr></table></figure>
+<ul>
+<li>성별, 연령대 교차분석</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 성별 연령대 별로 고르게 분포되어 있는가?</span></span><br><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>sex<span class="punctuation">,</span> mental<span class="operator">$</span>age<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##       </span><br><span class="line">##        20대 30대 40대 50대 60대</span><br><span class="line">##   남성  822  745  900  891  653</span><br><span class="line">##   여성  720  771  869  930  699</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">round</span><span class="punctuation">(</span>prop.table<span class="punctuation">(</span>table<span class="punctuation">(</span>mental<span class="operator">$</span>sex<span class="punctuation">,</span> mental<span class="operator">$</span>age<span class="punctuation">)</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="operator">*</span><span class="number">100</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##       </span><br><span class="line">##        20대 30대 40대 50대 60대</span><br><span class="line">##   남성 20.5 18.6 22.4 22.2 16.3</span><br><span class="line">##   여성 18.0 19.3 21.8 23.3 17.5</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chisq.test<span class="punctuation">(</span>mental<span class="operator">$</span>sex<span class="punctuation">,</span> mental<span class="operator">$</span>age<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 	Pearson&#x27;s Chi-squared test</span><br><span class="line">## </span><br><span class="line">## data:  mental$sex and mental$age</span><br><span class="line">## X-squared = 10.076, df = 4, p-value = 0.03916</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># p-value 값이 0.05 미만이므로 남녀 연령대 별로 분포비율은 다소 차이가 있다고 할 수 있다.</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>평균분석<ul>
+<li>suicide, satisfaction, loneliness, family_belief, wealth, health 변수의 평균을 분석한다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mental <span class="operator">%&gt;%</span> </span><br><span class="line">  summarise<span class="punctuation">(</span>자살충동<span class="operator">=</span>mean<span class="punctuation">(</span>suicide<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">            삶의_만족도 <span class="operator">=</span> mean<span class="punctuation">(</span>satisfaction<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">            외로움<span class="operator">=</span>mean<span class="punctuation">(</span>loneliness<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">            가족신뢰도<span class="operator">=</span>mean<span class="punctuation">(</span>family_belief<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">            경제안정도<span class="operator">=</span>mean<span class="punctuation">(</span>wealth<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">            건강상태<span class="operator">=</span>mean<span class="punctuation">(</span>health<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##   자살충동 삶의_만족도 외로움 가족신뢰도 경제안정도 건강상태</span><br><span class="line">## 1 1.377625      6.0365  1.795   3.576375   4.985125 3.696125</span><br></pre></td></tr></table></figure>
+<h3 id="연구문제-1"><a href="#연구문제-1" class="headerlink" title="연구문제 1"></a>연구문제 1</h3><ul>
+<li>삶의 만족도와 외로움이 자살충동에 미치는 영향</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 삶의 만족도와 외로움을 독립변수, </span></span><br><span class="line"><span class="comment">#             자살충동을 종속변수</span></span><br><span class="line">RA <span class="operator">&lt;-</span> lm<span class="punctuation">(</span>data<span class="operator">=</span>mental<span class="punctuation">,</span> suicide<span class="operator">~</span>satisfaction<span class="operator">+</span>loneliness<span class="punctuation">)</span></span><br><span class="line">summary<span class="punctuation">(</span>RA<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## Call:</span><br><span class="line">## lm(formula = suicide ~ satisfaction + loneliness, data = mental)</span><br><span class="line">## </span><br><span class="line">## Residuals:</span><br><span class="line">##      Min       1Q   Median       3Q      Max </span><br><span class="line">## -1.50517 -0.40228 -0.03487  0.17773  3.07029 </span><br><span class="line">## </span><br><span class="line">## Coefficients:</span><br><span class="line">##               Estimate Std. Error t value Pr(&gt;|t|)    </span><br><span class="line">## (Intercept)   1.035551   0.029823   34.72   &lt;2e-16 ***</span><br><span class="line">## satisfaction -0.052583   0.003614  -14.55   &lt;2e-16 ***</span><br><span class="line">## loneliness    0.367405   0.007987   46.00   &lt;2e-16 ***</span><br><span class="line">## ---</span><br><span class="line">## Signif. codes:  0 &#x27;***&#x27; 0.001 &#x27;**&#x27; 0.01 &#x27;*&#x27; 0.05 &#x27;.&#x27; 0.1 &#x27; &#x27; 1</span><br><span class="line">## </span><br><span class="line">## Residual standard error: 0.5451 on 7997 degrees of freedom</span><br><span class="line">## Multiple R-squared:  0.2668,	Adjusted R-squared:  0.2666 </span><br><span class="line">## F-statistic:  1455 on 2 and 7997 DF,  p-value: &lt; 2.2e-16</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>자살충동 &#x3D; 1.035551 - 0.052583 x 만족도 + 0.367405 x 외로움  <br>  </li>
+<li>이 회귀식의 설명력은 0.2666 으로 낮은 편이다.</li>
+</ul>
+<h3 id="연구문제2"><a href="#연구문제2" class="headerlink" title="연구문제2"></a>연구문제2</h3><ul>
+<li>삶의 만족도와 외로움의 상관관계</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cor.test<span class="punctuation">(</span>mental<span class="operator">$</span>satisfaction<span class="punctuation">,</span> mental<span class="operator">$</span>loneliness<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 	Pearson&#x27;s product-moment correlation</span><br><span class="line">## </span><br><span class="line">## data:  mental$satisfaction and mental$loneliness</span><br><span class="line">## t = -25.374, df = 7998, p-value &lt; 2.2e-16</span><br><span class="line">## alternative hypothesis: true correlation is not equal to 0</span><br><span class="line">## 95 percent confidence interval:</span><br><span class="line">##  -0.2931116 -0.2525481</span><br><span class="line">## sample estimates:</span><br><span class="line">##        cor </span><br><span class="line">## -0.2729512</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># p-value 값이 0.05 미만이므로 유의미한 통계이다.</span></span><br><span class="line"><span class="comment"># 삶의 만족도와 외로움은 약한 수준에서 부적인 상관관계에 있다.</span></span><br><span class="line"><span class="comment"># 즉, 삶의 만족도가 높아지면 외로움이 약간 줄어드는 관계이다.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="연구문제3"><a href="#연구문제3" class="headerlink" title="연구문제3"></a>연구문제3</h3><ul>
+<li>가족신뢰도, 경제안정도, 건강상태가 삶의 만족도와 외로움에 미치는 영향<br>  </li>
+<li>3개 독립변수가 삶의 만족도에 미치는 영향</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RA <span class="operator">&lt;-</span> lm<span class="punctuation">(</span>data <span class="operator">=</span> mental<span class="punctuation">,</span> satisfaction<span class="operator">~</span>family_belief<span class="operator">+</span>wealth<span class="operator">+</span>health<span class="punctuation">)</span></span><br><span class="line">summary<span class="punctuation">(</span>RA<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## Call:</span><br><span class="line">## lm(formula = satisfaction ~ family_belief + wealth + health, </span><br><span class="line">##     data = mental)</span><br><span class="line">## </span><br><span class="line">## Residuals:</span><br><span class="line">##     Min      1Q  Median      3Q     Max </span><br><span class="line">## -6.8274 -0.9431 -0.0425  1.0569  6.1986 </span><br><span class="line">## </span><br><span class="line">## Coefficients:</span><br><span class="line">##               Estimate Std. Error t value Pr(&gt;|t|)    </span><br><span class="line">## (Intercept)    2.07613    0.13765   15.08   &lt;2e-16 ***</span><br><span class="line">## family_belief  0.36851    0.03196   11.53   &lt;2e-16 ***</span><br><span class="line">## wealth         0.26016    0.01089   23.88   &lt;2e-16 ***</span><br><span class="line">## health         0.36403    0.02206   16.50   &lt;2e-16 ***</span><br><span class="line">## ---</span><br><span class="line">## Signif. codes:  0 &#x27;***&#x27; 0.001 &#x27;**&#x27; 0.01 &#x27;*&#x27; 0.05 &#x27;.&#x27; 0.1 &#x27; &#x27; 1</span><br><span class="line">## </span><br><span class="line">## Residual standard error: 1.627 on 7996 degrees of freedom</span><br><span class="line">## Multiple R-squared:  0.1386,	Adjusted R-squared:  0.1383 </span><br><span class="line">## F-statistic: 428.8 on 3 and 7996 DF,  p-value: &lt; 2.2e-16</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># p-value 값이 0.05 미만이므로 유의미한 통계이다.</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>삶의 만족도 &#x3D; 2.07613 + 0.36851 x 가족신뢰도 + 0.26016 x 경제안정도 + 0.36403 x 건강상태<br>  </li>
+<li>영향력은 차이가 있지만 가족신뢰도, 경제안정도, 건강상태가 좋아지면 모두 삶의 만족도에 긍정적인 영향을 끼친다.</li>
+<li>이 회귀식의 설명력은 0.1383 으로 매우 낮은 편이다.<br> </li>
+<li>3개 독립변수가 외로움에 미치는 영향</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RA <span class="operator">&lt;-</span> lm<span class="punctuation">(</span>data<span class="operator">=</span>mental<span class="punctuation">,</span> loneliness<span class="operator">~</span>family_belief<span class="operator">+</span>wealth<span class="operator">+</span>health<span class="punctuation">)</span></span><br><span class="line">summary<span class="punctuation">(</span>RA<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## Call:</span><br><span class="line">## lm(formula = loneliness ~ family_belief + wealth + health, data = mental)</span><br><span class="line">## </span><br><span class="line">## Residuals:</span><br><span class="line">##      Min       1Q   Median       3Q      Max </span><br><span class="line">## -2.24066 -0.64247  0.01863  0.43022  2.83959 </span><br><span class="line">## </span><br><span class="line">## Coefficients:</span><br><span class="line">##                Estimate Std. Error t value Pr(&gt;|t|)    </span><br><span class="line">## (Intercept)    3.652247   0.063109   57.87   &lt;2e-16 ***</span><br><span class="line">## family_belief -0.220274   0.014654  -15.03   &lt;2e-16 ***</span><br><span class="line">## wealth        -0.072686   0.004995  -14.55   &lt;2e-16 ***</span><br><span class="line">## health        -0.191313   0.010116  -18.91   &lt;2e-16 ***</span><br><span class="line">## ---</span><br><span class="line">## Signif. codes:  0 &#x27;***&#x27; 0.001 &#x27;**&#x27; 0.01 &#x27;*&#x27; 0.05 &#x27;.&#x27; 0.1 &#x27; &#x27; 1</span><br><span class="line">## </span><br><span class="line">## Residual standard error: 0.746 on 7996 degrees of freedom</span><br><span class="line">## Multiple R-squared:  0.1157,	Adjusted R-squared:  0.1154 </span><br><span class="line">## F-statistic: 348.9 on 3 and 7996 DF,  p-value: &lt; 2.2e-16</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># p-value 값이 0.05 미만이므로 유의미한 통계이다.</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>외로움 &#x3D; 3.652247 - 0.220274 x 가족신뢰도 - 0.072686 x 경제안정도 - 0.191313 x 건강상태<br>  </li>
+<li>영향력은 다르지만 가족신뢰도, 경제안정도, 건강상태가 나빠질 수록 외로움도 커진다.</li>
+<li>이 회귀식의 설명력은 0.1154로 매우 낮은편이다.<br></li>
+</ul>
+<h3 id="연구문제4"><a href="#연구문제4" class="headerlink" title="연구문제4"></a>연구문제4</h3><ul>
+<li>성, 연령, 지역별 삶의 만족도 차이<br>  </li>
+<li>성별로 삶의 만족도에서 차이가 있는지 독립표본 t 검정으로 알아본다.</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t.test<span class="punctuation">(</span>data<span class="operator">=</span>mental<span class="punctuation">,</span> satisfaction<span class="operator">~</span>sex<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 	Welch Two Sample t-test</span><br><span class="line">## </span><br><span class="line">## data:  satisfaction by sex</span><br><span class="line">## t = -3.7719, df = 7997.6, p-value = 0.0001632</span><br><span class="line">## alternative hypothesis: true difference in means between group 남성 and group 여성 is not equal to 0</span><br><span class="line">## 95 percent confidence interval:</span><br><span class="line">##  -0.22446298 -0.07094075</span><br><span class="line">## sample estimates:</span><br><span class="line">## mean in group 남성 mean in group 여성 </span><br><span class="line">##           5.962852           6.110554</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># p-value 값이 0.05 미만이므로 유의미한 통계이다.</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>남성 평균은 5.962852, 여성 평균은 6.110554 이므로 여성의 만족도가 남성보다 높다고 할 수 있다.<br>  </li>
+<li>연령대별 삶의 만족도 차이</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mental <span class="operator">%&gt;%</span> </span><br><span class="line">  group_by<span class="punctuation">(</span>age<span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  summarise<span class="punctuation">(</span>삶의_만족도_평균<span class="operator">=</span>mean<span class="punctuation">(</span>satisfaction<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  arrange<span class="punctuation">(</span>desc<span class="punctuation">(</span>삶의_만족도_평균<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">## # A tibble: 5 × 2</span><br><span class="line">##   age   삶의_만족도_평균</span><br><span class="line">##   &lt;chr&gt;            &lt;dbl&gt;</span><br><span class="line">## 1 30대              6.13</span><br><span class="line">## 2 50대              6.08</span><br><span class="line">## 3 40대              6.05</span><br><span class="line">## 4 20대              6.04</span><br><span class="line">## 5 60대              5.84</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>30대가 평균 6.13점으로 가장 높고 60대가 되면 삶의 만족도가 낮아진다.</p>
+<br>  
+</li>
+<li><p>지역별 삶의 만족도 분석</p>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">area_satisfaction <span class="operator">&lt;-</span> mental <span class="operator">%&gt;%</span> </span><br><span class="line">  group_by<span class="punctuation">(</span>area<span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  summarise<span class="punctuation">(</span>m<span class="operator">=</span>mean<span class="punctuation">(</span>satisfaction<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  arrange<span class="punctuation">(</span>desc<span class="punctuation">(</span>m<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>그래프로 나타내기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>data<span class="operator">=</span>area_satisfaction<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> reorder<span class="punctuation">(</span>area<span class="punctuation">,</span> m<span class="punctuation">)</span><span class="punctuation">,</span>y<span class="operator">=</span>m<span class="punctuation">)</span><span class="punctuation">)</span><span class="operator">+</span></span><br><span class="line">  geom_col<span class="punctuation">(</span><span class="punctuation">)</span><span class="operator">+</span></span><br><span class="line">  ggtitle<span class="punctuation">(</span><span class="string">&quot;지역별 만족도&quot;</span><span class="punctuation">)</span> <span class="operator">+</span> </span><br><span class="line">  labs<span class="punctuation">(</span></span><br><span class="line">    x <span class="operator">=</span> <span class="string">&quot;지역&quot;</span><span class="punctuation">,</span></span><br><span class="line">    y <span class="operator">=</span> <span class="string">&quot;만족도&quot;</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  coord_flip<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0624/unnamed-chunk-22-1.png"><!-- --></p>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/24/blog_theme/"
+                    data-tooltip="블로그 테마 변경시 주의사항"
+                    aria-label="PREVIOUS: 블로그 테마 변경시 주의사항"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/23/day0623/"
+                    data-tooltip="8장"
+                    aria-label="NEXT: 8장"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://neewlife.github.io/2022/06/24/mental/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://neewlife.github.io/2022/06/24/mental/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://neewlife.github.io/2022/06/24/mental/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2022 John Doe. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/24/blog_theme/"
+                    data-tooltip="블로그 테마 변경시 주의사항"
+                    aria-label="PREVIOUS: 블로그 테마 변경시 주의사항"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/23/day0623/"
+                    data-tooltip="8장"
+                    aria-label="NEXT: 8장"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://neewlife.github.io/2022/06/24/mental/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://neewlife.github.io/2022/06/24/mental/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://neewlife.github.io/2022/06/24/mental/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://neewlife.github.io/2022/06/24/mental/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://neewlife.github.io/2022/06/24/mental/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://neewlife.github.io/2022/06/24/mental/"
+                        aria-label="Share on Google+"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">John Doe</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-h2jfxkdpi3i16rf1rss8upq5l4k20wtukjvlixsznqxrpqwnsevgbqric0qi.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+
+
+
+    </body>
+</html>

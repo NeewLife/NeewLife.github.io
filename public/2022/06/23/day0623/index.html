@@ -1,0 +1,813 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="작은 스터디">
+    <title>8장 - 작은 스터디</title>
+    <meta name="author" content="John Doe">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"John Doe","sameAs":["https://github.com/NeewLife?tab=repositories/"]},"articleBody":"8장통계\n기술통계 : 평균, 최솟값, 최댓값\n\n추론통계 : 변수 간의 관계를 파악 &#x2F; 새로운 사실을 추정  \n\n(중요)평균차이 검정\n\n수치형 데이터 + 범주형 데이터\n가설검정 : 각 그룹간의 평균의 차이를 검정ex) ‘남자’의 평균 키와 ‘여자’의 평균 키는 “차이”가 있을 것이다.\n‘남자’의 평균 키가 ‘여자’의 평균 키보다 크다. 라는 결론을 내리려면이번 측정의 결과가 우연한 측정이 아니라는 것을 통계적으로 검정해야된다.ex) ‘여자’ 배구선수 평균 키는 ‘남자’의 평균 키보다 큰데?‘여자’ 배구선수의 측정은 우연한 측정이라서 결과에 사용할 수 없음\n\n\n교차분석 (&#x3D; 빈도분석)\n\n범주형 데이터\n가설검정 : 각 범주별 빈도를 활용해서 관계성을 검정ex) ‘아파트의 크기’는 ‘TV의 크기’와 관계가 있을 것이다.\n‘아파트의 크기’ &#x3D; ‘소형 아파트’,’대형 아파트’\n‘TV의 크기’ &#x3D; ‘소형 TV’,’대형 TV’\n\n\n\n\n상관관계 분석\n\n수치형 데이터\n-1 &lt;&#x3D; r &lt;&#x3D; 1 로 두 변수간의 상관관계를 의미한다.\n절댓값이 1에 가까울 수록 완전 정의 관계, 역의 관계이다.\n절댓값이 0에 가까울 수록 상관관계가 거의 없다고 해석한다.\n\n\n\n\n(중요)단순회귀분석 : 인과관계 분석\n\ny &#x3D; ax + b\n\nex1) 기온, 판매량\n\n가설검정\n\n기온(독립변수&#x3D;x)이 판매량(종속변수&#x3D;y)에 긍정적 or 부정적 영향을 주고 있을 것이다.\n\n\nex2) 월급, 외식횟수\n\n가설검정\n\n월급(독립변수&#x3D;x)이 증가하면 외식횟수(종속변수&#x3D;y)가 증가할 것 이다.\n\n\n\n\n\n\n\n통계 검정가설\nHypothesis—&gt; 공부 방법 : 선행연구, 해당 분석방법의 가설 설정 예시 참고\n\n연구 -&gt; 내가 궁금한 것을 찾는 것\n\n남자의 평균 키와 여자의 평균 키는 차이가 있을 것인가?\n\n\n귀무가설 : 두 그룹간의 평균 차이가 없다.\n\n대립가설 : 두 그룹간의 평균 차이가 있다. (보통 내가 궁금한 것)  \n\n유의수준 : 오류를 범할 확률\n\n가설검정에서 인정하는 유의수준(&lt;&#x3D;&#x3D;&gt; 신뢰수준)\n\n5%, 1%, 0.1%, 또는 10%(각 분야마다 기준이 달라진다)\n\n\n오차범위\n\nA후보의 44%\nB후보의 42%\n오차범위 안에 있다 -&gt; 다시 조사하면 바뀔 수 있다.\n오차범위 밖에 있다 -&gt; 바뀔 수 없다.\n\n\n\n\n어떻게 데이터를 입력하는지 확인\n\np-value, 유의수준 0.05 이상 : 귀무가설, 0.05 이내 –&gt; 대립가설\n\n데이터 불러오기\n\n\n12mpg1 &lt;- read.csv(&quot;mpg1.csv&quot;, stringsAsFactors = FALSE)str(mpg1)\n\n123456## &#x27;data.frame&#x27;:\t234 obs. of  5 variables:##  $ manufacturer: chr  &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; ...##  $ trans       : chr  &quot;auto&quot; &quot;manual&quot; &quot;manual&quot; &quot;auto&quot; ...##  $ drv         : chr  &quot;f&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; ...##  $ cty         : int  18 21 20 21 16 18 18 18 16 20 ...##  $ hwy         : int  29 29 31 30 26 26 27 26 25 28 ...\n\n\n시각화\n\n1234library(ggplot2)ggplot(mpg1, aes(x = trans, y = cty)) +  # trans 변수는 chr(문자형)이고, cty 변수는 int(정수형)이므로 boxplot 그래프를 쓴다.  geom_boxplot()\n\n\n\nt.test 검정\n귀무가설 : auto와 manual의 cty 평균은 차이가 없다.\n대립가설 : auto와 manual의 cty 평균은 차이가 있다.\n\n\n\n1t.test(data = mpg1, cty ~ trans)\n\n1234567891011## ## \tWelch Two Sample t-test## ## data:  cty by trans## t = -4.5375, df = 132.32, p-value = 1.263e-05## alternative hypothesis: true difference in means between group auto and group manual is not equal to 0## 95 percent confidence interval:##  -3.887311 -1.527033## sample estimates:##   mean in group auto mean in group manual ##             15.96815             18.67532\n\n123# 종속변수 ~ 독립변수# 반응변수 ~ 설명변수#     y          x\n\n‘p-value &#x3D; 1.263e-05’ 에서 p-value 값이 유의수준이 0.05보다 작으므로,\n\n  이 결과는 대립가설인 ‘auto와 manual의 cty 평균은 차이가 있다.’ 로 설명할 수 있다.\n\n두 그룹의 평균 차이 검정\n사전 필수 검정\n등분산 검정\n두 그룹간의 분산이 비슷하면 –&gt; t.test (모수 검정)\n두 그룹간의 분산이 다르면   –&gt; 비모수 검정\n\n\n\n\n보통 대립가설에 알고 싶은 결과를 대입하지만, 등분산 검정에서의 귀무가설, 대립가설은 정의된 것임\n귀무가설 : 두 그룹간의 분산이 비슷하다\n등분산 검정 에서 p-value &gt; 0.05 되어야 t.test가 가능\n\n\n대립가설 : 두 그룹간의 분산이 다르다\n\n\n\n\n\n1var.test(data = mpg1, cty~trans)\n\n1234567891011## ## \tF test to compare two variances## ## data:  cty by trans## F = 0.73539, num df = 156, denom df = 76, p-value = 0.1101## alternative hypothesis: true ratio of variances is not equal to 1## 95 percent confidence interval:##  0.4912917 1.0719468## sample estimates:## ratio of variances ##          0.7353887\n\n\n123ggplot(mpg1, aes(x = cty, fill = trans)) +  # geom_histogram() +  geom_density(alpha = 0.1)\n\n\n교차 분석\n범주형 변수들이 관계가 있다는 것을 검정\n비율에 차이가 있는지 검정\n교차분석 검정은 chisq.test() 함수로 진행\n귀무가설 : trans에 따라 drv(4, f, r)의 (비율)차이가 없다.\n대립가설 : trans에 따라 drv의 차이가 있다.\n\n\n\n  \n\n\n빈도표 &#x2F; 비율\n\n1table(mpg1$trans, mpg1$drv)   # 교차분석\n\n1234##         ##           4  f  r##   auto   75 65 17##   manual 28 41  8\n\n\n비율\n\n1prop.table(table(mpg1$trans, mpg1$drv), 1)\n\n1234##         ##                  4         f         r##   auto   0.4777070 0.4140127 0.1082803##   manual 0.3636364 0.5324675 0.1038961\n\n\nauto 4륜 구동(4)인 47.8%\nmanual 전륜 구동(f) 53.2% 가장 많음\n별 차이 없어보이는데.. 실제 통계적으로 차이가 있는지 검정\n귀무가설 : trans에 따라 drv(4, f, r)의 (비율)차이가 없다.\n대립가설 : trans에 따라 drv의 차이가 있다.\n\n\n\n1chisq.test(mpg1$trans, mpg1$drv)\n\n12345## ## \tPearson&#x27;s Chi-squared test## ## data:  mpg1$trans and mpg1$drv## X-squared = 3.1368, df = 2, p-value = 0.2084\n\np-value 값이 0.05 보다 크므로 귀무가설이 성립된다.\n결론 : “trans에 따라 drv(4, f, r)의 (비율)차이가 없다.”\n\n상관관계분석\n변수들의 상관관계를 증명()\ncty와 hwy는 상관관계가 있는지를 증명\n상관관계분석은 cor.test() 함수로 진행\n귀무가설 : cty와 hwy는 상관관계가 없다.\n대립가설 : cty와 hwy는 상관관계가 있다.\n\n\n\n12mpg1 &lt;-read.csv(&quot;mpg1.csv&quot;, stringsAsFactors = FALSE)cor.test(mpg1$cty, mpg1$hwy)    # 상관관계분석\n\n1234567891011## ## \tPearson&#x27;s product-moment correlation## ## data:  mpg1$cty and mpg1$hwy## t = 49.585, df = 232, p-value &lt; 2.2e-16## alternative hypothesis: true correlation is not equal to 0## 95 percent confidence interval:##  0.9433129 0.9657663## sample estimates:##       cor ## 0.9559159\n\n\n‘p-value &lt; 2.2e-16’ 에서 p-value 값이 0.05보다 작으므로 대립가설이 성립한다.\ncor(상관관계계수) &#x3D; 0.9559159 이므로 상관관계가 1에 가까워서 매우 높다.\n결론 : “cty와 hwy는 유의미하게 매우 높은 상관관계에 있다.”\n\n회귀분석\n기초통계 : 특정한 결과에 영향을 주는 주 요인이 무엇인지 찾는 것\n\n회귀분석과 종료\n\n1세대 회귀 방법론 : 다항회귀분석, 다중회귀분석, 포아송 회귀분석, etc\n2세대 회귀 방법론 : 구조방정식\n\n\n귀무가설, 대립가설 존재\n\n귀무가설 : x(&#x3D;독립변수)가 y(&#x3D;종속변수)에 영향을 주지 않는다\n대립가설 : x가 y에 영향을 준다\n\n\nlm(종속변수 ~ 독립변수, data)\n\np-value\n\n\n\n12RA &lt;- lm(data=mtcars, mpg ~ disp)  # 종속변수 ~ 독립변수+독립변수+...summary(RA)\n\n123456789101112131415161718## ## Call:## lm(formula = mpg ~ disp, data = mtcars)## ## Residuals:##     Min      1Q  Median      3Q     Max ## -4.8922 -2.2022 -0.9631  1.6272  7.2305 ## ## Coefficients:##              Estimate Std. Error t value Pr(&gt;|t|)    ## (Intercept) 29.599855   1.229720  24.070  &lt; 2e-16 ***## disp        -0.041215   0.004712  -8.747 9.38e-10 ***## ---## Signif. codes:  0 &#x27;***&#x27; 0.001 &#x27;**&#x27; 0.01 &#x27;*&#x27; 0.05 &#x27;.&#x27; 0.1 &#x27; &#x27; 1## ## Residual standard error: 3.251 on 30 degrees of freedom## Multiple R-squared:  0.7183,\tAdjusted R-squared:  0.709 ## F-statistic: 76.51 on 1 and 30 DF,  p-value: 9.38e-10\n\n12# 맨 밑의 p-value 값은 전체식에 해당하는 값이다.# 여러 변수들 중 &#x27;Pr(&gt;|t|)&#x27;값이(=p-value) 0.05 이상이면 그 변수는 제외한다.\n\n\n\n머신러닝, 인공지능\n주 목적은 예측\ny &#x3D; ax + b\n\n\n\n\nCoefficients:             Estimate Std. Error t value Pr(&gt;|t|)(Intercept) 29.599855   1.229720  24.070  &lt; 2e-16 ***disp        -0.041215   0.004712  -8.747 9.38e-10 ***var1                                     0.10var2                                     9.38e-10var3                                     3.14e-9\n\nResidual standard error: 3.251 on 30 degrees of freedomMultiple R-squared:  0.7183,\tAdjusted R-squared:  0.709F-statistic: 76.51 on 1 and 30 DF,  p-value: 9.38e-10\n\nEstimate값 해석 : y(mpg) &#x3D; 29.599855 - 0.041215 x disp\n\n우하향 하는 그래프\n\n\n에서 ANOVA (분산분석) 을 통해서 식1, 식2, 식3, … 을 해서 괜찮은 식을 도출해야한다\n\np-value 값은 항상 0.05 미만식1 : y &#x3D; disp + var1 + var2 + var3식2 : y &#x3D; disp + var1 + var2식3 : y &#x3D; disp + var1\n\nResidual standard error: 3.251 on 30 degrees of freedomMultiple R-squared:  0.7183,\tAdjusted R-squared:  0.709 에서\n\nR-squared (결정계수) &#x3D; 설명력 &#x3D; 0 ~ 1\n\n1로 수렴할수록 설명력이 좋다\n\n‘Multiple R-squared:   0.7183’ 의 의미는 해당 변수들이 71.83% 만큼 영향을 준다는 뜻\n\n\n회귀분석에서 고려해야할 것들\n전체식의 p-value 값이 0.05 보다 작은가?\nANOVA를 통해서 변하는 p-value 값이 0.05 미만인가를 체크한다.\nR-squared(결정계수)가 1에 가까운 변수 식을 찾는다.\n\n","dateCreated":"2022-06-23T10:00:00+09:00","dateModified":"2022-06-24T16:17:37+09:00","datePublished":"2022-06-23T10:00:00+09:00","description":"","headline":"8장","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"http://neewlife.github.io/2022/06/23/day0623/"},"publisher":{"@type":"Organization","name":"John Doe","sameAs":["https://github.com/NeewLife?tab=repositories/"]},"url":"http://neewlife.github.io/2022/06/23/day0623/"}</script>
+    <meta name="description" content="8장통계 기술통계 : 평균, 최솟값, 최댓값  추론통계 : 변수 간의 관계를 파악 &#x2F; 새로운 사실을 추정    (중요)평균차이 검정  수치형 데이터 + 범주형 데이터 가설검정 : 각 그룹간의 평균의 차이를 검정ex) ‘남자’의 평균 키와 ‘여자’의 평균 키는 “차이”가 있을 것이다. ‘남자’의 평균 키가 ‘여자’의 평균 키보다 크다. 라는 결론을">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="8장">
+<meta property="og:url" content="http://neewlife.github.io/2022/06/23/day0623/index.html">
+<meta property="og:site_name" content="작은 스터디">
+<meta property="og:description" content="8장통계 기술통계 : 평균, 최솟값, 최댓값  추론통계 : 변수 간의 관계를 파악 &#x2F; 새로운 사실을 추정    (중요)평균차이 검정  수치형 데이터 + 범주형 데이터 가설검정 : 각 그룹간의 평균의 차이를 검정ex) ‘남자’의 평균 키와 ‘여자’의 평균 키는 “차이”가 있을 것이다. ‘남자’의 평균 키가 ‘여자’의 평균 키보다 크다. 라는 결론을">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://neewlife.github.io/images/0623/unnamed-chunk-2-1.png">
+<meta property="og:image" content="http://neewlife.github.io/images/0623/unnamed-chunk-5-1.png">
+<meta property="article:published_time" content="2022-06-23T01:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-24T07:17:37.248Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://neewlife.github.io/images/0623/unnamed-chunk-2-1.png">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-3nkouozwe8vtu8c81mdnm03zdusg8chppv647kiomisiliyaela9skwqht91.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            작은 스터디
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="Open the link: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="Categories"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Categories</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="Tags"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Tags</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="Archives"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Archives</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="Search"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Search</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/NeewLife?tab=repositories/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            8장
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2022-06-23T10:00:00+09:00">
+	
+		    Jun 23, 2022
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <h1 id="8장"><a href="#8장" class="headerlink" title="8장"></a>8장</h1><h2 id="통계"><a href="#통계" class="headerlink" title="통계"></a>통계</h2><ul>
+<li><p>기술통계 : 평균, 최솟값, 최댓값</p>
+</li>
+<li><p>추론통계 : 변수 간의 관계를 파악 &#x2F; 새로운 사실을 추정  </p>
+<ul>
+<li><p>(중요)평균차이 검정</p>
+<ul>
+<li>수치형 데이터 + 범주형 데이터</li>
+<li>가설검정 : 각 그룹간의 평균의 차이를 검정<br>ex) ‘남자’의 평균 키와 ‘여자’의 평균 키는 “차이”가 있을 것이다.</li>
+<li>‘남자’의 평균 키가 ‘여자’의 평균 키보다 크다. 라는 결론을 내리려면<br>이번 측정의 결과가 우연한 측정이 아니라는 것을 통계적으로 검정해야된다.<br>ex) ‘여자’ 배구선수 평균 키는 ‘남자’의 평균 키보다 큰데?<br>‘여자’ 배구선수의 측정은 우연한 측정이라서 결과에 사용할 수 없음</li>
+</ul>
+</li>
+<li><p>교차분석 (&#x3D; 빈도분석)</p>
+<ul>
+<li>범주형 데이터</li>
+<li>가설검정 : 각 범주별 빈도를 활용해서 관계성을 검정<br>ex) ‘아파트의 크기’는 ‘TV의 크기’와 관계가 있을 것이다.<ul>
+<li>‘아파트의 크기’ &#x3D; ‘소형 아파트’,’대형 아파트’</li>
+<li>‘TV의 크기’ &#x3D; ‘소형 TV’,’대형 TV’</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>상관관계 분석</p>
+<ul>
+<li>수치형 데이터</li>
+<li>-1 &lt;&#x3D; r &lt;&#x3D; 1 로 두 변수간의 상관관계를 의미한다.<ul>
+<li>절댓값이 1에 가까울 수록 완전 정의 관계, 역의 관계이다.</li>
+<li>절댓값이 0에 가까울 수록 상관관계가 거의 없다고 해석한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>(중요)단순회귀분석 : 인과관계 분석</p>
+<ul>
+<li><p>y &#x3D; ax + b</p>
+</li>
+<li><p>ex1) 기온, 판매량</p>
+</li>
+<li><p>가설검정</p>
+<ul>
+<li>기온(독립변수&#x3D;x)이 판매량(종속변수&#x3D;y)에 긍정적 or 부정적 영향을 주고 있을 것이다.</li>
+</ul>
+</li>
+<li><p>ex2) 월급, 외식횟수</p>
+</li>
+<li><p>가설검정</p>
+<ul>
+<li>월급(독립변수&#x3D;x)이 증가하면 외식횟수(종속변수&#x3D;y)가 증가할 것 이다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="통계-검정"><a href="#통계-검정" class="headerlink" title="통계 검정"></a>통계 검정</h2><h3 id="가설"><a href="#가설" class="headerlink" title="가설"></a>가설</h3><ul>
+<li><p>Hypothesis<br>—&gt; 공부 방법 : 선행연구, 해당 분석방법의 가설 설정 예시 참고</p>
+</li>
+<li><p>연구 -&gt; 내가 궁금한 것을 찾는 것</p>
+<ul>
+<li>남자의 평균 키와 여자의 평균 키는 차이가 있을 것인가?</li>
+</ul>
+</li>
+<li><p>귀무가설 : 두 그룹간의 평균 차이가 없다.</p>
+</li>
+<li><p>대립가설 : 두 그룹간의 평균 차이가 있다. (보통 내가 궁금한 것)  </p>
+</li>
+<li><p>유의수준 : 오류를 범할 확률</p>
+</li>
+<li><p>가설검정에서 인정하는 유의수준(&lt;&#x3D;&#x3D;&gt; 신뢰수준)</p>
+<ul>
+<li>5%, 1%, 0.1%, 또는 10%(각 분야마다 기준이 달라진다)</li>
+</ul>
+</li>
+<li><p>오차범위</p>
+<ul>
+<li>A후보의 44%</li>
+<li>B후보의 42%<ul>
+<li>오차범위 안에 있다 -&gt; 다시 조사하면 바뀔 수 있다.</li>
+<li>오차범위 밖에 있다 -&gt; 바뀔 수 없다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>어떻게 데이터를 입력하는지 확인</p>
+</li>
+<li><p>p-value, 유의수준 0.05 이상 : 귀무가설, 0.05 이내 –&gt; 대립가설</p>
+</li>
+<li><p>데이터 불러오기</p>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mpg1 <span class="operator">&lt;-</span> read.csv<span class="punctuation">(</span><span class="string">&quot;mpg1.csv&quot;</span><span class="punctuation">,</span> stringsAsFactors <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line">str<span class="punctuation">(</span>mpg1<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">## &#x27;data.frame&#x27;:	234 obs. of  5 variables:</span><br><span class="line">##  $ manufacturer: chr  &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; ...</span><br><span class="line">##  $ trans       : chr  &quot;auto&quot; &quot;manual&quot; &quot;manual&quot; &quot;auto&quot; ...</span><br><span class="line">##  $ drv         : chr  &quot;f&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; ...</span><br><span class="line">##  $ cty         : int  18 21 20 21 16 18 18 18 16 20 ...</span><br><span class="line">##  $ hwy         : int  29 29 31 30 26 26 27 26 25 28 ...</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>시각화</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">library<span class="punctuation">(</span>ggplot2<span class="punctuation">)</span></span><br><span class="line">ggplot<span class="punctuation">(</span>mpg1<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> trans<span class="punctuation">,</span> y <span class="operator">=</span> cty<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  <span class="comment"># trans 변수는 chr(문자형)이고, cty 변수는 int(정수형)이므로 boxplot 그래프를 쓴다.</span></span><br><span class="line">  geom_boxplot<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0623/unnamed-chunk-2-1.png"><!-- --></p>
+<ul>
+<li>t.test 검정<ul>
+<li>귀무가설 : auto와 manual의 cty 평균은 차이가 없다.</li>
+<li>대립가설 : auto와 manual의 cty 평균은 차이가 있다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t.test<span class="punctuation">(</span>data <span class="operator">=</span> mpg1<span class="punctuation">,</span> cty <span class="operator">~</span> trans<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 	Welch Two Sample t-test</span><br><span class="line">## </span><br><span class="line">## data:  cty by trans</span><br><span class="line">## t = -4.5375, df = 132.32, p-value = 1.263e-05</span><br><span class="line">## alternative hypothesis: true difference in means between group auto and group manual is not equal to 0</span><br><span class="line">## 95 percent confidence interval:</span><br><span class="line">##  -3.887311 -1.527033</span><br><span class="line">## sample estimates:</span><br><span class="line">##   mean in group auto mean in group manual </span><br><span class="line">##             15.96815             18.67532</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 종속변수 ~ 독립변수</span></span><br><span class="line"><span class="comment"># 반응변수 ~ 설명변수</span></span><br><span class="line"><span class="comment">#     y          x</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>‘p-value &#x3D; 1.263e-05’ 에서 p-value 값이 유의수준이 0.05보다 작으므로,</li>
+</ul>
+<p>  이 결과는 대립가설인 ‘auto와 manual의 cty 평균은 차이가 있다.’ 로 설명할 수 있다.</p>
+<ul>
+<li>두 그룹의 평균 차이 검정<ul>
+<li>사전 필수 검정</li>
+<li>등분산 검정<ul>
+<li>두 그룹간의 분산이 비슷하면 –&gt; t.test (모수 검정)</li>
+<li>두 그룹간의 분산이 다르면   –&gt; 비모수 검정</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>보통 대립가설에 알고 싶은 결과를 대입하지만, <br>등분산 검정에서의 귀무가설, 대립가설은 정의된 것임<ul>
+<li>귀무가설 : 두 그룹간의 분산이 비슷하다<ul>
+<li>등분산 검정 에서 p-value &gt; 0.05 되어야 t.test가 가능</li>
+</ul>
+</li>
+<li>대립가설 : 두 그룹간의 분산이 다르다</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var.test<span class="punctuation">(</span>data <span class="operator">=</span> mpg1<span class="punctuation">,</span> cty<span class="operator">~</span>trans<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 	F test to compare two variances</span><br><span class="line">## </span><br><span class="line">## data:  cty by trans</span><br><span class="line">## F = 0.73539, num df = 156, denom df = 76, p-value = 0.1101</span><br><span class="line">## alternative hypothesis: true ratio of variances is not equal to 1</span><br><span class="line">## 95 percent confidence interval:</span><br><span class="line">##  0.4912917 1.0719468</span><br><span class="line">## sample estimates:</span><br><span class="line">## ratio of variances </span><br><span class="line">##          0.7353887</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>mpg1<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> cty<span class="punctuation">,</span> fill <span class="operator">=</span> trans<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  <span class="comment"># geom_histogram() +</span></span><br><span class="line">  geom_density<span class="punctuation">(</span>alpha <span class="operator">=</span> <span class="number">0.1</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0623/unnamed-chunk-5-1.png"><!-- --></p>
+<h3 id="교차-분석"><a href="#교차-분석" class="headerlink" title="교차 분석"></a>교차 분석</h3><ul>
+<li>범주형 변수들이 관계가 있다는 것을 검정</li>
+<li>비율에 차이가 있는지 검정</li>
+<li>교차분석 검정은 chisq.test() 함수로 진행<ul>
+<li>귀무가설 : trans에 따라 drv(4, f, r)의 (비율)차이가 없다.</li>
+<li>대립가설 : trans에 따라 drv의 차이가 있다.</li>
+</ul>
+</li>
+</ul>
+<br>  
+
+<ul>
+<li>빈도표 &#x2F; 비율</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mpg1<span class="operator">$</span>trans<span class="punctuation">,</span> mpg1<span class="operator">$</span>drv<span class="punctuation">)</span>   <span class="comment"># 교차분석</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##         </span><br><span class="line">##           4  f  r</span><br><span class="line">##   auto   75 65 17</span><br><span class="line">##   manual 28 41  8</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>비율</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prop.table<span class="punctuation">(</span>table<span class="punctuation">(</span>mpg1<span class="operator">$</span>trans<span class="punctuation">,</span> mpg1<span class="operator">$</span>drv<span class="punctuation">)</span><span class="punctuation">,</span> <span class="number">1</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##         </span><br><span class="line">##                  4         f         r</span><br><span class="line">##   auto   0.4777070 0.4140127 0.1082803</span><br><span class="line">##   manual 0.3636364 0.5324675 0.1038961</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>auto 4륜 구동(4)인 47.8%</li>
+<li>manual 전륜 구동(f) 53.2% 가장 많음</li>
+<li>별 차이 없어보이는데.. 실제 통계적으로 차이가 있는지 검정<ul>
+<li>귀무가설 : trans에 따라 drv(4, f, r)의 (비율)차이가 없다.</li>
+<li>대립가설 : trans에 따라 drv의 차이가 있다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chisq.test<span class="punctuation">(</span>mpg1<span class="operator">$</span>trans<span class="punctuation">,</span> mpg1<span class="operator">$</span>drv<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 	Pearson&#x27;s Chi-squared test</span><br><span class="line">## </span><br><span class="line">## data:  mpg1$trans and mpg1$drv</span><br><span class="line">## X-squared = 3.1368, df = 2, p-value = 0.2084</span><br></pre></td></tr></table></figure>
+<ul>
+<li>p-value 값이 0.05 보다 크므로 귀무가설이 성립된다.</li>
+<li>결론 : “trans에 따라 drv(4, f, r)의 (비율)차이가 없다.”<br></li>
+</ul>
+<h3 id="상관관계분석"><a href="#상관관계분석" class="headerlink" title="상관관계분석"></a>상관관계분석</h3><ul>
+<li>변수들의 상관관계를 증명()</li>
+<li>cty와 hwy는 상관관계가 있는지를 증명</li>
+<li>상관관계분석은 cor.test() 함수로 진행<ul>
+<li>귀무가설 : cty와 hwy는 상관관계가 없다.</li>
+<li>대립가설 : cty와 hwy는 상관관계가 있다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mpg1 <span class="operator">&lt;-</span>read.csv<span class="punctuation">(</span><span class="string">&quot;mpg1.csv&quot;</span><span class="punctuation">,</span> stringsAsFactors <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line">cor.test<span class="punctuation">(</span>mpg1<span class="operator">$</span>cty<span class="punctuation">,</span> mpg1<span class="operator">$</span>hwy<span class="punctuation">)</span>    <span class="comment"># 상관관계분석</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 	Pearson&#x27;s product-moment correlation</span><br><span class="line">## </span><br><span class="line">## data:  mpg1$cty and mpg1$hwy</span><br><span class="line">## t = 49.585, df = 232, p-value &lt; 2.2e-16</span><br><span class="line">## alternative hypothesis: true correlation is not equal to 0</span><br><span class="line">## 95 percent confidence interval:</span><br><span class="line">##  0.9433129 0.9657663</span><br><span class="line">## sample estimates:</span><br><span class="line">##       cor </span><br><span class="line">## 0.9559159</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>‘p-value &lt; 2.2e-16’ 에서 p-value 값이 0.05보다 작으므로 대립가설이 성립한다.</li>
+<li>cor(상관관계계수) &#x3D; 0.9559159 이므로 상관관계가 1에 가까워서 매우 높다.</li>
+<li>결론 : “cty와 hwy는 유의미하게 매우 높은 상관관계에 있다.”</li>
+</ul>
+<h3 id="회귀분석"><a href="#회귀분석" class="headerlink" title="회귀분석"></a>회귀분석</h3><ul>
+<li><p>기초통계 : 특정한 결과에 영향을 주는 주 요인이 무엇인지 찾는 것</p>
+</li>
+<li><p>회귀분석과 종료</p>
+<ul>
+<li>1세대 회귀 방법론 : 다항회귀분석, 다중회귀분석, 포아송 회귀분석, etc</li>
+<li>2세대 회귀 방법론 : 구조방정식</li>
+</ul>
+</li>
+<li><p>귀무가설, 대립가설 존재</p>
+<ul>
+<li>귀무가설 : x(&#x3D;독립변수)가 y(&#x3D;종속변수)에 영향을 주지 않는다</li>
+<li>대립가설 : x가 y에 영향을 준다</li>
+</ul>
+</li>
+<li><p>lm(종속변수 ~ 독립변수, data)</p>
+<ul>
+<li>p-value</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RA <span class="operator">&lt;-</span> lm<span class="punctuation">(</span>data<span class="operator">=</span>mtcars<span class="punctuation">,</span> mpg <span class="operator">~</span> disp<span class="punctuation">)</span>  <span class="comment"># 종속변수 ~ 독립변수+독립변수+...</span></span><br><span class="line">summary<span class="punctuation">(</span>RA<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## Call:</span><br><span class="line">## lm(formula = mpg ~ disp, data = mtcars)</span><br><span class="line">## </span><br><span class="line">## Residuals:</span><br><span class="line">##     Min      1Q  Median      3Q     Max </span><br><span class="line">## -4.8922 -2.2022 -0.9631  1.6272  7.2305 </span><br><span class="line">## </span><br><span class="line">## Coefficients:</span><br><span class="line">##              Estimate Std. Error t value Pr(&gt;|t|)    </span><br><span class="line">## (Intercept) 29.599855   1.229720  24.070  &lt; 2e-16 ***</span><br><span class="line">## disp        -0.041215   0.004712  -8.747 9.38e-10 ***</span><br><span class="line">## ---</span><br><span class="line">## Signif. codes:  0 &#x27;***&#x27; 0.001 &#x27;**&#x27; 0.01 &#x27;*&#x27; 0.05 &#x27;.&#x27; 0.1 &#x27; &#x27; 1</span><br><span class="line">## </span><br><span class="line">## Residual standard error: 3.251 on 30 degrees of freedom</span><br><span class="line">## Multiple R-squared:  0.7183,	Adjusted R-squared:  0.709 </span><br><span class="line">## F-statistic: 76.51 on 1 and 30 DF,  p-value: 9.38e-10</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 맨 밑의 p-value 값은 전체식에 해당하는 값이다.</span></span><br><span class="line"><span class="comment"># 여러 변수들 중 &#x27;Pr(&gt;|t|)&#x27;값이(=p-value) 0.05 이상이면 그 변수는 제외한다.</span></span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>머신러닝, 인공지능<ul>
+<li>주 목적은 예측</li>
+<li>y &#x3D; ax + b</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>Coefficients:<br>             Estimate Std. Error t value Pr(&gt;|t|)<br>(Intercept) 29.599855   1.229720  24.070  &lt; 2e-16 ***<br>disp        -0.041215   0.004712  -8.747 9.38e-10 ***<br>var1                                     0.10<br>var2                                     9.38e-10<br>var3                                     3.14e-9</p>
+<hr>
+<p>Residual standard error: 3.251 on 30 degrees of freedom<br>Multiple R-squared:  0.7183,	Adjusted R-squared:  0.709<br>F-statistic: 76.51 on 1 and 30 DF,  p-value: 9.38e-10</p>
+<ul>
+<li><p>Estimate값 해석 : y(mpg) &#x3D; 29.599855 - 0.041215 x disp</p>
+<ul>
+<li>우하향 하는 그래프</li>
+</ul>
+</li>
+<li><p>에서 ANOVA (분산분석) 을 통해서 식1, 식2, 식3, … 을 해서 괜찮은 식을 도출해야한다</p>
+</li>
+<li><p>p-value 값은 항상 0.05 미만<br>식1 : y &#x3D; disp + var1 + var2 + var3<br>식2 : y &#x3D; disp + var1 + var2<br>식3 : y &#x3D; disp + var1</p>
+</li>
+<li><p>Residual standard error: 3.251 on 30 degrees of freedom<br>Multiple R-squared:  0.7183,	Adjusted R-squared:  0.709 에서</p>
+</li>
+<li><p>R-squared (결정계수) &#x3D; 설명력 &#x3D; 0 ~ 1</p>
+</li>
+<li><p>1로 수렴할수록 설명력이 좋다</p>
+</li>
+<li><p>‘Multiple R-squared:   0.7183’ 의 의미는 해당 변수들이 71.83% 만큼 영향을 준다는 뜻</p>
+<br></li>
+</ul>
+<h3 id="회귀분석에서-고려해야할-것들"><a href="#회귀분석에서-고려해야할-것들" class="headerlink" title="회귀분석에서 고려해야할 것들"></a>회귀분석에서 고려해야할 것들</h3><ol>
+<li>전체식의 p-value 값이 0.05 보다 작은가?</li>
+<li>ANOVA를 통해서 변하는 p-value 값이 0.05 미만인가를 체크한다.</li>
+<li>R-squared(결정계수)가 1에 가까운 변수 식을 찾는다.</li>
+</ol>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/24/mental/"
+                    data-tooltip="한국인의 정신건강 분석"
+                    aria-label="PREVIOUS: 한국인의 정신건강 분석"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/23/remind/"
+                    data-tooltip="복습"
+                    aria-label="NEXT: 복습"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://neewlife.github.io/2022/06/23/day0623/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://neewlife.github.io/2022/06/23/day0623/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://neewlife.github.io/2022/06/23/day0623/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2022 John Doe. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/24/mental/"
+                    data-tooltip="한국인의 정신건강 분석"
+                    aria-label="PREVIOUS: 한국인의 정신건강 분석"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/23/remind/"
+                    data-tooltip="복습"
+                    aria-label="NEXT: 복습"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="Share this post"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://neewlife.github.io/2022/06/23/day0623/"
+                    title="Share on Facebook"
+                    aria-label="Share on Facebook"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=http://neewlife.github.io/2022/06/23/day0623/"
+                    title="Share on Twitter"
+                    aria-label="Share on Twitter"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=http://neewlife.github.io/2022/06/23/day0623/"
+                    title="Share on Google+"
+                    aria-label="Share on Google+"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=http://neewlife.github.io/2022/06/23/day0623/"
+                        aria-label="Share on Facebook"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=http://neewlife.github.io/2022/06/23/day0623/"
+                        aria-label="Share on Twitter"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=http://neewlife.github.io/2022/06/23/day0623/"
+                        aria-label="Share on Google+"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">John Doe</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-h2jfxkdpi3i16rf1rss8upq5l4k20wtukjvlixsznqxrpqwnsevgbqric0qi.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
