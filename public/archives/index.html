@@ -5,17 +5,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="작은 스터디">
-    <title>Archives - 작은 스터디</title>
+    <meta name="generator" content="자기개발자 블로그">
+    <title>Archives - 자기개발자 블로그</title>
     <meta name="author" content="John Doe">
     
     
     
     <script type="application/ld+json">{}</script>
     <meta property="og:type" content="blog">
-<meta property="og:title" content="작은 스터디">
+<meta property="og:title" content="자기개발자 블로그">
 <meta property="og:url" content="http://neewlife.github.io/archives/index.html">
-<meta property="og:site_name" content="작은 스터디">
+<meta property="og:site_name" content="자기개발자 블로그">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
@@ -54,7 +54,7 @@
             href="/"
             aria-label=""
         >
-            작은 스터디
+            자기개발자 블로그
         </a>
     </div>
     
@@ -195,6 +195,741 @@
                         ">
                 
     <section class="postShorten-group main-content-wrap">
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/2022/06/29/day0629_ml/"
+                            aria-label=": day 0629 개인복습"
+                        >
+                            day 0629 개인복습
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2022-06-29T18:59:30+09:00">
+	
+		    Jun 29, 2022
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/%EB%B3%B5%EC%8A%B5%ED%95%A0-%EA%B2%83%EB%93%A4/">복습할 것들</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <h2 id="파이썬-주요-라이브러리"><a href="#파이썬-주요-라이브러리" class="headerlink" title="파이썬 주요 라이브러리"></a>파이썬 주요 라이브러리</h2><ul>
+<li>Machine Learning<ul>
+<li>정형데이터 </li>
+<li>사이킷런 (Scikit-Learn)</li>
+</ul>
+</li>
+<li>Deep Learning<ul>
+<li>비정형데이터</li>
+<li>Tensorflow(구글) vs Pytorch(페이스북)</li>
+<li>혼공머 : Tensorflow </li>
+<li>실제 상용서비스 - Tensorflow vs R&amp;D - Pytorch</li>
+</ul>
+</li>
+</ul>
+<h2 id="생선분류"><a href="#생선분류" class="headerlink" title="생선분류"></a>생선분류</h2><ul>
+<li><p>p.45</p>
+</li>
+<li><p>도미, 곤들매기, 농어, 등등 </p>
+</li>
+<li><p>이 생선들을 프로그램으로 분류한다. </p>
+</li>
+<li><p>30cm 도미라고 알려줘라</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fish_length = <span class="number">31</span></span><br><span class="line"><span class="keyword">if</span> fish_length &gt;= <span class="number">30</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;도미&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>도미
+</code></pre>
+<ul>
+<li>p.47</li>
+<li>도미데이터</li>
+</ul>
+<h2 id="데이터-수집"><a href="#데이터-수집" class="headerlink" title="데이터 수집"></a>데이터 수집</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 도미의 길이</span></span><br><span class="line">bream_length = [<span class="number">25.4</span>, <span class="number">26.3</span>, <span class="number">26.5</span>, <span class="number">29.0</span>, <span class="number">29.0</span>, <span class="number">29.7</span>, <span class="number">29.7</span>, <span class="number">30.0</span>, <span class="number">30.0</span>, <span class="number">30.7</span>, <span class="number">31.0</span>, <span class="number">31.0</span>, <span class="number">31.5</span>, <span class="number">32.0</span>, <span class="number">32.0</span>, <span class="number">32.0</span>, <span class="number">33.0</span>, <span class="number">33.0</span>, <span class="number">33.5</span>, <span class="number">33.5</span>, <span class="number">34.0</span>, <span class="number">34.0</span>, <span class="number">34.5</span>, <span class="number">35.0</span>, <span class="number">35.0</span>, <span class="number">35.0</span>, <span class="number">35.0</span>, <span class="number">36.0</span>, <span class="number">36.0</span>, <span class="number">37.0</span>, <span class="number">38.5</span>, <span class="number">38.5</span>, <span class="number">39.5</span>, <span class="number">41.0</span>, <span class="number">41.0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 도미의 무게</span></span><br><span class="line">bream_weight = [<span class="number">242.0</span>, <span class="number">290.0</span>, <span class="number">340.0</span>, <span class="number">363.0</span>, <span class="number">430.0</span>, <span class="number">450.0</span>, <span class="number">500.0</span>, <span class="number">390.0</span>, <span class="number">450.0</span>, <span class="number">500.0</span>, <span class="number">475.0</span>, <span class="number">500.0</span>, <span class="number">500.0</span>, <span class="number">340.0</span>, <span class="number">600.0</span>, <span class="number">600.0</span>, <span class="number">700.0</span>, <span class="number">700.0</span>, <span class="number">610.0</span>, <span class="number">650.0</span>, <span class="number">575.0</span>, <span class="number">685.0</span>, <span class="number">620.0</span>, <span class="number">680.0</span>, <span class="number">700.0</span>, <span class="number">725.0</span>, <span class="number">720.0</span>, <span class="number">714.0</span>, <span class="number">850.0</span>, <span class="number">1000.0</span>, <span class="number">920.0</span>, <span class="number">955.0</span>, <span class="number">925.0</span>, <span class="number">975.0</span>, <span class="number">950.0</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="데이터-가공"><a href="#데이터-가공" class="headerlink" title="데이터 가공"></a>데이터 가공</h2><ul>
+<li>여기서는 생략</li>
+</ul>
+<h2 id="데이터-시각화"><a href="#데이터-시각화" class="headerlink" title="데이터 시각화"></a>데이터 시각화</h2><ul>
+<li>여러 인사이트 확인 위해 시각화, 통계 수치 계산</li>
+<li>탐색적 자료 분석(EDA : Exploratory Data Analysis)</li>
+<li>얘는 참고만 한다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">plt.scatter(bream_length, bream_weight)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;length&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;weight&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/0629/output_9_0.png" alt="png"></p>
+<ul>
+<li>파이썬 시각화는 객체지향으로 한다. </li>
+<li>이유 : 좀 더 이쁘고, 아름답게 다듬으려면… </li>
+<li>캐글 시각화, 참고할 때, 아래와 같이 하는 분들이 많음</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.scatter(bream_length, bream_weight)</span><br><span class="line">ax.set_xlabel(<span class="string">&#x27;length&#x27;</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">&#x27;weight&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/0629/output_11_0.png" alt="png"></p>
+<ul>
+<li>빙어 데이터 준비하기</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">smelt_length = [<span class="number">9.8</span>, <span class="number">10.5</span>, <span class="number">10.6</span>, <span class="number">11.0</span>, <span class="number">11.2</span>, <span class="number">11.3</span>, <span class="number">11.8</span>, <span class="number">11.8</span>, <span class="number">12.0</span>, <span class="number">12.2</span>, <span class="number">12.4</span>, <span class="number">13.0</span>, <span class="number">14.3</span>, <span class="number">15.0</span>]</span><br><span class="line">smelt_weight = [<span class="number">6.7</span>, <span class="number">7.5</span>, <span class="number">7.0</span>, <span class="number">9.7</span>, <span class="number">9.8</span>, <span class="number">8.7</span>, <span class="number">10.0</span>, <span class="number">9.9</span>, <span class="number">9.8</span>, <span class="number">12.2</span>, <span class="number">13.4</span>, <span class="number">12.2</span>, <span class="number">19.7</span>, <span class="number">19.9</span>]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>시각화 </li>
+<li>p.50 시각화</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.scatter(bream_length, bream_weight)</span><br><span class="line">ax.scatter(smelt_length, smelt_weight)</span><br><span class="line">ax.set_xlabel(<span class="string">&#x27;length&#x27;</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">&#x27;weight&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/0629/output_15_0.png" alt="png"></p>
+<ul>
+<li>두개의 리스트 합치기</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">length = bream_length + smelt_length </span><br><span class="line">weight = bream_weight + smelt_weight </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>2차원 리스트로 만든다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fish_data = [[l, w] <span class="keyword">for</span> l, w <span class="keyword">in</span> <span class="built_in">zip</span>(length, weight)]</span><br><span class="line">fish_data[<span class="number">0</span>:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[[25.4, 242.0], [26.3, 290.0], [26.5, 340.0], [29.0, 363.0], [29.0, 430.0]]
+</code></pre>
+<ul>
+<li>라벨링을 해준다 &#x3D; 지도 해준다 &#x3D; 지도학습</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fish_target = [<span class="number">1</span>] * <span class="number">35</span> + [<span class="number">0</span>] * <span class="number">14</span></span><br><span class="line"><span class="built_in">print</span>(fish_target)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+</code></pre>
+<h2 id="모델링"><a href="#모델링" class="headerlink" title="모델링"></a>모델링</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># 클래스 인스턴스화</span></span><br><span class="line">kn = KNeighborsClassifier()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 모형 학습</span></span><br><span class="line">kn.fit(fish_data, fish_target)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>1.0
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 예측 정확도</span></span><br><span class="line">kn.score(fish_data, fish_target)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>1.0
+</code></pre>
+<ul>
+<li>실제 예측을 해보자</li>
+<li>새로운 물고기 도착했습니다. <ul>
+<li>길이 : 30, 몸무게 : 600</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ac_length = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;물고기 길이를 입력하세요...&quot;</span>))</span><br><span class="line">ac_weight = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;물고기 무게를 입력하세요...&quot;</span>))</span><br><span class="line"></span><br><span class="line">preds = <span class="built_in">int</span>(kn.predict([[ac_length, ac_weight]]))</span><br><span class="line"><span class="built_in">print</span>(preds)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> preds == <span class="number">1</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;도미&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;빙어&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>물고기 길이를 입력하세요...30
+물고기 무게를 입력하세요...600
+1
+도미
+</code></pre>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/2022/06/29/day0629_ml/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+            <a
+                href="/2022/06/29/day0629_ml/"
+                aria-label=": day 0629 개인복습"
+            >
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" src="http://neewlife.github.io/2022/06/29/day0629_ml/source/images/0629/Untitled.png"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/2022/06/29/day0630_ch3/"
+                            aria-label=": day 0630_1"
+                        >
+                            day 0630_1
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2022-06-29T18:59:30+09:00">
+	
+		    Jun 29, 2022
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Python/">Python</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <h2 id="K-최근접-이웃-회귀"><a href="#K-최근접-이웃-회귀" class="headerlink" title="K-최근접 이웃 회귀"></a>K-최근접 이웃 회귀</h2><ul>
+<li>지도 학습 알고리즘은 크게 분류와 회귀</li>
+<li>지도 학습 : 종속변수 존재<ul>
+<li>분류 : 도미와 빙어를 분류하는 작업 해결</li>
+<li>회귀 : 통계 회귀분석 y &#x3D; ax + b &#x2F; 수치 예측</li>
+</ul>
+</li>
+</ul>
+<h2 id="데이터-불러오기"><a href="#데이터-불러오기" class="headerlink" title="데이터 불러오기"></a>데이터 불러오기</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="built_in">print</span>(np.__version__)</span><br></pre></td></tr></table></figure>
+
+<pre><code>1.21.6
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">perch_length = np.array(</span><br><span class="line">    [<span class="number">8.4</span>, <span class="number">13.7</span>, <span class="number">15.0</span>, <span class="number">16.2</span>, <span class="number">17.4</span>, <span class="number">18.0</span>, <span class="number">18.7</span>, <span class="number">19.0</span>, <span class="number">19.6</span>, <span class="number">20.0</span>, </span><br><span class="line">     <span class="number">21.0</span>, <span class="number">21.0</span>, <span class="number">21.0</span>, <span class="number">21.3</span>, <span class="number">22.0</span>, <span class="number">22.0</span>, <span class="number">22.0</span>, <span class="number">22.0</span>, <span class="number">22.0</span>, <span class="number">22.5</span>, </span><br><span class="line">     <span class="number">22.5</span>, <span class="number">22.7</span>, <span class="number">23.0</span>, <span class="number">23.5</span>, <span class="number">24.0</span>, <span class="number">24.0</span>, <span class="number">24.6</span>, <span class="number">25.0</span>, <span class="number">25.6</span>, <span class="number">26.5</span>, </span><br><span class="line">     <span class="number">27.3</span>, <span class="number">27.5</span>, <span class="number">27.5</span>, <span class="number">27.5</span>, <span class="number">28.0</span>, <span class="number">28.7</span>, <span class="number">30.0</span>, <span class="number">32.8</span>, <span class="number">34.5</span>, <span class="number">35.0</span>, </span><br><span class="line">     <span class="number">36.5</span>, <span class="number">36.0</span>, <span class="number">37.0</span>, <span class="number">37.0</span>, <span class="number">39.0</span>, <span class="number">39.0</span>, <span class="number">39.0</span>, <span class="number">40.0</span>, <span class="number">40.0</span>, <span class="number">40.0</span>, </span><br><span class="line">     <span class="number">40.0</span>, <span class="number">42.0</span>, <span class="number">43.0</span>, <span class="number">43.0</span>, <span class="number">43.5</span>, <span class="number">44.0</span>]</span><br><span class="line">     )</span><br><span class="line">perch_weight = np.array(</span><br><span class="line">    [<span class="number">5.9</span>, <span class="number">32.0</span>, <span class="number">40.0</span>, <span class="number">51.5</span>, <span class="number">70.0</span>, <span class="number">100.0</span>, <span class="number">78.0</span>, <span class="number">80.0</span>, <span class="number">85.0</span>, <span class="number">85.0</span>, </span><br><span class="line">     <span class="number">110.0</span>, <span class="number">115.0</span>, <span class="number">125.0</span>, <span class="number">130.0</span>, <span class="number">120.0</span>, <span class="number">120.0</span>, <span class="number">130.0</span>, <span class="number">135.0</span>, <span class="number">110.0</span>, </span><br><span class="line">     <span class="number">130.0</span>, <span class="number">150.0</span>, <span class="number">145.0</span>, <span class="number">150.0</span>, <span class="number">170.0</span>, <span class="number">225.0</span>, <span class="number">145.0</span>, <span class="number">188.0</span>, <span class="number">180.0</span>, </span><br><span class="line">     <span class="number">197.0</span>, <span class="number">218.0</span>, <span class="number">300.0</span>, <span class="number">260.0</span>, <span class="number">265.0</span>, <span class="number">250.0</span>, <span class="number">250.0</span>, <span class="number">300.0</span>, <span class="number">320.0</span>, </span><br><span class="line">     <span class="number">514.0</span>, <span class="number">556.0</span>, <span class="number">840.0</span>, <span class="number">685.0</span>, <span class="number">700.0</span>, <span class="number">700.0</span>, <span class="number">690.0</span>, <span class="number">900.0</span>, <span class="number">650.0</span>, </span><br><span class="line">     <span class="number">820.0</span>, <span class="number">850.0</span>, <span class="number">900.0</span>, <span class="number">1015.0</span>, <span class="number">820.0</span>, <span class="number">1100.0</span>, <span class="number">1000.0</span>, <span class="number">1100.0</span>, </span><br><span class="line">     <span class="number">1000.0</span>, <span class="number">1000.0</span>]</span><br><span class="line">     )</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig, ax = plt.subplots()  <span class="comment"># 객체지향의 시작</span></span><br><span class="line">ax.scatter(perch_length, perch_weight)</span><br><span class="line">ax.set_xlabel(<span class="string">&#x27;length&#x27;</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">&#x27;weight&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/0630/output_4_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">train_input, test_input, train_target, test_target = train_test_split(</span><br><span class="line">    perch_length, perch_weight, random_state = <span class="number">42</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">train_input.shape, test_input.shape, train_target.shape, test_target.shape</span><br><span class="line"><span class="built_in">print</span>(train_input.ndim)</span><br></pre></td></tr></table></figure>
+
+<pre><code>1
+</code></pre>
+<ul>
+<li>1차원 배열.. –&gt; 2차원 배열</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">train_input = train_input.reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">test_input = test_input.reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(train_input.shape, test_input.shape)</span><br><span class="line"><span class="built_in">print</span>(train_input.ndim)</span><br></pre></td></tr></table></figure>
+
+<pre><code>(42, 1) (14, 1)
+2
+</code></pre>
+<h2 id="결정계수"><a href="#결정계수" class="headerlink" title="결정계수"></a>결정계수</h2><ul>
+<li>Adjusted-R Squared </li>
+<li>정확한 지표</li>
+<li>0 ~ 1 사이의 지표</li>
+<li>1에 가까울수록, 예측 모형이 잘 맞는다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsRegressor</span><br><span class="line"></span><br><span class="line">knr = KNeighborsRegressor()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 모형학습</span></span><br><span class="line">knr.fit(train_input, train_target)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 테스트 세트의 점수를 확인한다.</span></span><br><span class="line"><span class="built_in">print</span>(knr.score(test_input, test_target))</span><br></pre></td></tr></table></figure>
+
+<pre><code>0.992809406101064
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_target</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([  5.9, 100. , 250. , 130. , 130. ])
+</code></pre>
+<ul>
+<li>mae : 실제데이터 - 예측데이터 해서 나온 오차 값을 절댓값 해서 모두 더한 값</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> mean_absolute_error</span><br><span class="line"></span><br><span class="line"><span class="comment"># 예측 데이터</span></span><br><span class="line">test_prediction = knr.predict(test_input)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 테스트 세트에 대한 평균 절댓값 오차를</span></span><br><span class="line">mae = mean_absolute_error(test_target, test_prediction)</span><br><span class="line"><span class="built_in">print</span>(mae)</span><br></pre></td></tr></table></figure>
+
+<pre><code>19.157142857142862
+</code></pre>
+<ul>
+<li>예측이 평균적으로 19g 정도 다르다.<ul>
+<li>확실한 건 오차가 존재한다.</li>
+<li>19g 정도가 의미하는 게 무엇인가?</li>
+<li>개선해서 17g 이라도 오차는 존재하는 것</li>
+<li>개선해서 15g…13g…0g 에 가까워질 때 까지 반복</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(knr.score(train_input, train_target))</span><br></pre></td></tr></table></figure>
+
+<pre><code>0.9698823289099254
+</code></pre>
+<h2 id="과대적합-vs-과소적합"><a href="#과대적합-vs-과소적합" class="headerlink" title="과대적합 vs 과소적합"></a>과대적합 vs 과소적합</h2><ul>
+<li>매우 힘듬. 도망 가고 싶음….</li>
+<li>과대적합 : 훈련세트 점수 좋음, 테스트 점수 (매우) 안 좋음</li>
+<li>과소적합 : 테스트 세트의 점수가 매우 좋음</li>
+<li>결론 : 제대로 모형이 훈련이 안된 것이다.<ul>
+<li>모형을 서비스에 탑재 시킬 수 없음.</li>
+<li>테스트 세트의 점수가 훈련 점수보다 높아도 안되고, 약간만 낮아야 함</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;훈련 평가:&quot;</span>, knr.score(train_input, train_target))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;테스트 평가:&quot;</span>, knr.score(test_input, test_target))</span><br></pre></td></tr></table></figure>
+
+<pre><code>훈련 평가: 0.9698823289099254
+테스트 평가: 0.992809406101064
+</code></pre>
+<ul>
+<li>모형 개선</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 이웃의 개수를 3으로 재 지정</span></span><br><span class="line">knr.n_neighbors = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 모형 다시 훈련</span></span><br><span class="line">knr.fit(train_input, train_target)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;훈련 평가:&quot;</span>, knr.score(train_input, train_target))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;테스트 평가:&quot;</span>, knr.score(test_input, test_target))</span><br></pre></td></tr></table></figure>
+
+<pre><code>훈련 평가: 0.9804899950518966
+테스트 평가: 0.9746459963987609
+</code></pre>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/2022/06/29/day0630_ch3/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+            <a
+                href="/2022/06/29/day0630_ch3/"
+                aria-label=": day 0630_1"
+            >
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" src="http://neewlife.github.io/2022/06/29/day0630_ch3/source/images/0629/Untitled.png"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/2022/06/29/day0630_ml/"
+                            aria-label=": day 0630"
+                        >
+                            day 0630
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2022-06-29T18:59:30+09:00">
+	
+		    Jun 29, 2022
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Python/">Python</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <h2 id="새로운-모델-제안"><a href="#새로운-모델-제안" class="headerlink" title="새로운 모델 제안"></a>새로운 모델 제안</h2><ul>
+<li>Default : 정확도 100%</li>
+<li>새롭게 제안 : 정확도 71%</li>
+</ul>
+<p>–&gt; 실험단계 –&gt; 이것저것 다 해보고 정확도가 가장 높은 모델 채택</p>
+<ul>
+<li><p>하이퍼 파라미터 세팅</p>
+<ul>
+<li>n_neighbors &#x3D; 49</li>
+</ul>
+</li>
+<li><p>default : 100%</p>
+</li>
+<li><p>default 값은 KNeighborsClassifier default 이런식으로 구글링 하면 나옴</p>
+</li>
+</ul>
+<h2 id="머신러닝-알고리즘-두개의-흐름"><a href="#머신러닝-알고리즘-두개의-흐름" class="headerlink" title="머신러닝 알고리즘 두개의 흐름"></a>머신러닝 알고리즘 두개의 흐름</h2><ul>
+<li><p>인공지능 → 머신러닝 → 딥러닝</p>
+</li>
+<li><p>머신러닝 알고리즘</p>
+<ul>
+<li>선형회귀, 결정트리</li>
+<li>결과에 대한 해석 요구</li>
+<li>통계분석 같이 해야함</li>
+<li>정형데이터(&#x3D;엑셀 데이터, 테이블)</li>
+</ul>
+</li>
+<li><p>딥러닝 알고리즘(p.340~)</p>
+<ul>
+<li>인공신경망</li>
+<li>이미지(&#x3D;영상인식), 자연어(&#x3D;음성인식)</li>
+<li>성능이 좋은지?</li>
+</ul>
+</li>
+<li><p>분석의 흐름</p>
+</li>
+</ul>
+<ol>
+<li><p>데이터 수집</p>
+</li>
+<li><p>데이터 가공</p>
+</li>
+<li><p>데이터 시각화</p>
+</li>
+<li><p>데이터 (예측)모델링 </p>
+<p> ⇒ 예측 평가지표가 중요함</p>
+<p> ⇒ 알고리즘 공부</p>
+<p> ⇒ 알고리즘 종류 수백가지</p>
+<p> R : 데이터 (통계)모델링 </p>
+<p> ⇒ 해석에 포커싱 </p>
+<p> ⇒ 변수(&#x3D;컬럼&#x3D;피처)간의 관계</p>
+<p> ⇒ 가설 검정이 중요</p>
+</li>
+<li><p>보고서를 작성(상사, 갑, 의사결정자)</p>
+<ul>
+<li>면접자료 : 소스코드 &amp; PPT</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>선형모델 : 선형회귀, 로지스틱 회귀, 서포트 벡터 머신</p>
+</li>
+<li><p>의사결정트리 모델 : 1975년 의사결정트리 모델, KNN</p>
+<ul>
+<li>Kaggle에서 자주쓰는 모델 </li>
+<li>랜덤포레스트</li>
+<li>부스팅계열 : LightGBM(2017), XGBoost(2016)</li>
+</ul>
+</li>
+<li><p>알고리즘 공부를 꼭 해야겠다 &#x3D;&gt; 선형회귀, 로지스틱회귀, 랜덤포레스트, <em><strong>LightGBM(&#x3D;XGBoost)</strong></em></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">kn49 = KNeighborsClassifier(n_neighbors=<span class="number">49</span>)   <span class="comment"># default 값을 49로 한 kn49모델</span></span><br><span class="line">kn49.fit(fish_data, fish_target)</span><br><span class="line">kn49.score(fish_data, fish_target)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>0.7142857142857143
+</code></pre>
+<h2 id="훈련-세트와-테스트-세트"><a href="#훈련-세트와-테스트-세트" class="headerlink" title="훈련 세트와 테스트 세트"></a>훈련 세트와 테스트 세트</h2><ul>
+<li>이미 도미 &#x2F; 빙어 박스가 분류가 되어 있음</li>
+<li>두 박스를 섞었을 때도 분류가 되는지 확인</li>
+<li>처음에 바로 하기는 힘드니 샘플링을 통해 학습</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fish_length = [<span class="number">25.4</span>, <span class="number">26.3</span>, <span class="number">26.5</span>, <span class="number">29.0</span>, <span class="number">29.0</span>, <span class="number">29.7</span>, <span class="number">29.7</span>, <span class="number">30.0</span>, <span class="number">30.0</span>, <span class="number">30.7</span>, <span class="number">31.0</span>, <span class="number">31.0</span>, </span><br><span class="line">                <span class="number">31.5</span>, <span class="number">32.0</span>, <span class="number">32.0</span>, <span class="number">32.0</span>, <span class="number">33.0</span>, <span class="number">33.0</span>, <span class="number">33.5</span>, <span class="number">33.5</span>, <span class="number">34.0</span>, <span class="number">34.0</span>, <span class="number">34.5</span>, <span class="number">35.0</span>, </span><br><span class="line">                <span class="number">35.0</span>, <span class="number">35.0</span>, <span class="number">35.0</span>, <span class="number">36.0</span>, <span class="number">36.0</span>, <span class="number">37.0</span>, <span class="number">38.5</span>, <span class="number">38.5</span>, <span class="number">39.5</span>, <span class="number">41.0</span>, <span class="number">41.0</span>, <span class="number">9.8</span>, </span><br><span class="line">                <span class="number">10.5</span>, <span class="number">10.6</span>, <span class="number">11.0</span>, <span class="number">11.2</span>, <span class="number">11.3</span>, <span class="number">11.8</span>, <span class="number">11.8</span>, <span class="number">12.0</span>, <span class="number">12.2</span>, <span class="number">12.4</span>, <span class="number">13.0</span>, <span class="number">14.3</span>, <span class="number">15.0</span>]</span><br><span class="line">fish_weight = [<span class="number">242.0</span>, <span class="number">290.0</span>, <span class="number">340.0</span>, <span class="number">363.0</span>, <span class="number">430.0</span>, <span class="number">450.0</span>, <span class="number">500.0</span>, <span class="number">390.0</span>, <span class="number">450.0</span>, <span class="number">500.0</span>, <span class="number">475.0</span>, <span class="number">500.0</span>, </span><br><span class="line">                <span class="number">500.0</span>, <span class="number">340.0</span>, <span class="number">600.0</span>, <span class="number">600.0</span>, <span class="number">700.0</span>, <span class="number">700.0</span>, <span class="number">610.0</span>, <span class="number">650.0</span>, <span class="number">575.0</span>, <span class="number">685.0</span>, <span class="number">620.0</span>, <span class="number">680.0</span>, </span><br><span class="line">                <span class="number">700.0</span>, <span class="number">725.0</span>, <span class="number">720.0</span>, <span class="number">714.0</span>, <span class="number">850.0</span>, <span class="number">1000.0</span>, <span class="number">920.0</span>, <span class="number">955.0</span>, <span class="number">925.0</span>, <span class="number">975.0</span>, <span class="number">950.0</span>, <span class="number">6.7</span>, </span><br><span class="line">                <span class="number">7.5</span>, <span class="number">7.0</span>, <span class="number">9.7</span>, <span class="number">9.8</span>, <span class="number">8.7</span>, <span class="number">10.0</span>, <span class="number">9.9</span>, <span class="number">9.8</span>, <span class="number">12.2</span>, <span class="number">13.4</span>, <span class="number">12.2</span>, <span class="number">19.7</span>, <span class="number">19.9</span>]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>2차원 파이썬 리스트</li>
+<li>라벨링</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fish_data = [[l, w] <span class="keyword">for</span> l, w <span class="keyword">in</span> <span class="built_in">zip</span>(fish_length, fish_weight)]</span><br><span class="line">fish_target = [<span class="number">1</span>] * <span class="number">35</span> + [<span class="number">0</span>] * <span class="number">14</span></span><br><span class="line"><span class="built_in">print</span>(fish_target[<span class="number">0</span>:<span class="number">40</span>:<span class="number">5</span>])</span><br><span class="line"><span class="built_in">print</span>(fish_data[<span class="number">0</span>:<span class="number">40</span>:<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1, 1, 1, 1, 1, 1, 1, 0]
+[[25.4, 242.0], [29.7, 450.0], [31.0, 475.0], [32.0, 600.0], [34.0, 575.0], [35.0, 725.0], [38.5, 920.0], [9.8, 6.7]]
+</code></pre>
+<ul>
+<li>Sample (모든 도미, 빙어가 아니라 일부만 추출한 것)</li>
+<li>도미 35마리, 빙어 14마리</li>
+<li>49개의 샘플 존재</li>
+<li>처음 35개를 훈련 &#x2F; 나머지 14개를 테스트</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># 클래스 인스턴스화 (kn 으로 안 써도 됨)</span></span><br><span class="line">kn = KNeighborsClassifier()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 훈련 세트로 0:34 인덱스 활용</span></span><br><span class="line">train_input = fish_data[:<span class="number">35</span>]</span><br><span class="line">train_target = fish_target[:<span class="number">35</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 테스트 세트로 35:마지막 인덱스 활용</span></span><br><span class="line">test_input = fish_data[<span class="number">35</span>:]</span><br><span class="line">test_target = fish_target[<span class="number">35</span>:]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 모형 학습</span></span><br><span class="line">kn = kn.fit(train_input, train_target)</span><br><span class="line"><span class="built_in">print</span>(kn.score(test_input, test_target))</span><br></pre></td></tr></table></figure>
+
+<pre><code>0.0
+</code></pre>
+<ul>
+<li>도미만 35개 보여주고 빙어 14개를 테스트 해버림..</li>
+<li>샘플링 편향<br>&#x3D;&gt; 훈련세트와 테스트 세트가 골고루 섞이지 않음</li>
+</ul>
+<h2 id="샘플링-작업"><a href="#샘플링-작업" class="headerlink" title="샘플링 작업"></a>샘플링 작업</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">input_arr = np.array(fish_data)</span><br><span class="line">target_arr = np.array(fish_target)</span><br><span class="line"><span class="built_in">print</span>(input_arr[<span class="number">0</span>:<span class="number">49</span>:<span class="number">7</span>])</span><br><span class="line"><span class="built_in">print</span>(input_arr.shape, target_arr.shape)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[[ 25.4 242. ]
+ [ 30.  390. ]
+ [ 32.  600. ]
+ [ 34.  685. ]
+ [ 36.  850. ]
+ [  9.8   6.7]
+ [ 11.8   9.9]]
+(49, 2) (49,)
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">np.random.seed(<span class="number">42</span>)    <span class="comment"># 42seed로 무작위로 계속 섞는 함수(seed 번호가 달라지면 index 순서도 바뀜)</span></span><br><span class="line">index = np.arange(<span class="number">49</span>)</span><br><span class="line">np.random.shuffle(index)</span><br><span class="line"><span class="built_in">print</span>(index)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[13 45 47 44 17 27 26 25 31 19 12  4 34  8  3  6 40 41 46 15  9 16 24 33
+ 30  0 43 32  5 29 11 36  1 21  2 37 35 23 39 10 22 18 48 20  7 42 14 28
+ 38]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">train_input = input_arr[index[:<span class="number">35</span>]]</span><br><span class="line">train_target = target_arr[index[:<span class="number">35</span>]]</span><br><span class="line"></span><br><span class="line">test_input = input_arr[index[<span class="number">35</span>:]]</span><br><span class="line">test_target = target_arr[index[<span class="number">35</span>:]]</span><br></pre></td></tr></table></figure>
+
+<h2 id="시각화"><a href="#시각화" class="headerlink" title="시각화"></a>시각화</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(train_input[:,<span class="number">0</span>], train_input[:,<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<pre><code>[32.  12.4 14.3 12.2 33.  36.  35.  35.  38.5 33.5 31.5 29.  41.  30.
+ 29.  29.7 11.3 11.8 13.  32.  30.7 33.  35.  41.  38.5 25.4 12.  39.5
+ 29.7 37.  31.  10.5 26.3 34.  26.5] [ 340.    13.4   19.7   12.2  700.   714.   720.   725.   955.   650.
+  500.   430.   950.   450.   363.   500.     8.7   10.    12.2  600.
+  500.   700.   700.   975.   920.   242.     9.8  925.   450.  1000.
+  500.     7.5  290.   685.   340. ]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.scatter(train_input[:,<span class="number">0</span>], train_input[:,<span class="number">1</span>])</span><br><span class="line">ax.scatter(test_input[:,<span class="number">0</span>], test_input[:,<span class="number">1</span>])</span><br><span class="line">ax.set_xlabel(<span class="string">&quot;length&quot;</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">&quot;weight&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/0630/output_45_0.png" alt="png"></p>
+<h2 id="두번째-머신러닝-프로그램"><a href="#두번째-머신러닝-프로그램" class="headerlink" title="두번째 머신러닝 프로그램"></a>두번째 머신러닝 프로그램</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">kn.fit(train_input, train_target)</span><br><span class="line">kn.score(test_input, test_target)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>1.0
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kn.predict(test_input)  <span class="comment"># 예측 데이터</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0])
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test_target  <span class="comment"># 실제 데이터</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([0, 0, 1, 0, 1, 1, 1, 0, 1, 1, 0, 1, 1, 0])
+</code></pre>
+<h2 id="데이터-전처리"><a href="#데이터-전처리" class="headerlink" title="데이터 전처리"></a>데이터 전처리</h2><ul>
+<li>머신러닝 시, 데이터 전처리</li>
+<li>결측치 처리, 이상치 처리</li>
+</ul>
+<h2 id="데이터-불러오기"><a href="#데이터-불러오기" class="headerlink" title="데이터 불러오기"></a>데이터 불러오기</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fish_length = [<span class="number">25.4</span>, <span class="number">26.3</span>, <span class="number">26.5</span>, <span class="number">29.0</span>, <span class="number">29.0</span>, <span class="number">29.7</span>, <span class="number">29.7</span>, <span class="number">30.0</span>, <span class="number">30.0</span>, <span class="number">30.7</span>, <span class="number">31.0</span>, <span class="number">31.0</span>, </span><br><span class="line">                <span class="number">31.5</span>, <span class="number">32.0</span>, <span class="number">32.0</span>, <span class="number">32.0</span>, <span class="number">33.0</span>, <span class="number">33.0</span>, <span class="number">33.5</span>, <span class="number">33.5</span>, <span class="number">34.0</span>, <span class="number">34.0</span>, <span class="number">34.5</span>, <span class="number">35.0</span>, </span><br><span class="line">                <span class="number">35.0</span>, <span class="number">35.0</span>, <span class="number">35.0</span>, <span class="number">36.0</span>, <span class="number">36.0</span>, <span class="number">37.0</span>, <span class="number">38.5</span>, <span class="number">38.5</span>, <span class="number">39.5</span>, <span class="number">41.0</span>, <span class="number">41.0</span>, <span class="number">9.8</span>, </span><br><span class="line">                <span class="number">10.5</span>, <span class="number">10.6</span>, <span class="number">11.0</span>, <span class="number">11.2</span>, <span class="number">11.3</span>, <span class="number">11.8</span>, <span class="number">11.8</span>, <span class="number">12.0</span>, <span class="number">12.2</span>, <span class="number">12.4</span>, <span class="number">13.0</span>, <span class="number">14.3</span>, <span class="number">15.0</span>]</span><br><span class="line">fish_weight = [<span class="number">242.0</span>, <span class="number">290.0</span>, <span class="number">340.0</span>, <span class="number">363.0</span>, <span class="number">430.0</span>, <span class="number">450.0</span>, <span class="number">500.0</span>, <span class="number">390.0</span>, <span class="number">450.0</span>, <span class="number">500.0</span>, <span class="number">475.0</span>, <span class="number">500.0</span>, </span><br><span class="line">                <span class="number">500.0</span>, <span class="number">340.0</span>, <span class="number">600.0</span>, <span class="number">600.0</span>, <span class="number">700.0</span>, <span class="number">700.0</span>, <span class="number">610.0</span>, <span class="number">650.0</span>, <span class="number">575.0</span>, <span class="number">685.0</span>, <span class="number">620.0</span>, <span class="number">680.0</span>, </span><br><span class="line">                <span class="number">700.0</span>, <span class="number">725.0</span>, <span class="number">720.0</span>, <span class="number">714.0</span>, <span class="number">850.0</span>, <span class="number">1000.0</span>, <span class="number">920.0</span>, <span class="number">955.0</span>, <span class="number">925.0</span>, <span class="number">975.0</span>, <span class="number">950.0</span>, <span class="number">6.7</span>, </span><br><span class="line">                <span class="number">7.5</span>, <span class="number">7.0</span>, <span class="number">9.7</span>, <span class="number">9.8</span>, <span class="number">8.7</span>, <span class="number">10.0</span>, <span class="number">9.9</span>, <span class="number">9.8</span>, <span class="number">12.2</span>, <span class="number">13.4</span>, <span class="number">12.2</span>, <span class="number">19.7</span>, <span class="number">19.9</span>]</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># column_stack() 활용</span></span><br><span class="line"><span class="comment"># 리스트 만들고 2차원 변형하고 배열하는 그 과정들을 생략</span></span><br><span class="line">np.column_stack(([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span> ,<span class="number">5</span> ,<span class="number">6</span>]))</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>array([[1, 4],
+       [2, 5],
+       [3, 6]])
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fish_data = np.column_stack((fish_length, fish_weight))</span><br><span class="line"><span class="built_in">print</span>(fish_data[:<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+
+<pre><code>[[ 25.4 242. ]
+ [ 26.3 290. ]
+ [ 26.5 340. ]
+ [ 29.  363. ]
+ [ 29.  430. ]]
+</code></pre>
+<ul>
+<li>종속변수 &#x3D; Y &#x3D; 타겟 데이터 &#x3D; Target</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fish_target = np.concatenate((np.ones(<span class="number">35</span>),np.zeros(<span class="number">14</span>)))</span><br><span class="line"><span class="built_in">print</span>(fish_target)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.
+ 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.
+ 0.]
+</code></pre>
+<h3 id="scikit-learn-훈련세트와-테스트-세트-나누기"><a href="#scikit-learn-훈련세트와-테스트-세트-나누기" class="headerlink" title="scikit-learn 훈련세트와 테스트 세트 나누기"></a>scikit-learn 훈련세트와 테스트 세트 나누기</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 위에 두줄은 암기!!</span></span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">train_input, test_input, train_target, test_target = train_test_split(</span><br><span class="line">    <span class="comment"># 독립변수, 종속변수, 난수 고정</span></span><br><span class="line">    fish_data, fish_target, random_state = <span class="number">42</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">train_input.shape, test_input.shape, train_target.shape, test_target.shape</span><br><span class="line"><span class="comment"># 항상 변수가 같은지 체크(2, 2, 0, 0 등)</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>((36, 2), (13, 2), (36,), (13,))
+</code></pre>
+<ul>
+<li>도미와 빙어가 잘 섞여 있는지 확인하기</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(test_target)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1. 0. 0. 0. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+</code></pre>
+<ul>
+<li>35(도미) : 14(빙어)<ul>
+<li>2.5 : 1 비율</li>
+</ul>
+</li>
+<li>테스트 셋<ul>
+<li>3.3 : 1 비율</li>
+</ul>
+</li>
+<li>비율이 맞지 않으면 최종적인 머신러닝 결괏값이 왜곡될 수 있다.</li>
+</ul>
+<h2 id="층화-샘플링"><a href="#층화-샘플링" class="headerlink" title="층화 샘플링"></a>층화 샘플링</h2><ul>
+<li>기초 통계, 설문조사</li>
+<li>비율</li>
+<li>여론조사<ul>
+<li>남성 속옷 판매회사에서는 속옷을 구매하는 비율(남자 9, 여자1)</li>
+<li>그런데 신제품 출시시 (남자 5, 여자 5) 비율의 설문이면 결과가 왜곡될 수 있다.</li>
+</ul>
+</li>
+<li>stratify &#x3D; y, 옵션 함수 사용</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">train_input, test_input, train_target, test_target = train_test_split(</span><br><span class="line">    <span class="comment"># 독립변수, 종속변수, 난수 고정</span></span><br><span class="line">    fish_data, fish_target, stratify = fish_target, random_state = <span class="number">42</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">train_input.shape, test_input.shape, train_target.shape, test_target.shape</span><br><span class="line"><span class="comment"># 항상 변수가 같은지 체크(2, 2, 0, 0 등)</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(test_target)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1. 0. 0. 0. 1. 1. 1. 1. 1. 1. 1. 1. 1.]
+</code></pre>
+<ul>
+<li>테스트 세트의 비율이 2.25:1</li>
+</ul>
+<h2 id="수상한-도미-한-마리"><a href="#수상한-도미-한-마리" class="headerlink" title="수상한 도미 한 마리"></a>수상한 도미 한 마리</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line">kn = KNeighborsClassifier()</span><br><span class="line">kn.fit(train_input, train_target)</span><br><span class="line">kn.score(test_input, test_target)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>1.0
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(kn.predict([[<span class="number">25</span>,<span class="number">150</span>]]))</span><br></pre></td></tr></table></figure>
+
+<pre><code>[0.]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.scatter(train_input[:,<span class="number">0</span>], train_input[:,<span class="number">1</span>])</span><br><span class="line">ax.scatter(<span class="number">25</span>, <span class="number">150</span>, marker=<span class="string">&#x27;^&#x27;</span>)     <span class="comment"># marker = &#x27;^&#x27; 매개변수 모양을 지정하는 것(주황색 삼각형)</span></span><br><span class="line">ax.set_xlabel(<span class="string">&quot;length&quot;</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">&quot;weight&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/0630/output_69_0.png" alt="png"></p>
+<ul>
+<li>왜 도미 쪽 데이터가 더 가까운데 빙어로 인식했을까?</li>
+<li>알고리즘 문제</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">distances, indexes = kn.kneighbors([[<span class="number">25</span>,<span class="number">150</span>,]])</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.scatter(train_input[:,<span class="number">0</span>], train_input[:,<span class="number">1</span>])</span><br><span class="line">ax.scatter(<span class="number">25</span>, <span class="number">150</span>, marker=<span class="string">&#x27;^&#x27;</span>)     <span class="comment"># marker = &#x27;^&#x27; 매개변수 모양을 지정하는 것(주황색 삼각형)</span></span><br><span class="line">ax.scatter(train_input[indexes,<span class="number">0</span>], train_input[indexes,<span class="number">1</span>], marker=<span class="string">&#x27;D&#x27;</span>)  <span class="comment"># 이웃 샘플 5개를 다이아몬드로 표시</span></span><br><span class="line">ax.set_xlabel(<span class="string">&quot;length&quot;</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">&quot;weight&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/0630/output_71_0.png" alt="png"></p>
+<ul>
+<li>두 특성(길이와 무게)의 값이 놓인 범위가 매우다름</li>
+<li>알고리즘은 두 특성(길이, 무게)을 같다고 판단함</li>
+<li>두 특성의 스케일이 같도록 통계 처리가 필요<ul>
+<li>Feature Engineering</li>
+</ul>
+</li>
+</ul>
+<h2 id="머신러닝-진행시-습관적으로-사용할-순서"><a href="#머신러닝-진행시-습관적으로-사용할-순서" class="headerlink" title="머신러닝 진행시 습관적으로 사용할 순서"></a>머신러닝 진행시 습관적으로 사용할 순서</h2><ul>
+<li>전체데이터 전처리(결측치 처리, 이상치 처리)</li>
+<li>데이터 분리 (임의 샘플링 &lt; 층화 샘플링)</li>
+<li>Feature Engineering</li>
+</ul>
+<h3 id="표준점수"><a href="#표준점수" class="headerlink" title="표준점수"></a>표준점수</h3><ul>
+<li>z 점수</li>
+<li>(산술식 찾아 채워보기)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mean = np.mean(train_input, axis = <span class="number">0</span>)</span><br><span class="line">std = np.std(train_input, axis = <span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(mean, std)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[ 26.175      418.08888889] [ 10.21073441 321.67847023]
+</code></pre>
+<ul>
+<li>표준 점수 구하기</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 브로드캐스팅 서로 다른 배열을 계산할 때</span></span><br><span class="line"><span class="built_in">print</span>(train_input.shape, mean.shape, std.shape)</span><br><span class="line">train_scaled = (train_input - mean) / std     <span class="comment"># train_scaled 로 데이터 전처리 진행</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>(36, 2) (2,) (2,)
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">new = ([<span class="number">25</span>, <span class="number">150</span>] - mean) / std</span><br><span class="line">plt.scatter(train_scaled[:,<span class="number">0</span>], train_scaled[:,<span class="number">1</span>])</span><br><span class="line">plt.scatter(new[<span class="number">0</span>], new[<span class="number">1</span>], marker=<span class="string">&#x27;^&#x27;</span>)     <span class="comment"># marker = &#x27;^&#x27; 매개변수 모양을 지정하는 것(주황색 삼각형)</span></span><br><span class="line">plt.xlabel(<span class="string">&quot;length&quot;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&quot;weight&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/0630/output_77_0.png" alt="png"></p>
+<ul>
+<li><p>통계처리 전 : KNN –&gt; 예측이 틀렸음</p>
+</li>
+<li><p>통계처리 후 : KNN –&gt; 예측이 정확하게 맞음<br>– 통계처리 –&gt; Feature Engineering</p>
+</li>
+<li><p>모형학습</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kn.fit(train_scaled, train_target)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>KNeighborsClassifier()
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">test_scaled = (test_input -mean) / std</span><br><span class="line">kn.score(test_scaled, test_target)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>1.0
+</code></pre>
+<ul>
+<li>예측 해보기</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(kn.predict([new]))</span><br><span class="line">distances, indexes = kn.kneighbors([new])</span><br><span class="line">plt.scatter(train_scaled[:,<span class="number">0</span>], train_scaled[:,<span class="number">1</span>])</span><br><span class="line">plt.scatter(new[<span class="number">0</span>], new[<span class="number">1</span>], marker=<span class="string">&#x27;^&#x27;</span>)</span><br><span class="line">plt.scatter(train_scaled[indexes,<span class="number">0</span>], train_scaled[indexes,<span class="number">1</span>], marker=<span class="string">&#x27;D&#x27;</span>)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;length&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;weight&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1.]
+</code></pre>
+<p><img src="/images/0630/output_83_1.png" alt="png"></p>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/2022/06/29/day0630_ml/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+            <a
+                href="/2022/06/29/day0630_ml/"
+                aria-label=": day 0630"
+            >
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" src="http://neewlife.github.io/2022/06/29/day0630_ml/source/images/0629/Untitled.png"/>
+                </div>
+            </a>
+            
+        
+    </article>
     
     
     <article class="postShorten postShorten--thumbnailimg-bottom">
@@ -2112,6 +2847,9 @@ SyntaxError: invalid syntax
 <pre><code>Life is too short
 You need python
 </code></pre>
+<ul>
+<li>출처 : <a target="_blank" rel="noopener" href="https://wikidocs.net/12">https://wikidocs.net/12</a></li>
+</ul>
 
                     
                         
@@ -2969,467 +3707,6 @@ g
         
     </article>
     
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/06/23/day0623/"
-                            aria-label=": 8장"
-                        >
-                            8장
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2022-06-23T10:00:00+09:00">
-	
-		    Jun 23, 2022
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <h1 id="8장"><a href="#8장" class="headerlink" title="8장"></a>8장</h1><h2 id="통계"><a href="#통계" class="headerlink" title="통계"></a>통계</h2><ul>
-<li><p>기술통계 : 평균, 최솟값, 최댓값</p>
-</li>
-<li><p>추론통계 : 변수 간의 관계를 파악 &#x2F; 새로운 사실을 추정  </p>
-<ul>
-<li><p>(중요)평균차이 검정</p>
-<ul>
-<li>수치형 데이터 + 범주형 데이터</li>
-<li>가설검정 : 각 그룹간의 평균의 차이를 검정<br>ex) ‘남자’의 평균 키와 ‘여자’의 평균 키는 “차이”가 있을 것이다.</li>
-<li>‘남자’의 평균 키가 ‘여자’의 평균 키보다 크다. 라는 결론을 내리려면<br>이번 측정의 결과가 우연한 측정이 아니라는 것을 통계적으로 검정해야된다.<br>ex) ‘여자’ 배구선수 평균 키는 ‘남자’의 평균 키보다 큰데?<br>‘여자’ 배구선수의 측정은 우연한 측정이라서 결과에 사용할 수 없음</li>
-</ul>
-</li>
-<li><p>교차분석 (&#x3D; 빈도분석)</p>
-<ul>
-<li>범주형 데이터</li>
-<li>가설검정 : 각 범주별 빈도를 활용해서 관계성을 검정<br>ex) ‘아파트의 크기’는 ‘TV의 크기’와 관계가 있을 것이다.<ul>
-<li>‘아파트의 크기’ &#x3D; ‘소형 아파트’,’대형 아파트’</li>
-<li>‘TV의 크기’ &#x3D; ‘소형 TV’,’대형 TV’</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>상관관계 분석</p>
-<ul>
-<li>수치형 데이터</li>
-<li>-1 &lt;&#x3D; r &lt;&#x3D; 1 로 두 변수간의 상관관계를 의미한다.<ul>
-<li>절댓값이 1에 가까울 수록 완전 정의 관계, 역의 관계이다.</li>
-<li>절댓값이 0에 가까울 수록 상관관계가 거의 없다고 해석한다.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>(중요)단순회귀분석 : 인과관계 분석</p>
-<ul>
-<li><p>y &#x3D; ax + b</p>
-</li>
-<li><p>ex1) 기온, 판매량</p>
-</li>
-<li><p>가설검정</p>
-<ul>
-<li>기온(독립변수&#x3D;x)이 판매량(종속변수&#x3D;y)에 긍정적 or 부정적 영향을 주고 있을 것이다.</li>
-</ul>
-</li>
-<li><p>ex2) 월급, 외식횟수</p>
-</li>
-<li><p>가설검정</p>
-<ul>
-<li>월급(독립변수&#x3D;x)이 증가하면 외식횟수(종속변수&#x3D;y)가 증가할 것 이다.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="통계-검정"><a href="#통계-검정" class="headerlink" title="통계 검정"></a>통계 검정</h2><h3 id="가설"><a href="#가설" class="headerlink" title="가설"></a>가설</h3><ul>
-<li><p>Hypothesis<br>—&gt; 공부 방법 : 선행연구, 해당 분석방법의 가설 설정 예시 참고</p>
-</li>
-<li><p>연구 -&gt; 내가 궁금한 것을 찾는 것</p>
-<ul>
-<li>남자의 평균 키와 여자의 평균 키는 차이가 있을 것인가?</li>
-</ul>
-</li>
-<li><p>귀무가설 : 두 그룹간의 평균 차이가 없다.</p>
-</li>
-<li><p>대립가설 : 두 그룹간의 평균 차이가 있다. (보통 내가 궁금한 것)  </p>
-</li>
-<li><p>유의수준 : 오류를 범할 확률</p>
-</li>
-<li><p>가설검정에서 인정하는 유의수준(&lt;&#x3D;&#x3D;&gt; 신뢰수준)</p>
-<ul>
-<li>5%, 1%, 0.1%, 또는 10%(각 분야마다 기준이 달라진다)</li>
-</ul>
-</li>
-<li><p>오차범위</p>
-<ul>
-<li>A후보의 44%</li>
-<li>B후보의 42%<ul>
-<li>오차범위 안에 있다 -&gt; 다시 조사하면 바뀔 수 있다.</li>
-<li>오차범위 밖에 있다 -&gt; 바뀔 수 없다.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>어떻게 데이터를 입력하는지 확인</p>
-</li>
-<li><p>p-value, 유의수준 0.05 이상 : 귀무가설, 0.05 이내 –&gt; 대립가설</p>
-</li>
-<li><p>데이터 불러오기</p>
-</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mpg1 <span class="operator">&lt;-</span> read.csv<span class="punctuation">(</span><span class="string">&quot;mpg1.csv&quot;</span><span class="punctuation">,</span> stringsAsFactors <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line">str<span class="punctuation">(</span>mpg1<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">## &#x27;data.frame&#x27;:	234 obs. of  5 variables:</span><br><span class="line">##  $ manufacturer: chr  &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; ...</span><br><span class="line">##  $ trans       : chr  &quot;auto&quot; &quot;manual&quot; &quot;manual&quot; &quot;auto&quot; ...</span><br><span class="line">##  $ drv         : chr  &quot;f&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; ...</span><br><span class="line">##  $ cty         : int  18 21 20 21 16 18 18 18 16 20 ...</span><br><span class="line">##  $ hwy         : int  29 29 31 30 26 26 27 26 25 28 ...</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>시각화</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">library<span class="punctuation">(</span>ggplot2<span class="punctuation">)</span></span><br><span class="line">ggplot<span class="punctuation">(</span>mpg1<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> trans<span class="punctuation">,</span> y <span class="operator">=</span> cty<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  <span class="comment"># trans 변수는 chr(문자형)이고, cty 변수는 int(정수형)이므로 boxplot 그래프를 쓴다.</span></span><br><span class="line">  geom_boxplot<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/0623/unnamed-chunk-2-1.png"><!-- --></p>
-<ul>
-<li>t.test 검정<ul>
-<li>귀무가설 : auto와 manual의 cty 평균은 차이가 없다.</li>
-<li>대립가설 : auto와 manual의 cty 평균은 차이가 있다.</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t.test<span class="punctuation">(</span>data <span class="operator">=</span> mpg1<span class="punctuation">,</span> cty <span class="operator">~</span> trans<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 	Welch Two Sample t-test</span><br><span class="line">## </span><br><span class="line">## data:  cty by trans</span><br><span class="line">## t = -4.5375, df = 132.32, p-value = 1.263e-05</span><br><span class="line">## alternative hypothesis: true difference in means between group auto and group manual is not equal to 0</span><br><span class="line">## 95 percent confidence interval:</span><br><span class="line">##  -3.887311 -1.527033</span><br><span class="line">## sample estimates:</span><br><span class="line">##   mean in group auto mean in group manual </span><br><span class="line">##             15.96815             18.67532</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 종속변수 ~ 독립변수</span></span><br><span class="line"><span class="comment"># 반응변수 ~ 설명변수</span></span><br><span class="line"><span class="comment">#     y          x</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>‘p-value &#x3D; 1.263e-05’ 에서 p-value 값이 유의수준이 0.05보다 작으므로,</li>
-</ul>
-<p>  이 결과는 대립가설인 ‘auto와 manual의 cty 평균은 차이가 있다.’ 로 설명할 수 있다.</p>
-<ul>
-<li>두 그룹의 평균 차이 검정<ul>
-<li>사전 필수 검정</li>
-<li>등분산 검정<ul>
-<li>두 그룹간의 분산이 비슷하면 –&gt; t.test (모수 검정)</li>
-<li>두 그룹간의 분산이 다르면   –&gt; 비모수 검정</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>보통 대립가설에 알고 싶은 결과를 대입하지만, <br>등분산 검정에서의 귀무가설, 대립가설은 정의된 것임<ul>
-<li>귀무가설 : 두 그룹간의 분산이 비슷하다<ul>
-<li>등분산 검정 에서 p-value &gt; 0.05 되어야 t.test가 가능</li>
-</ul>
-</li>
-<li>대립가설 : 두 그룹간의 분산이 다르다</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var.test<span class="punctuation">(</span>data <span class="operator">=</span> mpg1<span class="punctuation">,</span> cty<span class="operator">~</span>trans<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 	F test to compare two variances</span><br><span class="line">## </span><br><span class="line">## data:  cty by trans</span><br><span class="line">## F = 0.73539, num df = 156, denom df = 76, p-value = 0.1101</span><br><span class="line">## alternative hypothesis: true ratio of variances is not equal to 1</span><br><span class="line">## 95 percent confidence interval:</span><br><span class="line">##  0.4912917 1.0719468</span><br><span class="line">## sample estimates:</span><br><span class="line">## ratio of variances </span><br><span class="line">##          0.7353887</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>mpg1<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> cty<span class="punctuation">,</span> fill <span class="operator">=</span> trans<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  <span class="comment"># geom_histogram() +</span></span><br><span class="line">  geom_density<span class="punctuation">(</span>alpha <span class="operator">=</span> <span class="number">0.1</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/0623/unnamed-chunk-5-1.png"><!-- --></p>
-<h3 id="교차-분석"><a href="#교차-분석" class="headerlink" title="교차 분석"></a>교차 분석</h3><ul>
-<li>범주형 변수들이 관계가 있다는 것을 검정</li>
-<li>비율에 차이가 있는지 검정</li>
-<li>교차분석 검정은 chisq.test() 함수로 진행<ul>
-<li>귀무가설 : trans에 따라 drv(4, f, r)의 (비율)차이가 없다.</li>
-<li>대립가설 : trans에 따라 drv의 차이가 있다.</li>
-</ul>
-</li>
-</ul>
-<br>  
-
-<ul>
-<li>빈도표 &#x2F; 비율</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mpg1<span class="operator">$</span>trans<span class="punctuation">,</span> mpg1<span class="operator">$</span>drv<span class="punctuation">)</span>   <span class="comment"># 교차분석</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##         </span><br><span class="line">##           4  f  r</span><br><span class="line">##   auto   75 65 17</span><br><span class="line">##   manual 28 41  8</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>비율</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prop.table<span class="punctuation">(</span>table<span class="punctuation">(</span>mpg1<span class="operator">$</span>trans<span class="punctuation">,</span> mpg1<span class="operator">$</span>drv<span class="punctuation">)</span><span class="punctuation">,</span> <span class="number">1</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##         </span><br><span class="line">##                  4         f         r</span><br><span class="line">##   auto   0.4777070 0.4140127 0.1082803</span><br><span class="line">##   manual 0.3636364 0.5324675 0.1038961</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>auto 4륜 구동(4)인 47.8%</li>
-<li>manual 전륜 구동(f) 53.2% 가장 많음</li>
-<li>별 차이 없어보이는데.. 실제 통계적으로 차이가 있는지 검정<ul>
-<li>귀무가설 : trans에 따라 drv(4, f, r)의 (비율)차이가 없다.</li>
-<li>대립가설 : trans에 따라 drv의 차이가 있다.</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chisq.test<span class="punctuation">(</span>mpg1<span class="operator">$</span>trans<span class="punctuation">,</span> mpg1<span class="operator">$</span>drv<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 	Pearson&#x27;s Chi-squared test</span><br><span class="line">## </span><br><span class="line">## data:  mpg1$trans and mpg1$drv</span><br><span class="line">## X-squared = 3.1368, df = 2, p-value = 0.2084</span><br></pre></td></tr></table></figure>
-<ul>
-<li>p-value 값이 0.05 보다 크므로 귀무가설이 성립된다.</li>
-<li>결론 : “trans에 따라 drv(4, f, r)의 (비율)차이가 없다.”<br></li>
-</ul>
-<h3 id="상관관계분석"><a href="#상관관계분석" class="headerlink" title="상관관계분석"></a>상관관계분석</h3><ul>
-<li>변수들의 상관관계를 증명()</li>
-<li>cty와 hwy는 상관관계가 있는지를 증명</li>
-<li>상관관계분석은 cor.test() 함수로 진행<ul>
-<li>귀무가설 : cty와 hwy는 상관관계가 없다.</li>
-<li>대립가설 : cty와 hwy는 상관관계가 있다.</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mpg1 <span class="operator">&lt;-</span>read.csv<span class="punctuation">(</span><span class="string">&quot;mpg1.csv&quot;</span><span class="punctuation">,</span> stringsAsFactors <span class="operator">=</span> <span class="literal">FALSE</span><span class="punctuation">)</span></span><br><span class="line">cor.test<span class="punctuation">(</span>mpg1<span class="operator">$</span>cty<span class="punctuation">,</span> mpg1<span class="operator">$</span>hwy<span class="punctuation">)</span>    <span class="comment"># 상관관계분석</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 	Pearson&#x27;s product-moment correlation</span><br><span class="line">## </span><br><span class="line">## data:  mpg1$cty and mpg1$hwy</span><br><span class="line">## t = 49.585, df = 232, p-value &lt; 2.2e-16</span><br><span class="line">## alternative hypothesis: true correlation is not equal to 0</span><br><span class="line">## 95 percent confidence interval:</span><br><span class="line">##  0.9433129 0.9657663</span><br><span class="line">## sample estimates:</span><br><span class="line">##       cor </span><br><span class="line">## 0.9559159</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>‘p-value &lt; 2.2e-16’ 에서 p-value 값이 0.05보다 작으므로 대립가설이 성립한다.</li>
-<li>cor(상관관계계수) &#x3D; 0.9559159 이므로 상관관계가 1에 가까워서 매우 높다.</li>
-<li>결론 : “cty와 hwy는 유의미하게 매우 높은 상관관계에 있다.”</li>
-</ul>
-<h3 id="회귀분석"><a href="#회귀분석" class="headerlink" title="회귀분석"></a>회귀분석</h3><ul>
-<li><p>기초통계 : 특정한 결과에 영향을 주는 주 요인이 무엇인지 찾는 것</p>
-</li>
-<li><p>회귀분석과 종료</p>
-<ul>
-<li>1세대 회귀 방법론 : 다항회귀분석, 다중회귀분석, 포아송 회귀분석, etc</li>
-<li>2세대 회귀 방법론 : 구조방정식</li>
-</ul>
-</li>
-<li><p>귀무가설, 대립가설 존재</p>
-<ul>
-<li>귀무가설 : x(&#x3D;독립변수)가 y(&#x3D;종속변수)에 영향을 주지 않는다</li>
-<li>대립가설 : x가 y에 영향을 준다</li>
-</ul>
-</li>
-<li><p>lm(종속변수 ~ 독립변수, data)</p>
-<ul>
-<li>p-value</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RA <span class="operator">&lt;-</span> lm<span class="punctuation">(</span>data<span class="operator">=</span>mtcars<span class="punctuation">,</span> mpg <span class="operator">~</span> disp<span class="punctuation">)</span>  <span class="comment"># 종속변수 ~ 독립변수+독립변수+...</span></span><br><span class="line">summary<span class="punctuation">(</span>RA<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## Call:</span><br><span class="line">## lm(formula = mpg ~ disp, data = mtcars)</span><br><span class="line">## </span><br><span class="line">## Residuals:</span><br><span class="line">##     Min      1Q  Median      3Q     Max </span><br><span class="line">## -4.8922 -2.2022 -0.9631  1.6272  7.2305 </span><br><span class="line">## </span><br><span class="line">## Coefficients:</span><br><span class="line">##              Estimate Std. Error t value Pr(&gt;|t|)    </span><br><span class="line">## (Intercept) 29.599855   1.229720  24.070  &lt; 2e-16 ***</span><br><span class="line">## disp        -0.041215   0.004712  -8.747 9.38e-10 ***</span><br><span class="line">## ---</span><br><span class="line">## Signif. codes:  0 &#x27;***&#x27; 0.001 &#x27;**&#x27; 0.01 &#x27;*&#x27; 0.05 &#x27;.&#x27; 0.1 &#x27; &#x27; 1</span><br><span class="line">## </span><br><span class="line">## Residual standard error: 3.251 on 30 degrees of freedom</span><br><span class="line">## Multiple R-squared:  0.7183,	Adjusted R-squared:  0.709 </span><br><span class="line">## F-statistic: 76.51 on 1 and 30 DF,  p-value: 9.38e-10</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 맨 밑의 p-value 값은 전체식에 해당하는 값이다.</span></span><br><span class="line"><span class="comment"># 여러 변수들 중 &#x27;Pr(&gt;|t|)&#x27;값이(=p-value) 0.05 이상이면 그 변수는 제외한다.</span></span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li>머신러닝, 인공지능<ul>
-<li>주 목적은 예측</li>
-<li>y &#x3D; ax + b</li>
-</ul>
-</li>
-</ul>
-<hr>
-<p>Coefficients:<br>             Estimate Std. Error t value Pr(&gt;|t|)<br>(Intercept) 29.599855   1.229720  24.070  &lt; 2e-16 ***<br>disp        -0.041215   0.004712  -8.747 9.38e-10 ***<br>var1                                     0.10<br>var2                                     9.38e-10<br>var3                                     3.14e-9</p>
-<hr>
-<p>Residual standard error: 3.251 on 30 degrees of freedom<br>Multiple R-squared:  0.7183,	Adjusted R-squared:  0.709<br>F-statistic: 76.51 on 1 and 30 DF,  p-value: 9.38e-10</p>
-<ul>
-<li><p>Estimate값 해석 : y(mpg) &#x3D; 29.599855 - 0.041215 x disp</p>
-<ul>
-<li>우하향 하는 그래프</li>
-</ul>
-</li>
-<li><p>에서 ANOVA (분산분석) 을 통해서 식1, 식2, 식3, … 을 해서 괜찮은 식을 도출해야한다</p>
-</li>
-<li><p>p-value 값은 항상 0.05 미만<br>식1 : y &#x3D; disp + var1 + var2 + var3<br>식2 : y &#x3D; disp + var1 + var2<br>식3 : y &#x3D; disp + var1</p>
-</li>
-<li><p>Residual standard error: 3.251 on 30 degrees of freedom<br>Multiple R-squared:  0.7183,	Adjusted R-squared:  0.709 에서</p>
-</li>
-<li><p>R-squared (결정계수) &#x3D; 설명력 &#x3D; 0 ~ 1</p>
-</li>
-<li><p>1로 수렴할수록 설명력이 좋다</p>
-</li>
-<li><p>‘Multiple R-squared:   0.7183’ 의 의미는 해당 변수들이 71.83% 만큼 영향을 준다는 뜻</p>
-<br></li>
-</ul>
-<h3 id="회귀분석에서-고려해야할-것들"><a href="#회귀분석에서-고려해야할-것들" class="headerlink" title="회귀분석에서 고려해야할 것들"></a>회귀분석에서 고려해야할 것들</h3><ol>
-<li>전체식의 p-value 값이 0.05 보다 작은가?</li>
-<li>ANOVA를 통해서 변하는 p-value 값이 0.05 미만인가를 체크한다.</li>
-<li>R-squared(결정계수)가 1에 가까운 변수 식을 찾는다.</li>
-</ol>
-
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2022/06/23/day0623/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/06/23/remind/"
-                            aria-label=": 복습"
-                        >
-                            복습
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2022-06-23T09:45:00+09:00">
-	
-		    Jun 23, 2022
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <ul>
-<li>iris 데이터, sepal.length, sepal.width 활용해서 종별로 산점도를 그리세요<ul>
-<li>제목과 X축, Y축 제목을 변경하세요</li>
-<li>제목은 자유</li>
-<li>X축 -&gt; 길이, Y축 -&gt; 너비</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">library<span class="punctuation">(</span>ggplot2<span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">str<span class="punctuation">(</span>iris<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">## &#x27;data.frame&#x27;:	150 obs. of  5 variables:</span><br><span class="line">##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...</span><br><span class="line">##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...</span><br><span class="line">##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...</span><br><span class="line">##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...</span><br><span class="line">##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>iris<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> Sepal.Length<span class="punctuation">,</span> </span><br><span class="line">                 y <span class="operator">=</span>Sepal.Width<span class="punctuation">,</span> colour <span class="operator">=</span> Species<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  geom_point<span class="punctuation">(</span><span class="punctuation">)</span><span class="operator">+</span></span><br><span class="line">  labs<span class="punctuation">(</span></span><br><span class="line">    title <span class="operator">=</span> <span class="string">&quot;자유&quot;</span><span class="punctuation">,</span></span><br><span class="line">    subtitle <span class="operator">=</span> <span class="string">&quot;Freedom&quot;</span><span class="punctuation">,</span></span><br><span class="line">    x <span class="operator">=</span> <span class="string">&quot;길이&quot;</span><span class="punctuation">,</span></span><br><span class="line">    y <span class="operator">=</span> <span class="string">&quot;너비&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment"># 항목별로 색깔 바꾸기</span></span><br><span class="line">  scale_color_manual<span class="punctuation">(</span>    </span><br><span class="line">    labels <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;setosa&quot;</span><span class="punctuation">,</span> <span class="string">&quot;versicolor&quot;</span><span class="punctuation">,</span> <span class="string">&quot;virginica&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">    values <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;red&quot;</span><span class="punctuation">,</span> <span class="string">&quot;blue&quot;</span><span class="punctuation">,</span> <span class="string">&quot;green&quot;</span><span class="punctuation">)</span></span><br><span class="line">  <span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">#그래프 테마 바꾸기</span></span><br><span class="line">  theme_dark<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/0623/unnamed-chunk-1-1.png"><!-- --></p>
-<h3 id="똑같은-코드-입력은-의미-없다-다른-데이터로-만들어-볼-것"><a href="#똑같은-코드-입력은-의미-없다-다른-데이터로-만들어-볼-것" class="headerlink" title="- 똑같은 코드 입력은 의미 없다. 다른 데이터로 만들어 볼 것!!!"></a>- 똑같은 코드 입력은 의미 없다. 다른 데이터로 만들어 볼 것!!!</h3><p><br><br></p>
-
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2022/06/23/remind/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-            <a
-                href="/2022/06/23/remind/"
-                aria-label=": 복습"
-            >
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src=""/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/06/23/curriculum/"
-                            aria-label=": 일정"
-                        >
-                            일정
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2022-06-23T09:00:00+09:00">
-	
-		    Jun 23, 2022
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <p>인공지능 프로그래밍 7월 4일 ~ 7월 19일(4)<br> 7월 12일 ~ 19일 (캐글 대회, 개인별 실습)<br>– 분석가 희망<br>– 사이드 프로젝트 (팀 구성) &#x2F; 8월 10일경 즈음 마무리<br>(제안) 8월 11일 이후 ~ 9월 2일 챗봇 프로젝트<br>(기존) 8월 19일 5교시 ~ 9월 2일 4교시  </p>
-<ul>
-<li>챗봇 &amp; 발표자료 ( –&gt; 면접자료)<br>– 시스템 구축 &#x2F; 플랫폼 개발 (강의 일정 일부 단축)</li>
-</ul>
-
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2022/06/23/curriculum/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-            <a
-                href="/2022/06/23/curriculum/"
-                aria-label=": 일정"
-            >
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src=""/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
     <div class="pagination-bar">
     <ul class="pagination">
         
@@ -3445,7 +3722,7 @@ g
             </a>
           </li>
         
-        <li class="pagination-number">page 1 of 2</li>
+        <li class="pagination-number">page 1 of 3</li>
     </ul>
 </div>
 
