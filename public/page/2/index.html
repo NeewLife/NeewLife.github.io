@@ -204,6 +204,840 @@
                     
                         <a
                             class="link-unstyled"
+                            href="/2022/06/27/day0627/"
+                            aria-label=": Python 기초문법"
+                        >
+                            Python 기초문법
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2022-06-27T09:00:00+09:00">
+	
+		    Jun 27, 2022
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <ul>
+<li>Hello World</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hello World&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Hello World
+</code></pre>
+<h2 id="주석처리"><a href="#주석처리" class="headerlink" title="주석처리"></a>주석처리</h2><ul>
+<li><p>1줄 주석, 여러줄 주석처리</p>
+</li>
+<li><p>여러 줄 주석처리</p>
+<ul>
+<li>함수 또는 클래스를 문서화 할 때 주로 사용</li>
+</ul>
+</li>
+<li><p>프로젝트 할 떄</p>
+<ul>
+<li>전체 공정 100</li>
+<li>코드 &#x2F; 코드 문서화 &#x2F; 한글작업 문서화</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># print() 함수 사용</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;1줄 주석&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">여러 줄 주석</span></span><br><span class="line"><span class="string">쌍따옴표 3개를 입력해주세요</span></span><br><span class="line"><span class="string">앞과 뒤로</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;여러줄 주석&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>1줄 주석
+여러줄 주석
+</code></pre>
+<h2 id="변수-Scalar"><a href="#변수-Scalar" class="headerlink" title="변수 (Scalar)"></a>변수 (Scalar)</h2><ul>
+<li>자료형</li>
+<li>Scalar형 &#x2F; Non-Scalar형</li>
+</ul>
+<h3 id="수치형-x2F-자료형"><a href="#수치형-x2F-자료형" class="headerlink" title="수치형 &#x2F; 자료형"></a>수치형 &#x2F; 자료형</h3><ul>
+<li>int, float</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num_int = <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(num_int)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(num_int))</span><br></pre></td></tr></table></figure>
+
+<pre><code>1
+&lt;class &#39;int&#39;&gt;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">num_float = <span class="number">0.1</span></span><br><span class="line"><span class="built_in">print</span>(num_float)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(num_float))</span><br></pre></td></tr></table></figure>
+
+<pre><code>0.1
+&lt;class &#39;float&#39;&gt;
+</code></pre>
+<h3 id="Bool형"><a href="#Bool형" class="headerlink" title="Bool형"></a>Bool형</h3><ul>
+<li>True, False       (앞 글자만 대문자)</li>
+<li>R : TRUE, FALSE   (R 은 뒷 글자 전부 대문자)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bool_true = <span class="literal">True</span></span><br><span class="line"><span class="built_in">print</span>(bool_true)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(bool_true))</span><br></pre></td></tr></table></figure>
+
+<pre><code>True
+&lt;class &#39;bool&#39;&gt;
+</code></pre>
+<h3 id="None-자료형"><a href="#None-자료형" class="headerlink" title="None 자료형"></a>None 자료형</h3><ul>
+<li>Null값, 값이 정해지지 않은 자료형</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">none_x = <span class="literal">None</span></span><br><span class="line"><span class="built_in">print</span>(none_x)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(none_x))</span><br></pre></td></tr></table></figure>
+
+<pre><code>None
+&lt;class &#39;NoneType&#39;&gt;
+</code></pre>
+<h2 id="사칙연산"><a href="#사칙연산" class="headerlink" title="사칙연산"></a>사칙연산</h2><ul>
+<li>정수형 사칙연산, 실수형 사칙연산</li>
+<li>결괏값의 자료형</li>
+</ul>
+<h3 id="정수형-사칙연산"><a href="#정수형-사칙연산" class="headerlink" title="정수형 사칙연산"></a>정수형 사칙연산</h3><p>+, -, *, &#x2F;</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">3</span></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;a + b = &#x27;</span>, a+b)</span><br></pre></td></tr></table></figure>
+
+<pre><code>a + b =  5
+</code></pre>
+<h3 id="실수형-사칙-연산"><a href="#실수형-사칙-연산" class="headerlink" title="실수형 사칙 연산"></a>실수형 사칙 연산</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">3</span></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;a + b = &#x27;</span>, a+b)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;a - b = &#x27;</span>, a-b)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;a * b = &#x27;</span>, a*b)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;a / b = &#x27;</span>, a/b)</span><br><span class="line"><span class="comment"># 나누기는 정수/정수 했어도 &#x27;실수&#x27; 형이 나올 수 있다.</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>a + b =  5
+a - b =  1
+a * b =  6
+a / b =  1.5
+</code></pre>
+<h2 id="논리형-연산자"><a href="#논리형-연산자" class="headerlink" title="논리형 연산자"></a>논리형 연산자</h2><ul>
+<li>Bool형</li>
+<li>True와 False 값으로 정의</li>
+<li>조건식<ul>
+<li>교집합(&#x3D;and), 합집합(&#x3D;or)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="literal">True</span> <span class="keyword">and</span> <span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="literal">True</span> <span class="keyword">and</span> <span class="literal">False</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="literal">False</span> <span class="keyword">and</span> <span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="literal">False</span> <span class="keyword">and</span> <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>True
+False
+False
+False
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="literal">True</span> <span class="keyword">or</span> <span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="literal">True</span> <span class="keyword">or</span> <span class="literal">False</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="literal">False</span> <span class="keyword">or</span> <span class="literal">True</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="literal">False</span> <span class="keyword">or</span> <span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>True
+True
+True
+False
+</code></pre>
+<h2 id="비교-연산자"><a href="#비교-연산자" class="headerlink" title="비교 연산자"></a>비교 연산자</h2><ul>
+<li>비교 연산자는 부등호를 의미한다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="number">4</span>&gt;<span class="number">3</span>)  <span class="comment"># 참   = True</span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">4</span>&lt;<span class="number">3</span>)  <span class="comment"># 거짓 = False</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="number">4</span> &gt; <span class="number">3</span> <span class="keyword">and</span> <span class="number">4</span> &lt; <span class="number">3</span>)  <span class="comment">#False</span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">4</span> &gt; <span class="number">3</span> <span class="keyword">or</span> <span class="number">4</span> &lt; <span class="number">3</span>)   <span class="comment">#True</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>True
+False
+False
+True
+</code></pre>
+<h2 id="논리형-amp-비교-연산자-응용"><a href="#논리형-amp-비교-연산자-응용" class="headerlink" title="논리형 &amp; 비교 연산자 응용"></a>논리형 &amp; 비교 연산자 응용</h2><ul>
+<li>input()<br>!!! 중요</li>
+<li>형변환<ul>
+<li>데이터 타입을 바꾸는 것</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;숫자를 입력하세요..!&quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(var)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(var))</span><br></pre></td></tr></table></figure>
+
+<pre><code>숫자를 입력하세요..!3
+3
+&lt;class &#39;int&#39;&gt;
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">num1 = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;첫번쨰 숫자를 입력하세요..!&quot;</span>))</span><br><span class="line">num2 = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;두번째 숫자를 입력하세요..!&quot;</span>))</span><br><span class="line">num3 = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;세번째 숫자를 입력하세요..!&quot;</span>))</span><br><span class="line">num4 = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;네번째 숫자를 입력하세요..!&quot;</span>))</span><br></pre></td></tr></table></figure>
+
+<pre><code>첫번쨰 숫자를 입력하세요..!10
+두번째 숫자를 입력하세요..!20
+세번째 숫자를 입력하세요..!30
+네번째 숫자를 입력하세요..!40
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var1 = num1 &gt;= num2</span><br><span class="line">var2 = num3 &lt; num4</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(var1 <span class="keyword">and</span> var2)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>False
+</code></pre>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><ul>
+<li>Non Scalar</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Hello World&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;&#x27;Hello World&#x27;&quot;</span>)  <span class="comment"># 작은 따옴표(&#x27;) 출력</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&quot;Hello World&quot;&#x27;</span>)  <span class="comment"># 큰 따옴표(&quot;) 출력</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>Hello World
+Hello World
+&#39;Hello World&#39;
+</code></pre>
+<h2 id="String-Operators"><a href="#String-Operators" class="headerlink" title="String Operators"></a>String Operators</h2><ul>
+<li>문자열 연산자</li>
+<li>+, * 만 가능</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">str1 = <span class="string">&quot;Hello &quot;</span></span><br><span class="line">str2 = <span class="string">&quot;World   &quot;</span></span><br><span class="line"><span class="built_in">print</span>(str1 + str2)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Hello World   
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">greet = str1 + str2</span><br><span class="line"><span class="built_in">print</span>(greet * <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>Hello World   Hello World   Hello World   
+</code></pre>
+<h2 id="문자열-인덱신"><a href="#문자열-인덱신" class="headerlink" title="문자열 인덱신"></a>문자열 인덱신</h2><ul>
+<li>인덱싱은 0번째 부터 시작(공백도 포함)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">greeting = <span class="string">&quot;Hello Kaggle&quot;</span></span><br><span class="line">i = <span class="number">7</span></span><br><span class="line"><span class="built_in">print</span>(greeting[i])</span><br></pre></td></tr></table></figure>
+
+<pre><code>a
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">greeting = <span class="string">&quot;Hello Kaggle&quot;</span></span><br><span class="line">i = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;숫자를 입력하세요..! = &quot;</span>))</span><br><span class="line"><span class="built_in">print</span>(greeting[i])</span><br></pre></td></tr></table></figure>
+
+<pre><code>숫자를 입력하세요..! = 4
+o
+</code></pre>
+<h2 id="슬라이싱"><a href="#슬라이싱" class="headerlink" title="슬라이싱"></a>슬라이싱</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">greeting = <span class="string">&quot;Hello Kaggle&quot;</span></span><br><span class="line"><span class="comment"># print(greeting[시작 인덱스:끝 인덱스-1])</span></span><br><span class="line"><span class="built_in">print</span>(greeting[<span class="number">0</span>:<span class="number">2</span>])     <span class="comment"># 0, 1번째 인덱스가 출력</span></span><br><span class="line"><span class="built_in">print</span>(greeting[:<span class="number">8</span>])      <span class="comment"># 처음부터 7번째 인덱스 까지</span></span><br><span class="line"><span class="built_in">print</span>(greeting[<span class="number">6</span>:])      <span class="comment"># 6번 인덱스부터 끝까지</span></span><br><span class="line"><span class="built_in">print</span>(greeting[<span class="number">0</span>:<span class="number">10</span>:<span class="number">2</span>])  <span class="comment"># 처음부터 9번째 인덱스 까지 2칸씩 띄워서 출력</span></span><br><span class="line"><span class="built_in">print</span>(greeting[<span class="number">0</span>:<span class="number">10</span>:<span class="number">3</span>])  <span class="comment"># 처음부터 9번째 인덱스 까지 3칸씩 띄워서 출력</span></span><br><span class="line"><span class="built_in">print</span>(greeting[<span class="number">0</span>:<span class="number">10</span>:<span class="number">4</span>])  <span class="comment"># 처음부터 9번째 인덱스 까지 4칸씩 띄워서 출력</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>He
+Hello Ka
+Kaggle
+HloKg
+HlKg
+Hog
+</code></pre>
+<ul>
+<li>문자열 관련 메서드(추가공부)<ul>
+<li>split()</li>
+<li>sort()</li>
+</ul>
+</li>
+</ul>
+<h2 id="리스트-매우중요"><a href="#리스트-매우중요" class="headerlink" title="리스트(매우중요)"></a>리스트(매우중요)</h2><ul>
+<li>[]로 표시,</li>
+<li>[item1, item2, item3]</li>
+<li>포용하는 범위가 넓다.</li>
+<li>파이썬 코딩의 시작</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = []              <span class="comment"># 빈 리스트</span></span><br><span class="line">a_func = <span class="built_in">list</span>()     <span class="comment"># 빈 리스트 생성</span></span><br><span class="line">b = [<span class="number">1</span>]             <span class="comment"># 숫자 요소</span></span><br><span class="line">c = [<span class="string">&#x27;apple&#x27;</span>]       <span class="comment"># 문자요소</span></span><br><span class="line">d = [<span class="number">1</span>, <span class="number">2</span>, [<span class="string">&#x27;apple&#x27;</span>], <span class="string">&#x27;apple&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
+
+<h3 id="리스트-값-수정하기"><a href="#리스트-값-수정하기" class="headerlink" title="리스트 값 수정하기"></a>리스트 값 수정하기</h3><ul>
+<li>리스트 값 수정</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">a[<span class="number">0</span>] = <span class="string">&quot;아무값&quot;</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[&#39;아무값&#39;, 1, 2]
+</code></pre>
+<h3 id="리스트-값-추가하기"><a href="#리스트-값-추가하기" class="headerlink" title="리스트 값 추가하기"></a>리스트 값 추가하기</h3><ul>
+<li>메서드 사용</li>
+<li>append &#x3D; 하나만 추가하고 싶을 때</li>
+<li>extend &#x3D; 여러개를 추가하고 싶을 때</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>]</span><br><span class="line">a.append(<span class="number">400</span>)    <span class="comment"># a = a.append(400)이 아니다.</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"></span><br><span class="line">a.append([<span class="number">500</span>,<span class="number">600</span>])</span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[100, 200, 300, 400]
+[100, 200, 300, 400, [500, 600]]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>]</span><br><span class="line">a.append(<span class="number">400</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"></span><br><span class="line">a.extend([<span class="number">400</span>,<span class="number">500</span>])   <span class="comment"># 리스트 안에 리스트를 추가할 때</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[100, 200, 300, 400]
+[100, 200, 300, 400, 400, 500]
+</code></pre>
+<ul>
+<li>insert(인덱스 위치, 값)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">100</span>, <span class="number">200</span>, <span class="number">300</span>]</span><br><span class="line">a.insert(<span class="number">1</span>, <span class="number">1000</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[100, 1000, 200, 300]
+</code></pre>
+<h3 id="리스트-값-삭제하기"><a href="#리스트-값-삭제하기" class="headerlink" title="리스트 값 삭제하기"></a>리스트 값 삭제하기</h3><ul>
+<li>remove()</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">10</span>]</span><br><span class="line">a.remove(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a)   <span class="comment"># 처음 나오는 &#x27;1&#x27; 을 제거한다.</span></span><br><span class="line"></span><br><span class="line">a.remove(<span class="number">10</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[2, 1, 2, 10]
+[2, 1, 2]
+</code></pre>
+<ul>
+<li>del</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="keyword">del</span> a[<span class="number">1</span>]    <span class="comment"># 2번째 인덱스 값을 삭제</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"></span><br><span class="line"><span class="keyword">del</span> a[<span class="number">0</span>:<span class="number">2</span>]</span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[0, 1, 2, 3, 4]
+[2, 3, 4]
+</code></pre>
+<ul>
+<li>pop()</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line">rem = a.pop(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(rem)</span><br><span class="line">x = a.pop()</span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line"><span class="built_in">print</span>(x)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1, 3, 4, 5]
+2
+[1, 3, 4]
+5
+</code></pre>
+<ul>
+<li>clear() : 리스트 내 모든 값 삭제</li>
+<li>index(“값”) : 값의 위치를 불러옴</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">b = [<span class="string">&quot;철수&quot;</span>, <span class="string">&quot;영희&quot;</span>, <span class="string">&quot;길동&quot;</span>]</span><br><span class="line"><span class="built_in">print</span>(a.index(<span class="number">4</span>))          <span class="comment"># &quot;4&quot; 의 인덱스 값</span></span><br><span class="line"><span class="built_in">print</span>(b.index(<span class="string">&quot;길동&quot;</span>))     <span class="comment"># &quot;길동&quot; 의 인덱스 값</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>1
+2
+</code></pre>
+<ul>
+<li>sort : 리스트의 정렬(오름차순, 내림차순)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">a.sort()              <span class="comment"># 오름차순</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br><span class="line">a.sort(reverse=<span class="literal">True</span>)  <span class="comment"># 내림차순</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1, 2, 3, 4, 5]
+[5, 4, 3, 2, 1]
+</code></pre>
+<h2 id="튜플"><a href="#튜플" class="headerlink" title="튜플"></a>튜플</h2><ul>
+<li>면접질문 : 리스트와 튜플의 차이가 뭐예요?<ul>
+<li>리스트 : []<ul>
+<li>수정, 삭제, 추가 가능</li>
+</ul>
+</li>
+<li>튜플 : ()<ul>
+<li>다 안됨</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">tuple1 = (<span class="number">0</span>)</span><br><span class="line">tuple2 = (<span class="number">0</span>, )</span><br><span class="line">tuple3 = <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(tuple1))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(tuple2))   <span class="comment"># &quot;,&quot;가 찍히느냐 안 찍히느냐에 따라 유형이 달라진다</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(tuple3))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(tuple1)</span><br><span class="line"><span class="built_in">print</span>(tuple2)</span><br><span class="line"><span class="built_in">print</span>(tuple3)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &#39;int&#39;&gt;
+&lt;class &#39;tuple&#39;&gt;
+&lt;class &#39;tuple&#39;&gt;
+0
+(0,)
+(0, 1, 2)
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = (<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">&#x27;a&#x27;</span>)   <span class="comment"># 삭제 안됨</span></span><br><span class="line"><span class="keyword">del</span> a [<span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-45-d866ffd24276&gt; in &lt;module&gt;()
+      1 a = (0, 1, 2, 3, &#39;a&#39;)
+----&gt; 2 del a [4]
+
+
+TypeError: &#39;tuple&#39; object doesn&#39;t support item deletion
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = (<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="string">&#x27;a&#x27;</span>)   <span class="comment"># 수정 안됨</span></span><br><span class="line">a[<span class="number">4</span>] = <span class="number">4</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+
+
+<pre><code>---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-47-fdbbdf9f616e&gt; in &lt;module&gt;()
+      1 a = (0, 1, 2, 3, &#39;a&#39;)
+----&gt; 2 a[4] = 4
+      3 print(a)
+
+
+TypeError: &#39;tuple&#39; object does not support item assignment
+</code></pre>
+<h2 id="튜플-x3D-리스트-연산자"><a href="#튜플-x3D-리스트-연산자" class="headerlink" title="튜플(&#x3D;리스트) 연산자"></a>튜플(&#x3D;리스트) 연산자</h2><ul>
+<li>문자열 연산자</li>
+<li>+, *</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">t1 = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">t2 = [<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span>(t1 + t2)</span><br><span class="line"><span class="built_in">print</span>(t1 * <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>(0, 1, 2, 3, 4, 5)
+
+
+
+---------------------------------------------------------------------------
+
+TypeError                                 Traceback (most recent call last)
+
+&lt;ipython-input-51-d5cac866d659&gt; in &lt;module&gt;()
+      2 t2 = (3, 4, 5)
+      3 print(t1 + t2)
+----&gt; 4 print(t1 * t2)
+
+
+TypeError: can&#39;t multiply sequence by non-int of type &#39;tuple&#39;
+</code></pre>
+<h2 id="딕셔너리"><a href="#딕셔너리" class="headerlink" title="딕셔너리"></a>딕셔너리</h2><ul>
+<li>Key(키)와 Value(값)으로 구성됨</li>
+<li>슬라이싱 &#x3D; (값의 순서가 존재해야 함)</li>
+<li>딕셔너리 &#x3D; 순서라는 개념 자체가 존재하지 않음(슬라이싱x)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">temp_dict = &#123;</span><br><span class="line">    <span class="string">&#x27;teacher&#x27;</span> : <span class="string">&#x27;evan&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;class&#x27;</span> : <span class="number">15</span>,</span><br><span class="line">    <span class="string">&#x27;students&#x27;</span> : [<span class="string">&#x27;s1&#x27;</span>, <span class="string">&#x27;s2&#x27;</span>, <span class="string">&#x27;s3&#x27;</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(temp_dict[<span class="string">&quot;teacher&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(temp_dict[<span class="string">&#x27;class&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(temp_dict[<span class="string">&#x27;students&#x27;</span>])</span><br><span class="line"><span class="built_in">print</span>(temp_dict[<span class="string">&#x27;A&#x27;</span>])       <span class="comment"># A라는 Key가 없음</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>evan
+15
+[&#39;s1&#39;, &#39;s2&#39;, &#39;s3&#39;]
+
+
+
+---------------------------------------------------------------------------
+
+KeyError                                  Traceback (most recent call last)
+
+&lt;ipython-input-55-4cf39da18c67&gt; in &lt;module&gt;()
+      8 print(temp_dict[&#39;class&#39;])
+      9 print(temp_dict[&#39;students&#39;])
+---&gt; 10 print(temp_dict[&#39;A&#39;])
+
+
+KeyError: &#39;A&#39;
+</code></pre>
+<ul>
+<li>keys() 값만 출력</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">temp_dict.keys()</span><br><span class="line"><span class="built_in">list</span>(temp_dict.keys())   <span class="comment">#list로 형변환</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[&#39;teacher&#39;, &#39;class&#39;, &#39;students&#39;]
+</code></pre>
+<ul>
+<li>values() 값만 출력</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">temp_dict.values()</span><br><span class="line"><span class="built_in">list</span>(temp_dict.values())  <span class="comment">#list로 형 변환</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>items() key-value 쌍으로, list와 tuple 형태로 반환</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">temp_dict.items()</span><br><span class="line"><span class="built_in">list</span>(temp_dict.items())   <span class="comment">#list로 형 변환</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[(&#39;teacher&#39;, &#39;evan&#39;), (&#39;class&#39;, 15), (&#39;students&#39;, [&#39;s1&#39;, &#39;s2&#39;, &#39;s3&#39;])]
+</code></pre>
+<h2 id="조건문"><a href="#조건문" class="headerlink" title="조건문"></a>조건문</h2><ul>
+<li>조건을 만족하는 처음 조건만 실행된다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;숫자를 입력하세요&quot;</span>))</span><br><span class="line"><span class="keyword">if</span> a &gt; <span class="number">5</span>:                      <span class="comment"># 5뒤에 &quot;:&quot; 을 꼭 찍어줘야 된다.</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;a는 5보다 크다&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span> a &gt; <span class="number">0</span>:                    <span class="comment"># elif 는 elseif 의 뜻으로 if와 else를 이어주는 역할이다</span></span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;a는 0보다 크다&quot;</span>)</span><br><span class="line"><span class="keyword">elif</span> a &gt; -<span class="number">5</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;a는 -5보다 크다&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;a는 매우 작다&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>숫자를 입력하세요3
+a는 0보다 크다
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Hello World 1000번 출력하세요</span></span><br><span class="line"><span class="keyword">for</span> idx <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">  <span class="comment"># print(idx+1)                # 방법1</span></span><br><span class="line">  <span class="built_in">print</span>(idx+<span class="number">1</span>, <span class="string">&quot;Hello World&quot;</span>)   <span class="comment"># 방법2</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>1
+Hello World
+2
+Hello World
+3
+Hello World
+</code></pre>
+<ul>
+<li>for loop if 조건문 사용</li>
+<li>문자열, 리스트 등 –&gt; 시퀀스 데이터(반복문 돌릴 수 있는 데이터)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&quot;Kaggle&quot;</span></span><br><span class="line"><span class="comment"># g로 시작하면 반복문을 멈추세요</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> a:</span><br><span class="line">  <span class="built_in">print</span>(x)</span><br><span class="line">  <span class="keyword">if</span> x == <span class="string">&#x27;g&#x27;</span>:</span><br><span class="line">    <span class="keyword">break</span></span><br><span class="line">    <span class="comment"># 여기에 print(x)이면 어떻게 출력될까?</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>K
+a
+g
+</code></pre>
+<ul>
+<li>enumerate()</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">alphabets = [<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>]</span><br><span class="line"><span class="keyword">for</span> index, value <span class="keyword">in</span> <span class="built_in">enumerate</span>(alphabets):   <span class="comment"># in 다음에 표시할 수 있는 함수가 여러가지가 있다. 그때그때 상황 맞춰서 써야 함</span></span><br><span class="line">  <span class="built_in">print</span>(index, value)</span><br></pre></td></tr></table></figure>
+
+<pre><code>0 A
+1 B
+2 C
+</code></pre>
+<h2 id="리스트-컴프리헨션"><a href="#리스트-컴프리헨션" class="headerlink" title="리스트 컴프리헨션"></a>리스트 컴프리헨션</h2><p>list comprehension</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;a&quot;</span> <span class="keyword">in</span> <span class="string">&quot;apple&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>True
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fruits = [<span class="string">&#x27;apple&#x27;</span>, <span class="string">&#x27;kiwi&#x27;</span>, <span class="string">&#x27;mango&#x27;</span>]</span><br><span class="line">newlists = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># 알파벳 a가 있는 과일만 추출 후, 새로운 리스트에 담기</span></span><br><span class="line"><span class="keyword">for</span> fruit <span class="keyword">in</span> fruits:</span><br><span class="line">  <span class="comment"># print(fruit)</span></span><br><span class="line">  <span class="keyword">if</span> <span class="string">&quot;a&quot;</span> <span class="keyword">in</span> fruit:</span><br><span class="line">    newlists.append(fruit)</span><br><span class="line"><span class="built_in">print</span>(newlists)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[&#39;apple&#39;, &#39;mango&#39;]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 리스트 컴프리헨션</span></span><br><span class="line">newlist = [fruit <span class="keyword">for</span> fruit <span class="keyword">in</span> fruits <span class="keyword">if</span> <span class="string">&#x27;a&#x27;</span> <span class="keyword">in</span> fruit]</span><br><span class="line"><span class="built_in">print</span>(newlist)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[&#39;apple&#39;, &#39;mango&#39;]
+</code></pre>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/2022/06/27/day0627/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/2022/06/24/blog_theme/"
+                            aria-label=": 블로그 테마 변경시 주의사항"
+                        >
+                            블로그 테마 변경시 주의사항
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2022-06-24T09:00:00+09:00">
+	
+		    Jun 24, 2022
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/%EB%B8%94%EB%A1%9C%EA%B7%B8/">블로그</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <ol>
+<li>관리가 되고 있는가?</li>
+</ol>
+<ul>
+<li>해당 테마 github에 들어가서 종 업데이트 날짜를 확인</li>
+</ul>
+<ol start="2">
+<li>설치 방법은 hexo 테마 별로 다 다르다.</li>
+</ol>
+<ul>
+<li>현재 블로그 테마 github 주소 : <a target="_blank" rel="noopener" href="https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak">https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak</a></li>
+</ul>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/2022/06/24/blog_theme/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/2022/06/24/mental/"
+                            aria-label=": 한국인의 정신건강 분석"
+                        >
+                            한국인의 정신건강 분석
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2022-06-24T09:00:00+09:00">
+	
+		    Jun 24, 2022
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <ul>
+<li><p>연구 1 : 삶의 만족도와 외로움이 자살충동에 주는 영향을 알아본다.</p>
+</li>
+<li><p>연구 2 : 삶의 만족도와 외로움의 상관관계를 알아본다.</p>
+</li>
+<li><p>연구 3 : 가족신뢰도, 경제적 안정, 건강상태가 삶의 만족도와 외로움에 주는 영향을 알아본다.</p>
+</li>
+<li><p>연구 4 : 성, 연령, 지역에 따라 삶의 만족도에 차이가 있는지를 알아본다.</p>
+</li>
+<li><p>데이터 불러오기 전 사전준비</p>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">library<span class="punctuation">(</span>dplyr<span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>ggplot2<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>spss 패키지 설치</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;foreign&quot;</span><span class="punctuation">,</span>repos <span class="operator">=</span> <span class="string">&quot;http://cran.us.r-project.org&quot;</span><span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>foreign<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>데이터 불러오기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mental <span class="operator">&lt;-</span> read.spss<span class="punctuation">(</span><span class="string">&quot;한국행정연구원_사회통합실태조사_데이터_2019.sav&quot;</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">class</span><span class="punctuation">(</span>mental<span class="punctuation">)</span>   <span class="comment"># 데이터 유형 확인</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;list&quot;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mental <span class="operator">&lt;-</span> as.data.frame<span class="punctuation">(</span>mental<span class="punctuation">)</span>   <span class="comment">#데이터프레임으로 변환하기</span></span><br><span class="line"><span class="built_in">class</span><span class="punctuation">(</span>mental<span class="punctuation">)</span>   <span class="comment"># 데이터 유형 확인</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;data.frame&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>분석 변수 추출 후 이름 변경하기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mental <span class="operator">&lt;-</span> mental <span class="operator">%&gt;%</span> </span><br><span class="line">  select<span class="punctuation">(</span>q32_2<span class="punctuation">,</span> q1_4<span class="punctuation">,</span> q32_1<span class="punctuation">,</span>q34_1<span class="punctuation">,</span> q52<span class="punctuation">,</span>d17<span class="punctuation">,</span>d1<span class="punctuation">,</span>d2<span class="punctuation">,</span>ara<span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  rename<span class="punctuation">(</span><span class="comment">#자살하고 싶은 생각이 드는 정도, 4점 척도</span></span><br><span class="line">         suicide<span class="operator">=</span>q32_2<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#요즘 느끼는 삶에 대한 만족도, 등현등간척도, 11점</span></span><br><span class="line">         satisfaction<span class="operator">=</span>q1_4<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#외롭다고 느끼는 정도, 4점 척도</span></span><br><span class="line">         loneliness<span class="operator">=</span>q32_1<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#본인의 가족에 대한 신뢰도, 4점 척도</span></span><br><span class="line">         family_belief<span class="operator">=</span>q34_1<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#본인 경제상황의 안정도, 등현등간척도, 0~10점</span></span><br><span class="line">         wealth<span class="operator">=</span>q52<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#건강상태, 5점</span></span><br><span class="line">         health<span class="operator">=</span>d17<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#성별</span></span><br><span class="line">         sex<span class="operator">=</span>d1<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#연령대, 5등 등급</span></span><br><span class="line">         age<span class="operator">=</span>d2<span class="punctuation">,</span></span><br><span class="line">         <span class="comment">#지역</span></span><br><span class="line">         area<span class="operator">=</span>ara<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>4점, 5점, 11점 척도별 응답빈도 확인</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>suicide<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 전혀 그렇지 않다 별로 그렇지 않다      약간 그렇다      매우 그렇다 </span><br><span class="line">##             5592             1862              479               67</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>health<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 매우 나쁘다 나쁜 편이다    보통이다 좋은 편이다   매우 좋다 </span><br><span class="line">##          87         509        2413        3730        1261</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>satisfaction<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 0점 전혀 만족하지 않는다                      1점                      2점 </span><br><span class="line">##                       49                       79                      170 </span><br><span class="line">##                      3점                      4점                 5점 보통 </span><br><span class="line">##                      302                      440                     2053 </span><br><span class="line">##                      6점                      7점                      8점 </span><br><span class="line">##                     1611                     1761                     1040 </span><br><span class="line">##                      9점       10점 매우 만족한다              모름/무응답 </span><br><span class="line">##                      321                      174                        0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 모름/무응답 항목때문에 11점 척도인데 범주수는 12개로 나옴</span></span><br><span class="line"><span class="comment"># 결측치가 없으므로 패스</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>범주 이름을 문자에서 숫자로 변환하기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mental<span class="operator">$</span>suicide <span class="operator">&lt;-</span> <span class="built_in">as.integer</span><span class="punctuation">(</span>mental<span class="operator">$</span>suicide<span class="punctuation">)</span></span><br><span class="line">mental<span class="operator">$</span>satisfaction <span class="operator">&lt;-</span> <span class="built_in">as.integer</span><span class="punctuation">(</span>mental<span class="operator">$</span>satisfaction<span class="punctuation">)</span></span><br><span class="line">mental<span class="operator">$</span>loneliness <span class="operator">&lt;-</span> <span class="built_in">as.integer</span><span class="punctuation">(</span>mental<span class="operator">$</span>loneliness<span class="punctuation">)</span></span><br><span class="line">mental<span class="operator">$</span>family_belief <span class="operator">&lt;-</span> <span class="built_in">as.integer</span><span class="punctuation">(</span>mental<span class="operator">$</span>family_belief<span class="punctuation">)</span></span><br><span class="line">mental<span class="operator">$</span>wealth <span class="operator">&lt;-</span> <span class="built_in">as.integer</span><span class="punctuation">(</span>mental<span class="operator">$</span>wealth<span class="punctuation">)</span></span><br><span class="line">mental<span class="operator">$</span>health <span class="operator">&lt;-</span> <span class="built_in">as.integer</span><span class="punctuation">(</span>mental<span class="operator">$</span>health<span class="punctuation">)</span></span><br><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>suicide<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">##    1    2    3    4 </span><br><span class="line">## 5592 1862  479   67</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>health<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">##    1    2    3    4    5 </span><br><span class="line">##   87  509 2413 3730 1261</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>satisfaction<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">##    1    2    3    4    5    6    7    8    9   10   11 </span><br><span class="line">##   49   79  170  302  440 2053 1611 1761 1040  321  174</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>satisfaction 변수는 범주가 0 ~ 10 점 척도인데, 1 ~ 11점으로 출력됨</li>
+<li>등현등간척도 변수(satisfaction, wealth)에서 -1점 보정작업</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mental<span class="operator">$</span>satisfaction <span class="operator">&lt;-</span> mental<span class="operator">$</span>satisfaction<span class="operator">-</span><span class="number">1</span></span><br><span class="line">mental<span class="operator">$</span>wealth <span class="operator">&lt;-</span> mental<span class="operator">$</span>wealth<span class="operator">-</span><span class="number">1</span></span><br><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>satisfaction<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">##    0    1    2    3    4    5    6    7    8    9   10 </span><br><span class="line">##   49   79  170  302  440 2053 1611 1761 1040  321  174</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>sex, age, area의 유형을 범주형에서 문자형으로 변경</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mental<span class="operator">$</span>age <span class="operator">&lt;-</span> <span class="built_in">as.character</span><span class="punctuation">(</span>mental<span class="operator">$</span>age<span class="punctuation">)</span></span><br><span class="line">mental<span class="operator">$</span>sex <span class="operator">&lt;-</span> <span class="built_in">as.character</span><span class="punctuation">(</span>mental<span class="operator">$</span>sex<span class="punctuation">)</span></span><br><span class="line">mental<span class="operator">$</span>area <span class="operator">&lt;-</span> <span class="built_in">as.character</span><span class="punctuation">(</span>mental<span class="operator">$</span>area<span class="punctuation">)</span></span><br><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>sex<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 남성 여성 </span><br><span class="line">## 4011 3989</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>age<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 19~29세    30대    40대    50대 60~69세 </span><br><span class="line">##    1542    1516    1769    1821    1352</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>area<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 강원 경기 경남 경북 광주 대구 대전 부산 서울 세종 울산 인천 전남 전북 제주 충남 </span><br><span class="line">##  388 1103  527  466  353  464  356  539  965  162  324  522  395  381  267  425 </span><br><span class="line">## 충북 </span><br><span class="line">##  363</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>age 항목의 19<del>29세, 60</del>69세를 20대, 60대로 변경</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mental<span class="operator">$</span>age <span class="operator">&lt;-</span> ifelse<span class="punctuation">(</span>mental<span class="operator">$</span>age<span class="operator">==</span><span class="string">&quot;19~29세&quot;</span><span class="punctuation">,</span><span class="string">&quot;20대&quot;</span><span class="punctuation">,</span></span><br><span class="line">                     ifelse<span class="punctuation">(</span>mental<span class="operator">$</span>age<span class="operator">==</span><span class="string">&quot;60~69세&quot;</span><span class="punctuation">,</span><span class="string">&quot;60대&quot;</span><span class="punctuation">,</span>mental<span class="operator">$</span>age<span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>age<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 20대 30대 40대 50대 60대 </span><br><span class="line">## 1542 1516 1769 1821 1352</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>결측치, 이상치 확인하기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">summary<span class="punctuation">(</span>mental<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">##     suicide       satisfaction      loneliness    family_belief  </span><br><span class="line">##  Min.   :1.000   Min.   : 0.000   Min.   :1.000   Min.   :1.000  </span><br><span class="line">##  1st Qu.:1.000   1st Qu.: 5.000   1st Qu.:1.000   1st Qu.:3.000  </span><br><span class="line">##  Median :1.000   Median : 6.000   Median :2.000   Median :4.000  </span><br><span class="line">##  Mean   :1.378   Mean   : 6.037   Mean   :1.795   Mean   :3.576  </span><br><span class="line">##  3rd Qu.:2.000   3rd Qu.: 7.000   3rd Qu.:2.000   3rd Qu.:4.000  </span><br><span class="line">##  Max.   :4.000   Max.   :10.000   Max.   :4.000   Max.   :4.000  </span><br><span class="line">##      wealth           health          sex                age           </span><br><span class="line">##  Min.   : 0.000   Min.   :1.000   Length:8000        Length:8000       </span><br><span class="line">##  1st Qu.: 4.000   1st Qu.:3.000   Class :character   Class :character  </span><br><span class="line">##  Median : 5.000   Median :4.000   Mode  :character   Mode  :character  </span><br><span class="line">##  Mean   : 4.985   Mean   :3.696                                        </span><br><span class="line">##  3rd Qu.: 6.000   3rd Qu.:4.000                                        </span><br><span class="line">##  Max.   :10.000   Max.   :5.000                                        </span><br><span class="line">##      area          </span><br><span class="line">##  Length:8000       </span><br><span class="line">##  Class :character  </span><br><span class="line">##  Mode  :character  </span><br><span class="line">##                    </span><br><span class="line">##                    </span><br><span class="line">## </span><br></pre></td></tr></table></figure>
+
+<h2 id="데이터-분석"><a href="#데이터-분석" class="headerlink" title="데이터 분석"></a>데이터 분석</h2><ul>
+<li>빈도분석<ul>
+<li>성별 빈도분석</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mental <span class="operator">%&gt;%</span> </span><br><span class="line">  group_by<span class="punctuation">(</span>sex<span class="punctuation">)</span> <span class="operator">%&gt;%</span>                 <span class="comment"># sex 변수로 분류</span></span><br><span class="line">  summarise<span class="punctuation">(</span>n<span class="operator">=</span>n<span class="punctuation">(</span><span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">%&gt;%</span>              <span class="comment"># sex 변수의 데이터를 세어서 빈도를 n에 입력한다</span></span><br><span class="line">  mutate<span class="punctuation">(</span>total<span class="operator">=</span><span class="built_in">sum</span><span class="punctuation">(</span>n<span class="punctuation">)</span><span class="punctuation">,</span>              <span class="comment"># total에 데이터 빈도 합을 넣고</span></span><br><span class="line">         pct<span class="operator">=</span><span class="built_in">round</span><span class="punctuation">(</span>n<span class="operator">/</span>total<span class="operator">*</span><span class="number">100</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="punctuation">)</span>  <span class="comment"># 데이터 빈도를 소숫점 1번째 자리까지 백분율로 구한다</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## # A tibble: 2 × 4</span><br><span class="line">##   sex       n total   pct</span><br><span class="line">##   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;</span><br><span class="line">## 1 남성   4011  8000  50.1</span><br><span class="line">## 2 여성   3989  8000  49.9</span><br></pre></td></tr></table></figure>
+<ul>
+<li>연령대별 빈도분석</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 성별 빈도분석이랑 동일하다.</span></span><br><span class="line">mental <span class="operator">%&gt;%</span> </span><br><span class="line">  group_by<span class="punctuation">(</span>age<span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  summarise<span class="punctuation">(</span>n<span class="operator">=</span>n<span class="punctuation">(</span><span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  mutate<span class="punctuation">(</span>total<span class="operator">=</span><span class="built_in">sum</span><span class="punctuation">(</span>n<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">         pct<span class="operator">=</span><span class="built_in">round</span><span class="punctuation">(</span>n<span class="operator">/</span>total<span class="operator">*</span><span class="number">100</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">## # A tibble: 5 × 4</span><br><span class="line">##   age       n total   pct</span><br><span class="line">##   &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;dbl&gt;</span><br><span class="line">## 1 20대   1542  8000  19.3</span><br><span class="line">## 2 30대   1516  8000  19  </span><br><span class="line">## 3 40대   1769  8000  22.1</span><br><span class="line">## 4 50대   1821  8000  22.8</span><br><span class="line">## 5 60대   1352  8000  16.9</span><br></pre></td></tr></table></figure>
+<ul>
+<li>성별, 연령대 교차분석</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 성별 연령대 별로 고르게 분포되어 있는가?</span></span><br><span class="line">table<span class="punctuation">(</span>mental<span class="operator">$</span>sex<span class="punctuation">,</span> mental<span class="operator">$</span>age<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##       </span><br><span class="line">##        20대 30대 40대 50대 60대</span><br><span class="line">##   남성  822  745  900  891  653</span><br><span class="line">##   여성  720  771  869  930  699</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">round</span><span class="punctuation">(</span>prop.table<span class="punctuation">(</span>table<span class="punctuation">(</span>mental<span class="operator">$</span>sex<span class="punctuation">,</span> mental<span class="operator">$</span>age<span class="punctuation">)</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span><span class="operator">*</span><span class="number">100</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##       </span><br><span class="line">##        20대 30대 40대 50대 60대</span><br><span class="line">##   남성 20.5 18.6 22.4 22.2 16.3</span><br><span class="line">##   여성 18.0 19.3 21.8 23.3 17.5</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chisq.test<span class="punctuation">(</span>mental<span class="operator">$</span>sex<span class="punctuation">,</span> mental<span class="operator">$</span>age<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 	Pearson&#x27;s Chi-squared test</span><br><span class="line">## </span><br><span class="line">## data:  mental$sex and mental$age</span><br><span class="line">## X-squared = 10.076, df = 4, p-value = 0.03916</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># p-value 값이 0.05 미만이므로 남녀 연령대 별로 분포비율은 다소 차이가 있다고 할 수 있다.</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>평균분석<ul>
+<li>suicide, satisfaction, loneliness, family_belief, wealth, health 변수의 평균을 분석한다.</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mental <span class="operator">%&gt;%</span> </span><br><span class="line">  summarise<span class="punctuation">(</span>자살충동<span class="operator">=</span>mean<span class="punctuation">(</span>suicide<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">            삶의_만족도 <span class="operator">=</span> mean<span class="punctuation">(</span>satisfaction<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">            외로움<span class="operator">=</span>mean<span class="punctuation">(</span>loneliness<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">            가족신뢰도<span class="operator">=</span>mean<span class="punctuation">(</span>family_belief<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">            경제안정도<span class="operator">=</span>mean<span class="punctuation">(</span>wealth<span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">            건강상태<span class="operator">=</span>mean<span class="punctuation">(</span>health<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##   자살충동 삶의_만족도 외로움 가족신뢰도 경제안정도 건강상태</span><br><span class="line">## 1 1.377625      6.0365  1.795   3.576375   4.985125 3.696125</span><br></pre></td></tr></table></figure>
+<h3 id="연구문제-1"><a href="#연구문제-1" class="headerlink" title="연구문제 1"></a>연구문제 1</h3><ul>
+<li>삶의 만족도와 외로움이 자살충동에 미치는 영향</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 삶의 만족도와 외로움을 독립변수, </span></span><br><span class="line"><span class="comment">#             자살충동을 종속변수</span></span><br><span class="line">RA <span class="operator">&lt;-</span> lm<span class="punctuation">(</span>data<span class="operator">=</span>mental<span class="punctuation">,</span> suicide<span class="operator">~</span>satisfaction<span class="operator">+</span>loneliness<span class="punctuation">)</span></span><br><span class="line">summary<span class="punctuation">(</span>RA<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## Call:</span><br><span class="line">## lm(formula = suicide ~ satisfaction + loneliness, data = mental)</span><br><span class="line">## </span><br><span class="line">## Residuals:</span><br><span class="line">##      Min       1Q   Median       3Q      Max </span><br><span class="line">## -1.50517 -0.40228 -0.03487  0.17773  3.07029 </span><br><span class="line">## </span><br><span class="line">## Coefficients:</span><br><span class="line">##               Estimate Std. Error t value Pr(&gt;|t|)    </span><br><span class="line">## (Intercept)   1.035551   0.029823   34.72   &lt;2e-16 ***</span><br><span class="line">## satisfaction -0.052583   0.003614  -14.55   &lt;2e-16 ***</span><br><span class="line">## loneliness    0.367405   0.007987   46.00   &lt;2e-16 ***</span><br><span class="line">## ---</span><br><span class="line">## Signif. codes:  0 &#x27;***&#x27; 0.001 &#x27;**&#x27; 0.01 &#x27;*&#x27; 0.05 &#x27;.&#x27; 0.1 &#x27; &#x27; 1</span><br><span class="line">## </span><br><span class="line">## Residual standard error: 0.5451 on 7997 degrees of freedom</span><br><span class="line">## Multiple R-squared:  0.2668,	Adjusted R-squared:  0.2666 </span><br><span class="line">## F-statistic:  1455 on 2 and 7997 DF,  p-value: &lt; 2.2e-16</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>자살충동 &#x3D; 1.035551 - 0.052583 x 만족도 + 0.367405 x 외로움  <br>  </li>
+<li>이 회귀식의 설명력은 0.2666 으로 낮은 편이다.</li>
+</ul>
+<h3 id="연구문제2"><a href="#연구문제2" class="headerlink" title="연구문제2"></a>연구문제2</h3><ul>
+<li>삶의 만족도와 외로움의 상관관계</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cor.test<span class="punctuation">(</span>mental<span class="operator">$</span>satisfaction<span class="punctuation">,</span> mental<span class="operator">$</span>loneliness<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 	Pearson&#x27;s product-moment correlation</span><br><span class="line">## </span><br><span class="line">## data:  mental$satisfaction and mental$loneliness</span><br><span class="line">## t = -25.374, df = 7998, p-value &lt; 2.2e-16</span><br><span class="line">## alternative hypothesis: true correlation is not equal to 0</span><br><span class="line">## 95 percent confidence interval:</span><br><span class="line">##  -0.2931116 -0.2525481</span><br><span class="line">## sample estimates:</span><br><span class="line">##        cor </span><br><span class="line">## -0.2729512</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># p-value 값이 0.05 미만이므로 유의미한 통계이다.</span></span><br><span class="line"><span class="comment"># 삶의 만족도와 외로움은 약한 수준에서 부적인 상관관계에 있다.</span></span><br><span class="line"><span class="comment"># 즉, 삶의 만족도가 높아지면 외로움이 약간 줄어드는 관계이다.</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="연구문제3"><a href="#연구문제3" class="headerlink" title="연구문제3"></a>연구문제3</h3><ul>
+<li>가족신뢰도, 경제안정도, 건강상태가 삶의 만족도와 외로움에 미치는 영향<br>  </li>
+<li>3개 독립변수가 삶의 만족도에 미치는 영향</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RA <span class="operator">&lt;-</span> lm<span class="punctuation">(</span>data <span class="operator">=</span> mental<span class="punctuation">,</span> satisfaction<span class="operator">~</span>family_belief<span class="operator">+</span>wealth<span class="operator">+</span>health<span class="punctuation">)</span></span><br><span class="line">summary<span class="punctuation">(</span>RA<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## Call:</span><br><span class="line">## lm(formula = satisfaction ~ family_belief + wealth + health, </span><br><span class="line">##     data = mental)</span><br><span class="line">## </span><br><span class="line">## Residuals:</span><br><span class="line">##     Min      1Q  Median      3Q     Max </span><br><span class="line">## -6.8274 -0.9431 -0.0425  1.0569  6.1986 </span><br><span class="line">## </span><br><span class="line">## Coefficients:</span><br><span class="line">##               Estimate Std. Error t value Pr(&gt;|t|)    </span><br><span class="line">## (Intercept)    2.07613    0.13765   15.08   &lt;2e-16 ***</span><br><span class="line">## family_belief  0.36851    0.03196   11.53   &lt;2e-16 ***</span><br><span class="line">## wealth         0.26016    0.01089   23.88   &lt;2e-16 ***</span><br><span class="line">## health         0.36403    0.02206   16.50   &lt;2e-16 ***</span><br><span class="line">## ---</span><br><span class="line">## Signif. codes:  0 &#x27;***&#x27; 0.001 &#x27;**&#x27; 0.01 &#x27;*&#x27; 0.05 &#x27;.&#x27; 0.1 &#x27; &#x27; 1</span><br><span class="line">## </span><br><span class="line">## Residual standard error: 1.627 on 7996 degrees of freedom</span><br><span class="line">## Multiple R-squared:  0.1386,	Adjusted R-squared:  0.1383 </span><br><span class="line">## F-statistic: 428.8 on 3 and 7996 DF,  p-value: &lt; 2.2e-16</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># p-value 값이 0.05 미만이므로 유의미한 통계이다.</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>삶의 만족도 &#x3D; 2.07613 + 0.36851 x 가족신뢰도 + 0.26016 x 경제안정도 + 0.36403 x 건강상태<br>  </li>
+<li>영향력은 차이가 있지만 가족신뢰도, 경제안정도, 건강상태가 좋아지면 모두 삶의 만족도에 긍정적인 영향을 끼친다.</li>
+<li>이 회귀식의 설명력은 0.1383 으로 매우 낮은 편이다.<br> </li>
+<li>3개 독립변수가 외로움에 미치는 영향</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">RA <span class="operator">&lt;-</span> lm<span class="punctuation">(</span>data<span class="operator">=</span>mental<span class="punctuation">,</span> loneliness<span class="operator">~</span>family_belief<span class="operator">+</span>wealth<span class="operator">+</span>health<span class="punctuation">)</span></span><br><span class="line">summary<span class="punctuation">(</span>RA<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## Call:</span><br><span class="line">## lm(formula = loneliness ~ family_belief + wealth + health, data = mental)</span><br><span class="line">## </span><br><span class="line">## Residuals:</span><br><span class="line">##      Min       1Q   Median       3Q      Max </span><br><span class="line">## -2.24066 -0.64247  0.01863  0.43022  2.83959 </span><br><span class="line">## </span><br><span class="line">## Coefficients:</span><br><span class="line">##                Estimate Std. Error t value Pr(&gt;|t|)    </span><br><span class="line">## (Intercept)    3.652247   0.063109   57.87   &lt;2e-16 ***</span><br><span class="line">## family_belief -0.220274   0.014654  -15.03   &lt;2e-16 ***</span><br><span class="line">## wealth        -0.072686   0.004995  -14.55   &lt;2e-16 ***</span><br><span class="line">## health        -0.191313   0.010116  -18.91   &lt;2e-16 ***</span><br><span class="line">## ---</span><br><span class="line">## Signif. codes:  0 &#x27;***&#x27; 0.001 &#x27;**&#x27; 0.01 &#x27;*&#x27; 0.05 &#x27;.&#x27; 0.1 &#x27; &#x27; 1</span><br><span class="line">## </span><br><span class="line">## Residual standard error: 0.746 on 7996 degrees of freedom</span><br><span class="line">## Multiple R-squared:  0.1157,	Adjusted R-squared:  0.1154 </span><br><span class="line">## F-statistic: 348.9 on 3 and 7996 DF,  p-value: &lt; 2.2e-16</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># p-value 값이 0.05 미만이므로 유의미한 통계이다.</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>외로움 &#x3D; 3.652247 - 0.220274 x 가족신뢰도 - 0.072686 x 경제안정도 - 0.191313 x 건강상태<br>  </li>
+<li>영향력은 다르지만 가족신뢰도, 경제안정도, 건강상태가 나빠질 수록 외로움도 커진다.</li>
+<li>이 회귀식의 설명력은 0.1154로 매우 낮은편이다.<br></li>
+</ul>
+<h3 id="연구문제4"><a href="#연구문제4" class="headerlink" title="연구문제4"></a>연구문제4</h3><ul>
+<li>성, 연령, 지역별 삶의 만족도 차이<br>  </li>
+<li>성별로 삶의 만족도에서 차이가 있는지 독립표본 t 검정으로 알아본다.</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t.test<span class="punctuation">(</span>data<span class="operator">=</span>mental<span class="punctuation">,</span> satisfaction<span class="operator">~</span>sex<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">## 	Welch Two Sample t-test</span><br><span class="line">## </span><br><span class="line">## data:  satisfaction by sex</span><br><span class="line">## t = -3.7719, df = 7997.6, p-value = 0.0001632</span><br><span class="line">## alternative hypothesis: true difference in means between group 남성 and group 여성 is not equal to 0</span><br><span class="line">## 95 percent confidence interval:</span><br><span class="line">##  -0.22446298 -0.07094075</span><br><span class="line">## sample estimates:</span><br><span class="line">## mean in group 남성 mean in group 여성 </span><br><span class="line">##           5.962852           6.110554</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># p-value 값이 0.05 미만이므로 유의미한 통계이다.</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>남성 평균은 5.962852, 여성 평균은 6.110554 이므로 여성의 만족도가 남성보다 높다고 할 수 있다.<br>  </li>
+<li>연령대별 삶의 만족도 차이</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mental <span class="operator">%&gt;%</span> </span><br><span class="line">  group_by<span class="punctuation">(</span>age<span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  summarise<span class="punctuation">(</span>삶의_만족도_평균<span class="operator">=</span>mean<span class="punctuation">(</span>satisfaction<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  arrange<span class="punctuation">(</span>desc<span class="punctuation">(</span>삶의_만족도_평균<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">## # A tibble: 5 × 2</span><br><span class="line">##   age   삶의_만족도_평균</span><br><span class="line">##   &lt;chr&gt;            &lt;dbl&gt;</span><br><span class="line">## 1 30대              6.13</span><br><span class="line">## 2 50대              6.08</span><br><span class="line">## 3 40대              6.05</span><br><span class="line">## 4 20대              6.04</span><br><span class="line">## 5 60대              5.84</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>30대가 평균 6.13점으로 가장 높고 60대가 되면 삶의 만족도가 낮아진다.</p>
+<br>  
+</li>
+<li><p>지역별 삶의 만족도 분석</p>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">area_satisfaction <span class="operator">&lt;-</span> mental <span class="operator">%&gt;%</span> </span><br><span class="line">  group_by<span class="punctuation">(</span>area<span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  summarise<span class="punctuation">(</span>m<span class="operator">=</span>mean<span class="punctuation">(</span>satisfaction<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">%&gt;%</span> </span><br><span class="line">  arrange<span class="punctuation">(</span>desc<span class="punctuation">(</span>m<span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>그래프로 나타내기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ggplot<span class="punctuation">(</span>data<span class="operator">=</span>area_satisfaction<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> reorder<span class="punctuation">(</span>area<span class="punctuation">,</span> m<span class="punctuation">)</span><span class="punctuation">,</span>y<span class="operator">=</span>m<span class="punctuation">)</span><span class="punctuation">)</span><span class="operator">+</span></span><br><span class="line">  geom_col<span class="punctuation">(</span><span class="punctuation">)</span><span class="operator">+</span></span><br><span class="line">  ggtitle<span class="punctuation">(</span><span class="string">&quot;지역별 만족도&quot;</span><span class="punctuation">)</span> <span class="operator">+</span> </span><br><span class="line">  labs<span class="punctuation">(</span></span><br><span class="line">    x <span class="operator">=</span> <span class="string">&quot;지역&quot;</span><span class="punctuation">,</span></span><br><span class="line">    y <span class="operator">=</span> <span class="string">&quot;만족도&quot;</span><span class="punctuation">)</span> <span class="operator">+</span></span><br><span class="line">  coord_flip<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0624/unnamed-chunk-22-1.png"><!-- --></p>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/2022/06/24/mental/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
                             href="/2022/06/23/day0623/"
                             aria-label=": 8장"
                         >
@@ -1605,526 +2439,6 @@
                 </div>
             
         </div>
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/06/20/test/"
-                            aria-label=": test"
-                        >
-                            test
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2022-06-20T09:00:00+09:00">
-	
-		    Jun 20, 2022
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <h2 id="csv-파일-불러오기"><a href="#csv-파일-불러오기" class="headerlink" title="csv 파일 불러오기"></a>csv 파일 불러오기</h2><ul>
-<li>csv 파일을 불러온다.</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mpg1<span class="operator">&lt;-</span>read.csv<span class="punctuation">(</span><span class="string">&quot;mpg1.csv&quot;</span><span class="punctuation">)</span></span><br><span class="line">str<span class="punctuation">(</span>mpg1<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">## &#x27;data.frame&#x27;:	234 obs. of  5 variables:</span><br><span class="line">##  $ manufacturer: chr  &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; ...</span><br><span class="line">##  $ trans       : chr  &quot;auto&quot; &quot;manual&quot; &quot;manual&quot; &quot;auto&quot; ...</span><br><span class="line">##  $ drv         : chr  &quot;f&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; ...</span><br><span class="line">##  $ cty         : int  18 21 20 21 16 18 18 18 16 20 ...</span><br><span class="line">##  $ hwy         : int  29 29 31 30 26 26 27 26 25 28 ...</span><br></pre></td></tr></table></figure>
-
-<h2 id="데이터-시각화-하기"><a href="#데이터-시각화-하기" class="headerlink" title="데이터 시각화 하기"></a>데이터 시각화 하기</h2><ul>
-<li>cty, hwy 산점도를 그려본다.</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">library<span class="punctuation">(</span>ggplot2<span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">ggplot<span class="punctuation">(</span>mpg1<span class="punctuation">,</span> aes<span class="punctuation">(</span>x <span class="operator">=</span> cty<span class="punctuation">,</span> y <span class="operator">=</span> hwy<span class="punctuation">)</span><span class="punctuation">)</span> <span class="operator">+</span> </span><br><span class="line">  geom_point<span class="punctuation">(</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/rmd_0620/unnamed-chunk-2-1.png"><!-- --></p>
-
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2022/06/20/test/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-            <a
-                href="/2022/06/20/test/"
-                aria-label=": test"
-            >
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src=""/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/06/20/0620/"
-                            aria-label=": 2022-06-20 메모"
-                        >
-                            2022-06-20 메모
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2022-06-20T09:00:00+09:00">
-	
-		    Jun 20, 2022
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <figure class="highlight plaintext"><figcaption><span>setup, include</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knitr::opts_chunk$set(echo = TRUE)</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="0620"><a href="#0620" class="headerlink" title="0620"></a>0620</h1><ul>
-<li>R Script, R Markdown 새로 만들기</li>
-</ul>
-<p><img src="/images/0620/Untitled.png" alt="Untitled"></p>
-<ul>
-<li>이 정도 남기고 다 삭제</li>
-</ul>
-<p><img src="/images/0620/Untitled%201.png" alt="Untitled"></p>
-<p><img src="/images/0620/Untitled%202.png" alt="Untitled"></p>
-<ul>
-<li>‘’’{r}   ‘’’ 안에 코드 작성해서 업로드 할 수 있다. (R Markdown 에서 가능)</li>
-</ul>
-<p><img src="/images/0620/Untitled%203.png" alt="Untitled"></p>
-<p><img src="/images/0620/Untitled%204.png" alt="Untitled"></p>
-<ul>
-<li>서열, 비서열 변수 입력</li>
-</ul>
-<p><img src="/images/0620/Untitled%205.png" alt="Untitled"></p>
-<p>서열 변수(ordered &#x3D; TRUE)</p>
-<p><img src="/images/0620/Untitled%206.png" alt="Untitled"></p>
-<p>비서열 변수</p>
-<p><img src="/images/0620/Untitled%207.png" alt="Untitled"></p>
-<ul>
-<li>class(exam$no) : exam이란 데이터에서 no라는 값의 유형을 나타내는 것</li>
-<li>str(exam) : exam이란 데이터의 전체의 값의 유형을 나타내는 것</li>
-</ul>
-<p><img src="/images/0620/Untitled%208.png" alt="Untitled"></p>
-<ul>
-<li>getwd() : 현재 저장위치 확인</li>
-<li>write.csv(x &#x3D; exam, file &#x3D; “temp.csv”) : exam의 데이터를 temp.csv로 내보내기</li>
-</ul>
-<p><img src="/images/0620/Untitled%209.png" alt="Untitled"></p>
-<ul>
-<li><strong>“t</strong> 에서 TAB키를 누르면 이렇게 “<strong>현재 Working Directory</strong>” 에서 t를 포함하는 목록들이 뜬다</li>
-</ul>
-<p><img src="/images/0620/Untitled%2010.png" alt="Untitled"></p>
-<ul>
-<li>이런 식으로 상위 폴더에서 경로 지정해서 긁어 올 수도 있다. (현재 Working Directory 위치 주의!!)</li>
-<li><a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1zoUx11rNQXLLCQb4R8NeaTgIltHnLJHy/view">https://drive.google.com/file/d/1zoUx11rNQXLLCQb4R8NeaTgIltHnLJHy/view</a> 에서 파일 다운로드, 압축풀기</li>
-<li>데이터 분량이 많은 빅데이터는 read.csv() 보다 fread() 함수가 더 빨리 불러온다.</li>
-<li>fread() 함수는 data.table 패키지에 있는 함수로,</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;data.table&quot;</span><span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>data.table<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>입력 후에 이용하면 된다.</p>
-</li>
-<li><p>엑셀 파일은 read_excel() 함수로 불러오고 마찬가지로,</p>
-</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;readxl&quot;</span><span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>readxl<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>입력 후에 이용하면 된다.</li>
-<li>아까 압축 푼 경로로 지정한 후</li>
-</ul>
-<p><img src="/images/0620/Untitled%2011.png" alt="Untitled"></p>
-<hr>
-<ul>
-<li>압축 푼 데이터 폴더에서 “mpg1.csv” 파일 복사 후 R_lecture\source 폴더에 rmd\rmd_0620 폴더 생성 후 붙여넣기</li>
-</ul>
-<p><img src="/images/0620/Untitled%2012.png" alt="Untitled"></p>
-<ul>
-<li>새 R Md 파일을 “test” 로 생성, 저장도 test로 하기</li>
-</ul>
-<p><img src="/images/0620/Untitled%2013.png" alt="Untitled"></p>
-<ul>
-<li>title 옵션 화면과 동일하게 바꾸기(0617에서 했었음)</li>
-</ul>
-<p><img src="/images/0620/Untitled%2014.png" alt="Untitled"></p>
-<ul>
-<li>R 코드 생성 후 입력</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">```&#123;r&#125;</span><br><span class="line">mpg1&lt;-read.csv(&quot;mpg1.csv&quot;)</span><br><span class="line">str(mpg1)</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 한번 더 R 코드 생성 후 입력</span><br><span class="line"></span><br><span class="line">```r</span><br><span class="line">```&#123;r&#125;</span><br><span class="line">library(ggplot2)</span><br><span class="line"></span><br><span class="line">ggplot(mpg1, aes(x = cty, y = hwy)) + </span><br><span class="line">  geom_point()</span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li>그래프가 떴다면 위쪽에 Knit 누른다. 누르면 그래프가 뜨고, 폴더, 파일들이 생성된다.</li>
-</ul>
-<p><img src="/images/0620/Untitled%2015.png" alt="Untitled"></p>
-<p><img src="/images/0620/Untitled%2016.png" alt="Untitled"></p>
-<ul>
-<li>에러 뜨면 ggplot2 가 설치 되어있는지 체크, 경로 맞게 설정 했는지 체크</li>
-</ul>
-<h1 id="블로그-이미지-업로드-하기"><a href="#블로그-이미지-업로드-하기" class="headerlink" title="블로그 이미지 업로드 하기"></a>블로그 이미지 업로드 하기</h1><ul>
-<li>생성된 test_files\figure-html 에서 사진 복사 후</li>
-</ul>
-<p><img src="/images/0620/Untitled%2017.png" alt="Untitled"></p>
-<ul>
-<li>blog\source\image 에 rmd_0620으로 동일 폴더 만든 후 사진 붙여넣기(폴더 이름 상관없음)</li>
-</ul>
-<p><img src="/images/0620/Untitled%2018.png" alt="Untitled"></p>
-<ul>
-<li>원본 rmd_0620 폴더에서 test R Md 파일 복사해서</li>
-</ul>
-<p><img src="/images/0620/Untitled%2019.png" alt="Untitled"></p>
-<ul>
-<li>blog\source_posts 에 파일 붙여넣기</li>
-</ul>
-<p><img src="/images/0620/Untitled%2020.png" alt="Untitled"></p>
-<ul>
-<li>PyCharm 으로 blog 폴더 열어서 “test.md” 파일 열기</li>
-</ul>
-<p><img src="/images/0620/Untitled%2021.png" alt="Untitled"></p>
-<ul>
-<li>밑으로 내려가서 images 폴더 안의 사진 우클릭 → 경로&#x2F;참조복사 → 콘텐츠 루트로부터의 경로 복사</li>
-</ul>
-<p><img src="/images/0620/Untitled%2022.png" alt="Untitled"></p>
-<p><img src="/images/0620/Untitled%2023.png" alt="Untitled"></p>
-<ul>
-<li>경로 복사 후 빨간색에 붙여넣기 하고 “source” 를 지운다.</li>
-</ul>
-<p><img src="/images/0620/Untitled%2024.png" alt="Untitled"></p>
-<ul>
-<li>다음과 같이 나와야 됨</li>
-</ul>
-<p><img src="/images/0620/Untitled%2025.png" alt="Untitled"></p>
-<ul>
-<li>됐으면 저장 후 hexo server로 체크</li>
-</ul>
-
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2022/06/20/0620/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-            <a
-                href="/2022/06/20/0620/"
-                aria-label=": 2022-06-20 메모"
-            >
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src=""/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/06/20/day0620/"
-                            aria-label=": 3장, 4장"
-                        >
-                            3장, 4장
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2022-06-20T09:00:00+09:00">
-	
-		    Jun 20, 2022
-    	
-    </time>
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <h1 id="3장"><a href="#3장" class="headerlink" title="3장"></a>3장</h1><h2 id="벡터의-종류"><a href="#벡터의-종류" class="headerlink" title="벡터의 종류"></a>벡터의 종류</h2><ul>
-<li><p>숫자형, 정수형, 문자형, 범주형, 논리형 벡터가 존재한다.</p>
-</li>
-<li><p>범주형 벡터 : 행렬과 비슷한 형태, 연산은 안된다.<br>ex) 성별:남자, 여자 &#x2F; 연령대:청년, 중년, 고령 의 범주를 만들어서 남자청년, 여자중년 등의 값을 만들어내는 벡터</p>
-</li>
-<li><p>논리형 벡터 : 참(TRUE), 거짓(FALSE)이라는 논리값으로 구성된 데이터. 논리값은 ‘,” 없이 대문자로 쓴다.</p>
-</li>
-<li><p>벡터 종류 확인</p>
-</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a<span class="operator">&lt;-</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="string">&quot;유형&quot;</span><span class="punctuation">,</span><span class="string">&quot;확인&quot;</span><span class="punctuation">)</span></span><br><span class="line">a</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;1&quot;    &quot;2&quot;    &quot;유형&quot; &quot;확인&quot;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">class</span><span class="punctuation">(</span>a<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;character&quot;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>숫자형 벡터</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a<span class="operator">&lt;-</span><span class="number">1</span></span><br><span class="line">a   <span class="comment">#[1]은 데이터의 위치가 벡터 중 첫 번째 라는 것을 의미</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 1</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>복수의 숫자 벡터</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a<span class="operator">&lt;-</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">)</span></span><br><span class="line">a</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 1 2 3</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>문자형 벡터</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a<span class="operator">&lt;-</span><span class="string">&quot;Hello&quot;</span></span><br><span class="line">a</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;Hello&quot;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a<span class="operator">&lt;-</span><span class="string">&quot;1&quot;</span>   <span class="comment">#여기서 1은 &#x27;숫자형&#x27;이 아닌 &#x27;문자형&#x27;이다</span></span><br><span class="line">a</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;1&quot;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>복수의 문자형 벡터</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a<span class="operator">&lt;-</span><span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;Hi&quot;</span><span class="punctuation">,</span><span class="string">&quot;Hello&quot;</span><span class="punctuation">)</span></span><br><span class="line">a</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;Hi&quot;    &quot;Hello&quot;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>숫자 + 문자 벡터(문자형 벡터로 출력)</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a<span class="operator">&lt;-</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="string">&quot;Hello&quot;</span><span class="punctuation">)</span></span><br><span class="line">a</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;1&quot;     &quot;2&quot;     &quot;Hello&quot;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a<span class="operator">&lt;-</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="string">&quot;1&quot;</span><span class="punctuation">)</span>   <span class="comment">#마찬가지로 1, &quot;1&quot; 둘다 문자형으로 출력</span></span><br><span class="line">a</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;1&quot; &quot;1&quot;</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="literal">TRUE</span><span class="punctuation">,</span><span class="literal">FALSE</span><span class="punctuation">)</span>  <span class="comment">#숫자형 + 논리형 벡터라면 숫자형 으로 출력된다.</span></span><br><span class="line">a</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 1 2 1 0</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>범주형 벡터</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a<span class="operator">&lt;-</span>factor<span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line">a                        <span class="comment">#1,2,3의 Level이 들어간 범주형 벡터 이다.</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## [1] 1 2 1 2 3</span><br><span class="line">## Levels: 1 2 3</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>벡터 만들기</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">no <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">,</span><span class="number">4</span><span class="punctuation">,</span><span class="number">5</span><span class="punctuation">)</span></span><br><span class="line">sex <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;male&quot;</span><span class="punctuation">,</span><span class="string">&quot;female&quot;</span><span class="punctuation">,</span><span class="string">&quot;male&quot;</span><span class="punctuation">,</span><span class="string">&quot;male&quot;</span><span class="punctuation">,</span><span class="string">&quot;female&quot;</span><span class="punctuation">)</span></span><br><span class="line">korean <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">87</span><span class="punctuation">,</span><span class="number">92</span><span class="punctuation">,</span><span class="number">95</span><span class="punctuation">,</span><span class="number">81</span><span class="punctuation">,</span><span class="number">87</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">exam_a <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span>no<span class="punctuation">,</span>sex<span class="punctuation">,</span>korean<span class="punctuation">)</span></span><br><span class="line">exam_a</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##   no    sex korean</span><br><span class="line">## 1  1   male     87</span><br><span class="line">## 2  2 female     92</span><br><span class="line">## 3  3   male     95</span><br><span class="line">## 4  4   male     81</span><br><span class="line">## 5  5 female     87</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>data.frame() 에서 한번에 만들기</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">exam_b <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span>no<span class="operator">=</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">,</span><span class="number">4</span><span class="punctuation">,</span><span class="number">5</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">                    sex<span class="operator">=</span><span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;male&quot;</span><span class="punctuation">,</span><span class="string">&quot;female&quot;</span><span class="punctuation">,</span><span class="string">&quot;male&quot;</span><span class="punctuation">,</span><span class="string">&quot;male&quot;</span><span class="punctuation">,</span><span class="string">&quot;female&quot;</span><span class="punctuation">)</span><span class="punctuation">,</span></span><br><span class="line">                    korean<span class="operator">=</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">87</span><span class="punctuation">,</span><span class="number">92</span><span class="punctuation">,</span><span class="number">95</span><span class="punctuation">,</span><span class="number">81</span><span class="punctuation">,</span><span class="number">87</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br><span class="line">exam_b</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##   no    sex korean</span><br><span class="line">## 1  1   male     87</span><br><span class="line">## 2  2 female     92</span><br><span class="line">## 3  3   male     95</span><br><span class="line">## 4  4   male     81</span><br><span class="line">## 5  5 female     87</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>열 추가하기</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">science <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">82</span><span class="punctuation">,</span><span class="number">93</span><span class="punctuation">,</span><span class="number">90</span><span class="punctuation">,</span><span class="number">80</span><span class="punctuation">,</span><span class="number">88</span><span class="punctuation">)</span>     <span class="comment">#science벡터 만들기</span></span><br><span class="line">exam_c <span class="operator">&lt;-</span> data.frame<span class="punctuation">(</span>no<span class="punctuation">,</span> sex<span class="punctuation">,</span> korean<span class="punctuation">,</span> science<span class="punctuation">)</span>     <span class="comment">#science 변수 추가</span></span><br><span class="line">exam_c</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##   no    sex korean science</span><br><span class="line">## 1  1   male     87      82</span><br><span class="line">## 2  2 female     92      93</span><br><span class="line">## 3  3   male     95      90</span><br><span class="line">## 4  4   male     81      80</span><br><span class="line">## 5  5 female     87      88</span><br></pre></td></tr></table></figure>
-<ul>
-<li>데이터의 위치 : 객체 이름[행,열]<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam_c<span class="punctuation">[</span><span class="number">2</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">]</span>   <span class="comment">#exam_c 데이터에서 2행(2),3열(korean)의 값을 출력</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 92</span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam_c<span class="punctuation">[</span><span class="number">2</span><span class="punctuation">,</span><span class="string">&quot;science&quot;</span><span class="punctuation">]</span>   <span class="comment">#열의 색인번호 대신 이름을 쓴 경우</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 93</span><br></pre></td></tr></table></figure></li>
-<li>복수 데이터 출력<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam_c<span class="punctuation">[</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">4</span><span class="punctuation">,</span><span class="number">5</span><span class="punctuation">)</span><span class="punctuation">,</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">2</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">)</span><span class="punctuation">]</span>   <span class="comment">#(4,5번 학생)의 (성별,국어성적)을 출력</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">##      sex korean</span><br><span class="line">## 4   male     81</span><br><span class="line">## 5 female     87</span><br></pre></td></tr></table></figure></li>
-<li>전체 행, 열의 데이터 출력<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam_c<span class="punctuation">[</span><span class="number">3</span><span class="punctuation">,</span><span class="punctuation">]</span>   <span class="comment">#[3번 학생]의 모든 정보 출력</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##   no  sex korean science</span><br><span class="line">## 3  3 male     95      90</span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam_c<span class="punctuation">[</span><span class="punctuation">,</span><span class="number">4</span><span class="punctuation">]</span>   <span class="comment">#모든 [science] 성적 출력</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 82 93 90 80 88</span><br></pre></td></tr></table></figure></li>
-<li>연속 데이터 출력<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam_c<span class="punctuation">[</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="operator">:</span><span class="number">3</span><span class="punctuation">,</span><span class="number">5</span><span class="punctuation">)</span><span class="punctuation">,</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">2</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">)</span><span class="punctuation">]</span>   <span class="comment">#(1,2,3,5번 학생)의 (성별,국어성적)을 출력</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">##      sex korean</span><br><span class="line">## 1   male     87</span><br><span class="line">## 2 female     92</span><br><span class="line">## 3   male     95</span><br><span class="line">## 5 female     87</span><br></pre></td></tr></table></figure></li>
-<li>필요없는 데이터 제거<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam_c<span class="punctuation">[</span><span class="built_in">c</span><span class="punctuation">(</span><span class="operator">-</span><span class="number">4</span><span class="punctuation">,</span><span class="operator">-</span><span class="number">5</span><span class="punctuation">)</span><span class="punctuation">,</span><span class="operator">-</span><span class="number">2</span><span class="punctuation">]</span>   <span class="comment">#(4,5번 학생을 제외한) 학생들의 (성별을 제외한) 벡터 값 출력</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##   no korean science</span><br><span class="line">## 1  1     87      82</span><br><span class="line">## 2  2     92      93</span><br><span class="line">## 3  3     95      90</span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam_c<span class="punctuation">[</span><span class="operator">-</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">4</span><span class="punctuation">,</span><span class="number">5</span><span class="punctuation">)</span><span class="punctuation">,</span><span class="operator">-</span><span class="number">2</span><span class="punctuation">]</span>   <span class="comment">#c 앞에 -를 붙여도 된다.</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##   no korean science</span><br><span class="line">## 1  1     87      82</span><br><span class="line">## 2  2     92      93</span><br><span class="line">## 3  3     95      90</span><br></pre></td></tr></table></figure></li>
-<li>특정 변수 출력<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam_c<span class="operator">$</span>science   <span class="comment">#science 값 출력</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 82 93 90 80 88</span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str<span class="punctuation">(</span>exam_c<span class="punctuation">)</span>   <span class="comment">#데이터의 모든 유형 확인가능</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## &#x27;data.frame&#x27;:	5 obs. of  4 variables:</span><br><span class="line">##  $ no     : num  1 2 3 4 5</span><br><span class="line">##  $ sex    : chr  &quot;male&quot; &quot;female&quot; &quot;male&quot; &quot;male&quot; ...</span><br><span class="line">##  $ korean : num  87 92 95 81 87</span><br><span class="line">##  $ science: num  82 93 90 80 88</span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">num_vector <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span> <span class="number">2</span><span class="punctuation">,</span> <span class="number">3</span><span class="punctuation">)</span></span><br><span class="line">num_vector2 <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">5</span><span class="punctuation">,</span> <span class="number">6</span><span class="punctuation">,</span> <span class="number">7</span><span class="punctuation">)</span></span><br><span class="line"></span><br><span class="line">num_vector<span class="punctuation">[</span><span class="number">1</span><span class="punctuation">]</span> <span class="operator">+</span> num_vector2<span class="punctuation">[</span><span class="number">2</span><span class="punctuation">]</span>   <span class="comment">#num_vector의 1번째 + num_vector2의 2번째 (즉, 1+6)</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 7</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="명목형-자료형-Factor"><a href="#명목형-자료형-Factor" class="headerlink" title="명목형 자료형 Factor"></a>명목형 자료형 Factor</h3><ul>
-<li>서울, 인천, 부산은 동등한 “비서열적 변수” 이다.<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">locaiton_vector <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;서울&quot;</span><span class="punctuation">,</span> <span class="string">&quot;인천&quot;</span><span class="punctuation">,</span> <span class="string">&quot;부산&quot;</span><span class="punctuation">)</span></span><br><span class="line">factor_location_vector <span class="operator">&lt;-</span> factor<span class="punctuation">(</span>locaiton_vector<span class="punctuation">)</span></span><br><span class="line">factor_location_vector</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## [1] 서울 인천 부산</span><br><span class="line">## Levels: 부산 서울 인천</span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">class</span><span class="punctuation">(</span>factor_location_vector<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;factor&quot;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="순서형-자료형-Factor"><a href="#순서형-자료형-Factor" class="headerlink" title="순서형 자료형 Factor"></a>순서형 자료형 Factor</h3><ul>
-<li>기온높음, 보통, 낮음 은 “서열적 변수” 이다.<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">temperature_factor <span class="operator">&lt;-</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;기온높음&quot;</span><span class="punctuation">,</span> </span><br><span class="line">                        <span class="string">&quot;기온보통&quot;</span><span class="punctuation">,</span> </span><br><span class="line">                        <span class="string">&quot;기온낮음&quot;</span><span class="punctuation">,</span> </span><br><span class="line">                        <span class="string">&quot;기온높음&quot;</span><span class="punctuation">,</span> </span><br><span class="line">                        <span class="string">&quot;기온보통&quot;</span><span class="punctuation">,</span> </span><br><span class="line">                        <span class="string">&quot;기온보통&quot;</span><span class="punctuation">)</span></span><br><span class="line">temperature_factor</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;기온높음&quot; &quot;기온보통&quot; &quot;기온낮음&quot; &quot;기온높음&quot; &quot;기온보통&quot; &quot;기온보통&quot;</span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">factor_temperature_factor <span class="operator">&lt;-</span> factor<span class="punctuation">(</span>temperature_factor<span class="punctuation">,</span> </span><br><span class="line">                                    ordered <span class="operator">=</span> <span class="literal">TRUE</span><span class="punctuation">,</span> </span><br><span class="line">                                    levels  <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;기온보통&quot;</span><span class="punctuation">,</span> </span><br><span class="line">                                                <span class="string">&quot;기온낮음&quot;</span><span class="punctuation">,</span> </span><br><span class="line">                                                <span class="string">&quot;기온높음&quot;</span><span class="punctuation">)</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="데이터-프레임"><a href="#데이터-프레임" class="headerlink" title="데이터 프레임"></a>데이터 프레임</h3><ul>
-<li>엑셀 데이터<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">no <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">,</span><span class="number">4</span><span class="punctuation">,</span><span class="number">5</span><span class="punctuation">)</span></span><br><span class="line">sex <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="string">&quot;male&quot;</span><span class="punctuation">,</span> <span class="string">&quot;female&quot;</span><span class="punctuation">,</span> <span class="string">&quot;male&quot;</span><span class="punctuation">,</span><span class="string">&quot;male&quot;</span><span class="punctuation">,</span> <span class="string">&quot;female&quot;</span><span class="punctuation">)</span></span><br><span class="line">korean <span class="operator">=</span> <span class="built_in">c</span><span class="punctuation">(</span><span class="number">87</span><span class="punctuation">,</span><span class="number">92</span><span class="punctuation">,</span><span class="number">95</span><span class="punctuation">,</span><span class="number">81</span><span class="punctuation">,</span><span class="number">87</span><span class="punctuation">)</span></span><br><span class="line">exam <span class="operator">=</span> data.frame<span class="punctuation">(</span>no<span class="punctuation">,</span> sex<span class="punctuation">,</span> korean<span class="punctuation">)</span></span><br><span class="line">exam                                   <span class="comment">#exam이란 데이터 만들기</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">##   no    sex korean</span><br><span class="line">## 1  1   male     87</span><br><span class="line">## 2  2 female     92</span><br><span class="line">## 3  3   male     95</span><br><span class="line">## 4  4   male     81</span><br><span class="line">## 5  5 female     87</span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam<span class="operator">$</span>no<span class="punctuation">[</span><span class="number">1</span><span class="punctuation">]</span>   <span class="comment">#&#x27;exam&#x27; 데이터에서 &quot;no&quot;열의 1번째 값</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 1</span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam<span class="operator">$</span>sex<span class="punctuation">[</span><span class="number">2</span><span class="punctuation">]</span>  <span class="comment">#&#x27;exam&#x27; 데이터에서 &quot;sex&quot;열의 2번째 값</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;female&quot;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="데이터-타입"><a href="#데이터-타입" class="headerlink" title="데이터 타입"></a>데이터 타입</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">class</span><span class="punctuation">(</span>exam<span class="operator">$</span>sex<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;character&quot;</span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">class</span><span class="punctuation">(</span>exam<span class="operator">$</span>no<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;numeric&quot;</span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str<span class="punctuation">(</span>exam<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">## &#x27;data.frame&#x27;:	5 obs. of  3 variables:</span><br><span class="line">##  $ no    : num  1 2 3 4 5</span><br><span class="line">##  $ sex   : chr  &quot;male&quot; &quot;female&quot; &quot;male&quot; &quot;male&quot; ...</span><br><span class="line">##  $ korean: num  87 92 95 81 87</span><br></pre></td></tr></table></figure>
-<h1 id="4장"><a href="#4장" class="headerlink" title="4장"></a>4장</h1><h2 id="데이터-불러오기"><a href="#데이터-불러오기" class="headerlink" title="데이터 불러오기"></a>데이터 불러오기</h2><ul>
-<li>데이터 내보내기 &amp; 불러오기</li>
-<li>경로<br>getwd() : 현재 지정된 디렉토리 보기<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">getwd<span class="punctuation">(</span><span class="punctuation">)</span>  <span class="comment">#현재 디렉토리 꼭 확인하기</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;C:/Users/Administor/Desktop/R_lecture/data&quot;</span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">temp <span class="operator">=</span> read.csv<span class="punctuation">(</span><span class="string">&quot;exam.csv&quot;</span><span class="punctuation">)</span></span><br><span class="line"><span class="comment"># 또는</span></span><br><span class="line">temp <span class="operator">=</span> read.csv<span class="punctuation">(</span><span class="string">&quot;C:/Users/Administor/Desktop/R_lecture/data/exam.csv&quot;</span><span class="punctuation">)</span>  </span><br><span class="line"><span class="comment"># 경로표시가 &quot;\&quot;가 아닌 &quot;/&quot;에 주의</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="p-51"><a href="#p-51" class="headerlink" title="p.51"></a>p.51</h3><ul>
-<li>R에서 예제파일 exam.csv를 객체 exam으로 입력해서 설명함.<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exam <span class="operator">=</span> read.csv<span class="punctuation">(</span><span class="string">&quot;exam.csv&quot;</span><span class="punctuation">)</span>  <span class="comment">#&quot;exam.csv&quot; 파일을 불러오기</span></span><br></pre></td></tr></table></figure></li>
-<li>ggplot2 설치<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;ggplot2&quot;</span><span class="punctuation">,</span>repos <span class="operator">=</span> <span class="string">&quot;http://cran.us.r-project.org&quot;</span><span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>ggplot2<span class="punctuation">)</span>                 <span class="comment">#ggplot2 패키지를 사용한다.</span></span><br></pre></td></tr></table></figure></li>
-<li>ggplot2에 있는 economics를 불러오는 것<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">economics <span class="operator">&lt;-</span> ggplot2<span class="operator">::</span>economics  <span class="comment">#새 객체 economics에 economics데이터를 입력</span></span><br></pre></td></tr></table></figure></li>
-<li>data.table 패키지 설치<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;data.table&quot;</span><span class="punctuation">,</span>repos <span class="operator">=</span> <span class="string">&quot;http://cran.us.r-project.org&quot;</span><span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>data.table<span class="punctuation">)</span></span><br></pre></td></tr></table></figure></li>
-<li>엑셀 패키지 다운로드<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;readxl&quot;</span><span class="punctuation">,</span>repos <span class="operator">=</span> <span class="string">&quot;http://cran.us.r-project.org&quot;</span><span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>readxl<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read_excel<span class="punctuation">(</span><span class="string">&quot;student1_xl.xlsx&quot;</span><span class="punctuation">)</span>  <span class="comment">#엑셀 파일 불러오기</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## # A tibble: 2 × 4</span><br><span class="line">##      no sex    height weight</span><br><span class="line">##   &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span><br><span class="line">## 1     1 male      172     72</span><br><span class="line">## 2     2 female    165     62</span><br></pre></td></tr></table></figure>
-
-<h3 id="p-68"><a href="#p-68" class="headerlink" title="p.68"></a>p.68</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read.csv<span class="punctuation">(</span><span class="string">&quot;student1.csv&quot;</span><span class="punctuation">)</span>  <span class="comment">#첫 줄을 제외하지 않고 불러온 경우</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##   school  Korea      X    X.1</span><br><span class="line">## 1     no    sex height weight</span><br><span class="line">## 2      1   male    172     72</span><br><span class="line">## 3      2 female    165     62</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read.csv<span class="punctuation">(</span><span class="string">&quot;student1.csv&quot;</span><span class="punctuation">,</span> skip <span class="operator">=</span> <span class="number">1</span><span class="punctuation">)</span>  <span class="comment">#첫 줄을 제외하고 불러온 경우</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">##   no    sex height weight</span><br><span class="line">## 1  1   male    172     72</span><br><span class="line">## 2  2 female    165     62</span><br></pre></td></tr></table></figure>
-
-
-<ul>
-<li>엑셀 파일에 있는 복수의 시트에서 특정 시트 불러오기</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read_excel<span class="punctuation">(</span><span class="string">&quot;student_xl.xlsx&quot;</span><span class="punctuation">)</span>  <span class="comment">#첫 번째 시트 불러오기</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## # A tibble: 2 × 4</span><br><span class="line">##      no sex    height weight</span><br><span class="line">##   &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span><br><span class="line">## 1     1 male      172     72</span><br><span class="line">## 2     2 female    165     62</span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read_excel<span class="punctuation">(</span><span class="string">&quot;student1_xl.xlsx&quot;</span><span class="punctuation">,</span> sheet<span class="operator">=</span><span class="number">2</span><span class="punctuation">)</span>  <span class="comment">#두 번째 시트 불러오기</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">## # A tibble: 2 × 4</span><br><span class="line">##      no sex    `100M`  Lift</span><br><span class="line">##   &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;</span><br><span class="line">## 1     1 male     13.2    12</span><br><span class="line">## 2     2 female   17.8     5</span><br></pre></td></tr></table></figure>
-
-<h3 id="p-69-txt-파일-불러오기"><a href="#p-69-txt-파일-불러오기" class="headerlink" title="p.69 txt 파일 불러오기"></a>p.69 txt 파일 불러오기</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">read.table<span class="punctuation">(</span><span class="string">&quot;student1.txt&quot;</span><span class="punctuation">)</span>  <span class="comment">#txt 파일 불러오기</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##   V1     V2     V3     V4</span><br><span class="line">## 1 no    sex height weight</span><br><span class="line">## 2  1   male    172     72</span><br><span class="line">## 3  2 female    165     62</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="p-73-SPSS-파일-불러오기"><a href="#p-73-SPSS-파일-불러오기" class="headerlink" title="p.73 SPSS 파일 불러오기"></a>p.73 SPSS 파일 불러오기</h3><ul>
-<li>SPSS 패키지 다운로드</li>
-</ul>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;foreign&quot;</span><span class="punctuation">,</span>repos <span class="operator">=</span> <span class="string">&quot;http://cran.us.r-project.org&quot;</span><span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>foreign<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">student <span class="operator">&lt;-</span> read.spss<span class="punctuation">(</span><span class="string">&quot;student.sav&quot;</span><span class="punctuation">)</span>  <span class="comment">#student라는 변수에 &quot;student.sav&quot; 파일을 불러온다.</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## re-encoding from CP51949</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">as.data.frame<span class="punctuation">(</span>student<span class="punctuation">)</span>  <span class="comment">#형변환</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">##   no    sex height weight</span><br><span class="line">## 1  1 male      172     72</span><br><span class="line">## 2  2 female    165     62</span><br></pre></td></tr></table></figure>
-
-<p>?write.csv : “write.csv”의 함수에 대한 도움말</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">write.csv<span class="punctuation">(</span>x <span class="operator">=</span> exam<span class="punctuation">,</span> file <span class="operator">=</span> <span class="string">&quot;exam.csv&quot;</span><span class="punctuation">)</span>  <span class="comment">#&quot;exam&quot; 데이터를 &quot;exam.csv&quot;로 저장한다</span></span><br></pre></td></tr></table></figure>
-
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2022/06/20/day0620/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-            <a
-                href="/2022/06/20/day0620/"
-                aria-label=": 3장, 4장"
-            >
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src=""/>
-                </div>
-            </a>
-            
         
     </article>
     
