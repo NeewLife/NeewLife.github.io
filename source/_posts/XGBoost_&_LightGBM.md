@@ -1,6 +1,6 @@
 ---
 title: "XGBoost & LightGBM (2016 ~ 2017)"
-/images/0630/output:
+output:
   html_document:
     keep_md: true
 disqusIdentifier: fdsF34ff34

@@ -1,6 +1,6 @@
 ---
 title: "PyCaret(함수자동생성기 세팅)"
-/images/0630/output:
+output:
   html_document:
     keep_md: true
 disqusIdentifier: fdsF34ff34

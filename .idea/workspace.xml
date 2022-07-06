@@ -4,16 +4,19 @@
     <list default="true" id="bd95f34d-94fd-4a23-ae52-da1bcaccf735" name="변경" comment="">
       <change afterPath="$PROJECT_DIR$/themes/tranquilpeak/source/_css/utils/mixins/_variables.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/all-archives/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/all-archives/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/all-categories/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/all-categories/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/archives/2022/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/2022/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/archives/2022/page/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/2022/page/2/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/archives/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/archives/page/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/page/2/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/categories/Python/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/categories/Python/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/page/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/2/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/day0706_1.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/day0706_1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/0706/output_11_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/0706/output_11_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/0706/output_12_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/0706/output_12_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/0706/output_29_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/0706/output_30_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/0706/output_33_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/0706/output_33_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/0706/output_34_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/0706/output_38_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/0706/output_38_0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/0706/output_39_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/0706/output_42_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/0706/output_42_0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/0706/output_44_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/0706/output_44_0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/0706/output_48_0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/images/0706/output_50_0.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak/_config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak/layout/_partial/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak/layout/_partial/head.ejs" afterDir="false" />

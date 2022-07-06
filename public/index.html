@@ -212,7 +212,7 @@
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time datetime="2022-07-06T17:50:55+09:00">
+    <time datetime="2022-07-06T17:16:55+09:00">
 	
 		    Jul 06, 2022
     	
@@ -257,7 +257,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="그래프-복습"><a href="#그래프-복습" class="headerlink" title="그래프 복습"></a>그래프 복습</h3><ul>
+<h2 id="그래프-복습"><a href="#그래프-복습" class="headerlink" title="그래프 복습"></a>그래프 복습</h2><ul>
 <li>수치형 데이터 시각화</li>
 <li>범주형 데이터 시각화</li>
 <li>데이터 관계 시각화</li>
@@ -274,7 +274,7 @@
 
 
 
-  <div id="df-5b465433-1f0b-40b6-93b6-6ceb58c9f8c3">
+  <div id="df-cbd7e312-07d2-4e3c-a0c0-3f889c1c6405">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -406,7 +406,7 @@
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-5b465433-1f0b-40b6-93b6-6ceb58c9f8c3')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-cbd7e312-07d2-4e3c-a0c0-3f889c1c6405')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -451,12 +451,12 @@
 
 <pre><code>  &lt;script&gt;
     const buttonEl =
-      document.querySelector(&#39;#df-5b465433-1f0b-40b6-93b6-6ceb58c9f8c3 button.colab-df-convert&#39;);
+      document.querySelector(&#39;#df-cbd7e312-07d2-4e3c-a0c0-3f889c1c6405 button.colab-df-convert&#39;);
     buttonEl.style.display =
       google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
 
     async function convertToInteractive(key) &#123;
-      const element = document.querySelector(&#39;#df-5b465433-1f0b-40b6-93b6-6ceb58c9f8c3&#39;);
+      const element = document.querySelector(&#39;#df-cbd7e312-07d2-4e3c-a0c0-3f889c1c6405&#39;);
       const dataTable =
         await google.colab.kernel.invokeFunction(&#39;convertToInteractive&#39;,
                                                  [key], &#123;&#125;);
@@ -486,7 +486,7 @@
 
 
 
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f3c9eaae050&gt;
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7ff99b22f490&gt;
 </code></pre>
 <p><img src="/images/0706/output_4_1.png" alt="png"></p>
 <ul>
@@ -497,10 +497,10 @@
 
 
 
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f3c9e973e10&gt;
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7ff99a0c97d0&gt;
 </code></pre>
 <p><img src="/images/0706/output_6_1.png" alt="png"></p>
-<h2 id="분포도"><a href="#분포도" class="headerlink" title="분포도"></a>분포도</h2><ul>
+<h4 id="분포도"><a href="#분포도" class="headerlink" title="분포도"></a>분포도</h4><ul>
 <li>수치형 데이터 한개 컬럼의 분포를 나타내는 그래프</li>
 <li>정규분포인가? 중심적으로 봐야 함<ul>
 <li>정규분포 : 평균 중심으로 좌우 대칭이 똑같은 그래프</li>
@@ -512,7 +512,7 @@
 
 
 
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x7f3c9e934450&gt;
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x7ff99a226910&gt;
 </code></pre>
 <p><img src="/images/0706/output_8_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.displot(data = titanic, x = <span class="string">&#x27;age&#x27;</span>, kde = <span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
@@ -520,10 +520,10 @@
 
 
 
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x7f3c99fdbd10&gt;
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x7ff999f65d90&gt;
 </code></pre>
 <p><img src="/images/0706/output_9_1.png" alt="png"></p>
-<h2 id="범주형-데이터-시각화"><a href="#범주형-데이터-시각화" class="headerlink" title="범주형 데이터 시각화"></a>범주형 데이터 시각화</h2><ul>
+<h3 id="범주형-데이터-시각화"><a href="#범주형-데이터-시각화" class="headerlink" title="범주형 데이터 시각화"></a>범주형 데이터 시각화</h3><ul>
 <li>x축 범주형, y축 수치데이터</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 막대 그래프</span></span><br><span class="line">sns.barplot(x = <span class="string">&#x27;class&#x27;</span>, y = <span class="string">&#x27;fare&#x27;</span>, data = titanic)</span><br><span class="line"><span class="comment"># 회색 막대기가 평균치, 위아래로 튀어나와 있는 정도를 error bar 오차막대 라고 한다.</span></span><br></pre></td></tr></table></figure>
@@ -531,7 +531,7 @@
 
 
 
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f3c99fa8550&gt;
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7ff999e93b50&gt;
 </code></pre>
 <p><img src="/images/0706/output_11_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 포인트 plot</span></span><br><span class="line">sns.pointplot(x = <span class="string">&#x27;class&#x27;</span>, y = <span class="string">&#x27;fare&#x27;</span>, data = titanic)</span><br><span class="line"><span class="comment"># 상황에 맞춰서 그래프 모형은 다르게 쓴다. 내용은 똑같음</span></span><br></pre></td></tr></table></figure>
@@ -539,7 +539,7 @@
 
 
 
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f3c99de3710&gt;
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7ff999df6410&gt;
 </code></pre>
 <p><img src="/images/0706/output_12_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 박스 plot</span></span><br><span class="line">sns.boxplot(x = <span class="string">&#x27;class&#x27;</span>, y = <span class="string">&#x27;age&#x27;</span>, data = titanic)</span><br></pre></td></tr></table></figure>
@@ -547,7 +547,7 @@
 
 
 
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f3c99d3c0d0&gt;
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7ff999ddcbd0&gt;
 </code></pre>
 <p><img src="/images/0706/output_13_1.png" alt="png"></p>
 <ul>
@@ -563,10 +563,10 @@
 
 
 
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f3c99ceb810&gt;
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7ff999d09e10&gt;
 </code></pre>
 <p><img src="/images/0706/output_15_1.png" alt="png"></p>
-<h3 id="카운트-plot"><a href="#카운트-plot" class="headerlink" title="카운트 plot"></a>카운트 plot</h3><ul>
+<h4 id="카운트-plot"><a href="#카운트-plot" class="headerlink" title="카운트 plot"></a>카운트 plot</h4><ul>
 <li>범주형 데이터의 갯수 확인 할 때 사용</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sns.countplot(x = <span class="string">&#x27;class&#x27;</span>, data = titanic)</span><br></pre></td></tr></table></figure>
@@ -574,7 +574,7 @@
 
 
 
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f3c99be36d0&gt;
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7ff999c9d290&gt;
 </code></pre>
 <p><img src="/images/0706/output_17_1.png" alt="png"></p>
 <h2 id="데이터-관계-시각화"><a href="#데이터-관계-시각화" class="headerlink" title="데이터 관계 시각화"></a>데이터 관계 시각화</h2><ul>
@@ -586,7 +586,7 @@
 
 
 
-  <div id="df-003b4933-7699-47c8-80ce-d062890a8980">
+  <div id="df-c3854d41-b9f5-448f-8697-3ef25f747e15">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -646,7 +646,7 @@
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-003b4933-7699-47c8-80ce-d062890a8980')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-c3854d41-b9f5-448f-8697-3ef25f747e15')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -691,12 +691,12 @@
 
 <pre><code>  &lt;script&gt;
     const buttonEl =
-      document.querySelector(&#39;#df-003b4933-7699-47c8-80ce-d062890a8980 button.colab-df-convert&#39;);
+      document.querySelector(&#39;#df-c3854d41-b9f5-448f-8697-3ef25f747e15 button.colab-df-convert&#39;);
     buttonEl.style.display =
       google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
 
     async function convertToInteractive(key) &#123;
-      const element = document.querySelector(&#39;#df-003b4933-7699-47c8-80ce-d062890a8980&#39;);
+      const element = document.querySelector(&#39;#df-c3854d41-b9f5-448f-8697-3ef25f747e15&#39;);
       const dataTable =
         await google.colab.kernel.invokeFunction(&#39;convertToInteractive&#39;,
                                                  [key], &#123;&#125;);
@@ -723,505 +723,13 @@
 <ul>
 <li>각 연도별, 월별 승객 수 구하기</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">flights = pd.DataFrame(</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;A&quot;</span>: [<span class="string">&quot;one&quot;</span>, <span class="string">&quot;one&quot;</span>, <span class="string">&quot;two&quot;</span>, <span class="string">&quot;three&quot;</span>] * <span class="number">3</span>,</span><br><span class="line">        <span class="string">&quot;B&quot;</span>: [<span class="string">&quot;A&quot;</span>, <span class="string">&quot;B&quot;</span>, <span class="string">&quot;C&quot;</span>] * <span class="number">4</span>,</span><br><span class="line">        <span class="string">&quot;C&quot;</span>: [<span class="string">&quot;foo&quot;</span>, <span class="string">&quot;foo&quot;</span>, <span class="string">&quot;foo&quot;</span>, <span class="string">&quot;bar&quot;</span>, <span class="string">&quot;bar&quot;</span>, <span class="string">&quot;bar&quot;</span>] * <span class="number">2</span>,</span><br><span class="line">        <span class="string">&quot;D&quot;</span>: np.random.randn(<span class="number">12</span>),</span><br><span class="line">        <span class="string">&quot;E&quot;</span>: np.random.randn(<span class="number">12</span>),</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># flights[&#x27;year&#x27;].value_counts()</span></span><br><span class="line">flights.pivot_table(flights, values = year, index=[<span class="string">&quot;year&quot;</span>, <span class="string">&quot;month&quot;</span>, <span class="string">&quot;passengers&quot;</span>])</span><br></pre></td></tr></table></figure>
-
-
-<pre><code>---------------------------------------------------------------------------
-
-NameError                                 Traceback (most recent call last)
-
-&lt;ipython-input-25-68280ba6f5d6&gt; in &lt;module&gt;()
-      1 # flights[&#39;year&#39;].value_counts()
-----&gt; 2 flights.pivot_table(flights, values = year, index=[&quot;year&quot;, &quot;month&quot;, &quot;passengers&quot;])
-
-
-NameError: name &#39;year&#39; is not defined
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 회귀선</span></span><br><span class="line">sns.regplot(x = <span class="string">&#x27;total_bill&#x27;</span>, y = <span class="string">&#x27;tip&#x27;</span>, data = tips)</span><br></pre></td></tr></table></figure>
-
-
-<pre><code>---------------------------------------------------------------------------
-
-NameError                                 Traceback (most recent call last)
-
-&lt;ipython-input-26-58aedd0d3ebf&gt; in &lt;module&gt;()
-      1 # 회귀선
-----&gt; 2 sns.regplot(x = &#39;total_bill&#39;, y = &#39;tip&#39;, data = tips)
-
-
-NameError: name &#39;tips&#39; is not defined
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">&#x27;foo&#x27;</span>: [<span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;one&#x27;</span>, <span class="string">&#x27;two&#x27;</span>, <span class="string">&#x27;two&#x27;</span>,</span><br><span class="line">                           <span class="string">&#x27;two&#x27;</span>],</span><br><span class="line">                   <span class="string">&#x27;bar&#x27;</span>: [<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>],</span><br><span class="line">                   <span class="string">&#x27;baz&#x27;</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>],</span><br><span class="line">                   <span class="string">&#x27;zoo&#x27;</span>: [<span class="string">&#x27;x&#x27;</span>, <span class="string">&#x27;y&#x27;</span>, <span class="string">&#x27;z&#x27;</span>, <span class="string">&#x27;q&#x27;</span>, <span class="string">&#x27;w&#x27;</span>, <span class="string">&#x27;t&#x27;</span>]&#125;)</span><br><span class="line">df</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-  <div id="df-80b0f574-8430-40f0-9770-1e17dfde6e90">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th &#123;
-    vertical-align: top;
-&#125;
-
-.dataframe thead th &#123;
-    text-align: right;
-&#125;
-</code></pre>
-<p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>foo</th>
-      <th>bar</th>
-      <th>baz</th>
-      <th>zoo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>one</td>
-      <td>A</td>
-      <td>1</td>
-      <td>x</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>one</td>
-      <td>B</td>
-      <td>2</td>
-      <td>y</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>one</td>
-      <td>C</td>
-      <td>3</td>
-      <td>z</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>two</td>
-      <td>A</td>
-      <td>4</td>
-      <td>q</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>two</td>
-      <td>B</td>
-      <td>5</td>
-      <td>w</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>two</td>
-      <td>C</td>
-      <td>6</td>
-      <td>t</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-80b0f574-8430-40f0-9770-1e17dfde6e90')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-<p>  &lt;svg xmlns&#x3D;”<a target="_blank" rel="noopener" href="http://www.w3.org/2000/svg&quot;">http://www.w3.org/2000/svg&quot;</a> height&#x3D;”24px”viewBox&#x3D;”0 0 24 24”<br>       width&#x3D;”24px”&gt;<br>    <path d="M0 0h24v24H0V0z" fill="none"/><br>    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/><br>  </svg><br>      </button></p>
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-<pre><code>  &lt;script&gt;
-    const buttonEl =
-      document.querySelector(&#39;#df-80b0f574-8430-40f0-9770-1e17dfde6e90 button.colab-df-convert&#39;);
-    buttonEl.style.display =
-      google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
-
-    async function convertToInteractive(key) &#123;
-      const element = document.querySelector(&#39;#df-80b0f574-8430-40f0-9770-1e17dfde6e90&#39;);
-      const dataTable =
-        await google.colab.kernel.invokeFunction(&#39;convertToInteractive&#39;,
-                                                 [key], &#123;&#125;);
-      if (!dataTable) return;
-
-      const docLinkHtml = &#39;Like what you see? Visit the &#39; +
-        &#39;&lt;a target=&quot;_blank&quot; href=https://colab.research.google.com/notebooks/data_table.ipynb&gt;data table notebook&lt;/a&gt;&#39;
-        + &#39; to learn more about interactive tables.&#39;;
-      element.innerHTML = &#39;&#39;;
-      dataTable[&#39;output_type&#39;] = &#39;display_data&#39;;
-      await google.colab.output.renderOutput(dataTable, element);
-      const docLink = document.createElement(&#39;div&#39;);
-      docLink.innerHTML = docLinkHtml;
-      element.appendChild(docLink);
-    &#125;
-  &lt;/script&gt;
-&lt;/div&gt;
-</code></pre>
-  </div>
-
-
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df.pivot(index = <span class="string">&#x27;foo&#x27;</span>, columns = <span class="string">&#x27;bar&#x27;</span>, values = <span class="string">&#x27;baz&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-  <div id="df-c958c8f1-707a-4f41-9795-66ef57863481">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th &#123;
-    vertical-align: top;
-&#125;
-
-.dataframe thead th &#123;
-    text-align: right;
-&#125;
-</code></pre>
-<p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th>bar</th>
-      <th>A</th>
-      <th>B</th>
-      <th>C</th>
-    </tr>
-    <tr>
-      <th>foo</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>one</th>
-      <td>1</td>
-      <td>2</td>
-      <td>3</td>
-    </tr>
-    <tr>
-      <th>two</th>
-      <td>4</td>
-      <td>5</td>
-      <td>6</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-c958c8f1-707a-4f41-9795-66ef57863481')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-<p>  &lt;svg xmlns&#x3D;”<a target="_blank" rel="noopener" href="http://www.w3.org/2000/svg&quot;">http://www.w3.org/2000/svg&quot;</a> height&#x3D;”24px”viewBox&#x3D;”0 0 24 24”<br>       width&#x3D;”24px”&gt;<br>    <path d="M0 0h24v24H0V0z" fill="none"/><br>    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/><br>  </svg><br>      </button></p>
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-<pre><code>  &lt;script&gt;
-    const buttonEl =
-      document.querySelector(&#39;#df-c958c8f1-707a-4f41-9795-66ef57863481 button.colab-df-convert&#39;);
-    buttonEl.style.display =
-      google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
-
-    async function convertToInteractive(key) &#123;
-      const element = document.querySelector(&#39;#df-c958c8f1-707a-4f41-9795-66ef57863481&#39;);
-      const dataTable =
-        await google.colab.kernel.invokeFunction(&#39;convertToInteractive&#39;,
-                                                 [key], &#123;&#125;);
-      if (!dataTable) return;
-
-      const docLinkHtml = &#39;Like what you see? Visit the &#39; +
-        &#39;&lt;a target=&quot;_blank&quot; href=https://colab.research.google.com/notebooks/data_table.ipynb&gt;data table notebook&lt;/a&gt;&#39;
-        + &#39; to learn more about interactive tables.&#39;;
-      element.innerHTML = &#39;&#39;;
-      dataTable[&#39;output_type&#39;] = &#39;display_data&#39;;
-      await google.colab.output.renderOutput(dataTable, element);
-      const docLink = document.createElement(&#39;div&#39;);
-      docLink.innerHTML = docLinkHtml;
-      element.appendChild(docLink);
-    &#125;
-  &lt;/script&gt;
-&lt;/div&gt;
-</code></pre>
-  </div>
-
-
-
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flights</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-  <div id="df-5eb1578e-97aa-476f-aa6f-ce955869e387">
-    <div class="colab-df-container">
-      <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-<pre><code>.dataframe tbody tr th &#123;
-    vertical-align: top;
-&#125;
-
-.dataframe thead th &#123;
-    text-align: right;
-&#125;
-</code></pre>
-<p></style></p>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>year</th>
-      <th>month</th>
-      <th>passengers</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1949</td>
-      <td>Jan</td>
-      <td>112</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>1949</td>
-      <td>Feb</td>
-      <td>118</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1949</td>
-      <td>Mar</td>
-      <td>132</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>1949</td>
-      <td>Apr</td>
-      <td>129</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>1949</td>
-      <td>May</td>
-      <td>121</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>139</th>
-      <td>1960</td>
-      <td>Aug</td>
-      <td>606</td>
-    </tr>
-    <tr>
-      <th>140</th>
-      <td>1960</td>
-      <td>Sep</td>
-      <td>508</td>
-    </tr>
-    <tr>
-      <th>141</th>
-      <td>1960</td>
-      <td>Oct</td>
-      <td>461</td>
-    </tr>
-    <tr>
-      <th>142</th>
-      <td>1960</td>
-      <td>Nov</td>
-      <td>390</td>
-    </tr>
-    <tr>
-      <th>143</th>
-      <td>1960</td>
-      <td>Dec</td>
-      <td>432</td>
-    </tr>
-  </tbody>
-</table>
-<p>144 rows × 3 columns</p>
-</div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-5eb1578e-97aa-476f-aa6f-ce955869e387')"
-              title="Convert this dataframe to an interactive table."
-              style="display:none;">
-
-<p>  &lt;svg xmlns&#x3D;”<a target="_blank" rel="noopener" href="http://www.w3.org/2000/svg&quot;">http://www.w3.org/2000/svg&quot;</a> height&#x3D;”24px”viewBox&#x3D;”0 0 24 24”<br>       width&#x3D;”24px”&gt;<br>    <path d="M0 0h24v24H0V0z" fill="none"/><br>    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/><br>  </svg><br>      </button></p>
-  <style>
-    .colab-df-container {
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-    }
-
-    .colab-df-convert {
-      background-color: #E8F0FE;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      fill: #1967D2;
-      height: 32px;
-      padding: 0 0 0 0;
-      width: 32px;
-    }
-
-    .colab-df-convert:hover {
-      background-color: #E2EBFA;
-      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
-      fill: #174EA6;
-    }
-
-    [theme=dark] .colab-df-convert {
-      background-color: #3B4455;
-      fill: #D2E3FC;
-    }
-
-    [theme=dark] .colab-df-convert:hover {
-      background-color: #434B5C;
-      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
-      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
-      fill: #FFFFFF;
-    }
-  </style>
-
-<pre><code>  &lt;script&gt;
-    const buttonEl =
-      document.querySelector(&#39;#df-5eb1578e-97aa-476f-aa6f-ce955869e387 button.colab-df-convert&#39;);
-    buttonEl.style.display =
-      google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
-
-    async function convertToInteractive(key) &#123;
-      const element = document.querySelector(&#39;#df-5eb1578e-97aa-476f-aa6f-ce955869e387&#39;);
-      const dataTable =
-        await google.colab.kernel.invokeFunction(&#39;convertToInteractive&#39;,
-                                                 [key], &#123;&#125;);
-      if (!dataTable) return;
-
-      const docLinkHtml = &#39;Like what you see? Visit the &#39; +
-        &#39;&lt;a target=&quot;_blank&quot; href=https://colab.research.google.com/notebooks/data_table.ipynb&gt;data table notebook&lt;/a&gt;&#39;
-        + &#39; to learn more about interactive tables.&#39;;
-      element.innerHTML = &#39;&#39;;
-      dataTable[&#39;output_type&#39;] = &#39;display_data&#39;;
-      await google.colab.output.renderOutput(dataTable, element);
-      const docLink = document.createElement(&#39;div&#39;);
-      docLink.innerHTML = docLinkHtml;
-      element.appendChild(docLink);
-    &#125;
-  &lt;/script&gt;
-&lt;/div&gt;
-</code></pre>
-  </div>
-
-
-
-
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># flights[&#x27;year&#x27;].value_counts()</span></span><br><span class="line">flights_pivot = flights.pivot(index = <span class="string">&#x27;month&#x27;</span>, columns = <span class="string">&#x27;year&#x27;</span>, values = <span class="string">&#x27;passengers&#x27;</span>)</span><br><span class="line">flights_pivot</span><br></pre></td></tr></table></figure>
 
 
 
 
 
-  <div id="df-5ba8f5cb-7c6e-4bee-9a11-9ff5ca0e5f50">
+  <div id="df-e33832bd-f6d9-469d-92ff-6457ffffde82">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -1455,7 +963,7 @@ NameError: name &#39;tips&#39; is not defined
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-5ba8f5cb-7c6e-4bee-9a11-9ff5ca0e5f50')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-e33832bd-f6d9-469d-92ff-6457ffffde82')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -1500,12 +1008,12 @@ NameError: name &#39;tips&#39; is not defined
 
 <pre><code>  &lt;script&gt;
     const buttonEl =
-      document.querySelector(&#39;#df-5ba8f5cb-7c6e-4bee-9a11-9ff5ca0e5f50 button.colab-df-convert&#39;);
+      document.querySelector(&#39;#df-e33832bd-f6d9-469d-92ff-6457ffffde82 button.colab-df-convert&#39;);
     buttonEl.style.display =
       google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
 
     async function convertToInteractive(key) &#123;
-      const element = document.querySelector(&#39;#df-5ba8f5cb-7c6e-4bee-9a11-9ff5ca0e5f50&#39;);
+      const element = document.querySelector(&#39;#df-e33832bd-f6d9-469d-92ff-6457ffffde82&#39;);
       const dataTable =
         await google.colab.kernel.invokeFunction(&#39;convertToInteractive&#39;,
                                                  [key], &#123;&#125;);
@@ -1535,24 +1043,24 @@ NameError: name &#39;tips&#39; is not defined
 
 
 
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd6a5c5ca50&gt;
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7ff999c0ff90&gt;
 </code></pre>
-<p><img src="/images/0706/output_29_1.png" alt="png"></p>
+<p><img src="/images/0706/output_23_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 라인플롯</span></span><br><span class="line">sns.lineplot(x = <span class="string">&#x27;year&#x27;</span>, y = <span class="string">&#x27;passengers&#x27;</span>, data = flights)</span><br></pre></td></tr></table></figure>
 
 
 
 
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd6a0d0e890&gt;
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7ff999bf9d90&gt;
 </code></pre>
-<p><img src="/images/0706/output_30_1.png" alt="png"></p>
+<p><img src="/images/0706/output_24_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 산점도</span></span><br><span class="line">tips = sns.load_dataset(<span class="string">&#x27;tips&#x27;</span>)</span><br><span class="line">tips.head()</span><br></pre></td></tr></table></figure>
 
 
 
 
 
-  <div id="df-50af68bc-5468-436d-b90b-9d2c60168a5d">
+  <div id="df-ca53f1d3-b076-478e-a68c-226957b2fa6b">
     <div class="colab-df-container">
       <div>
 <style scoped>
@@ -1636,7 +1144,7 @@ NameError: name &#39;tips&#39; is not defined
   </tbody>
 </table>
 </div>
-      <button class="colab-df-convert" onclick="convertToInteractive('df-50af68bc-5468-436d-b90b-9d2c60168a5d')"
+      <button class="colab-df-convert" onclick="convertToInteractive('df-ca53f1d3-b076-478e-a68c-226957b2fa6b')"
               title="Convert this dataframe to an interactive table."
               style="display:none;">
 
@@ -1681,12 +1189,12 @@ NameError: name &#39;tips&#39; is not defined
 
 <pre><code>  &lt;script&gt;
     const buttonEl =
-      document.querySelector(&#39;#df-50af68bc-5468-436d-b90b-9d2c60168a5d button.colab-df-convert&#39;);
+      document.querySelector(&#39;#df-ca53f1d3-b076-478e-a68c-226957b2fa6b button.colab-df-convert&#39;);
     buttonEl.style.display =
       google.colab.kernel.accessAllowed ? &#39;block&#39; : &#39;none&#39;;
 
     async function convertToInteractive(key) &#123;
-      const element = document.querySelector(&#39;#df-50af68bc-5468-436d-b90b-9d2c60168a5d&#39;);
+      const element = document.querySelector(&#39;#df-ca53f1d3-b076-478e-a68c-226957b2fa6b&#39;);
       const dataTable =
         await google.colab.kernel.invokeFunction(&#39;convertToInteractive&#39;,
                                                  [key], &#123;&#125;);
@@ -1718,17 +1226,17 @@ NameError: name &#39;tips&#39; is not defined
 
 
 
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd6a0a59310&gt;
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7ff999b3ab10&gt;
 </code></pre>
-<p><img src="/images/0706/output_33_1.png" alt="png"></p>
+<p><img src="/images/0706/output_27_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 회귀선</span></span><br><span class="line">sns.regplot(x = <span class="string">&#x27;total_bill&#x27;</span>, y = <span class="string">&#x27;tip&#x27;</span>, data = tips)</span><br></pre></td></tr></table></figure>
 
 
 
 
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fd6a09d0990&gt;
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7ff999f45350&gt;
 </code></pre>
-<p><img src="/images/0706/output_34_1.png" alt="png"></p>
+<p><img src="/images/0706/output_28_1.png" alt="png"></p>
 <h2 id="머신러닝-리뷰"><a href="#머신러닝-리뷰" class="headerlink" title="머신러닝 리뷰"></a>머신러닝 리뷰</h2><ul>
 <li>가장 인기 있는 모델<ul>
 <li>LightGBM, XGboost</li>
@@ -1796,15 +1304,19 @@ NameError: name &#39;tips&#39; is not defined
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.scatter(data[<span class="string">&#x27;X&#x27;</span>], data[<span class="string">&#x27;Y&#x27;</span>])</span><br><span class="line">plt.show</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/images/0706/output_38_0.png" alt="png"></p>
+
+
+<pre><code>&lt;function matplotlib.pyplot.show&gt;
+</code></pre>
+<p><img src="/images/0706/output_32_1.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns </span><br><span class="line">sns.scatterplot(x = <span class="string">&#x27;X&#x27;</span>, y = <span class="string">&#x27;Y&#x27;</span>, data = data)</span><br></pre></td></tr></table></figure>
 
 
 
 
-<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f3c99987b90&gt;
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7ff99996ef10&gt;
 </code></pre>
-<p><img src="/images/0706/output_39_1.png" alt="png"></p>
+<p><img src="/images/0706/output_33_1.png" alt="png"></p>
 <h4 id="선형회귀-모형-훈련"><a href="#선형회귀-모형-훈련" class="headerlink" title="선형회귀 모형 훈련"></a>선형회귀 모형 훈련</h4><ul>
 <li>모형 생성 후, 회귀계수 3과 y절편 4에 근사한 값이 나와야 함</li>
 </ul>
@@ -1816,11 +1328,11 @@ NameError: name &#39;tips&#39; is not defined
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 예측값</span></span><br><span class="line">y_pred = lr_model.predict(x)</span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.scatter(x, y)</span><br><span class="line">ax.plot(x, y_pred, color=<span class="string">&#x27;green&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># slope, intercept </span></span><br><span class="line">label = <span class="string">&#x27;slope: &#123;&#125;\nintercept: &#123;&#125;&#x27;</span>.<span class="built_in">format</span>(<span class="built_in">round</span>(lr_model.coef_[<span class="number">0</span>][<span class="number">0</span>], <span class="number">2</span>), <span class="built_in">round</span>(lr_model.intercept_[<span class="number">0</span>], <span class="number">2</span>))</span><br><span class="line">ax.text(<span class="number">3.5</span>, <span class="number">4</span>, label, style =<span class="string">&#x27;italic&#x27;</span>, </span><br><span class="line">        fontsize = <span class="number">10</span>, color =<span class="string">&quot;green&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/images/0706/output_42_0.png" alt="png"></p>
+<p><img src="/images/0706/output_36_0.png" alt="png"></p>
 <h3 id="로지스틱-회귀"><a href="#로지스틱-회귀" class="headerlink" title="로지스틱 회귀"></a>로지스틱 회귀</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sigmoid</span>(<span class="params">arr, scale=<span class="number">1</span></span>):</span><br><span class="line">    arr = np.asarray(arr)</span><br><span class="line">    result = <span class="number">1</span>/(<span class="number">1</span> + np.exp(-arr*scale))</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">x = np.linspace(-<span class="number">6</span>, <span class="number">6</span>)</span><br><span class="line">y = sigmoid(x)</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.plot(x, y)</span><br><span class="line">ax.grid(which=<span class="string">&#x27;major&#x27;</span>, axis=<span class="string">&#x27;y&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>)</span><br><span class="line">ax.axvline(x=<span class="number">0</span>, color=<span class="string">&#x27;r&#x27;</span>, linestyle=<span class="string">&#x27;--&#x27;</span>, linewidth=<span class="number">1</span>)</span><br><span class="line">ax.set_ylim(<span class="number">0</span>,<span class="number">1</span>)</span><br><span class="line">ax.set_yticks([<span class="number">0</span>, <span class="number">1</span>, <span class="number">0.5</span>])</span><br><span class="line">ax.text(<span class="number">0</span>-<span class="number">0.1</span>, <span class="number">0.5</span>, <span class="string">&#x27;0.5&#x27;</span>, ha=<span class="string">&#x27;right&#x27;</span>)</span><br><span class="line">ax.set_title(<span class="string">&#x27;Sigmoid Graph&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/images/0706/output_44_0.png" alt="png"></p>
+<p><img src="/images/0706/output_38_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 라이브러리 불러오기</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.linear_model <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> classification_report, confusion_matrix</span><br><span class="line"></span><br><span class="line"><span class="comment"># 데이터 가져오기</span></span><br><span class="line">x = np.arange(<span class="number">10</span>).reshape(-<span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line">y = np.array([<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 모델 생성 및 학습</span></span><br><span class="line">model = LogisticRegression(solver=<span class="string">&#x27;liblinear&#x27;</span>, C=<span class="number">10.0</span>, random_state=<span class="number">0</span>)</span><br><span class="line">model.fit(x, y)</span><br></pre></td></tr></table></figure>
 
 
@@ -1849,7 +1361,7 @@ NameError: name &#39;tips&#39; is not defined
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.scatter(x, y)</span><br><span class="line">ax.plot(x, p_pred[:, <span class="number">1</span>], color = <span class="string">&#x27;black&#x27;</span>,  marker=<span class="string">&#x27;o&#x27;</span>, markersize=<span class="number">6</span>)</span><br><span class="line">ax.plot()</span><br><span class="line"></span><br><span class="line">ax.set_xticks(x)</span><br><span class="line">ax.set_yticks(np.arange(<span class="number">0</span>, <span class="number">1.1</span>, <span class="number">0.1</span>))</span><br><span class="line"></span><br><span class="line">ax.grid(which=<span class="string">&#x27;major&#x27;</span>, alpha=<span class="number">0.5</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/images/0706/output_48_0.png" alt="png"></p>
+<p><img src="/images/0706/output_42_0.png" alt="png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conf_m = confusion_matrix(y, y_pred)</span><br><span class="line"><span class="built_in">print</span>(conf_m)</span><br></pre></td></tr></table></figure>
 
 <pre><code>[[5 0]
@@ -1858,7 +1370,7 @@ NameError: name &#39;tips&#39; is not defined
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">cm = confusion_matrix(y, y_pred)</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots(figsize=(<span class="number">8</span>, <span class="number">8</span>))</span><br><span class="line">ax.imshow(cm, cmap = <span class="string">&#x27;Pastel2&#x27;</span>)</span><br><span class="line">ax.grid(<span class="literal">False</span>)</span><br><span class="line">ax.xaxis.<span class="built_in">set</span>(ticks=(<span class="number">0</span>, <span class="number">1</span>), ticklabels=(<span class="string">&#x27;Predicted 0&#x27;</span>, <span class="string">&#x27;Predicted 1&#x27;</span>))</span><br><span class="line">ax.yaxis.<span class="built_in">set</span>(ticks=(<span class="number">0</span>, <span class="number">1</span>), ticklabels=(<span class="string">&#x27;Actual 0&#x27;</span>, <span class="string">&#x27;Actual 1&#x27;</span>))</span><br><span class="line">ax.set_ylim(<span class="number">1.5</span>, -<span class="number">0.5</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>):</span><br><span class="line">        ax.text(j, i, cm[i, j], ha=<span class="string">&#x27;center&#x27;</span>, va=<span class="string">&#x27;center&#x27;</span>, color=<span class="string">&#x27;black&#x27;</span>, fontsize=<span class="number">20</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="/images/0706/output_50_0.png" alt="png"></p>
+<p><img src="/images/0706/output_44_0.png" alt="png"></p>
 <h2 id="결정-트리"><a href="#결정-트리" class="headerlink" title="결정 트리"></a>결정 트리</h2><ul>
 <li>분류와 회귀 문제에 모두 사용 가능</li>
 </ul>
