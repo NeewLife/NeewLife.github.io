@@ -3,6 +3,17 @@
   <component name="ChangeListManager">
     <list default="true" id="bd95f34d-94fd-4a23-ae52-da1bcaccf735" name="변경" comment="">
       <change afterPath="$PROJECT_DIR$/themes/tranquilpeak/source/_css/utils/mixins/_variables.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/all-archives/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/all-archives/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/all-categories/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/all-categories/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/archives/2022/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/2022/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/archives/2022/page/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/2022/page/2/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/archives/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/archives/page/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/page/2/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/categories/Python/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/categories/Python/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/page/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/2/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak/_config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak/layout/_partial/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak/layout/_partial/head.ejs" afterDir="false" />

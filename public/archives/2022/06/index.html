@@ -205,192 +205,7 @@
                     
                         <a
                             class="link-unstyled"
-                            href="/2022/06/29/day0629_ml/"
-                            aria-label=": day 0629 개인복습"
-                        >
-                            day 0629 개인복습
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2022-06-29T18:59:30+09:00">
-	
-		    Jun 29, 2022
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/%EB%B3%B5%EC%8A%B5%ED%95%A0-%EA%B2%83%EB%93%A4/">복습할 것들</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-content">
-                    <h2 id="파이썬-주요-라이브러리"><a href="#파이썬-주요-라이브러리" class="headerlink" title="파이썬 주요 라이브러리"></a>파이썬 주요 라이브러리</h2><ul>
-<li>Machine Learning<ul>
-<li>정형데이터 </li>
-<li>사이킷런 (Scikit-Learn)</li>
-</ul>
-</li>
-<li>Deep Learning<ul>
-<li>비정형데이터</li>
-<li>Tensorflow(구글) vs Pytorch(페이스북)</li>
-<li>혼공머 : Tensorflow </li>
-<li>실제 상용서비스 - Tensorflow vs R&amp;D - Pytorch</li>
-</ul>
-</li>
-</ul>
-<h2 id="생선분류"><a href="#생선분류" class="headerlink" title="생선분류"></a>생선분류</h2><ul>
-<li><p>p.45</p>
-</li>
-<li><p>도미, 곤들매기, 농어, 등등 </p>
-</li>
-<li><p>이 생선들을 프로그램으로 분류한다. </p>
-</li>
-<li><p>30cm 도미라고 알려줘라</p>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fish_length = <span class="number">31</span></span><br><span class="line"><span class="keyword">if</span> fish_length &gt;= <span class="number">30</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;도미&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<pre><code>도미
-</code></pre>
-<ul>
-<li>p.47</li>
-<li>도미데이터</li>
-</ul>
-<h2 id="데이터-수집"><a href="#데이터-수집" class="headerlink" title="데이터 수집"></a>데이터 수집</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 도미의 길이</span></span><br><span class="line">bream_length = [<span class="number">25.4</span>, <span class="number">26.3</span>, <span class="number">26.5</span>, <span class="number">29.0</span>, <span class="number">29.0</span>, <span class="number">29.7</span>, <span class="number">29.7</span>, <span class="number">30.0</span>, <span class="number">30.0</span>, <span class="number">30.7</span>, <span class="number">31.0</span>, <span class="number">31.0</span>, <span class="number">31.5</span>, <span class="number">32.0</span>, <span class="number">32.0</span>, <span class="number">32.0</span>, <span class="number">33.0</span>, <span class="number">33.0</span>, <span class="number">33.5</span>, <span class="number">33.5</span>, <span class="number">34.0</span>, <span class="number">34.0</span>, <span class="number">34.5</span>, <span class="number">35.0</span>, <span class="number">35.0</span>, <span class="number">35.0</span>, <span class="number">35.0</span>, <span class="number">36.0</span>, <span class="number">36.0</span>, <span class="number">37.0</span>, <span class="number">38.5</span>, <span class="number">38.5</span>, <span class="number">39.5</span>, <span class="number">41.0</span>, <span class="number">41.0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 도미의 무게</span></span><br><span class="line">bream_weight = [<span class="number">242.0</span>, <span class="number">290.0</span>, <span class="number">340.0</span>, <span class="number">363.0</span>, <span class="number">430.0</span>, <span class="number">450.0</span>, <span class="number">500.0</span>, <span class="number">390.0</span>, <span class="number">450.0</span>, <span class="number">500.0</span>, <span class="number">475.0</span>, <span class="number">500.0</span>, <span class="number">500.0</span>, <span class="number">340.0</span>, <span class="number">600.0</span>, <span class="number">600.0</span>, <span class="number">700.0</span>, <span class="number">700.0</span>, <span class="number">610.0</span>, <span class="number">650.0</span>, <span class="number">575.0</span>, <span class="number">685.0</span>, <span class="number">620.0</span>, <span class="number">680.0</span>, <span class="number">700.0</span>, <span class="number">725.0</span>, <span class="number">720.0</span>, <span class="number">714.0</span>, <span class="number">850.0</span>, <span class="number">1000.0</span>, <span class="number">920.0</span>, <span class="number">955.0</span>, <span class="number">925.0</span>, <span class="number">975.0</span>, <span class="number">950.0</span>]</span><br></pre></td></tr></table></figure>
-
-<h2 id="데이터-가공"><a href="#데이터-가공" class="headerlink" title="데이터 가공"></a>데이터 가공</h2><ul>
-<li>여기서는 생략</li>
-</ul>
-<h2 id="데이터-시각화"><a href="#데이터-시각화" class="headerlink" title="데이터 시각화"></a>데이터 시각화</h2><ul>
-<li>여러 인사이트 확인 위해 시각화, 통계 수치 계산</li>
-<li>탐색적 자료 분석(EDA : Exploratory Data Analysis)</li>
-<li>얘는 참고만 한다.</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">plt.scatter(bream_length, bream_weight)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;length&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;weight&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/images/0629/output_9_0.png" alt="png"></p>
-<ul>
-<li>파이썬 시각화는 객체지향으로 한다. </li>
-<li>이유 : 좀 더 이쁘고, 아름답게 다듬으려면… </li>
-<li>캐글 시각화, 참고할 때, 아래와 같이 하는 분들이 많음</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.scatter(bream_length, bream_weight)</span><br><span class="line">ax.set_xlabel(<span class="string">&#x27;length&#x27;</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">&#x27;weight&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/images/0629/output_11_0.png" alt="png"></p>
-<ul>
-<li>빙어 데이터 준비하기</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">smelt_length = [<span class="number">9.8</span>, <span class="number">10.5</span>, <span class="number">10.6</span>, <span class="number">11.0</span>, <span class="number">11.2</span>, <span class="number">11.3</span>, <span class="number">11.8</span>, <span class="number">11.8</span>, <span class="number">12.0</span>, <span class="number">12.2</span>, <span class="number">12.4</span>, <span class="number">13.0</span>, <span class="number">14.3</span>, <span class="number">15.0</span>]</span><br><span class="line">smelt_weight = [<span class="number">6.7</span>, <span class="number">7.5</span>, <span class="number">7.0</span>, <span class="number">9.7</span>, <span class="number">9.8</span>, <span class="number">8.7</span>, <span class="number">10.0</span>, <span class="number">9.9</span>, <span class="number">9.8</span>, <span class="number">12.2</span>, <span class="number">13.4</span>, <span class="number">12.2</span>, <span class="number">19.7</span>, <span class="number">19.9</span>]</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>시각화 </li>
-<li>p.50 시각화</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.scatter(bream_length, bream_weight)</span><br><span class="line">ax.scatter(smelt_length, smelt_weight)</span><br><span class="line">ax.set_xlabel(<span class="string">&#x27;length&#x27;</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">&#x27;weight&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-
-
-<p><img src="/images/0629/output_15_0.png" alt="png"></p>
-<ul>
-<li>두개의 리스트 합치기</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">length = bream_length + smelt_length </span><br><span class="line">weight = bream_weight + smelt_weight </span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>2차원 리스트로 만든다.</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fish_data = [[l, w] <span class="keyword">for</span> l, w <span class="keyword">in</span> <span class="built_in">zip</span>(length, weight)]</span><br><span class="line">fish_data[<span class="number">0</span>:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>[[25.4, 242.0], [26.3, 290.0], [26.5, 340.0], [29.0, 363.0], [29.0, 430.0]]
-</code></pre>
-<ul>
-<li>라벨링을 해준다 &#x3D; 지도 해준다 &#x3D; 지도학습</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fish_target = [<span class="number">1</span>] * <span class="number">35</span> + [<span class="number">0</span>] * <span class="number">14</span></span><br><span class="line"><span class="built_in">print</span>(fish_target)</span><br></pre></td></tr></table></figure>
-
-<pre><code>[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-</code></pre>
-<h2 id="모델링"><a href="#모델링" class="headerlink" title="모델링"></a>모델링</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># 클래스 인스턴스화</span></span><br><span class="line">kn = KNeighborsClassifier()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 모형 학습</span></span><br><span class="line">kn.fit(fish_data, fish_target)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>1.0
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 예측 정확도</span></span><br><span class="line">kn.score(fish_data, fish_target)</span><br></pre></td></tr></table></figure>
-
-
-
-
-<pre><code>1.0
-</code></pre>
-<ul>
-<li>실제 예측을 해보자</li>
-<li>새로운 물고기 도착했습니다. <ul>
-<li>길이 : 30, 몸무게 : 600</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ac_length = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;물고기 길이를 입력하세요...&quot;</span>))</span><br><span class="line">ac_weight = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;물고기 무게를 입력하세요...&quot;</span>))</span><br><span class="line"></span><br><span class="line">preds = <span class="built_in">int</span>(kn.predict([[ac_length, ac_weight]]))</span><br><span class="line"><span class="built_in">print</span>(preds)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> preds == <span class="number">1</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;도미&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;빙어&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<pre><code>물고기 길이를 입력하세요...30
-물고기 무게를 입력하세요...600
-1
-도미
-</code></pre>
-
-                    
-                        
-
-
-                    
-                    
-                        <p>
-                            <a
-                                href="/2022/06/29/day0629_ml/#post-footer"
-                                class="postShorten-excerpt_link link"
-                                aria-label=""
-                            >
-                                Comment and share
-                            </a>
-                        </p>
-                    
-                </div>
-            
-        </div>
-        
-            <a
-                href="/2022/06/29/day0629_ml/"
-                aria-label=": day 0629 개인복습"
-            >
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://neewlife.github.io/2022/06/29/day0629_ml/source/images/0629/Untitled.png"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-bottom">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/06/29/day0630_ch3/"
+                            href="/2022/06/30/day0630_ch3/"
                             aria-label=": day 0630_1"
                         >
                             day 0630_1
@@ -398,9 +213,9 @@
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time datetime="2022-06-29T18:59:30+09:00">
+    <time datetime="2022-06-30T17:53:30+09:00">
 	
-		    Jun 29, 2022
+		    Jun 30, 2022
     	
     </time>
     
@@ -515,7 +330,7 @@
                     
                         <p>
                             <a
-                                href="/2022/06/29/day0630_ch3/#post-footer"
+                                href="/2022/06/30/day0630_ch3/#post-footer"
                                 class="postShorten-excerpt_link link"
                                 aria-label=""
                             >
@@ -528,11 +343,11 @@
         </div>
         
             <a
-                href="/2022/06/29/day0630_ch3/"
+                href="/2022/06/30/day0630_ch3/"
                 aria-label=": day 0630_1"
             >
                 <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://neewlife.github.io/2022/06/29/day0630_ch3/source/images/0629/Untitled.png"/>
+                    <img alt="" src="http://neewlife.github.io/2022/06/30/day0630_ch3/source/images/0629/Untitled.png"/>
                 </div>
             </a>
             
@@ -548,7 +363,7 @@
                     
                         <a
                             class="link-unstyled"
-                            href="/2022/06/29/day0630_ml/"
+                            href="/2022/06/30/day0630_ml/"
                             aria-label=": day 0630"
                         >
                             day 0630
@@ -556,9 +371,9 @@
                     
                 </h1>
                 <div class="postShorten-meta">
-    <time datetime="2022-06-29T18:59:30+09:00">
+    <time datetime="2022-06-30T17:45:30+09:00">
 	
-		    Jun 29, 2022
+		    Jun 30, 2022
     	
     </time>
     
@@ -907,7 +722,7 @@
                     
                         <p>
                             <a
-                                href="/2022/06/29/day0630_ml/#post-footer"
+                                href="/2022/06/30/day0630_ml/#post-footer"
                                 class="postShorten-excerpt_link link"
                                 aria-label=""
                             >
@@ -920,11 +735,196 @@
         </div>
         
             <a
-                href="/2022/06/29/day0630_ml/"
+                href="/2022/06/30/day0630_ml/"
                 aria-label=": day 0630"
             >
                 <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://neewlife.github.io/2022/06/29/day0630_ml/source/images/0629/Untitled.png"/>
+                    <img alt="" src="http://neewlife.github.io/2022/06/30/day0630_ml/source/images/0629/Untitled.png"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/2022/06/29/day0629_ml/"
+                            aria-label=": day 0629 개인복습"
+                        >
+                            day 0629 개인복습
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2022-06-29T18:59:30+09:00">
+	
+		    Jun 29, 2022
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/%EB%B3%B5%EC%8A%B5%ED%95%A0-%EA%B2%83%EB%93%A4/">복습할 것들</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <h2 id="파이썬-주요-라이브러리"><a href="#파이썬-주요-라이브러리" class="headerlink" title="파이썬 주요 라이브러리"></a>파이썬 주요 라이브러리</h2><ul>
+<li>Machine Learning<ul>
+<li>정형데이터 </li>
+<li>사이킷런 (Scikit-Learn)</li>
+</ul>
+</li>
+<li>Deep Learning<ul>
+<li>비정형데이터</li>
+<li>Tensorflow(구글) vs Pytorch(페이스북)</li>
+<li>혼공머 : Tensorflow </li>
+<li>실제 상용서비스 - Tensorflow vs R&amp;D - Pytorch</li>
+</ul>
+</li>
+</ul>
+<h2 id="생선분류"><a href="#생선분류" class="headerlink" title="생선분류"></a>생선분류</h2><ul>
+<li><p>p.45</p>
+</li>
+<li><p>도미, 곤들매기, 농어, 등등 </p>
+</li>
+<li><p>이 생선들을 프로그램으로 분류한다. </p>
+</li>
+<li><p>30cm 도미라고 알려줘라</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fish_length = <span class="number">31</span></span><br><span class="line"><span class="keyword">if</span> fish_length &gt;= <span class="number">30</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;도미&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>도미
+</code></pre>
+<ul>
+<li>p.47</li>
+<li>도미데이터</li>
+</ul>
+<h2 id="데이터-수집"><a href="#데이터-수집" class="headerlink" title="데이터 수집"></a>데이터 수집</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 도미의 길이</span></span><br><span class="line">bream_length = [<span class="number">25.4</span>, <span class="number">26.3</span>, <span class="number">26.5</span>, <span class="number">29.0</span>, <span class="number">29.0</span>, <span class="number">29.7</span>, <span class="number">29.7</span>, <span class="number">30.0</span>, <span class="number">30.0</span>, <span class="number">30.7</span>, <span class="number">31.0</span>, <span class="number">31.0</span>, <span class="number">31.5</span>, <span class="number">32.0</span>, <span class="number">32.0</span>, <span class="number">32.0</span>, <span class="number">33.0</span>, <span class="number">33.0</span>, <span class="number">33.5</span>, <span class="number">33.5</span>, <span class="number">34.0</span>, <span class="number">34.0</span>, <span class="number">34.5</span>, <span class="number">35.0</span>, <span class="number">35.0</span>, <span class="number">35.0</span>, <span class="number">35.0</span>, <span class="number">36.0</span>, <span class="number">36.0</span>, <span class="number">37.0</span>, <span class="number">38.5</span>, <span class="number">38.5</span>, <span class="number">39.5</span>, <span class="number">41.0</span>, <span class="number">41.0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 도미의 무게</span></span><br><span class="line">bream_weight = [<span class="number">242.0</span>, <span class="number">290.0</span>, <span class="number">340.0</span>, <span class="number">363.0</span>, <span class="number">430.0</span>, <span class="number">450.0</span>, <span class="number">500.0</span>, <span class="number">390.0</span>, <span class="number">450.0</span>, <span class="number">500.0</span>, <span class="number">475.0</span>, <span class="number">500.0</span>, <span class="number">500.0</span>, <span class="number">340.0</span>, <span class="number">600.0</span>, <span class="number">600.0</span>, <span class="number">700.0</span>, <span class="number">700.0</span>, <span class="number">610.0</span>, <span class="number">650.0</span>, <span class="number">575.0</span>, <span class="number">685.0</span>, <span class="number">620.0</span>, <span class="number">680.0</span>, <span class="number">700.0</span>, <span class="number">725.0</span>, <span class="number">720.0</span>, <span class="number">714.0</span>, <span class="number">850.0</span>, <span class="number">1000.0</span>, <span class="number">920.0</span>, <span class="number">955.0</span>, <span class="number">925.0</span>, <span class="number">975.0</span>, <span class="number">950.0</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="데이터-가공"><a href="#데이터-가공" class="headerlink" title="데이터 가공"></a>데이터 가공</h2><ul>
+<li>여기서는 생략</li>
+</ul>
+<h2 id="데이터-시각화"><a href="#데이터-시각화" class="headerlink" title="데이터 시각화"></a>데이터 시각화</h2><ul>
+<li>여러 인사이트 확인 위해 시각화, 통계 수치 계산</li>
+<li>탐색적 자료 분석(EDA : Exploratory Data Analysis)</li>
+<li>얘는 참고만 한다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">plt.scatter(bream_length, bream_weight)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;length&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;weight&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/0629/output_9_0.png" alt="png"></p>
+<ul>
+<li>파이썬 시각화는 객체지향으로 한다. </li>
+<li>이유 : 좀 더 이쁘고, 아름답게 다듬으려면… </li>
+<li>캐글 시각화, 참고할 때, 아래와 같이 하는 분들이 많음</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.scatter(bream_length, bream_weight)</span><br><span class="line">ax.set_xlabel(<span class="string">&#x27;length&#x27;</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">&#x27;weight&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/0629/output_11_0.png" alt="png"></p>
+<ul>
+<li>빙어 데이터 준비하기</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">smelt_length = [<span class="number">9.8</span>, <span class="number">10.5</span>, <span class="number">10.6</span>, <span class="number">11.0</span>, <span class="number">11.2</span>, <span class="number">11.3</span>, <span class="number">11.8</span>, <span class="number">11.8</span>, <span class="number">12.0</span>, <span class="number">12.2</span>, <span class="number">12.4</span>, <span class="number">13.0</span>, <span class="number">14.3</span>, <span class="number">15.0</span>]</span><br><span class="line">smelt_weight = [<span class="number">6.7</span>, <span class="number">7.5</span>, <span class="number">7.0</span>, <span class="number">9.7</span>, <span class="number">9.8</span>, <span class="number">8.7</span>, <span class="number">10.0</span>, <span class="number">9.9</span>, <span class="number">9.8</span>, <span class="number">12.2</span>, <span class="number">13.4</span>, <span class="number">12.2</span>, <span class="number">19.7</span>, <span class="number">19.9</span>]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>시각화 </li>
+<li>p.50 시각화</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots()</span><br><span class="line">ax.scatter(bream_length, bream_weight)</span><br><span class="line">ax.scatter(smelt_length, smelt_weight)</span><br><span class="line">ax.set_xlabel(<span class="string">&#x27;length&#x27;</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">&#x27;weight&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/0629/output_15_0.png" alt="png"></p>
+<ul>
+<li>두개의 리스트 합치기</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">length = bream_length + smelt_length </span><br><span class="line">weight = bream_weight + smelt_weight </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>2차원 리스트로 만든다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fish_data = [[l, w] <span class="keyword">for</span> l, w <span class="keyword">in</span> <span class="built_in">zip</span>(length, weight)]</span><br><span class="line">fish_data[<span class="number">0</span>:<span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>[[25.4, 242.0], [26.3, 290.0], [26.5, 340.0], [29.0, 363.0], [29.0, 430.0]]
+</code></pre>
+<ul>
+<li>라벨링을 해준다 &#x3D; 지도 해준다 &#x3D; 지도학습</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fish_target = [<span class="number">1</span>] * <span class="number">35</span> + [<span class="number">0</span>] * <span class="number">14</span></span><br><span class="line"><span class="built_in">print</span>(fish_target)</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+</code></pre>
+<h2 id="모델링"><a href="#모델링" class="headerlink" title="모델링"></a>모델링</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.neighbors <span class="keyword">import</span> KNeighborsClassifier</span><br><span class="line"></span><br><span class="line"><span class="comment"># 클래스 인스턴스화</span></span><br><span class="line">kn = KNeighborsClassifier()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 모형 학습</span></span><br><span class="line">kn.fit(fish_data, fish_target)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>1.0
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 예측 정확도</span></span><br><span class="line">kn.score(fish_data, fish_target)</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>1.0
+</code></pre>
+<ul>
+<li>실제 예측을 해보자</li>
+<li>새로운 물고기 도착했습니다. <ul>
+<li>길이 : 30, 몸무게 : 600</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ac_length = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;물고기 길이를 입력하세요...&quot;</span>))</span><br><span class="line">ac_weight = <span class="built_in">int</span>(<span class="built_in">input</span>(<span class="string">&quot;물고기 무게를 입력하세요...&quot;</span>))</span><br><span class="line"></span><br><span class="line">preds = <span class="built_in">int</span>(kn.predict([[ac_length, ac_weight]]))</span><br><span class="line"><span class="built_in">print</span>(preds)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> preds == <span class="number">1</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;도미&quot;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;빙어&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>물고기 길이를 입력하세요...30
+물고기 무게를 입력하세요...600
+1
+도미
+</code></pre>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/2022/06/29/day0629_ml/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+            <a
+                href="/2022/06/29/day0629_ml/"
+                aria-label=": day 0629 개인복습"
+            >
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" src="http://neewlife.github.io/2022/06/29/day0629_ml/source/images/0629/Untitled.png"/>
                 </div>
             </a>
             
@@ -2208,7 +2208,7 @@ total: 15
     
         <span>in </span>
         
-    <a class="category-link" href="/categories/Python/">Python</a>
+    <a class="category-link" href="/categories/%EB%B3%B5%EC%8A%B5%ED%95%A0-%EA%B2%83%EB%93%A4/">복습할 것들</a>
 
 
     

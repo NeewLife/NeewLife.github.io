@@ -10,7 +10,7 @@ thumbnailImage: source/images/0629/Untitled.png
 thumbnailImagePosition: left
 autoThumbnailImage: yes
 metaAlignment: center
-date: '2022-06-29 18:59:30'
+date: '2022-06-30 17:45:30'
 ---
 
 ## 새로운 모델 제안
