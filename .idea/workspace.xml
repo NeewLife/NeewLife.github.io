@@ -2,21 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd95f34d-94fd-4a23-ae52-da1bcaccf735" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/source/_posts/1장_파이썬_프로그래밍의_기초_자료형/python.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/day0706_1/image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/lecture-in-humanedu (1)/Kaggle_logo.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/themes/tranquilpeak/source/_css/utils/mixins/_variables.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/2022/06/27/1장_파이썬_프로그래밍의_기초,_자료형/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/2022/06/27/day0627/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2022/06/27/day0627/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/all-archives/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/all-archives/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/all-categories/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/all-categories/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/all-tags/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/all-tags/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/archives/2022/06/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/2022/06/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/archives/2022/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/2022/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/archives/2022/page/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/2022/page/2/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/archives/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/archives/page/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/page/2/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/categories/Python/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/categories/Python/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/categories/블로그/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/categories/블로그/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/categories/점프-투-파이썬/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/categories/점프-투-파이썬/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/page/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/2/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/1장_파이썬_프로그래밍의_기초,_자료형.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/1장_파이썬_프로그래밍의_기초_자료형.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Pandas_Tutorial.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/source/_posts/day0706_1.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/day0706_1.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/images/0706/output_11_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/0706/output_11_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/images/0706/output_12_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/0706/output_12_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/images/0706/output_29_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/images/0706/output_30_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/images/0706/output_33_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/0706/output_33_1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/images/0706/output_34_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/images/0706/output_38_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/0706/output_38_0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/images/0706/output_39_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/images/0706/output_42_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/0706/output_42_0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/images/0706/output_44_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/images/0706/output_44_0.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/images/0706/output_48_0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/images/0706/output_50_0.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak/_config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak/layout/_partial/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak/layout/_partial/head.ejs" afterDir="false" />
@@ -44,28 +54,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/human/Desktop/blog/themes/tranquilpeak/source/assets/images&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/human/Desktop/blog/source/_posts"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\human\Desktop\blog\source\_posts" />
+      <recent name="C:\Users\human\Desktop\blog\source\_posts\day0706_1" />
       <recent name="C:\Users\human\Desktop\blog\themes\tranquilpeak\source\assets\images" />
       <recent name="C:\Users\human\Desktop\blog\themes\tranquilpeak\source\_images" />
       <recent name="C:\Users\human\Desktop\blog\themes\tranquilpeak\source\_css\utils\mixins" />
-      <recent name="C:\Users\human\Desktop\blog\source\images\0623" />
-      <recent name="C:\Users\human\Desktop\blog\source\_posts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\human\Desktop\blog\source\_posts\lecture-in-humanedu (1)" />
+      <recent name="C:\Users\human\Desktop\blog\source\_posts\_thumbnail" />
       <recent name="C:\Users\human\Desktop\blog\source\images\0701" />
       <recent name="C:\Users\human\Desktop\blog\source\_posts" />
       <recent name="C:\Users\human\Desktop\blog\themes\tranquilpeak\source\_images" />
-      <recent name="C:\Users\human\Desktop\blog\source\all-categories" />
-      <recent name="C:\Users\human\Desktop\blog\source\images\0624" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
