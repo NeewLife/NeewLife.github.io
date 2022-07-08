@@ -8,7 +8,7 @@ categories: Python
 clearReading: true
 thumbnailImage: Kaggle_logo.png
 thumbnailImagePosition: left
-autoThumbnailImage: yes
+autoThumbnailImage: true
 date: '2022-07-07 17:16:55'
 ---
 
