@@ -3,9 +3,12 @@ title: "test"
 output:
   html_document:
     keep_md: true
+autoThumbnailImage: yes
 date: '2022-06-20'
 ---
 
+test
+<!-- excerpt -->
 
 
 ## csv 파일 불러오기

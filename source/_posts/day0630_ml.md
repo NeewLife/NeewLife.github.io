@@ -5,14 +5,18 @@ output:
     keep_md: true
 disqusIdentifier: fdsF34ff34
 categories: Python
-clearReading: true
-thumbnailImage: source/images/0629/Untitled.png
+thumbnailImage: image.png
 thumbnailImagePosition: left
 autoThumbnailImage: yes
 metaAlignment: center
 date: '2022-06-30 17:45:30'
 ---
 
+## 머신러닝 진행시 습관적으로 사용할 순서
+  + 전체데이터 전처리(결측치 처리, 이상치 처리)
+  + 데이터 분리 (임의 샘플링 < 층화 샘플링)
+  + Feature Engineering
+<!-- excerpt -->
 ## 새로운 모델 제안
 - Default : 정확도 100%
 - 새롭게 제안 : 정확도 71%

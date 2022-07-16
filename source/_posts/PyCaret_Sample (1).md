@@ -6,12 +6,16 @@ output:
 disqusIdentifier: fdsF34ff34
 categories: Python
 clearReading: true
-thumbnailImage: source/images/0629/Untitled.png
+thumbnailImage: pycaret.png
 thumbnailImagePosition: left
 autoThumbnailImage: yes
 metaAlignment: center
 date: '2022-07-05 16:50:55'
 ---
+
+- 언젠가는 쓸 수 있겠지? ㅎㅎ
+<!-- excerpt -->
+
 
 - PyCaret 설치
 - https://github.com/pycaret/pycaret  에서 requirement.txt에 있는 목록 다 버전 맞춰서 깐다.

@@ -11,16 +11,16 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"John Doe","sameAs":["https://github.com/NeewLife?tab=repositories/"]},"articleBody":"반복문 복습\nfor loop and while loop\n\n123for i in range(3):  print(&quot;Hello World&quot;)  print(&quot;안녕하세요&quot;)\n\nHello World\n안녕하세요\nHello World\n안녕하세요\nHello World\n안녕하세요\n\n123456for i in range(1000):  print(&quot;No.&quot;, i+1)  if i == 10:    break                  # Hello World, 안녕하세요 가 10번 출력 됨  print(&quot;Hello World&quot;)  print(&quot;안녕하세요&quot;)      # i 값이 11이라서 &quot;No. 11&quot; 까지는 출력 되지만 if문 조건에서 통과 안됨\n\nNo. 1\nHello World\n안녕하세요\nNo. 2\nHello World\n안녕하세요\nNo. 3\nHello World\n안녕하세요\nNo. 4\nHello World\n안녕하세요\nNo. 5\nHello World\n안녕하세요\nNo. 6\nHello World\n안녕하세요\nNo. 7\nHello World\n안녕하세요\nNo. 8\nHello World\n안녕하세요\nNo. 9\nHello World\n안녕하세요\nNo. 10\nHello World\n안녕하세요\nNo. 11\n\n1\n\n\n1234567a = &quot;Kaggle&quot;for i in a:  print(i)  if i == &quot;a&quot;:    break    #print(i)  # 이 위치에 print가 있다면 어떻게 출력될까?\n\nK\na\n\n\n리스트의 값이 존재\n전체 총합 구하기\n\n12345678910numbers = [1, 2, 3, 4, 5]sum = 0for num in numbers:  print(&quot;numbers: &quot;, num)   # num 1 일때 sum = 1,  num 2 일때 sum = 2 + 1 = 3,   num 3 일때 sum = 3 + 3 = 6  sum = sum+num  print(&quot;total:&quot;, sum)print(&quot;----최종 결괏값----&quot;)print(sum)\n\nnumbers:  1\ntotal: 1\nnumbers:  2\ntotal: 3\nnumbers:  3\ntotal: 6\nnumbers:  4\ntotal: 10\nnumbers:  5\ntotal: 15\n----최종 결괏값----\n15\n\n123456789101112131415fruits = [&#x27;apple&#x27;, &#x27;kiwi&#x27;, &#x27;mango&#x27;]newlist = []&#x27;&#x27;&#x27;apple : a가 있나요? 있네요, newlist에 추가하세요.kiwi : a가 있나요? 없네요. 그럼 넘어가요.mango : a가 있나요? 있네요. newlist에 추가하세요.&#x27;&#x27;&#x27;for fruit in fruits:  print(&quot;조건문 밖 : &quot;, fruit)  if &quot;a&quot; in fruit:    print(&quot;조건문 안쪽 : &quot;, fruit)    newlist.append(fruit)print(newlist)\n\n조건문 밖 :  apple\n조건문 안쪽 :  apple\n조건문 밖 :  kiwi\n조건문 밖 :  mango\n조건문 안쪽 :  mango\n[&#39;apple&#39;, &#39;mango&#39;]\n\nWhile Loop\nwhile문 : 분석할 때는 거의 쓸 일이 없음(분석할 때는 거의 틀이 정해져 있음)개발할 때는 많이 씀\n\n123456i = 1while i &lt; 10: #참일때만 반복문 코드가 돌아감  # 코드  print(i)  i += 1          # 1씩 증감  #i -= 1         # 1씩 감소\n\n1\n2\n3\n4\n5\n6\n7\n8\n9\n\n사용자 정의 함수\n내가 필요에 의해 직접 함수를 작성(취업 준비)\n\n123def 함수명(param1, param2):      # 함수 정의  # 코드  return None\n\n\n1234567def add(a = 0, b = 1):  c = a + b  return c  return a + bprint(add(a = 5, b =4))print(add())\n\n9\n1\n\n\n사칙연산 사용자 정의 함수 만들기\n함수 문서화\nprint(함수명.doc)\n키워드 : Docstring\n\n\n\n12345678910def code(a, b, c):  d =  (b - c) * a / 10  return d&#x27;&#x27;&#x27;a = 10회 뽑기에 필요한 다이아b = 확정 뽑기 횟수c = 현재 누적 뽑기 횟수&#x27;&#x27;&#x27;print(&quot;확정 뽑기에 필요한 다이아 수 : &quot;, code(a = 2700, b = 200, c = 40))\n\n확정 뽑기에 필요한 다이아 수 :  43200.0\n\n12345678910111213141516def subtract(a, b):  &quot;&quot;&quot;a, b를 빼는 함수  Parameters:  a (int): int형 숫자 a가 입력  b (int): int형 숫자 b가 입력  Returns:  int : 반환값    &quot;&quot;&quot;  return a-bprint(subtract(a = 5, b= 10))\n\nNumPy\n내장 모듈(&#x3D;라이브러리&#x3D;패키지) (X)\n별도 라이브러리 설치\n\n12import numpy as npprint(np.__version__)\n\n1.21.6\n\n12345temp = [1, 2, 3]temp_array = np.array(temp)  # 리스트에서 배열로 변환print(type(temp))print(type(temp_array))\n\n&lt;class &#39;list&#39;&gt;\n&lt;class &#39;numpy.ndarray&#39;&gt;\n\n사칙연산12345678910math_score = [90,85,95]eng_score = [83, 77, 80]# math_score + eng_score              # 단순 리스트 추가math_array = np.array(math_score)eng_array = np.array(eng_score)total = math_array + eng_array        # 리스트 안의 변수 값을 더하는 과정print(total)print(type(total))\n\n[173 162 175]\n&lt;class &#39;numpy.ndarray&#39;&gt;\n\n집계함수123print(np.min(total))    # total 함수의 최솟값print(np.max(total))    # total 함수의 최댓값print(np.sum(total))    # total 함수의 모든 변수를 더한 값\n\n162\n175\n510\n\n차원 확인\nshape 함수 사용\n배열의 차원 확인 필요(함수명.ndim)\n\n12345# 1차원 배열 생상temp_arr = np.array([1, 2, 3])print(temp_arr.shape)     # [1], [2], [3] 이라서 3print(temp_arr.ndim)      # temp_arr 함수의 차원print(temp_arr)\n\n(3,)\n1\n[1 2 3]\n\n1234567# 2차원 배열 생성temp_arr = np.array([[1, 2, 3], [4, 5, 6]])print(temp_arr.shape)   print(temp_arr.ndim)    # temp_arr 함수의 차원print(temp_arr)# [[1, 2, 3], [4, 5, 6]] 2개 라서 2# 그 속에 각각 [1], [2], [3] 3개 라서 3\n\n(2, 3)\n2\n[[1 2 3]\n [4 5 6]]\n\n1234567# 3차원 배열 생성 -&gt; 이미지temp_arr = np.array([[[1, 2, 3], [4, 5, 6]],[[7, 8, 9], [10, 11, 12]]])print(temp_arr.shape)print(temp_arr.ndim)# [[1, 2, 3],[4, 5, 6]]이랑 [[7, 8, 9], [10, 11, 12]]라서 2# 그 속에 [1, 2, 3]이랑 [4, 5, 6] 이라서 2# 그 속에 [1],[2],[3] 이라서 3\n\n(2, 2, 3)\n3\n\n","dateCreated":"2022-06-28T12:31:30+09:00","dateModified":"2022-06-29T12:07:19+09:00","datePublished":"2022-06-28T12:31:30+09:00","description":"","headline":"day 0628","image":["source/_posts/20211211070332_pkknkybf.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://neewlife.github.io/2022/06/28/day0628/"},"publisher":{"@type":"Organization","name":"John Doe","sameAs":["https://github.com/NeewLife?tab=repositories/"]},"url":"http://neewlife.github.io/2022/06/28/day0628/","thumbnailUrl":"source/_posts/20211211070332_pkknkybf.jpg"}</script>
-    <meta name="description" content="반복문 복습 for loop and while loop  123for i in range(3):  print(&quot;Hello World&quot;)  print(&quot;안녕하세요&quot;)  Hello World 안녕하세요 Hello World 안녕하세요 Hello World 안녕하세요  123456for i in range(1000):  pri">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"John Doe","sameAs":["https://github.com/NeewLife?tab=repositories/"]},"articleBody":"\n\n반복문 복습\nfor loop and while loop\n\n123for i in range(3):  print(&quot;Hello World&quot;)  print(&quot;안녕하세요&quot;)\n\nHello World\n안녕하세요\nHello World\n안녕하세요\nHello World\n안녕하세요\n\n123456for i in range(1000):  print(&quot;No.&quot;, i+1)  if i == 10:    break                  # Hello World, 안녕하세요 가 10번 출력 됨  print(&quot;Hello World&quot;)  print(&quot;안녕하세요&quot;)      # i 값이 11이라서 &quot;No. 11&quot; 까지는 출력 되지만 if문 조건에서 통과 안됨\n\nNo. 1\nHello World\n안녕하세요\nNo. 2\nHello World\n안녕하세요\nNo. 3\nHello World\n안녕하세요\nNo. 4\nHello World\n안녕하세요\nNo. 5\nHello World\n안녕하세요\nNo. 6\nHello World\n안녕하세요\nNo. 7\nHello World\n안녕하세요\nNo. 8\nHello World\n안녕하세요\nNo. 9\nHello World\n안녕하세요\nNo. 10\nHello World\n안녕하세요\nNo. 11\n\n1\n\n\n1234567a = &quot;Kaggle&quot;for i in a:  print(i)  if i == &quot;a&quot;:    break    #print(i)  # 이 위치에 print가 있다면 어떻게 출력될까?\n\nK\na\n\n\n리스트의 값이 존재\n전체 총합 구하기\n\n12345678910numbers = [1, 2, 3, 4, 5]sum = 0for num in numbers:  print(&quot;numbers: &quot;, num)   # num 1 일때 sum = 1,  num 2 일때 sum = 2 + 1 = 3,   num 3 일때 sum = 3 + 3 = 6  sum = sum+num  print(&quot;total:&quot;, sum)print(&quot;----최종 결괏값----&quot;)print(sum)\n\nnumbers:  1\ntotal: 1\nnumbers:  2\ntotal: 3\nnumbers:  3\ntotal: 6\nnumbers:  4\ntotal: 10\nnumbers:  5\ntotal: 15\n----최종 결괏값----\n15\n\n123456789101112131415fruits = [&#x27;apple&#x27;, &#x27;kiwi&#x27;, &#x27;mango&#x27;]newlist = []&#x27;&#x27;&#x27;apple : a가 있나요? 있네요, newlist에 추가하세요.kiwi : a가 있나요? 없네요. 그럼 넘어가요.mango : a가 있나요? 있네요. newlist에 추가하세요.&#x27;&#x27;&#x27;for fruit in fruits:  print(&quot;조건문 밖 : &quot;, fruit)  if &quot;a&quot; in fruit:    print(&quot;조건문 안쪽 : &quot;, fruit)    newlist.append(fruit)print(newlist)\n\n조건문 밖 :  apple\n조건문 안쪽 :  apple\n조건문 밖 :  kiwi\n조건문 밖 :  mango\n조건문 안쪽 :  mango\n[&#39;apple&#39;, &#39;mango&#39;]\n\nWhile Loop\nwhile문 : 분석할 때는 거의 쓸 일이 없음(분석할 때는 거의 틀이 정해져 있음)개발할 때는 많이 씀\n\n123456i = 1while i &lt; 10: #참일때만 반복문 코드가 돌아감  # 코드  print(i)  i += 1          # 1씩 증감  #i -= 1         # 1씩 감소\n\n1\n2\n3\n4\n5\n6\n7\n8\n9\n\n사용자 정의 함수\n내가 필요에 의해 직접 함수를 작성(취업 준비)\n\n123def 함수명(param1, param2):      # 함수 정의  # 코드  return None\n\n\n1234567def add(a = 0, b = 1):  c = a + b  return c  return a + bprint(add(a = 5, b =4))print(add())\n\n9\n1\n\n\n사칙연산 사용자 정의 함수 만들기\n함수 문서화\nprint(함수명.doc)\n키워드 : Docstring\n\n\n\n12345678910def code(a, b, c):  d =  (b - c) * a / 10  return d&#x27;&#x27;&#x27;a = 10회 뽑기에 필요한 다이아b = 확정 뽑기 횟수c = 현재 누적 뽑기 횟수&#x27;&#x27;&#x27;print(&quot;확정 뽑기에 필요한 다이아 수 : &quot;, code(a = 2700, b = 200, c = 40))\n\n확정 뽑기에 필요한 다이아 수 :  43200.0\n\n12345678910111213141516def subtract(a, b):  &quot;&quot;&quot;a, b를 빼는 함수  Parameters:  a (int): int형 숫자 a가 입력  b (int): int형 숫자 b가 입력  Returns:  int : 반환값    &quot;&quot;&quot;  return a-bprint(subtract(a = 5, b= 10))\n\nNumPy\n내장 모듈(&#x3D;라이브러리&#x3D;패키지) (X)\n별도 라이브러리 설치\n\n12import numpy as npprint(np.__version__)\n\n1.21.6\n\n12345temp = [1, 2, 3]temp_array = np.array(temp)  # 리스트에서 배열로 변환print(type(temp))print(type(temp_array))\n\n&lt;class &#39;list&#39;&gt;\n&lt;class &#39;numpy.ndarray&#39;&gt;\n\n사칙연산12345678910math_score = [90,85,95]eng_score = [83, 77, 80]# math_score + eng_score              # 단순 리스트 추가math_array = np.array(math_score)eng_array = np.array(eng_score)total = math_array + eng_array        # 리스트 안의 변수 값을 더하는 과정print(total)print(type(total))\n\n[173 162 175]\n&lt;class &#39;numpy.ndarray&#39;&gt;\n\n집계함수123print(np.min(total))    # total 함수의 최솟값print(np.max(total))    # total 함수의 최댓값print(np.sum(total))    # total 함수의 모든 변수를 더한 값\n\n162\n175\n510\n\n차원 확인\nshape 함수 사용\n배열의 차원 확인 필요(함수명.ndim)\n\n12345# 1차원 배열 생상temp_arr = np.array([1, 2, 3])print(temp_arr.shape)     # [1], [2], [3] 이라서 3print(temp_arr.ndim)      # temp_arr 함수의 차원print(temp_arr)\n\n(3,)\n1\n[1 2 3]\n\n1234567# 2차원 배열 생성temp_arr = np.array([[1, 2, 3], [4, 5, 6]])print(temp_arr.shape)   print(temp_arr.ndim)    # temp_arr 함수의 차원print(temp_arr)# [[1, 2, 3], [4, 5, 6]] 2개 라서 2# 그 속에 각각 [1], [2], [3] 3개 라서 3\n\n(2, 3)\n2\n[[1 2 3]\n [4 5 6]]\n\n1234567# 3차원 배열 생성 -&gt; 이미지temp_arr = np.array([[[1, 2, 3], [4, 5, 6]],[[7, 8, 9], [10, 11, 12]]])print(temp_arr.shape)print(temp_arr.ndim)# [[1, 2, 3],[4, 5, 6]]이랑 [[7, 8, 9], [10, 11, 12]]라서 2# 그 속에 [1, 2, 3]이랑 [4, 5, 6] 이라서 2# 그 속에 [1],[2],[3] 이라서 3\n\n(2, 2, 3)\n3\n","dateCreated":"2022-06-28T11:31:30+09:00","dateModified":"2022-07-16T22:49:17+09:00","datePublished":"2022-06-28T11:31:30+09:00","description":"공부하자","headline":"day 0628","image":["image.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://neewlife.github.io/2022/06/28/day0628/"},"publisher":{"@type":"Organization","name":"John Doe","sameAs":["https://github.com/NeewLife?tab=repositories/"]},"url":"http://neewlife.github.io/2022/06/28/day0628/","thumbnailUrl":"image.png"}</script>
+    <meta name="description" content="공부하자">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="day 0628">
 <meta property="og:url" content="http://neewlife.github.io/2022/06/28/day0628/index.html">
 <meta property="og:site_name" content="자기개발자 블로그">
-<meta property="og:description" content="반복문 복습 for loop and while loop  123for i in range(3):  print(&quot;Hello World&quot;)  print(&quot;안녕하세요&quot;)  Hello World 안녕하세요 Hello World 안녕하세요 Hello World 안녕하세요  123456for i in range(1000):  pri">
+<meta property="og:description" content="공부하자">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-28T03:31:30.000Z">
-<meta property="article:modified_time" content="2022-06-29T03:07:19.206Z">
+<meta property="article:published_time" content="2022-06-28T02:31:30.000Z">
+<meta property="article:modified_time" content="2022-07-16T13:49:17.569Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
     
@@ -29,8 +29,8 @@
     
     
     
-        <meta property="og:image" content="http://NeewLife.github.io/2022/06/28/day0628/source/_posts/20211211070332_pkknkybf.jpg"/>
-        <meta class="swiftype" name="image" data-type="enum" content="http://NeewLife.github.io/2022/06/28/day0628/source/_posts/20211211070332_pkknkybf.jpg"/>
+        <meta property="og:image" content="http://NeewLife.github.io/2022/06/28/day0628/image.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="http://NeewLife.github.io/2022/06/28/day0628/image.png"/>
     
     
     
@@ -214,7 +214,7 @@
     
     
         <div class="post-meta">
-    <time datetime="2022-06-28T12:31:30+09:00">
+    <time datetime="2022-06-28T11:31:30+09:00">
 	
 		    Jun 28, 2022
     	
@@ -234,7 +234,9 @@
     
     <div class="post-content markdown">
         <div class="main-content-wrap">
-            <h2 id="반복문-복습"><a href="#반복문-복습" class="headerlink" title="반복문 복습"></a>반복문 복습</h2><ul>
+            <!-- excerpt -->
+
+<h2 id="반복문-복습"><a href="#반복문-복습" class="headerlink" title="반복문 복습"></a>반복문 복습</h2><ul>
 <li>for loop and while loop</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;Hello World&quot;</span>)</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&quot;안녕하세요&quot;</span>)</span><br></pre></td></tr></table></figure>
@@ -402,7 +404,6 @@ total: 15
 <pre><code>(2, 2, 3)
 3
 </code></pre>
-
             
 
 
@@ -419,9 +420,9 @@ total: 15
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2022/06/29/day0629/"
-                    data-tooltip="day 0629"
-                    aria-label="PREVIOUS: day 0629"
+                    href="/2022/06/28/day0628_1/"
+                    data-tooltip="day 0628 원본"
+                    aria-label="PREVIOUS: day 0628 원본"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -433,9 +434,9 @@ total: 15
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2022/06/28/day0628_1/"
-                    data-tooltip="day 0628 원본"
-                    aria-label="NEXT: day 0628 원본"
+                    href="/2022/06/27/1%EC%9E%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%EC%9D%98_%EA%B8%B0%EC%B4%88_%EC%9E%90%EB%A3%8C%ED%98%95/"
+                    data-tooltip="1장_파이썬_프로그래밍의_기초"
+                    aria-label="NEXT: 1장_파이썬_프로그래밍의_기초"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
@@ -534,9 +535,9 @@ total: 15
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2022/06/29/day0629/"
-                    data-tooltip="day 0629"
-                    aria-label="PREVIOUS: day 0629"
+                    href="/2022/06/28/day0628_1/"
+                    data-tooltip="day 0628 원본"
+                    aria-label="PREVIOUS: day 0628 원본"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -548,9 +549,9 @@ total: 15
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2022/06/28/day0628_1/"
-                    data-tooltip="day 0628 원본"
-                    aria-label="NEXT: day 0628 원본"
+                    href="/2022/06/27/1%EC%9E%A5_%ED%8C%8C%EC%9D%B4%EC%8D%AC_%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%EC%9D%98_%EA%B8%B0%EC%B4%88_%EC%9E%90%EB%A3%8C%ED%98%95/"
+                    data-tooltip="1장_파이썬_프로그래밍의_기초"
+                    aria-label="NEXT: 1장_파이썬_프로그래밍의_기초"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>

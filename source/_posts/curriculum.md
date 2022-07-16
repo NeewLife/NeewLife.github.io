@@ -5,9 +5,15 @@ output:
     toc: true  
     toc_float: true  
     keep_md: true  
+disqusIdentifier: fdsF34ff34
+categories: Python
+clearReading: true
+thumbnailImage: night.jpg
+thumbnailImagePosition: left
+autoThumbnailImage: yes
+metaAlignment: center
 date: '2022-06-23 09:00:00' 
 ---
-
 
 
 인공지능 프로그래밍 7월 4일 ~ 7월 19일(4)  
@@ -18,3 +24,5 @@ date: '2022-06-23 09:00:00'
 (기존) 8월 19일 5교시 ~ 9월 2일 4교시  
    + 챗봇 & 발표자료 ( --> 면접자료)  
 -- 시스템 구축 / 플랫폼 개발 (강의 일정 일부 단축)  
+
+<!-- excerpt -->

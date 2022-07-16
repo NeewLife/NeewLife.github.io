@@ -3,15 +3,17 @@ title: "XGBoost & LightGBM (2016 ~ 2017)"
 output:
   html_document:
     keep_md: true
-disqusIdentifier: fdsF34ff34
 categories: XGBoost & LightGBM
 clearReading: true
-thumbnailImage: source/images/0629/Untitled.png
+thumbnailImage: image.png
 thumbnailImagePosition: left
 autoThumbnailImage: yes
 metaAlignment: center
 date: '2022-07-04 12:50:55'
 ---
+
+XGBoost & LightGBM 방식 구별
+<!-- excerpt -->
 
 ## XGBoost & LightGBM (2016 ~ 2017)
 - 전통적인 머신러닝 알고리즘의 융합

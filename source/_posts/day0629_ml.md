@@ -5,13 +5,15 @@ output:
     keep_md: true
 disqusIdentifier: fdsF34ff34
 categories: 복습할 것들
-clearReading: true
-thumbnailImage: source/images/0629/Untitled.png
+thumbnailImage: image.png
 thumbnailImagePosition: left
 autoThumbnailImage: yes
 metaAlignment: center
 date: '2022-06-29 18:59:30'
 ---
+
+데이터 시각화
+<!-- excerpt -->
 
 ## 파이썬 주요 라이브러리
 - Machine Learning

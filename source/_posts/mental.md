@@ -3,10 +3,19 @@ title: "한국인의 정신건강 분석"
 output:
   html_document:
     keep_md: true
+disqusIdentifier: fdsF34ff34
+categories: R studio
+clearReading: true
+thumbnailImage: R_logo.jpg
+thumbnailImagePosition: left
+autoThumbnailImage: yes
+metaAlignment: center
 comments: false
 date: '2022-06-24'
 ---
 
+10장 따라치기
+<!-- excerpt -->
 
 
 - 연구 1 : 삶의 만족도와 외로움이 자살충동에 주는 영향을 알아본다.

@@ -3,10 +3,18 @@ title: "6장"
 output:
   html_document:
     keep_md: true
+disqusIdentifier: fdsF34ff34
+categories: R studio
+clearReading: true
+thumbnailImage: R_logo.jpg
+thumbnailImagePosition: left
+autoThumbnailImage: yes
+metaAlignment: center
 date: '2022-06-21 09:30:00'
 ---
 
-
+데이터 전처리
+<!-- excerpt -->
 
 
 # 6장

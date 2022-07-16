@@ -3,9 +3,12 @@ title: "복습"
 output:
   html_document:
     keep_md: true
+autoThumbnailImage: yes
 date: '2022-06-23 09:45:00'
 ---
 
+- 똑같은 코드 입력은 의미 없다. 다른 데이터로 만들어 볼 것!!! 
+<!-- excerpt -->
 
 - iris 데이터, sepal.length, sepal.width 활용해서 종별로 산점도를 그리세요
   + 제목과 X축, Y축 제목을 변경하세요
@@ -51,7 +54,3 @@ ggplot(iris, aes(x = Sepal.Length,
 ```
 
 ![](/images/0623/unnamed-chunk-1-1.png)<!-- -->
-
-
-### - 똑같은 코드 입력은 의미 없다. 다른 데이터로 만들어 볼 것!!!   
-<br><br>
