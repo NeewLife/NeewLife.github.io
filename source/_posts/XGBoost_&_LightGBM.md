@@ -5,7 +5,7 @@ output:
     keep_md: true
 categories: XGBoost & LightGBM
 clearReading: true
-thumbnailImage: image.png
+thumbnailImage: python.png
 thumbnailImagePosition: left
 autoThumbnailImage: yes
 metaAlignment: center

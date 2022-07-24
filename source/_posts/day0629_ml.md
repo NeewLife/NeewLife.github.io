@@ -5,7 +5,7 @@ output:
     keep_md: true
 disqusIdentifier: fdsF34ff34
 categories: 복습할 것들
-thumbnailImage: image.png
+thumbnailImage: python.png
 thumbnailImagePosition: left
 autoThumbnailImage: yes
 metaAlignment: center
