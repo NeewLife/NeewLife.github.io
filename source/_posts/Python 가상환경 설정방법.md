@@ -16,7 +16,7 @@ date: '2022-07-18 15:42:20'
 Python 가상환경을 Jupyter Notebook 으로 설정하는 방법
 <!-- excerpt -->
 
-# Python 가상환경 설정방법
+# Python_venv
 
 - 폴더 들어가서
 
@@ -26,7 +26,7 @@ pip install virtualenv
 
 입력 후
 
-![Untitled](/images/Python 가상환경 설정방법/Untitled.png)
+![Untitled](/images/Python_venv/Untitled.png)
 
 ```python
 virtualenv venv
@@ -34,7 +34,7 @@ virtualenv venv
 
 입력 후
 
-![Untitled](/images/Python 가상환경 설정방법/Untitled%201.png)
+![Untitled](/images/Python_venv/Untitled%201.png)
 
 ```python
 code .
@@ -42,11 +42,11 @@ code .
 
 를 치면 Visual Studio 가 나온다
 
-![Untitled](/images/Python 가상환경 설정방법/Untitled%202.png)
+![Untitled](/images/Python_venv/Untitled%202.png)
 
 - Visual Studio 에서 터미널을 Git Bash 로 열고
 
-![Untitled](/images/Python 가상환경 설정방법/Untitled%203.png)
+![Untitled](/images/Python_venv/Untitled%203.png)
 
 ```python
 source venv/Scripts/activate
@@ -57,7 +57,7 @@ Collecting numpy
 
 순서대로 입력
 
-![Untitled](/images/Python 가상환경 설정방법/Untitled%204.png)
+![Untitled](/images/Python_venv/Untitled%204.png)
 
 ```python
 jupyter lab
