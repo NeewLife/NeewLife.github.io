@@ -257,6 +257,310 @@
     </article>
     
     
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/2022/07/29/Spark_install/"
+                            aria-label=": day0729"
+                        >
+                            day0729
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2022-07-29T14:22:21+09:00">
+	
+		    Jul 29, 2022
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Linux/">Linux</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <h1 id="Spark-설치-및-설정"><a href="#Spark-설치-및-설정" class="headerlink" title="Spark 설치 및 설정"></a>Spark 설치 및 설정</h1><h1 id="Apache-Spark-설치-및-설정"><a href="#Apache-Spark-설치-및-설정" class="headerlink" title="Apache Spark 설치 및 설정"></a>Apache Spark 설치 및 설정</h1><ul>
+<li><p>hadoop 폴더를 하나 만들고</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled.png" alt="Untitled"></p>
+</li>
+<li><p>cd hadoop 으로 이동 후 다음 코드 입력</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install openjdk-<span class="number">8</span>-jdk</span><br><span class="line"></span><br><span class="line">sudo wget https://archive.apache.org/dist/spark/spark-<span class="number">3.2</span><span class="number">.0</span>/spark-<span class="number">3.2</span><span class="number">.0</span>-<span class="built_in">bin</span>-hadoop3<span class="number">.2</span>.tgz</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>ls로 압축파일만 있는지 확인하고, 다른게 있으면 삭제하기.</li>
+</ul>
+<h3 id="TAB-키-활용하기"><a href="#TAB-키-활용하기" class="headerlink" title="TAB 키 활용하기!!"></a>TAB 키 활용하기!!</h3><ul>
+<li><p>sudo tar -xvzf s 까지 치고 tab키 누르고 압축파일 풀기</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%201.png" alt="Untitled"></p>
+</li>
+<li><p>mv s (tab키) ~&#x2F;spark3 입력</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%202.png" alt="Untitled"></p>
+</li>
+<li><p>cd .. 입력 후, spark3 폴더로 이동</p>
+</li>
+<li><p>cp -r spark3&#x2F; spark-node입력</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%203.png" alt="Untitled"></p>
+</li>
+<li><p>spark3 폴더 안에 sbin 폴더로 이동</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%204.png" alt="Untitled"></p>
+</li>
+<li><p>다음 명령어 입력</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%205.png" alt="Untitled"></p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cp start-master.sh start-head.sh</span><br><span class="line">cd ~/spark-node/sbin</span><br><span class="line">cp start-slave.sh start-node.sh</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>이렇게 하면 spark3 폴더에는 master → head 로 이름이 변경되었고</p>
+<p>  spark-node 폴더에는 slave → node 로 이름이 변경되었다.</p>
+</li>
+<li><p>이제 spark3&#x2F;sbin 폴더에서 head 를 실행시키고 spark-node&#x2F;sbin 폴더에서 node를</p>
+<p>  실행 시키자.</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%206.png" alt="Untitled"></p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%207.png" alt="Untitled"></p>
+</li>
+<li><p>그 뒤에 인터넷 주소창에 <a target="_blank" rel="noopener" href="http://localhost:8080/">localhost:8080</a> 을 치면 사이트가 나온다.</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%208.png" alt="Untitled"></p>
+</li>
+</ul>
+<hr>
+<h1 id="PySpark-설치-및-설정"><a href="#PySpark-설치-및-설정" class="headerlink" title="PySpark 설치 및 설정"></a>PySpark 설치 및 설정</h1><ul>
+<li><p>환경 변수 설정으로 (vi ~&#x2F;.bashrc)  들어가서 다음과 같이 입력한다</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%209.png" alt="Untitled"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export AIRFLOW_HOME=/home/dhtpdud2009/airflow</span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/java-<span class="number">8</span>-openjdk-amd64</span><br><span class="line">export SPARK_HOME=/home/dhtpdud2009/spark3</span><br><span class="line">export PATH=$JAVA_HOME/<span class="built_in">bin</span>:$PATH</span><br><span class="line">export PATH=$SPARK_HOME/<span class="built_in">bin</span>:$PATH</span><br><span class="line">export PYSPARK_PYTHON=/usr/<span class="built_in">bin</span>/python3</span><br><span class="line"><span class="comment"># export PYSPARK_DRIVER_PYTHON_OPTS=&#x27;notebook&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>dhtpdud2009 부분은 알아서 바꾸기</p>
+</li>
+<li><p>chapter14 폴더 만들고 가상환경 세팅하기</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%2010.png" alt="Untitled"></p>
+</li>
+<li><p>pip3 install findspark 입력 &#x2F; pip install pyspark 입력</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%2011.png" alt="Untitled"></p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%2012.png" alt="Untitled"></p>
+</li>
+<li><p>pip3 install jupyter 입력</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%2013.png" alt="Untitled"></p>
+</li>
+<li><p>그리고 다시 환경 변수 세팅 들어가서 주석처리 제거</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%2014.png" alt="Untitled"></p>
+<p>  source ~&#x2F;.bashrc 까지 하기!</p>
+</li>
+<li><p>Ubuntu 껐다가 다시 켜서 CHAPTER14 에서 code . 로 열기</p>
+</li>
+<li><p>새 파일 만들고 가상환경 접속 후 다음과 같이 입력</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%2015.png" alt="Untitled"></p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%2016.png" alt="Untitled"></p>
+</li>
+<li><p>jupyter notebook 입력</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%2017.png" alt="Untitled"></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://localhost:8888/">localhost:8888</a> 여기 ctrl+클릭하면 Jupyter Notebook 를 열 수 있음</p>
+<p>  <img src="/Spark%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5%20%E1%84%86%E1%85%B5%E1%86%BE%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8C%E1%85%A5%E1%86%BC%20ed617bbea4394784ada244ecd89fbed9/Untitled%2018.png" alt="Untitled"></p>
+</li>
+</ul>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/2022/07/29/Spark_install/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+            <a
+                href="/2022/07/29/Spark_install/"
+                aria-label=": day0729"
+            >
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" src="http://neewlife.github.io/2022/07/29/Spark_install/Linux.png"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/2022/07/29/Crawling_Practice/"
+                            aria-label=": "
+                        >
+                            (no title)
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2022-07-29T12:48:23+09:00">
+	
+		    Jul 29, 2022
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <h1 id="크롤링-설치"><a href="#크롤링-설치" class="headerlink" title="크롤링 설치"></a>크롤링 설치</h1><ul>
+<li>바탕화면에 폴더 만들고</li>
+<li>‘requirements.txt’ 파일을 생성한 후 아래 코드</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">beautifulsoup4==<span class="number">4.11</span><span class="number">.1</span></span><br><span class="line">ipywidgets==<span class="number">7.7</span><span class="number">.1</span></span><br><span class="line">jupyterlab==<span class="number">3.4</span><span class="number">.4</span></span><br><span class="line">lxml==<span class="number">4.9</span><span class="number">.1</span></span><br><span class="line">matplotlib==<span class="number">3.5</span><span class="number">.2</span></span><br><span class="line">numpy==<span class="number">1.23</span><span class="number">.1</span></span><br><span class="line">openpyxl==<span class="number">3.0</span><span class="number">.10</span></span><br><span class="line">pandas==<span class="number">1.4</span><span class="number">.3</span></span><br><span class="line">requests==<span class="number">2.28</span><span class="number">.1</span></span><br><span class="line">selenium==<span class="number">4.3</span><span class="number">.0</span></span><br><span class="line">tqdm==<span class="number">4.64</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>라이브러리</p>
+<p>  <img src="/images/Crawling_Practice/Untitled.png" alt="Untitled"></p>
+</li>
+<li><p>git bash 터미널로 열고 virtualenv venv 입력</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%201.png" alt="Untitled"></p>
+</li>
+<li><p>다음과 같이 가상환경에 접속한다.</p>
+</li>
+<li><p>which python 은 접속됐는지 확인하는 코드</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%202.png" alt="Untitled"></p>
+</li>
+<li><p>pip install -r requirements.txt 입력(파일은 tab키로 입력한다.)</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%203.png" alt="Untitled"></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://dschloe.github.io/python/crawling/python_selenium_crawling/">https://dschloe.github.io/python/crawling/python_selenium_crawling&#x2F;</a> 참고해서</p>
+<p>  크롬 버전에 맞는 chromedriver.exe 파일 다운(윈도우는 32버전 다운)</p>
+</li>
+<li><p>Jupyter lab 실행</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%204.png" alt="Untitled"></p>
+</li>
+<li><p>코드는 이런식으로 작성</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%205.png" alt="Untitled"></p>
+</li>
+</ul>
+<h3 id="크롤링-연습-및-홈페이지-예제-만들기"><a href="#크롤링-연습-및-홈페이지-예제-만들기" class="headerlink" title="크롤링 연습 및 홈페이지 예제 만들기"></a>크롤링 연습 및 홈페이지 예제 만들기</h3><ul>
+<li><p>크롤링 연습 및 html</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%206.png" alt="Untitled"></p>
+</li>
+<li><p>Live Server 확장 설치</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%207.png" alt="Untitled"></p>
+</li>
+<li><p>오른쪽 아래 Go Live 클릭하면 위에 코드 친 대로 홈페이지 생성</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%208.png" alt="Untitled"></p>
+</li>
+</ul>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/2022/07/29/Crawling_Practice/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                Comment and share
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
+    <article class="postShorten postShorten--thumbnailimg-left">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/2022/07/28/day0728/"
+                            aria-label=": day0728"
+                        >
+                            day0728
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2022-07-28T18:50:21+09:00">
+	
+		    Jul 28, 2022
+    	
+    </time>
+    
+        <span>in </span>
+        
+    <a class="category-link" href="/categories/Linux/">Linux</a>
+
+
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-excerpt">
+                    <ul>
+<li>csv 파일 불러서 DataFrame으로 불러오기</li>
+<li>json 파일 불러서 DataFrame으로 불러오기
+                    
+                        <a
+                            href="/2022/07/28/day0728/"
+                            class="postShorten-excerpt_link link"
+                            aria-label=": day0728"
+                        >
+                            Continue reading
+                        </a>
+                        
+                    
+                </div>
+            
+        </div>
+        
+            <a
+                href="/2022/07/28/day0728/"
+                aria-label=": day0728"
+            >
+                <div class="postShorten-thumbnailimg">
+                    <img alt="" src="http://neewlife.github.io/2022/07/28/day0728/Linux.png"/>
+                </div>
+            </a>
+            
+        
+    </article>
+    
+    
     <article class="postShorten postShorten--thumbnailimg-left">
         <div class="postShorten-wrap">
             
@@ -290,7 +594,7 @@
             </div>
             
                 <div class="postShorten-excerpt">
-                    <h2 id="Linux-설치"><a href="#Linux-설치" class="headerlink" title="Linux 설치"></a>Linux 설치</h2><h2 id="vi-편집기-사용-꼭-공부-하기"><a href="#vi-편집기-사용-꼭-공부-하기" class="headerlink" title="vi 편집기 사용 꼭 공부 하기"></a>vi 편집기 사용 꼭 공부 하기</h2>
+                    <h2 id="Linux-설치"><a href="#Linux-설치" class="headerlink" title="Linux 설치"></a>Linux 설치</h2>
                     
                         <a
                             href="/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/"
@@ -419,6 +723,8 @@
 <li><p>airflow 문서<br><a target="_blank" rel="noopener" href="https://airflow.apache.org/docs/apache-airflow/stable/tutorial.html">https://airflow.apache.org/docs/apache-airflow/stable/tutorial.html</a></p>
 </li>
 <li><p>아파치 Airflow 참고교재<br><a target="_blank" rel="noopener" href="http://www.yes24.com/Product/Goods/107878326">http://www.yes24.com/Product/Goods/107878326</a></p>
+</li>
+<li><p>교수님 사이트<br><a target="_blank" rel="noopener" href="https://dschloe.github.io/">https://dschloe.github.io/</a></p>
 </li>
 </ul>
 
@@ -647,190 +953,6 @@
         
     </article>
     
-    
-    <article class="postShorten postShorten--thumbnailimg-left">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/07/16/PyQt5%20Tutorial%20Basics/"
-                            aria-label=": PyQt5 Tutorial Basic"
-                        >
-                            PyQt5 Tutorial Basic
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2022-07-16T22:45:55+09:00">
-	
-		    Jul 16, 2022
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/PyQt5/">PyQt5</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>PyQt5 Basic</p>
-                    
-                        <a
-                            href="/2022/07/16/PyQt5%20Tutorial%20Basics/"
-                            class="postShorten-excerpt_link link"
-                            aria-label=": PyQt5 Tutorial Basic"
-                        >
-                            Continue reading
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a
-                href="/2022/07/16/PyQt5%20Tutorial%20Basics/"
-                aria-label=": PyQt5 Tutorial Basic"
-            >
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://neewlife.github.io/2022/07/16/PyQt5%20Tutorial%20Basics/PyQt-Logo.wine.png"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-left">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/07/08/%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EC%84%A4%EC%A0%95/"
-                            aria-label=": 블로그 설정(한글)"
-                        >
-                            블로그 설정(한글)
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2022-07-08T08:50:55+09:00">
-	
-		    Jul 08, 2022
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/%EB%B8%94%EB%A1%9C%EA%B7%B8/">블로그</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <ul>
-<li>출처 <a target="_blank" rel="noopener" href="https://ujoy7851.github.io/2019/03/24/hexo-theme/">https://ujoy7851.github.io/2019/03/24/hexo-theme/</a>
-                    
-                        <a
-                            href="/2022/07/08/%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EC%84%A4%EC%A0%95/"
-                            class="postShorten-excerpt_link link"
-                            aria-label=": 블로그 설정(한글)"
-                        >
-                            Continue reading
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a
-                href="/2022/07/08/%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EC%84%A4%EC%A0%95/"
-                aria-label=": 블로그 설정(한글)"
-            >
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://neewlife.github.io/2022/07/08/%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EC%84%A4%EC%A0%95/seoul.jpg"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
-    
-    <article class="postShorten postShorten--thumbnailimg-left">
-        <div class="postShorten-wrap">
-            
-            <div class="postShorten-header">
-                <h1 class="postShorten-title">
-                    
-                        <a
-                            class="link-unstyled"
-                            href="/2022/07/07/lecture-in-humanedu/"
-                            aria-label=": kaggle 과제"
-                        >
-                            kaggle 과제
-                        </a>
-                    
-                </h1>
-                <div class="postShorten-meta">
-    <time datetime="2022-07-07T17:16:55+09:00">
-	
-		    Jul 07, 2022
-    	
-    </time>
-    
-        <span>in </span>
-        
-    <a class="category-link" href="/categories/Python/">Python</a>
-
-
-    
-</div>
-
-            </div>
-            
-                <div class="postShorten-excerpt">
-                    <p>Kaggle 과제</p>
-                    
-                        <a
-                            href="/2022/07/07/lecture-in-humanedu/"
-                            class="postShorten-excerpt_link link"
-                            aria-label=": kaggle 과제"
-                        >
-                            Continue reading
-                        </a>
-                        
-                    
-                </div>
-            
-        </div>
-        
-            <a
-                href="/2022/07/07/lecture-in-humanedu/"
-                aria-label=": kaggle 과제"
-            >
-                <div class="postShorten-thumbnailimg">
-                    <img alt="" src="http://neewlife.github.io/2022/07/07/lecture-in-humanedu/kaggle-logo.png"/>
-                </div>
-            </a>
-            
-        
-    </article>
-    
     <div class="pagination-bar">
     <ul class="pagination">
         
@@ -846,7 +968,7 @@
             </a>
           </li>
         
-        <li class="pagination-number">page 1 of 4</li>
+        <li class="pagination-number">page 1 of 5</li>
     </ul>
 </div>
 
