@@ -1,6 +1,20 @@
-
+---
+title: "크롤링 설치 및 연습"
+output:
+  html_document:
+    keep_md: true
+disqusIdentifier: fdsF34ff34
+categories: Linux
+clearReading: true
+thumbnailImage: Linux.png
+thumbnailImagePosition: left
+autoThumbnailImage: yes
+metaAlignment: center
+date: '2022-07-29 17:35:21'
+---
 
 # 크롤링 설치
+<!-- excerpt -->
 
 - 바탕화면에 폴더 만들고
 - ‘requirements.txt’ 파일을 생성한 후 아래 코드
