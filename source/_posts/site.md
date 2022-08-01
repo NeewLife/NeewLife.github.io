@@ -7,7 +7,8 @@ categories:
 date: '2022-07-21 21:16:12'
 ---
 - 부동산 청약 블로그
-https://blog.naver.com/kmjlmy5964/222191515331 
+https://blog.naver.com/kmjlmy5964/222191515331
+https://2020yaer.com/%EC%A3%BC%ED%83%9D%EC%B2%AD%EC%95%BD-1%EC%88%9C%EC%9C%84/
 
   
 - airflow 문서
