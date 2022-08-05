@@ -2,13 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd95f34d-94fd-4a23-ae52-da1bcaccf735" name="변경" comment="변경">
-      <change afterPath="$PROJECT_DIR$/source/_posts/day0801Heroku.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/day0801Heroku/python.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/머신러닝 해보기.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/머신러닝 해보기/python.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 13.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 14.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 15.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 16.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 17.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 18.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 19.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled 9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/0805/Untitled.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/images/curriculum/img.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/themes/tranquilpeak/source/_css/utils/mixins/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Crawling_Practice.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Crawling_Practice.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/curriculum.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/curriculum.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/site.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/site.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak/_config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak/layout/_partial/head.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak/layout/_partial/head.ejs" afterDir="false" />
@@ -47,21 +68,21 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/human/Desktop/blog/source/_posts/day0801Heroku",
+    "last_opened_file_path": "C:/Users/human/Desktop/blog/source/images/0805",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\human\Desktop\blog\source\images\0805" />
+      <recent name="C:\Users\human\Desktop\blog\source\_posts\머신러닝 해보기" />
+      <recent name="C:\Users\human\Desktop\blog\source\_posts\day0801Heroku" />
       <recent name="C:\Users\human\Desktop\blog\source\_posts\Crawling_Practice" />
       <recent name="C:\Users\human\Desktop\blog\source\_posts\Spark_install" />
-      <recent name="C:\Users\human\Desktop\blog\source\_posts" />
-      <recent name="C:\Users\human\Desktop\blog\source\_posts\day0728" />
-      <recent name="C:\Users\Administor\Desktop\blog\source\_posts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\human\Desktop\blog\source\images" />
       <recent name="C:\Users\human\Desktop\blog\source\_posts" />
+      <recent name="C:\Users\human\Desktop\blog\source\images" />
       <recent name="C:\Users\human\Desktop\blog\source\_posts\블로그 설정" />
       <recent name="C:\Users\human\Desktop\blog\source\_posts\Linux 설치" />
       <recent name="C:\Users\Administor\Desktop\blog\source\_posts" />
