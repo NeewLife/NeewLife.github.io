@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd95f34d-94fd-4a23-ae52-da1bcaccf735" name="변경" comment="변경">
-      <change afterPath="$PROJECT_DIR$/source/_posts/day0805.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/images/0805_1/output_28_0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/images/0805_1/output_30_2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/images/0805_1/output_31_0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/images/0805_1/output_9_0.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/themes/tranquilpeak/source/_css/utils/mixins/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.deploy_git" beforeDir="false" afterPath="$PROJECT_DIR$/.deploy_git" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/0617 f76ecd14aebf4b66a1bf966d7061b068.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/PyCaret_Sample (1).md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/PyCaret_Sample (1).md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Python 가상환경 설정방법.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Python 가상환경 설정방법.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/XGBoost_&amp;_LightGBM.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/XGBoost_&amp;_LightGBM.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/day0627.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/day0627.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/day0628.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/day0628.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/day0628_1.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/day0628_1/python.png" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/day0805/python.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak/.eslintignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak/.eslintrc" afterDir="false" />
@@ -217,15 +200,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/Administor/Desktop/blog/source/_posts/day0805",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Administor/Desktop/blog/source/_posts/day0805&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Administor\Desktop\blog\source\_posts\day0805" />
