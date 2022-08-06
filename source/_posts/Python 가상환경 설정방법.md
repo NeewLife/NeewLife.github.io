@@ -64,3 +64,5 @@ jupyter lab
 ```
 
 입력하면 JupyterLab 열림
+
+각종 가상환경들을 세팅 할 수 있다

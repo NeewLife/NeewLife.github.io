@@ -13,7 +13,7 @@ metaAlignment: center
 date: '2022-07-05 16:50:55'
 ---
 
-- 언젠가는 쓸 수 있겠지? ㅎㅎ
+- PyCaret 설치 및 세팅
 <!-- excerpt -->
 
 
