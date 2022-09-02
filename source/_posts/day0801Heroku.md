@@ -13,7 +13,7 @@ metaAlignment: center
 date: '2022-08-01 16:32:01'
 ---
 
-### Heroku 세팅하기
+- Heroku 세팅하기
 <!-- excerpt -->
 
 ---

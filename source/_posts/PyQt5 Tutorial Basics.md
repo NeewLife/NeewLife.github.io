@@ -13,7 +13,7 @@ metaAlignment: center
 date: '2022-07-16 22:45:55'
 ---
 
-PyQt5 Basic
+- PyQt5 Basic
 <!-- excerpt -->
 
 # PyQt5 Tutorial Basics
