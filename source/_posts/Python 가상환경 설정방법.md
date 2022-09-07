@@ -13,7 +13,7 @@ metaAlignment: center
 date: '2022-07-18 15:42:20'
 ---
 
-- Python 가상환경을 Jupyter Notebook 으로 설정하는 방법
+Python 가상환경을 Jupyter Notebook 으로 설정하는 방법
 <!-- excerpt -->
 
 # Python_venv
