@@ -5,7 +5,7 @@ output:
     keep_md: true
 categories: 블로그
 clearReading: true
-thumbnailImage: image.png
+thumbnailImage: topgun.png
 thumbnailImagePosition: bottom
 autoThumbnailImage: yes
 metaAlignment: center
@@ -13,4 +13,5 @@ date: '2123-12-31 12:50:55'
 ---
 
 환영합니다!! (^'^)7
+###### Thumbnail : TOP GUN MAVERICK 
 <!-- excerpt -->
