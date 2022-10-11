@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bd95f34d-94fd-4a23-ae52-da1bcaccf735" name="변경" comment="변경">
       <change afterPath="$PROJECT_DIR$/themes/tranquilpeak/source/_css/utils/mixins/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/source/_posts/Java 문법.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Java 문법.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak/.eslintignore" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak/.eslintignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/tranquilpeak/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/themes/tranquilpeak/.eslintrc" afterDir="false" />
