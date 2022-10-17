@@ -5,7 +5,6 @@ output:
     keep_md: true
 disqusIdentifier: fdsF34ff34
 categories: Java
-clearReading: true
 metaAlignment: center
 date: '2022-10-16 22:10:20'
 ---
