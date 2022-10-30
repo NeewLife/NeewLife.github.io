@@ -35,9 +35,9 @@ date: '2022-08-07 08:30:23'
     
     (q 누르면 나가짐)
     
-    ![Untitled](Git%20%E1%84%8C%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B5%E1%84%89%E1%85%B5%E1%86%B7%E1%84%80%E1%85%B5%20%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B2%E1%84%92%E1%85%A2%E1%84%80%E1%85%A7%E1%86%AF%200564ac301686433180a69e7f5e53bd6e/Untitled.png)
+    ![Untitled](/images/0806/Untitled.png)
     
-    ![Untitled](Git%20%E1%84%8C%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B5%E1%84%89%E1%85%B5%E1%86%B7%E1%84%80%E1%85%B5%20%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B2%E1%84%92%E1%85%A2%E1%84%80%E1%85%A7%E1%86%AF%200564ac301686433180a69e7f5e53bd6e/Untitled%201.png)
+    ![Untitled](/images/0806/Untitled%201.png)
     
 
 ```
@@ -46,15 +46,15 @@ git config --list
 
 - GitHub에 등록된 이메일을 확인하자
     
-    ![Untitled](Git%20%E1%84%8C%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B5%E1%84%89%E1%85%B5%E1%86%B7%E1%84%80%E1%85%B5%20%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B2%E1%84%92%E1%85%A2%E1%84%80%E1%85%A7%E1%86%AF%200564ac301686433180a69e7f5e53bd6e/Untitled%202.png)
+    ![Untitled](/images/0806/Untitled%202.png)
     
-    ![Untitled](Git%20%E1%84%8C%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B5%E1%84%89%E1%85%B5%E1%86%B7%E1%84%80%E1%85%B5%20%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B2%E1%84%92%E1%85%A2%E1%84%80%E1%85%A7%E1%86%AF%200564ac301686433180a69e7f5e53bd6e/Untitled%203.png)
+    ![Untitled](/images/0806/Untitled%203.png)
     
 - 둘이 다른 것을 확인했다.
 
 - 다음 코드로 로컬 config 이메일과 Global config 이메일을 통일 시킨다
     
-    ![Untitled](Git%20%E1%84%8C%E1%85%A1%E1%86%AB%E1%84%83%E1%85%B5%E1%84%89%E1%85%B5%E1%86%B7%E1%84%80%E1%85%B5%20%E1%84%8B%E1%85%A9%E1%84%85%E1%85%B2%E1%84%92%E1%85%A2%E1%84%80%E1%85%A7%E1%86%AF%200564ac301686433180a69e7f5e53bd6e/Untitled%204.png)
+    ![Untitled](/images/0806/Untitled%204.png)
     
 
 ```
