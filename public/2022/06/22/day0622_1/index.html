@@ -1,24 +1,24 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
     
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="소소한 개발자 블로그">
     <title>9장 - 소소한 개발자 블로그</title>
-    <meta name="author" content="John Doe">
+    <meta name="author" content="Oh Seyoung">
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"John Doe","sameAs":["https://github.com/NeewLife?tab=repositories/"]},"articleBody":"\n\n9장ggplot2 강의\n데이터 불러오기\n\n123library(readxl)library(ggplot2)who_disease &lt;- read_xlsx(&quot;data/who_disease.xlsx&quot;)\n\n기본 시각화\n\n1234# x축에 year, y축에 cases 라는 값을 넣겠다.ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point()\n\n\n\n옵션 변화 주기(투명도)\n\n123ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point(alpha = 0.1)  # alpha 는 투명도\n\n\n\n옵션 색상 변화\n\n123ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point(alpha = 0.1, colour = &quot;#A243F5&quot;)  # &quot;#A243F5&quot; 색상으로 변경\n\n\n\ncolour 입력 위치\ngeom_point(colour&#x3D;”red”)       -&gt;  색상명 작성\naes(x, y, colour &#x3D; 컬럼이름)   -&gt;  aes 안에는 컬럼 이름작성\n\n\n\n1str(iris)\n\n123456## &#x27;data.frame&#x27;:\t150 obs. of  5 variables:##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...\n\n12345ggplot(iris, aes(x = Sepal.Length,                 y = Sepal.Width,                 colour = Species,                 size = Petal.Length)) +  geom_point()\n\n\n\n원하는 색상값 참조 사이트\n\nhttps://color.adobe.com/ko/create/color-wheel\n\n\n산점도 : x축 수치형 연속형 데이터, y축 수치형 연속형 데이터\n\n연속형 데이터 : 숫자 같이 연속하는 데이터\n\n이산형 데이터 : 문자 같이 연속하지 않는 데이터\n\n\n123ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point(alpha = 0.1)\n\n\n\n커널 밀도 곡선\n\n12ggplot(data=diamonds, aes(x=carat))+  geom_density()\n\n\n\n상자 그래프\n전체 데이터 기준의 그림\n\n\n\n12ggplot(data=diamonds, aes(x=1, y=price))+  #통상 x값에 1을 부여한다  geom_boxplot()\n\n\n\n범주형 변수 기준의 그림\n\n12ggplot(data=diamonds,aes(x=cut,y=price))+  geom_boxplot()\n\n\n\n선 그래프\n속도에 따른 제동거리의 그래프\n\n\n\n12ggplot(data=cars, aes(x=speed,y=dist))+  geom_line()\n\n\n\n실업자수 변화 그래프\n\n12ggplot(data=economics,aes(x=date,y=unemploy))+  geom_line()\n\n\n\n개인 저축률 변화\n\n12ggplot(data=economics,aes(x=date, y=psavert))+  geom_line()\n\n\n\n두 선 그래프를 연결해서 그리기\n\n123ggplot()+  geom_line(data=economics,aes(x=date,y=uempmed,color=&quot;red&quot;))+  geom_line(data=economics,aes(x=date,y=psavert,color=&quot;blue&quot;))\n\n\n12# 빨간색이 주당평균실업기간# 파란색이 개인저축률\n\n히스토그램\n질병데이터region &#x3D; AMR, year &#x3D; 1980, disease &#x3D; 백일해(pertussis)cases &gt; 0\n\n\n\n12library(dplyr)str(who_disease)\n\n1234567## tibble [43,262 × 6] (S3: tbl_df/tbl/data.frame)##  $ region     : chr [1:43262] &quot;EMR&quot; &quot;EUR&quot; &quot;AFR&quot; &quot;EUR&quot; ...##  $ countryCode: chr [1:43262] &quot;AFG&quot; &quot;ALB&quot; &quot;DZA&quot; &quot;AND&quot; ...##  $ country    : chr [1:43262] &quot;Afghanistan&quot; &quot;Albania&quot; &quot;Algeria&quot; &quot;Andorra&quot; ...##  $ disease    : chr [1:43262] &quot;measles&quot; &quot;measles&quot; &quot;measles&quot; &quot;measles&quot; ...##  $ year       : num [1:43262] 2016 2016 2016 2016 2016 ...##  $ cases      : num [1:43262] 638 17 41 0 53 0 0 2 99 27 ...\n\n12345who_disease %&gt;%   filter(region == &#x27;AMR&#x27;,         year == 1980,         disease == &#x27;pertussis&#x27;,         cases &gt; 0) -&gt; data2\n\ndata2 시각화(histogram)\n\n123ggplot(data2, aes(x = cases)) +  # 빨간색으로 채운다.  geom_histogram(fill = &quot;red&quot;)    # 분포가 어느 지역에 몰려 있는지에 집중\n\n1## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\ndata2 시각화(col)\n\n1234ggplot(data2, aes(x =country, y =cases)) +  geom_col(fill = &quot;blue&quot;) +  # 옵션(가로로 그래프 나타내기)  coord_flip()\n\n\nggplot() 정교하게 그리기\n산점도 그리기\n\n1234ggplot(data = diamonds, aes(x = carat,                             y = price,                             col = cut)) +  geom_point()\n\n\n\n막대그래프에 2개 범주 내용 반영하기\n\n12ggplot(diamonds, aes(x = color, fill = cut)) +  geom_bar()\n\n\n\nposition을 이용한 막대그래프(특정 그래프 모양에만 적용된다)\n\n12ggplot(diamonds, aes(x = color, fill = cut)) +  geom_bar(position=&quot;dodge&quot;)\n\n\n12ggplot(diamonds, aes(x = color, fill = cut)) +  geom_bar(position=&quot;fill&quot;)\n\n\n\n선 그래프에 2개 범주 내용 반영\n데이터 불러오기\n\n12leisure &lt;- read.csv(&quot;data/leisure.csv&quot;)str(leisure)\n\n1234## &#x27;data.frame&#x27;:\t200 obs. of  3 variables:##  $ age    : int  2 2 3 3 4 4 5 5 6 6 ...##  $ sex    : chr  &quot;female&quot; &quot;male&quot; &quot;female&quot; &quot;male&quot; ...##  $ expense: num  25.8 21 30 16.3 25.7 ...\n\n연령별 교양오락지출비 그래프 그리기\n\n12ggplot(data=leisure, aes(x=age, y=expense, col = sex)) +  geom_line(size=1, linetype=2)   #사이즈, 선 타입 조절\n\n\n막대그래프의 순서 변경\nreorder()\n\n1234567mpg1 &lt;- read.csv(&quot;data/mpg1.csv&quot;,                 stringsAsFactors = FALSE)#데이터 가공drv_hwy &lt;- mpg1 %&gt;%   group_by(drv) %&gt;%   summarise(mean_hwy = mean(hwy))\n\n\n1234# 기본 그래프ggplot(data = drv_hwy, aes(x = drv,                            y = mean_hwy)) +  geom_col()\n\n\n1234#오름차순ggplot(data = drv_hwy, aes(x = reorder(drv, mean_hwy),                             y = mean_hwy)) +  geom_col()\n\n\n12345678910111213#내림차순ggplot(data = drv_hwy, aes(x = reorder(drv, -mean_hwy),                            y = mean_hwy)) +  geom_col() +    # 그래프와 축에 이름 붙이기  labs(                title = &quot;그래프 제목을 입력하세요&quot;,    subtitle = &quot;그래프 소제목을 입력하세요&quot;,    x = &quot;x변수명을 입력하세요&quot;,    y = &quot;y변수명을 입력하세요&quot;,    caption = &quot;데이터 출처를 입력하세요&quot;  )\n\n","dateCreated":"2022-06-22T09:30:00+09:00","dateModified":"2022-07-11T00:30:52+09:00","datePublished":"2022-06-22T09:30:00+09:00","description":"ggplot2를 이용한 R 시각화","headline":"9장","image":["R_logo.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://neewlife.github.io/2022/06/22/day0622_1/"},"publisher":{"@type":"Organization","name":"John Doe","sameAs":["https://github.com/NeewLife?tab=repositories/"]},"url":"http://neewlife.github.io/2022/06/22/day0622_1/","thumbnailUrl":"R_logo.jpg"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Oh Seyoung","sameAs":["https://github.com/NeewLife?tab=repositories/"]},"articleBody":"\n\n9장ggplot2 강의\n데이터 불러오기\n\n123library(readxl)library(ggplot2)who_disease &lt;- read_xlsx(&quot;data/who_disease.xlsx&quot;)\n\n기본 시각화\n\n1234# x축에 year, y축에 cases 라는 값을 넣겠다.ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point()\n\n\n\n옵션 변화 주기(투명도)\n\n123ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point(alpha = 0.1)  # alpha 는 투명도\n\n\n\n옵션 색상 변화\n\n123ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point(alpha = 0.1, colour = &quot;#A243F5&quot;)  # &quot;#A243F5&quot; 색상으로 변경\n\n\n\ncolour 입력 위치\ngeom_point(colour&#x3D;”red”)       -&gt;  색상명 작성\naes(x, y, colour &#x3D; 컬럼이름)   -&gt;  aes 안에는 컬럼 이름작성\n\n\n\n1str(iris)\n\n123456## &#x27;data.frame&#x27;:\t150 obs. of  5 variables:##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...\n\n12345ggplot(iris, aes(x = Sepal.Length,                 y = Sepal.Width,                 colour = Species,                 size = Petal.Length)) +  geom_point()\n\n\n\n원하는 색상값 참조 사이트\n\nhttps://color.adobe.com/ko/create/color-wheel\n\n\n산점도 : x축 수치형 연속형 데이터, y축 수치형 연속형 데이터\n\n연속형 데이터 : 숫자 같이 연속하는 데이터\n\n이산형 데이터 : 문자 같이 연속하지 않는 데이터\n\n\n123ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point(alpha = 0.1)\n\n\n\n커널 밀도 곡선\n\n12ggplot(data=diamonds, aes(x=carat))+  geom_density()\n\n\n\n상자 그래프\n전체 데이터 기준의 그림\n\n\n\n12ggplot(data=diamonds, aes(x=1, y=price))+  #통상 x값에 1을 부여한다  geom_boxplot()\n\n\n\n범주형 변수 기준의 그림\n\n12ggplot(data=diamonds,aes(x=cut,y=price))+  geom_boxplot()\n\n\n\n선 그래프\n속도에 따른 제동거리의 그래프\n\n\n\n12ggplot(data=cars, aes(x=speed,y=dist))+  geom_line()\n\n\n\n실업자수 변화 그래프\n\n12ggplot(data=economics,aes(x=date,y=unemploy))+  geom_line()\n\n\n\n개인 저축률 변화\n\n12ggplot(data=economics,aes(x=date, y=psavert))+  geom_line()\n\n\n\n두 선 그래프를 연결해서 그리기\n\n123ggplot()+  geom_line(data=economics,aes(x=date,y=uempmed,color=&quot;red&quot;))+  geom_line(data=economics,aes(x=date,y=psavert,color=&quot;blue&quot;))\n\n\n12# 빨간색이 주당평균실업기간# 파란색이 개인저축률\n\n히스토그램\n질병데이터region &#x3D; AMR, year &#x3D; 1980, disease &#x3D; 백일해(pertussis)cases &gt; 0\n\n\n\n12library(dplyr)str(who_disease)\n\n1234567## tibble [43,262 × 6] (S3: tbl_df/tbl/data.frame)##  $ region     : chr [1:43262] &quot;EMR&quot; &quot;EUR&quot; &quot;AFR&quot; &quot;EUR&quot; ...##  $ countryCode: chr [1:43262] &quot;AFG&quot; &quot;ALB&quot; &quot;DZA&quot; &quot;AND&quot; ...##  $ country    : chr [1:43262] &quot;Afghanistan&quot; &quot;Albania&quot; &quot;Algeria&quot; &quot;Andorra&quot; ...##  $ disease    : chr [1:43262] &quot;measles&quot; &quot;measles&quot; &quot;measles&quot; &quot;measles&quot; ...##  $ year       : num [1:43262] 2016 2016 2016 2016 2016 ...##  $ cases      : num [1:43262] 638 17 41 0 53 0 0 2 99 27 ...\n\n12345who_disease %&gt;%   filter(region == &#x27;AMR&#x27;,         year == 1980,         disease == &#x27;pertussis&#x27;,         cases &gt; 0) -&gt; data2\n\ndata2 시각화(histogram)\n\n123ggplot(data2, aes(x = cases)) +  # 빨간색으로 채운다.  geom_histogram(fill = &quot;red&quot;)    # 분포가 어느 지역에 몰려 있는지에 집중\n\n1## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\ndata2 시각화(col)\n\n1234ggplot(data2, aes(x =country, y =cases)) +  geom_col(fill = &quot;blue&quot;) +  # 옵션(가로로 그래프 나타내기)  coord_flip()\n\n\nggplot() 정교하게 그리기\n산점도 그리기\n\n1234ggplot(data = diamonds, aes(x = carat,                             y = price,                             col = cut)) +  geom_point()\n\n\n\n막대그래프에 2개 범주 내용 반영하기\n\n12ggplot(diamonds, aes(x = color, fill = cut)) +  geom_bar()\n\n\n\nposition을 이용한 막대그래프(특정 그래프 모양에만 적용된다)\n\n12ggplot(diamonds, aes(x = color, fill = cut)) +  geom_bar(position=&quot;dodge&quot;)\n\n\n12ggplot(diamonds, aes(x = color, fill = cut)) +  geom_bar(position=&quot;fill&quot;)\n\n\n\n선 그래프에 2개 범주 내용 반영\n데이터 불러오기\n\n12leisure &lt;- read.csv(&quot;data/leisure.csv&quot;)str(leisure)\n\n1234## &#x27;data.frame&#x27;:\t200 obs. of  3 variables:##  $ age    : int  2 2 3 3 4 4 5 5 6 6 ...##  $ sex    : chr  &quot;female&quot; &quot;male&quot; &quot;female&quot; &quot;male&quot; ...##  $ expense: num  25.8 21 30 16.3 25.7 ...\n\n연령별 교양오락지출비 그래프 그리기\n\n12ggplot(data=leisure, aes(x=age, y=expense, col = sex)) +  geom_line(size=1, linetype=2)   #사이즈, 선 타입 조절\n\n\n막대그래프의 순서 변경\nreorder()\n\n1234567mpg1 &lt;- read.csv(&quot;data/mpg1.csv&quot;,                 stringsAsFactors = FALSE)#데이터 가공drv_hwy &lt;- mpg1 %&gt;%   group_by(drv) %&gt;%   summarise(mean_hwy = mean(hwy))\n\n\n1234# 기본 그래프ggplot(data = drv_hwy, aes(x = drv,                            y = mean_hwy)) +  geom_col()\n\n\n1234#오름차순ggplot(data = drv_hwy, aes(x = reorder(drv, mean_hwy),                             y = mean_hwy)) +  geom_col()\n\n\n12345678910111213#내림차순ggplot(data = drv_hwy, aes(x = reorder(drv, -mean_hwy),                            y = mean_hwy)) +  geom_col() +    # 그래프와 축에 이름 붙이기  labs(                title = &quot;그래프 제목을 입력하세요&quot;,    subtitle = &quot;그래프 소제목을 입력하세요&quot;,    x = &quot;x변수명을 입력하세요&quot;,    y = &quot;y변수명을 입력하세요&quot;,    caption = &quot;데이터 출처를 입력하세요&quot;  )\n\n","dateCreated":"2022-06-22T09:30:00+09:00","dateModified":"2022-07-11T00:30:52+09:00","datePublished":"2022-06-22T09:30:00+09:00","description":"ggplot2를 이용한 R 시각화","headline":"9장","image":["R_logo.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"http://neewlife.github.io/2022/06/22/day0622_1/"},"publisher":{"@type":"Organization","name":"Oh Seyoung","sameAs":["https://github.com/NeewLife?tab=repositories/"]},"url":"http://neewlife.github.io/2022/06/22/day0622_1/","thumbnailUrl":"R_logo.jpg"}</script>
     <meta name="description" content="ggplot2를 이용한 R 시각화">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="9장">
 <meta property="og:url" content="http://neewlife.github.io/2022/06/22/day0622_1/index.html">
 <meta property="og:site_name" content="소소한 개발자 블로그">
 <meta property="og:description" content="ggplot2를 이용한 R 시각화">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="http://neewlife.github.io/images/0622_1/unnamed-chunk-2-1.png">
 <meta property="og:image" content="http://neewlife.github.io/images/0622_1/unnamed-chunk-3-1.png">
 <meta property="og:image" content="http://neewlife.github.io/images/0622_1/unnamed-chunk-4-1.png">
@@ -43,7 +43,7 @@
 <meta property="og:image" content="http://neewlife.github.io/images/0622_1/unnamed-chunk-24-3.png">
 <meta property="article:published_time" content="2022-06-22T00:30:00.000Z">
 <meta property="article:modified_time" content="2022-07-10T15:30:52.666Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="Oh Seyoung">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://neewlife.github.io/images/0622_1/unnamed-chunk-2-1.png">
     
@@ -94,7 +94,7 @@
             <a
                 class="header-right-picture "
                 href="#about"
-                aria-label="Open the link: /#about"
+                aria-label="링크 열기: /#about"
             >
         
         
@@ -132,10 +132,10 @@
                             href="/all-categories"
                             
                             rel="noopener"
-                            title="Categories"
+                            title="카테고리"
                         >
                         <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Categories</span>
+                        <span class="sidebar-button-desc">카테고리</span>
                     </a>
             </li>
             
@@ -146,10 +146,10 @@
                             href="/all-tags"
                             
                             rel="noopener"
-                            title="Tags"
+                            title="태그"
                         >
                         <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Tags</span>
+                        <span class="sidebar-button-desc">태그</span>
                     </a>
             </li>
             
@@ -160,10 +160,10 @@
                             href="/all-archives"
                             
                             rel="noopener"
-                            title="Archives"
+                            title="아카이브"
                         >
                         <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Archives</span>
+                        <span class="sidebar-button-desc">아카이브</span>
                     </a>
             </li>
             
@@ -174,10 +174,10 @@
                             href="#search"
                             
                             rel="noopener"
-                            title="Search"
+                            title="검색"
                         >
                         <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">Search</span>
+                        <span class="sidebar-button-desc">검색</span>
                     </a>
             </li>
             
@@ -239,11 +239,11 @@
         <div class="post-meta">
     <time datetime="2022-06-22T09:30:00+09:00">
 	
-		    Jun 22, 2022
+		    2022/06/22
     	
     </time>
     
-        <span>in </span>
+        <span>카테고리 </span>
         
     <a class="category-link" href="/categories/R-studio/">R studio</a>
 
@@ -452,11 +452,11 @@
                     class="post-action-btn btn btn--default tooltip--top"
                     href="/2022/06/23/curriculum/"
                     data-tooltip="일정"
-                    aria-label="PREVIOUS: 일정"
+                    aria-label="이전: 일정"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
             </li>
             <li class="post-action">
@@ -466,10 +466,10 @@
                     class="post-action-btn btn btn--default tooltip--top"
                     href="/2022/06/22/day0622/"
                     data-tooltip="7장"
-                    aria-label="NEXT: 7장"
+                    aria-label="다음: 7장"
                 >
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -480,7 +480,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="이 포스트 공유하기"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -492,8 +492,8 @@
                 <a
                     class="post-action-btn btn btn--default"
                     target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://neewlife.github.io/2022/06/22/day0622_1/"
-                    title="Share on Facebook"
-                    aria-label="Share on Facebook"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
                 >
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
@@ -505,8 +505,8 @@
                 <a
                     class="post-action-btn btn btn--default"
                     target="new" href="https://twitter.com/intent/tweet?text=http://neewlife.github.io/2022/06/22/day0622_1/"
-                    title="Share on Twitter"
-                    aria-label="Share on Twitter"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
                 >
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -518,8 +518,8 @@
                 <a
                     class="post-action-btn btn btn--default"
                     target="new" href="https://plus.google.com/share?url=http://neewlife.github.io/2022/06/22/day0622_1/"
-                    title="Share on Google+"
-                    aria-label="Share on Google+"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
                 >
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
@@ -530,7 +530,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -550,7 +550,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2022 John Doe. All Rights Reserved.
+        Copyrights &copy; 2022 Oh Seyoung. All Rights Reserved.
     </span>
 </footer>
 
@@ -567,11 +567,11 @@
                     class="post-action-btn btn btn--default tooltip--top"
                     href="/2022/06/23/curriculum/"
                     data-tooltip="일정"
-                    aria-label="PREVIOUS: 일정"
+                    aria-label="이전: 일정"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
-                        <span class="hide-xs hide-sm text-small icon-ml">PREVIOUS</span>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
             </li>
             <li class="post-action">
@@ -581,10 +581,10 @@
                     class="post-action-btn btn btn--default tooltip--top"
                     href="/2022/06/22/day0622/"
                     data-tooltip="7장"
-                    aria-label="NEXT: 7장"
+                    aria-label="다음: 7장"
                 >
                     
-                        <span class="hide-xs hide-sm text-small icon-mr">NEXT</span>
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
                         <i class="fa fa-angle-right" aria-hidden="true"></i>
                     </a>
             </li>
@@ -595,7 +595,7 @@
             <a
                 class="post-action-btn btn btn--default btn-open-shareoptions"
                 href="#btn-open-shareoptions"
-                aria-label="Share this post"
+                aria-label="이 포스트 공유하기"
             >
                 <i class="fa fa-share-alt" aria-hidden="true"></i>
             </a>
@@ -607,8 +607,8 @@
                 <a
                     class="post-action-btn btn btn--default"
                     target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://neewlife.github.io/2022/06/22/day0622_1/"
-                    title="Share on Facebook"
-                    aria-label="Share on Facebook"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
                 >
                     <i class="fab fa-facebook" aria-hidden="true"></i>
                 </a>
@@ -620,8 +620,8 @@
                 <a
                     class="post-action-btn btn btn--default"
                     target="new" href="https://twitter.com/intent/tweet?text=http://neewlife.github.io/2022/06/22/day0622_1/"
-                    title="Share on Twitter"
-                    aria-label="Share on Twitter"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
                 >
                     <i class="fab fa-twitter" aria-hidden="true"></i>
                 </a>
@@ -633,8 +633,8 @@
                 <a
                     class="post-action-btn btn btn--default"
                     target="new" href="https://plus.google.com/share?url=http://neewlife.github.io/2022/06/22/day0622_1/"
-                    title="Share on Google+"
-                    aria-label="Share on Google+"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
                 >
                     <i class="fab fa-google-plus" aria-hidden="true"></i>
                 </a>
@@ -645,7 +645,7 @@
         
         <li class="post-action">
             
-                <a class="post-action-btn btn btn--default" href="#" aria-label="Back to top">
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
             
                 <i class="fa fa-list" aria-hidden="true"></i>
             </a>
@@ -667,9 +667,9 @@
                         class="share-option-btn"
                         target="new"
                         href="https://www.facebook.com/sharer/sharer.php?u=http://neewlife.github.io/2022/06/22/day0622_1/"
-                        aria-label="Share on Facebook"
+                        aria-label="Facebook에 공유하기"
                     >
-                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Share on Facebook</span>
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
                     </a>
                 </li>
             
@@ -680,9 +680,9 @@
                         class="share-option-btn"
                         target="new"
                         href="https://twitter.com/intent/tweet?text=http://neewlife.github.io/2022/06/22/day0622_1/"
-                        aria-label="Share on Twitter"
+                        aria-label="Twitter에 공유하기"
                     >
-                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
                     </a>
                 </li>
             
@@ -693,9 +693,9 @@
                         class="share-option-btn"
                         target="new"
                         href="https://plus.google.com/share?url=http://neewlife.github.io/2022/06/22/day0622_1/"
-                        aria-label="Share on Google+"
+                        aria-label="Google+에 공유하기"
                     >
-                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Share on Google+</span>
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
                     </a>
                 </li>
             
@@ -714,7 +714,7 @@
             <i class="fa fa-times"></i>
         </div>
         
-            <h4 id="about-card-name">John Doe</h4>
+            <h4 id="about-card-name">Oh Seyoung</h4>
         
             <div id="about-card-bio"><p>author.bio</p>
 </div>

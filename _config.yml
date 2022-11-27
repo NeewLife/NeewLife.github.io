@@ -7,8 +7,8 @@ title: 소소한 개발자 블로그
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
-language: en
+author: Oh Seyoung
+language: ko
 timezone: ''
 
 # URL
@@ -104,4 +104,4 @@ theme: tranquilpeak
 deploy:
   type: git
   repo: https://github.com/NeewLife/NeewLife.github.io.git
-  branch: main
+  branch: master
