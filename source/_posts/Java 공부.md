@@ -9,17 +9,20 @@ metaAlignment: center
 thumbnailImage: Java.png
 thumbnailImagePosition: left
 autoThumbnailImage: yes
+clearReading: true
+coverImage: wallpaper1.png
+coverMeta: out
+coverSize: full
 date: '2022-10-12 00:19:21'
 ---
 
-### 자바 공부
-
-오버로딩 / 오버라이딩 차이점? 
+오버로딩 / 오버라이딩 차이점은? 
 <!-- excerpt -->
+
 오버라이딩 : 부모와 자식의 요소가 공통적이라면 자식의 요소를 불러온다.
 오버로딩 : 함수명이 같은데 변수형태가 다르면 그 변수형태에 맞는 함수를 불러온다.
 인터페이스 : class 와 비슷하지만 interface 안에는 필수요소를 집어넣는다.
-예) 동물에 이름/나이/몸무게 를 넣고 싶은데 이름/나이는 필수, 몸무게는 선택요소이다?
+예) 동물에 이름/나이/몸무게 를 넣고 싶은데 이름/나이는 필수, 몸무게는 선택요소일 경우
 이름/나이는 interface 에 지정하고 몸무게는 class에 지정
 
 제네럴 : 자바는 데이터타입을 인스턴스로 만들때 결정 해줘야하지만,
