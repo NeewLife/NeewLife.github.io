@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd95f34d-94fd-4a23-ae52-da1bcaccf735" name="변경" comment="변경">
-      <change afterPath="$PROJECT_DIR$/source/_posts/Java 클래스.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/Java 클래스/Java.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/source/_posts/Java 클래스/wallpaper1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/_posts/Java 클래스.md" beforeDir="false" afterPath="$PROJECT_DIR$/source/_posts/Java 클래스.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,18 +48,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\java\workspace\MyGitHub\blog\source\_posts\Java 클래스" />
+      <recent name="D:\java\workspace\MyGitHub\blog\source\_posts" />
       <recent name="D:\java\workspace\MyGitHub\blog\source\_posts\Java 공부" />
       <recent name="D:\java\workspace\MyGitHub\blog\themes\tranquilpeak\source\_images" />
       <recent name="D:\java\workspace\MyGitHub\blog\source\assets\images" />
-      <recent name="C:\Users\Administor\Desktop\blog\themes\tranquilpeak\source\assets\images" />
-      <recent name="C:\Users\Administor\Desktop\blog\source\assets\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\java\workspace\MyGitHub\blog\source\_posts\Java 클래스" />
       <recent name="C:\Users\Administor\Desktop\blog\source\_posts\day0927" />
       <recent name="C:\Users\Administor\Desktop\blog\source\_posts\day0622" />
       <recent name="C:\Users\Administor\Desktop\blog\themes\tranquilpeak\source\assets\images" />
       <recent name="C:\Users\Administor\Desktop\blog\themes\tranquilpeak\source\assets\cover.jpg" />
-      <recent name="C:\Users\Administor\Desktop\blog\source\_posts\Welcome" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
