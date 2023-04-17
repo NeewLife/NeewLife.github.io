@@ -2,37 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd95f34d-94fd-4a23-ae52-da1bcaccf735" name="변경" comment="변경">
-      <change beforePath="$PROJECT_DIR$/.deploy_git" beforeDir="false" afterPath="$PROJECT_DIR$/.deploy_git" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/Java 클래스.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/Java 클래스/Java.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/_posts/Java 클래스/wallpaper1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.json" beforeDir="false" afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2022/06/17/day0617/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2022/06/17/day0617/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2022/06/20/0620/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2022/06/20/0620/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2022/06/20/day0620/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2022/06/20/day0620/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2022/06/20/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2022/06/20/test/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2022/06/21/day0621/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2022/06/21/day0621/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2022/06/21/day0621_dplyr/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2022/06/21/day0621_dplyr/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2022/06/22/day0622/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2022/06/22/day0622/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2022/06/22/day0622_1/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2022/06/22/day0622_1/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2022/06/23/curriculum/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2022/06/23/curriculum/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2022/06/23/day0623/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2022/06/23/day0623/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2022/06/23/remind/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2022/06/23/remind/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2022/06/24/mental/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2022/06/24/mental/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2022/06/27/day0627/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2022/06/27/day0627/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2022/06/28/day0628/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/2022/06/28/day0628/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/all-archives/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/all-archives/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/all-categories/hello-world.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/all-categories/hello-world.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/all-categories/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/all-categories/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/all-tags/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/all-tags/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/archives/2022/06/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/2022/06/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/archives/2022/06/page/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/2022/06/page/2/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/archives/2022/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/2022/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/archives/2022/page/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/2022/page/2/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/archives/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/archives/page/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/archives/page/2/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/categories/Python/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/categories/Python/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/categories/블로그/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/categories/블로그/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/categories/점프-투-파이썬/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/categories/점프-투-파이썬/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/page/2/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/page/2/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +44,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "D:/java/workspace/MyGitHub/blog/source/_posts/Java 공부",
+    "last_opened_file_path": "D:/java/workspace/MyGitHub/blog/source/_posts/Java 클래스",
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
 }]]></component>
@@ -120,7 +94,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681595292824</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="변경">
+      <created>1681700979520</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1681700979520</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
