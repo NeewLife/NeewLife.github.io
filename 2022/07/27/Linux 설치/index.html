@@ -1,0 +1,795 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="개발 메모장">
+    <title>Linux 환경 만들기 - 개발 메모장</title>
+    <meta name="author" content="오세영">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\nvi 편집기 사용 꼭 공부 하기\n윈도우 버전이 20H1, 20H2, 21H1, 21H2 보다 높아야 됨\n\n\n\npowershell 관리자로 실행\n다음 코드 입력\n\n1234dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestartdism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart\n\n\n인터넷 주소창에 다음 코드 입력\n\n1https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi\n\n\n다운 받은 후 설치\nMicrosoft Store 에서 ubuntu 설치\n\n\n\nUbuntu 20.04.4 버전으로 다운로드\n나중에 설정이 꼬였을 때 윈도우 포맷하는 것 처럼 Ubuntu를 삭제하고 다시 설치하면 된다.\n\n\n\n\n\nUbuntu 실행\n\n\n\n만약 다음과 같은 메세지가 뜬다면 가상환경을 확인해야 한다\n\n\n\nWindows 기능 켜기&#x2F;끄기 열기\n\n\n\nWindows 하이퍼바이저 플랫폼 체크 후 재부팅\n\n\n\n재부팅 후 Ubuntu 실행\nUbuntu 아이디 비밀번호 만들기 (비밀번호는 입력해도 안 보인다!!)\n\n\n\n다시 powershell 실행 후 다음 코드 입력\n\n1wsl --set-default-version 2\n\n\n다음과 같이 뜨면 성공!\n\n\n\n코드 wsl -l -v 입력 후 버전이 1이 나오면 Ubuntu 제거 후 다시 설치하고 Ubuntu 로그인 후\n맨 위에 PowerShell 코드 다시 입력\n\n\n\n그 다음 wsl -l -v 치면 버전 2가 나옴(나오면 꺼도 됨)\n\n시스템 환경 변수 들어가서 환경 변수 탭 —&gt; Path 편집\n\n\n\n\n\n\nVS Code 저 경로가 있는지 확인한다.\n\n\n환경변수를 사용하는 이유빅데이터 플랫폼 &#x2F; 웹사이트 구축할 때\n\n레고블록 쌓을때 맞물려 쌓듯이 연결해주는 것이 Configuration(환경 변수) 인데\n  이 환경 변수가 유기적으로 연결 되지 않으면 에러가 뜨거나 실행이 안된다.\n\n\n\n\n다음 사이트 참고하여서 VS Code 에 연결\n\nhttps://dschloe.github.io/settings/vscode_wsl2&#x2F;\n\nC드라이브에 폴더를 만든다(여기에선 dataEngineering)\n\nUbuntu를 열고 다음 코드를 입력해 C\\dataEngineering 폴더에 접속한다.\n\nmkdir abc &#x3D; 새로운 abc 폴더 생성\n\nrm -rm abc : abc폴더 만 지운다\n\nrm -rm * : 전체 삭제\n\n\n12345cd mntcd ccd dataEngineeringcode .\n\n\ncode . 까지 입력하면 VS Code 가 열릴텐데 터미널 열고서 파이썬 버전 확인\n\n\n\nsudo apt-get update 입력\n\n\n\nsudo apt install python3-pip 입력\n\n\n\nsudo pip3 install virtualenv 입력\n\n\n\n가상환경 생성 코드 virtualenv venv 입력\n가상환경 접속 코드 source venv&#x2F;bin&#x2F;activate 입력\n윈도우와 리눅스의 가상환경 차이점 &#x3D;  source venv 다음 &#x2F;bin 으로 시작한다\n\n\n환경 변수 설정하기\npwd 입력 후 경로 확인후 복사\n\n\n\nvi ~&#x2F;.bashrc 입력 하면 환경 변수에 접속한다\n\n\n\n다음과 같은 화면이 뜨면 vi 편집기로 활성화 됨\n여기서 “i” 를 누르면 INSERT 모드로 진입된다. 맨 밑으로 스크롤해서 내림\nexport AIRFLOW_HOME&#x3D;(아까 그 pwd 경로입력)\n\n\n\n중간에 ‘&#x3D;’ 을 띄어쓰기 하면 안됨!!\n입력모드 종료는 ESC 키 누르면 됨\n:wq! 를 입력(저장한다는 뜻)   :q!  는 저장하지 않고 나간다는 뜻, 잘못 만졌을 때 유용하다.\n\n\n\nsource ~&#x2F;.bashrc 까지 입력해야 배포가 완료됨\n\n\n\n배포하면 venv 가 사라지기 때문에 항상 다시 가상환경 설정해야함\necho $AIRFLOW_HOME 입력 해서 배포됐는지 확인\n\n\n\npip3 install ‘apache-airflow[postgres,slack,celery]’  입력\n\n\n\n설치 완료되면 airflow db init 입력\n\n\n\n다음 코드를 입력해서 airflow 입력\n\n1airflow users create --username airflow --password airflow --firstname evan --lastname airflow --role Admin --email your_email@some.com\n\n\nairflow webserver -p 8081 입력\n주소창에 localhost:1234 로 접속하면 airflow 로컬 홈페이지가 나온다\n","dateCreated":"2022-07-27T16:54:02+09:00","dateModified":"2022-07-31T13:29:40+09:00","datePublished":"2022-07-27T16:54:02+09:00","description":"Linux 설치","headline":"Linux 환경 만들기","image":["Linux.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/","thumbnailUrl":"Linux.png"}</script>
+    <meta name="description" content="Linux 설치">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Linux 환경 만들기">
+<meta property="og:url" content="https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/index.html">
+<meta property="og:site_name" content="개발 메모장">
+<meta property="og:description" content="Linux 설치">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%201.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%202.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%203.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%204.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%205.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%206.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%207.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%208.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%209.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2010.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2011.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2012.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2013.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2014.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2015.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2016.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2017.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2018.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2019.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2020.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2021.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2022.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2023.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2024.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2025.png">
+<meta property="article:published_time" content="2022-07-27T07:54:02.000Z">
+<meta property="article:modified_time" content="2022-07-31T04:29:40.883Z">
+<meta property="article:author" content="오세영">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://neewlife.github.io/images/Linux/Untitled.png">
+    
+    
+        
+    
+    
+    
+        <meta property="og:image" content="https://NeewLife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/Linux.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://NeewLife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/Linux.png"/>
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+            
+<link rel="stylesheet" href="/assets/css/gitment.css">
+
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            개발 메모장
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/NeewLife?tab=repositories/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            Linux 환경 만들기
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2022-07-27T16:54:02+09:00">
+	
+		    2022/07/27
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Linux/">Linux</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- excerpt -->
+<h2 id="vi-편집기-사용-꼭-공부-하기"><a href="#vi-편집기-사용-꼭-공부-하기" class="headerlink" title="vi 편집기 사용 꼭 공부 하기"></a>vi 편집기 사용 꼭 공부 하기</h2><ul>
+<li>윈도우 버전이 20H1, 20H2, 21H1, 21H2 보다 높아야 됨</li>
+</ul>
+<p><img src="/images/Linux/Untitled.png" alt="Untitled"></p>
+<ul>
+<li>powershell 관리자로 실행</li>
+<li>다음 코드 입력</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dism.exe /online /<span class="built_in">enable-feature</span> /featurename:Microsoft<span class="literal">-Windows-Subsystem-Linux</span> /all /norestart</span><br><span class="line"></span><br><span class="line">dism.exe /online /<span class="built_in">enable-feature</span> /featurename:VirtualMachinePlatform /all /norestart</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>인터넷 주소창에 다음 코드 입력</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>다운 받은 후 설치</li>
+<li>Microsoft Store 에서 ubuntu 설치</li>
+</ul>
+<p><img src="/images/Linux/Untitled%201.png" alt="Untitled"></p>
+<ul>
+<li>Ubuntu 20.04.4 버전으로 다운로드<ul>
+<li>나중에 설정이 꼬였을 때 윈도우 포맷하는 것 처럼 Ubuntu를 삭제하고 다시 설치하면 된다.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/images/Linux/Untitled%202.png" alt="Untitled"></p>
+<ul>
+<li>Ubuntu 실행</li>
+</ul>
+<p><img src="/images/Linux/Untitled%203.png" alt="Untitled"></p>
+<ul>
+<li>만약 다음과 같은 메세지가 뜬다면 가상환경을 확인해야 한다</li>
+</ul>
+<p><img src="/images/Linux/Untitled%204.png" alt="Untitled"></p>
+<ul>
+<li>Windows 기능 켜기&#x2F;끄기 열기</li>
+</ul>
+<p><img src="/images/Linux/Untitled%205.png" alt="Untitled"></p>
+<ul>
+<li>Windows 하이퍼바이저 플랫폼 체크 후 재부팅</li>
+</ul>
+<p><img src="/images/Linux/Untitled%206.png" alt="Untitled"></p>
+<ul>
+<li>재부팅 후 Ubuntu 실행</li>
+<li>Ubuntu 아이디 비밀번호 만들기 (<em><strong>비밀번호는 입력해도 안 보인다!!</strong></em>)</li>
+</ul>
+<p><img src="/images/Linux/Untitled%207.png" alt="Untitled"></p>
+<ul>
+<li>다시 powershell 실행 후 다음 코드 입력</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wsl <span class="literal">--set-default-version</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>다음과 같이 뜨면 성공!</li>
+</ul>
+<p><img src="/images/Linux/Untitled%208.png" alt="Untitled"></p>
+<ul>
+<li>코드 wsl -l -v 입력 후 버전이 1이 나오면 Ubuntu 제거 후 다시 설치하고 Ubuntu 로그인 후</li>
+<li>맨 위에 PowerShell 코드 다시 입력</li>
+</ul>
+<p><img src="/images/Linux/Untitled%209.png" alt="Untitled"></p>
+<ul>
+<li><p>그 다음 wsl -l -v 치면 버전 2가 나옴(나오면 꺼도 됨)</p>
+</li>
+<li><p>시스템 환경 변수 들어가서 환경 변수 탭 —&gt; Path 편집</p>
+</li>
+</ul>
+<p><img src="/images/Linux/Untitled%2010.png" alt="Untitled"></p>
+<p><img src="/images/Linux/Untitled%2011.png" alt="Untitled"></p>
+<p><img src="/images/Linux/Untitled%2012.png" alt="Untitled"></p>
+<ul>
+<li>VS Code 저 경로가 있는지 확인한다.</li>
+</ul>
+<hr>
+<h3 id="환경변수를-사용하는-이유"><a href="#환경변수를-사용하는-이유" class="headerlink" title="환경변수를 사용하는 이유"></a>환경변수를 사용하는 이유</h3><p>빅데이터 플랫폼 &#x2F; 웹사이트 구축할 때</p>
+<ul>
+<li><p>레고블록 쌓을때 맞물려 쌓듯이 연결해주는 것이 Configuration(환경 변수) 인데</p>
+<p>  이 환경 변수가 유기적으로 연결 되지 않으면 에러가 뜨거나 실행이 안된다.</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li><p>다음 사이트 참고하여서 VS Code 에 연결</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://dschloe.github.io/settings/vscode_wsl2/">https://dschloe.github.io/settings/vscode_wsl2&#x2F;</a></p>
+</li>
+<li><p>C드라이브에 폴더를 만든다(여기에선 dataEngineering)</p>
+</li>
+<li><p>Ubuntu를 열고 다음 코드를 입력해 C\dataEngineering 폴더에 접속한다.</p>
+</li>
+<li><p>mkdir abc &#x3D; 새로운 abc 폴더 생성</p>
+</li>
+<li><p>rm -rm abc : abc폴더 만 지운다</p>
+</li>
+<li><p>rm -rm * : 전체 삭제</p>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd mnt</span><br><span class="line">cd c</span><br><span class="line">cd dataEngineering</span><br><span class="line"></span><br><span class="line">code .</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>code . 까지 입력하면 VS Code 가 열릴텐데 터미널 열고서 파이썬 버전 확인</li>
+</ul>
+<p><img src="/images/Linux/Untitled%2013.png" alt="Untitled"></p>
+<ul>
+<li>sudo apt-get update 입력</li>
+</ul>
+<p><img src="/images/Linux/Untitled%2014.png" alt="Untitled"></p>
+<ul>
+<li>sudo apt install python3-pip 입력</li>
+</ul>
+<p><img src="/images/Linux/Untitled%2015.png" alt="Untitled"></p>
+<ul>
+<li>sudo pip3 install virtualenv 입력</li>
+</ul>
+<p><img src="/images/Linux/Untitled%2016.png" alt="Untitled"></p>
+<ul>
+<li>가상환경 생성 코드 virtualenv venv 입력</li>
+<li>가상환경 접속 코드 source venv&#x2F;bin&#x2F;activate 입력</li>
+<li>윈도우와 리눅스의 가상환경 차이점 &#x3D;  source venv 다음 &#x2F;bin 으로 시작한다</li>
+</ul>
+<p><img src="/images/Linux/Untitled%2017.png" alt="Untitled"></p>
+<h3 id="환경-변수-설정하기"><a href="#환경-변수-설정하기" class="headerlink" title="환경 변수 설정하기"></a>환경 변수 설정하기</h3><ul>
+<li>pwd 입력 후 경로 확인후 복사</li>
+</ul>
+<p><img src="/images/Linux/Untitled%2018.png" alt="Untitled"></p>
+<ul>
+<li>vi ~&#x2F;.bashrc 입력 하면 환경 변수에 접속한다</li>
+</ul>
+<p><img src="/images/Linux/Untitled%2019.png" alt="Untitled"></p>
+<ul>
+<li>다음과 같은 화면이 뜨면 vi 편집기로 활성화 됨</li>
+<li>여기서 “i” 를 누르면 INSERT 모드로 진입된다. 맨 밑으로 스크롤해서 내림</li>
+<li>export AIRFLOW_HOME&#x3D;(아까 그 pwd 경로입력)</li>
+</ul>
+<p><img src="/images/Linux/Untitled%2020.png" alt="Untitled"></p>
+<ul>
+<li>중간에 ‘&#x3D;’ 을 띄어쓰기 하면 안됨!!</li>
+<li>입력모드 종료는 ESC 키 누르면 됨</li>
+<li>:wq! 를 입력(저장한다는 뜻)   :q!  는 저장하지 않고 나간다는 뜻, 잘못 만졌을 때 유용하다.</li>
+</ul>
+<p><img src="/images/Linux/Untitled%2021.png" alt="Untitled"></p>
+<ul>
+<li>source ~&#x2F;.bashrc 까지 입력해야 배포가 완료됨</li>
+</ul>
+<p><img src="/images/Linux/Untitled%2022.png" alt="Untitled"></p>
+<ul>
+<li>배포하면 venv 가 사라지기 때문에 항상 다시 가상환경 설정해야함</li>
+<li>echo $AIRFLOW_HOME 입력 해서 배포됐는지 확인</li>
+</ul>
+<p><img src="/images/Linux/Untitled%2023.png" alt="Untitled"></p>
+<ul>
+<li>pip3 install ‘apache-airflow[postgres,slack,celery]’  입력</li>
+</ul>
+<p><img src="/images/Linux/Untitled%2024.png" alt="Untitled"></p>
+<ul>
+<li>설치 완료되면 airflow db init 입력</li>
+</ul>
+<p><img src="/images/Linux/Untitled%2025.png" alt="Untitled"></p>
+<ul>
+<li>다음 코드를 입력해서 airflow 입력</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">airflow users create --username airflow --password airflow --firstname evan --lastname airflow --role Admin --email your_email@some.com</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>airflow webserver -p 8081 입력</li>
+<li>주소창에 <a target="_blank" rel="noopener" href="http://localhost:1234/">localhost:1234</a> 로 접속하면 airflow 로컬 홈페이지가 나온다</li>
+</ul>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/28/day0728/"
+                    data-tooltip="day0728"
+                    aria-label="이전: day0728"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/21/day0721/"
+                    data-tooltip="Oracle day0721"
+                    aria-label="다음: Oracle day0721"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="gitment"></div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2023 오세영. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/28/day0728/"
+                    data-tooltip="day0728"
+                    aria-label="이전: day0728"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/21/day0721/"
+                    data-tooltip="Oracle day0721"
+                    aria-label="다음: Oracle day0721"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">오세영</h4>
+        
+            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>웹 백앤드 지망생</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                경기 광명시
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+        
+<script src="/assets/js/gitment.js"></script>
+
+        <script type="text/javascript">
+          (function() {
+            new Gitment({
+              id: 'https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/',
+              owner: '',
+              repo: '',
+              oauth: {
+                client_id: '',
+                client_secret: ''
+              }
+            }).render('gitment')
+          })()
+        </script>
+    
+
+
+
+
+    </body>
+</html>

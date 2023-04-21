@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="개발 메모장">
+    <title>Oracle day0719 - 개발 메모장</title>
+    <meta name="author" content="오세영">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n\nday0719123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204205206207208209210211212213214215216217218219220221222223224225226227228229230231232233234235236237238239240241242243244245246247248249250251252253254255256257258259260261262263SELECT table_name from user_tables;-- SQL vs PL/SQL-- SQL (분석가90% + 개발자30%)---- 프로그래밍 성격이 얕음(조건문, 반복문, 함수 등등 얕음)-- PL/SQL (분석가10% + 개발자70% + DBA)-- 입문: SQL 테이블, 뷰 --&gt; PL/SQL 함수, 프로시저-- 테이블 생성/*CREATE TABLE 테이블명(    컬럼1 컬럼1_데이터타입 결측치 허용유무,    )*/-- P.50 테이블 생성하기create table ex2_1(    COLUMN1     CHAR(10),    COLUMN2     VARCHAR2(10),    COLUMN3     NVARCHAR2(10),    COLUMN4     NUMBER);    -- 데이터 추가INSERT INTO ex2_1 (column1, column2) VALUES (&#x27;abc&#x27;, &#x27;abc&#x27;);-- 테이블 생성, 추가, 삭제, 수정 코드들-- 파이썬이나, JAVA에서 다 쓸 코드들...-- 데이터 조회SELECT column1, LENGTH(column1) as len1FROM ex2_1;-- p.53-- 영어에서 한 문자는 1byte-- 한글에서 한 문자는 2byteCREATE TABLE ex2_2(    COLUMN1 VARCHAR2(3), -- 디폴트 값이 byte 적용    COLUMN2 VARCHAR2(3 byte),     COLUMN3 VARCHAR2(3 char));-- 데이터 추가INSERT INTO ex2_2 VALUES(&#x27;abc&#x27;, &#x27;abc&#x27;, &#x27;abc&#x27;);SELECT column1, LENGTH(column1) as len1,       column2, LENGTH(column2) as len2,       column3, LENGTH(column3) as len3FROM ex2_2;-- 한글 추가-- 입력 안됨INSERT INTO ex2_2 VALUES(&#x27;홍길동&#x27;, &#x27;홍길동&#x27;, &#x27;홍길동&#x27;);-- p.54INSERT INTO ex2_2 (column3) VALUES(&#x27;홍길동&#x27;);SELECT column3        , LENGTH(column3) AS len3        , LENGTHB(column3) AS bytelenFROM ex2_2;-- 숫자 데이터 타입CREATE TABLE ex2_3(    COL_INT     INTEGER,    COL_DEC     DECIMAL,    COL_NUM     NUMBER);/*SELECT 컬럼명FROM 테이블명WHERE 조건식ORDER BY 정렬*/SELECT column_id        , column_name        , data_type        , data_lengthFROM user_tab_colsWHERE table_name = &#x27;EX2_3&#x27;ORDER BY column_id;-- 날짜 데이터 타입CREATE TABLE ex2_5(    COL_DATE        DATE,    COL_TIMESTAMP   TIMESTAMP);INSERT INTO ex2_5 VALUES(SYSDATE, SYSTIMESTAMP);SELECT * FROM ex2_5;-- NULL : 값이 없음-- 해당 컬럼은 NULL-- 결측치 허용 X : NOT NULL-- p.60CREATE TABLE ex2_6(    COL_NULL        VARCHAR2(10), -- 결측치 허용    COL_NOT_NULL    VARCHAR2(10) NOT NULL -- 결측치 허용 X);-- 에러 발생INSERT INTO ex2_6 VALUES (&#x27;AA&#x27;, &#x27;&#x27;);-- 정상적으로 삽입 됨INSERT INTO ex2_6 VALUES (&#x27;&#x27;, &#x27;BB&#x27;);SELECT * FROM ex2_6;INSERT INTO ex2_6 VALUES (&#x27;AA&#x27;, &#x27;BB&#x27;);SELECT * FROM ex2_6;-- p.61SELECT constraint_name        , constraint_type        , table_name        , search_conditionFROM user_constraintsWHERE table_name = &#x27;EX2_6&#x27;;-- UNIQUECREATE TABLE ex2_7(        COL_UNIQUE_NULL     VARCHAR2(10) UNIQUE,        COL_UNIQUE_NNULL    VARCHAR2(10) UNIQUE NOT NULL,        COL_UNIQUE          VARCHAR2(10),        CONSTRAINTS unique_nm1 UNIQUE (COL_UNIQUE)  -- CONSTRAINTS 는 제약을 걸겠다는 뜻);SELECT constraint_name        , constraint_type        , table_name        , search_conditionFROM user_constraintsWHERE table_name = &#x27;EX2_7&#x27;;INSERT INTO ex2_7 VALUES (&#x27;AA&#x27;, &#x27;AA&#x27;, &#x27;AA&#x27;);INSERT INTO ex2_7 VALUES (&#x27;&#x27;, &#x27;BB&#x27;, &#x27;CC&#x27;);-- NULL 값은 중복이 가능하다-- 기본키(Primary Key)-- UNIQUE(중복 허용 안됨), NOT NULL(결측치 허용 안됨)-- 테이블 당 1개의 기본키만 설정 가능CREATE TABLE ex2_8 (    COL1 VARCHAR2(10) PRIMARY KEY    , COL2 VARCHAR2(10));-- INSERT INTO ex2_8 VALUES(&#x27;&#x27;, &#x27;AA&#x27;&#x27;);INSERT INTO ex2_8 VALUES(&#x27;AA&#x27;, &#x27;AA&#x27;);SELECT * FROM user_constraints;SELECT constraint_name        , constraint_type        , table_name        , search_conditionFROM user_constraintsWHERE table_name = &#x27;JOBS&#x27;;-- 외래키 : 테이블 간의 참조 데이터 무결성 위한 제약 조건-- 참조 무결성을 보장한다 : 잘못된 정보가 입력되는 것을 방지한다-- 초반에는 잘 안쓰다가 DB가 커지면 씀-- Check-- 컬럼에 입력되는 데이터를 체크해 특정 조건에 맞는 데이터만 입력CREATE TABLE ex2_9(    num1            NUMBER    , CONSTRAINTS check1 CHECK (num1 BETWEEN 1 AND 9)    , gender        VARCHAR2(10)    , CONSTRAINTS check2 CHECK (gender in (&#x27;MALE&#x27;, &#x27;FEMALE&#x27;)));SELECT constraint_name        , constraint_type        , table_name        , search_conditionFROM user_constraintsWHERE table_name = &#x27;EX2_9&#x27;;-- 개발자들은 DB 부터 설계한다. 전문적으로 DB설계만 하는 사람이 있을정도.INSERT INTO ex2_9 VALUES(10, &#x27;MAN&#x27;);  -- check2 제약조건에 위배되었음INSERT INTO ex2_9 VALUES(10, &#x27;FEMALE&#x27;); -- check1 제약조건에 위배되었음.INSERT INTO ex2_9 VALUES(5, &#x27;FEMALE&#x27;);-- 지금이야 알지만, 실무에서는 조건을 모르므로 테이블을 보고 조건을 맞춰서 입력해야함-- Defaultalter session set nls_date_format=&#x27;YYYY/MM/DD HH24:MI:SS&#x27;;DROP TABLE ex2_10;CREATE TABLE ex2_10(    Col1   VARCHAR2(10) NOT NULL    , Col2 VARCHAR2(10) NULL    , Create_date DATE DEFAULT SYSDATE);INSERT INTO ex2_10 (col1, col2) VALUES(&#x27;AA&#x27;, &#x27;BB&#x27;);SELECT * FROM ex2_10;-- 테이블 변경-- ALTER TABLEALTER TABLE ex2_10 RENAME COLUMN Col1 To Col11;SELECT * FROM ex2_10;DESC ex2_10;-- 컬럼 타입 변경ALTER TABLE ex2_10 MODIFY Col2 VARCHAR2(30);DESC ex2_10;-- 신규 컬럼 추가ALTER TABLE ex2_10 ADD Col3 Number;DESC ex2_10;-- 컬럼 삭제ALTER TABLE ex2_10 DROP COLUMN Col3;DESC ex2_10;-- 제약조건 추가ALTER TABLE ex2_10 ADD CONSTRAINTS pk_ex2_10 PRIMARY KEY(col11);DESC ex2_10;SELECT constraint_name        , constraint_type        , table_name        , search_conditionFROM user_constraintsWHERE table_name = &#x27;EX2_10&#x27;;-- 제약조건 삭제: col11에서 기본키 삭제ALTER TABLE ex2_10 DROP CONSTRAINTS pk_ex2_10;SELECT constraint_name        , constraint_type        , table_name        , search_conditionFROM user_constraintsWHERE table_name = &#x27;EX2_10&#x27;;-- 테이블 복사CREATE TABLE ex2_9_1 ASSELECT * FROM ex2_9;DESC ex2_9_1;-- 뷰 생성CREATE OR REPLACE VIEW emp_dept_v1 ASSELECT a.employee_id        , a.emp_name        , a.department_id        , b.department_nameFROM employees a    , departments bWHERE a.department_id = b.department_id;-- 뷰 삭제DROP VIEW emp_dept_v1;","dateCreated":"2022-07-19T17:03:00+09:00","dateModified":"2022-07-20T19:47:09+09:00","datePublished":"2022-07-19T17:03:00+09:00","description":"\n테이블 생성, 삭제, 변경, 복사\n데이터 추가, 조회  \n데이터 타입   \n기본키, 외래키  \n컬럼 타입 변경, 추가, 삭제  \n제약조건 추가, 삭제  \n뷰 생성","headline":"Oracle day0719","image":["oracle.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/07/19/day0719/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/07/19/day0719/","thumbnailUrl":"oracle.png"}</script>
+    <meta name="description" content="테이블 생성, 삭제, 변경, 복사 데이터 추가, 조회   데이터 타입    기본키, 외래키   컬럼 타입 변경, 추가, 삭제   제약조건 추가, 삭제   뷰 생성">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Oracle day0719">
+<meta property="og:url" content="https://neewlife.github.io/2022/07/19/day0719/index.html">
+<meta property="og:site_name" content="개발 메모장">
+<meta property="og:description" content="테이블 생성, 삭제, 변경, 복사 데이터 추가, 조회   데이터 타입    기본키, 외래키   컬럼 타입 변경, 추가, 삭제   제약조건 추가, 삭제   뷰 생성">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2022-07-19T08:03:00.000Z">
+<meta property="article:modified_time" content="2022-07-20T10:47:09.239Z">
+<meta property="article:author" content="오세영">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+        <meta property="og:image" content="https://NeewLife.github.io/2022/07/19/day0719/oracle.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://NeewLife.github.io/2022/07/19/day0719/oracle.png"/>
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+            
+<link rel="stylesheet" href="/assets/css/gitment.css">
+
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            개발 메모장
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/NeewLife?tab=repositories/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            Oracle day0719
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2022-07-19T17:03:00+09:00">
+	
+		    2022/07/19
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Oracle/">Oracle</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- excerpt --></li>
+</ul>
+<p><a href="/images/0719/Employment.png"></a></p>
+<h1 id="day0719"><a href="#day0719" class="headerlink" title="day0719"></a>day0719</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> table_name <span class="keyword">from</span> user_tables;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- SQL vs PL/SQL</span></span><br><span class="line"><span class="comment">-- SQL (분석가90% + 개발자30%)</span></span><br><span class="line"><span class="comment">---- 프로그래밍 성격이 얕음(조건문, 반복문, 함수 등등 얕음)</span></span><br><span class="line"><span class="comment">-- PL/SQL (분석가10% + 개발자70% + DBA)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 입문: SQL 테이블, 뷰 --&gt; PL/SQL 함수, 프로시저</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 테이블 생성</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">CREATE TABLE 테이블명(</span></span><br><span class="line"><span class="comment">    컬럼1 컬럼1_데이터타입 결측치 허용유무,</span></span><br><span class="line"><span class="comment">    </span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- P.50 테이블 생성하기</span></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> ex2_1(</span><br><span class="line">    COLUMN1     <span class="type">CHAR</span>(<span class="number">10</span>),</span><br><span class="line">    COLUMN2     VARCHAR2(<span class="number">10</span>),</span><br><span class="line">    COLUMN3     NVARCHAR2(<span class="number">10</span>),</span><br><span class="line">    COLUMN4     NUMBER</span><br><span class="line">);</span><br><span class="line">    </span><br><span class="line"><span class="comment">-- 데이터 추가</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ex2_1 (column1, column2) <span class="keyword">VALUES</span> (<span class="string">&#x27;abc&#x27;</span>, <span class="string">&#x27;abc&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 테이블 생성, 추가, 삭제, 수정 코드들</span></span><br><span class="line"><span class="comment">-- 파이썬이나, JAVA에서 다 쓸 코드들...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 데이터 조회</span></span><br><span class="line"><span class="keyword">SELECT</span> column1, LENGTH(column1) <span class="keyword">as</span> len1</span><br><span class="line"><span class="keyword">FROM</span> ex2_1;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- p.53</span></span><br><span class="line"><span class="comment">-- 영어에서 한 문자는 1byte</span></span><br><span class="line"><span class="comment">-- 한글에서 한 문자는 2byte</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ex2_2(</span><br><span class="line">    COLUMN1 VARCHAR2(<span class="number">3</span>), <span class="comment">-- 디폴트 값이 byte 적용</span></span><br><span class="line">    COLUMN2 VARCHAR2(<span class="number">3</span> byte), </span><br><span class="line">    COLUMN3 VARCHAR2(<span class="number">3</span> <span class="type">char</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 데이터 추가</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ex2_2 <span class="keyword">VALUES</span>(<span class="string">&#x27;abc&#x27;</span>, <span class="string">&#x27;abc&#x27;</span>, <span class="string">&#x27;abc&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> column1, LENGTH(column1) <span class="keyword">as</span> len1,</span><br><span class="line">       column2, LENGTH(column2) <span class="keyword">as</span> len2,</span><br><span class="line">       column3, LENGTH(column3) <span class="keyword">as</span> len3</span><br><span class="line"><span class="keyword">FROM</span> ex2_2;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 한글 추가</span></span><br><span class="line"><span class="comment">-- 입력 안됨</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ex2_2 <span class="keyword">VALUES</span>(<span class="string">&#x27;홍길동&#x27;</span>, <span class="string">&#x27;홍길동&#x27;</span>, <span class="string">&#x27;홍길동&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- p.54</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ex2_2 (column3) <span class="keyword">VALUES</span>(<span class="string">&#x27;홍길동&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> column3</span><br><span class="line">        , LENGTH(column3) <span class="keyword">AS</span> len3</span><br><span class="line">        , LENGTHB(column3) <span class="keyword">AS</span> bytelen</span><br><span class="line"><span class="keyword">FROM</span> ex2_2;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 숫자 데이터 타입</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ex2_3(</span><br><span class="line">    COL_INT     <span class="type">INTEGER</span>,</span><br><span class="line">    COL_DEC     <span class="type">DECIMAL</span>,</span><br><span class="line">    COL_NUM     NUMBER</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">SELECT 컬럼명</span></span><br><span class="line"><span class="comment">FROM 테이블명</span></span><br><span class="line"><span class="comment">WHERE 조건식</span></span><br><span class="line"><span class="comment">ORDER BY 정렬</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> column_id</span><br><span class="line">        , column_name</span><br><span class="line">        , data_type</span><br><span class="line">        , data_length</span><br><span class="line"><span class="keyword">FROM</span> user_tab_cols</span><br><span class="line"><span class="keyword">WHERE</span> table_name <span class="operator">=</span> <span class="string">&#x27;EX2_3&#x27;</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> column_id;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 날짜 데이터 타입</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ex2_5(</span><br><span class="line">    COL_DATE        <span class="type">DATE</span>,</span><br><span class="line">    COL_TIMESTAMP   <span class="type">TIMESTAMP</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ex2_5 <span class="keyword">VALUES</span>(SYSDATE, SYSTIMESTAMP);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> ex2_5;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- NULL : 값이 없음</span></span><br><span class="line"><span class="comment">-- 해당 컬럼은 NULL</span></span><br><span class="line"><span class="comment">-- 결측치 허용 X : NOT NULL</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- p.60</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ex2_6(</span><br><span class="line">    COL_NULL        VARCHAR2(<span class="number">10</span>), <span class="comment">-- 결측치 허용</span></span><br><span class="line">    COL_NOT_NULL    VARCHAR2(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="comment">-- 결측치 허용 X</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 에러 발생</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ex2_6 <span class="keyword">VALUES</span> (<span class="string">&#x27;AA&#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 정상적으로 삽입 됨</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ex2_6 <span class="keyword">VALUES</span> (<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;BB&#x27;</span>);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> ex2_6;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ex2_6 <span class="keyword">VALUES</span> (<span class="string">&#x27;AA&#x27;</span>, <span class="string">&#x27;BB&#x27;</span>);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> ex2_6;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- p.61</span></span><br><span class="line"><span class="keyword">SELECT</span> constraint_name</span><br><span class="line">        , constraint_type</span><br><span class="line">        , table_name</span><br><span class="line">        , search_condition</span><br><span class="line"><span class="keyword">FROM</span> user_constraints</span><br><span class="line"><span class="keyword">WHERE</span> table_name <span class="operator">=</span> <span class="string">&#x27;EX2_6&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- UNIQUE</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ex2_7(</span><br><span class="line">        COL_UNIQUE_NULL     VARCHAR2(<span class="number">10</span>) <span class="keyword">UNIQUE</span>,</span><br><span class="line">        COL_UNIQUE_NNULL    VARCHAR2(<span class="number">10</span>) <span class="keyword">UNIQUE</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">        COL_UNIQUE          VARCHAR2(<span class="number">10</span>),</span><br><span class="line">        CONSTRAINTS unique_nm1 <span class="keyword">UNIQUE</span> (COL_UNIQUE)  <span class="comment">-- CONSTRAINTS 는 제약을 걸겠다는 뜻</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> constraint_name</span><br><span class="line">        , constraint_type</span><br><span class="line">        , table_name</span><br><span class="line">        , search_condition</span><br><span class="line"><span class="keyword">FROM</span> user_constraints</span><br><span class="line"><span class="keyword">WHERE</span> table_name <span class="operator">=</span> <span class="string">&#x27;EX2_7&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ex2_7 <span class="keyword">VALUES</span> (<span class="string">&#x27;AA&#x27;</span>, <span class="string">&#x27;AA&#x27;</span>, <span class="string">&#x27;AA&#x27;</span>);</span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ex2_7 <span class="keyword">VALUES</span> (<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;BB&#x27;</span>, <span class="string">&#x27;CC&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- NULL 값은 중복이 가능하다</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- 기본키(Primary Key)</span></span><br><span class="line"><span class="comment">-- UNIQUE(중복 허용 안됨), NOT NULL(결측치 허용 안됨)</span></span><br><span class="line"><span class="comment">-- 테이블 당 1개의 기본키만 설정 가능</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ex2_8 (</span><br><span class="line">    COL1 VARCHAR2(<span class="number">10</span>) <span class="keyword">PRIMARY</span> KEY</span><br><span class="line">    , COL2 VARCHAR2(<span class="number">10</span>)</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- INSERT INTO ex2_8 VALUES(&#x27;&#x27;, &#x27;AA&#x27;&#x27;);</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ex2_8 <span class="keyword">VALUES</span>(<span class="string">&#x27;AA&#x27;</span>, <span class="string">&#x27;AA&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> user_constraints;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> constraint_name</span><br><span class="line">        , constraint_type</span><br><span class="line">        , table_name</span><br><span class="line">        , search_condition</span><br><span class="line"><span class="keyword">FROM</span> user_constraints</span><br><span class="line"><span class="keyword">WHERE</span> table_name <span class="operator">=</span> <span class="string">&#x27;JOBS&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 외래키 : 테이블 간의 참조 데이터 무결성 위한 제약 조건</span></span><br><span class="line"><span class="comment">-- 참조 무결성을 보장한다 : 잘못된 정보가 입력되는 것을 방지한다</span></span><br><span class="line"><span class="comment">-- 초반에는 잘 안쓰다가 DB가 커지면 씀</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Check</span></span><br><span class="line"><span class="comment">-- 컬럼에 입력되는 데이터를 체크해 특정 조건에 맞는 데이터만 입력</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ex2_9(</span><br><span class="line">    num1            NUMBER</span><br><span class="line">    , CONSTRAINTS check1 <span class="keyword">CHECK</span> (num1 <span class="keyword">BETWEEN</span> <span class="number">1</span> <span class="keyword">AND</span> <span class="number">9</span>)</span><br><span class="line">    , gender        VARCHAR2(<span class="number">10</span>)</span><br><span class="line">    , CONSTRAINTS check2 <span class="keyword">CHECK</span> (gender <span class="keyword">in</span> (<span class="string">&#x27;MALE&#x27;</span>, <span class="string">&#x27;FEMALE&#x27;</span>))</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> constraint_name</span><br><span class="line">        , constraint_type</span><br><span class="line">        , table_name</span><br><span class="line">        , search_condition</span><br><span class="line"><span class="keyword">FROM</span> user_constraints</span><br><span class="line"><span class="keyword">WHERE</span> table_name <span class="operator">=</span> <span class="string">&#x27;EX2_9&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 개발자들은 DB 부터 설계한다. 전문적으로 DB설계만 하는 사람이 있을정도.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ex2_9 <span class="keyword">VALUES</span>(<span class="number">10</span>, <span class="string">&#x27;MAN&#x27;</span>);  <span class="comment">-- check2 제약조건에 위배되었음</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ex2_9 <span class="keyword">VALUES</span>(<span class="number">10</span>, <span class="string">&#x27;FEMALE&#x27;</span>); <span class="comment">-- check1 제약조건에 위배되었음.</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ex2_9 <span class="keyword">VALUES</span>(<span class="number">5</span>, <span class="string">&#x27;FEMALE&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 지금이야 알지만, 실무에서는 조건을 모르므로 테이블을 보고 조건을 맞춰서 입력해야함</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Default</span></span><br><span class="line"><span class="keyword">alter</span> session <span class="keyword">set</span> nls_date_format<span class="operator">=</span><span class="string">&#x27;YYYY/MM/DD HH24:MI:SS&#x27;</span>;</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> ex2_10;</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ex2_10(</span><br><span class="line">    Col1   VARCHAR2(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">    , Col2 VARCHAR2(<span class="number">10</span>) <span class="keyword">NULL</span></span><br><span class="line">    , Create_date <span class="type">DATE</span> <span class="keyword">DEFAULT</span> SYSDATE</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> ex2_10 (col1, col2) <span class="keyword">VALUES</span>(<span class="string">&#x27;AA&#x27;</span>, <span class="string">&#x27;BB&#x27;</span>);</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> ex2_10;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 테이블 변경</span></span><br><span class="line"><span class="comment">-- ALTER TABLE</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> ex2_10 RENAME <span class="keyword">COLUMN</span> Col1 <span class="keyword">To</span> Col11;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> ex2_10;</span><br><span class="line"></span><br><span class="line"><span class="keyword">DESC</span> ex2_10;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 컬럼 타입 변경</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> ex2_10 MODIFY Col2 VARCHAR2(<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">DESC</span> ex2_10;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 신규 컬럼 추가</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> ex2_10 <span class="keyword">ADD</span> Col3 Number;</span><br><span class="line"><span class="keyword">DESC</span> ex2_10;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 컬럼 삭제</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> ex2_10 <span class="keyword">DROP</span> <span class="keyword">COLUMN</span> Col3;</span><br><span class="line"><span class="keyword">DESC</span> ex2_10;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 제약조건 추가</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> ex2_10 <span class="keyword">ADD</span> <span class="keyword">CONSTRAINT</span>S pk_ex2_10 <span class="keyword">PRIMARY</span> KEY(col11);</span><br><span class="line"><span class="keyword">DESC</span> ex2_10;</span><br><span class="line"><span class="keyword">SELECT</span> constraint_name</span><br><span class="line">        , constraint_type</span><br><span class="line">        , table_name</span><br><span class="line">        , search_condition</span><br><span class="line"><span class="keyword">FROM</span> user_constraints</span><br><span class="line"><span class="keyword">WHERE</span> table_name <span class="operator">=</span> <span class="string">&#x27;EX2_10&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 제약조건 삭제: col11에서 기본키 삭제</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> ex2_10 <span class="keyword">DROP</span> CONSTRAINTS pk_ex2_10;</span><br><span class="line"><span class="keyword">SELECT</span> constraint_name</span><br><span class="line">        , constraint_type</span><br><span class="line">        , table_name</span><br><span class="line">        , search_condition</span><br><span class="line"><span class="keyword">FROM</span> user_constraints</span><br><span class="line"><span class="keyword">WHERE</span> table_name <span class="operator">=</span> <span class="string">&#x27;EX2_10&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 테이블 복사</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> ex2_9_1 <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> ex2_9;</span><br><span class="line"></span><br><span class="line"><span class="keyword">DESC</span> ex2_9_1;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 뷰 생성</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> REPLACE <span class="keyword">VIEW</span> emp_dept_v1 <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> a.employee_id</span><br><span class="line">        , a.emp_name</span><br><span class="line">        , a.department_id</span><br><span class="line">        , b.department_name</span><br><span class="line"><span class="keyword">FROM</span> employees a</span><br><span class="line">    , departments b</span><br><span class="line"><span class="keyword">WHERE</span> a.department_id <span class="operator">=</span> b.department_id;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 뷰 삭제</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span> emp_dept_v1;</span><br></pre></td></tr></table></figure>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/20/day0720/"
+                    data-tooltip="Oracle day0720"
+                    aria-label="이전: Oracle day0720"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/18/Python%20%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD%20%EC%84%A4%EC%A0%95%EB%B0%A9%EB%B2%95/"
+                    data-tooltip="Python 가상환경 설정"
+                    aria-label="다음: Python 가상환경 설정"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/07/19/day0719/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/07/19/day0719/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/07/19/day0719/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="gitment"></div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2023 오세영. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/20/day0720/"
+                    data-tooltip="Oracle day0720"
+                    aria-label="이전: Oracle day0720"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/18/Python%20%EA%B0%80%EC%83%81%ED%99%98%EA%B2%BD%20%EC%84%A4%EC%A0%95%EB%B0%A9%EB%B2%95/"
+                    data-tooltip="Python 가상환경 설정"
+                    aria-label="다음: Python 가상환경 설정"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/07/19/day0719/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/07/19/day0719/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/07/19/day0719/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/07/19/day0719/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/07/19/day0719/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=https://neewlife.github.io/2022/07/19/day0719/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">오세영</h4>
+        
+            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>웹 백앤드 지망생</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                경기 광명시
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+        
+<script src="/assets/js/gitment.js"></script>
+
+        <script type="text/javascript">
+          (function() {
+            new Gitment({
+              id: 'https://neewlife.github.io/2022/07/19/day0719/',
+              owner: '',
+              repo: '',
+              oauth: {
+                client_id: '',
+                client_secret: ''
+              }
+            }).render('gitment')
+          })()
+        </script>
+    
+
+
+
+
+    </body>
+</html>

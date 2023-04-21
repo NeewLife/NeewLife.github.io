@@ -1,0 +1,653 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="개발 메모장">
+    <title>크롤링 설치 및 연습 - 개발 메모장</title>
+    <meta name="author" content="오세영">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n\n바탕화면에 폴더 만들고\n‘requirements.txt’ 파일을 생성한 후 아래 코드\n\n1234567891011beautifulsoup4==4.11.1ipywidgets==7.7.1jupyterlab==3.4.4lxml==4.9.1matplotlib==3.5.2numpy==1.23.1openpyxl==3.0.10pandas==1.4.3requests==2.28.1selenium==4.3.0tqdm==4.64.0\n\n\n라이브러리\n  \n\ngit bash 터미널로 열고 virtualenv venv 입력\n  \n\n다음과 같이 가상환경에 접속한다.\n\nwhich python 은 접속됐는지 확인하는 코드\n  \n\npip install -r requirements.txt 입력(파일은 tab키로 입력한다.)\n  \n\nhttps://dschloe.github.io/python/crawling/python_selenium_crawling&#x2F; 참고해서\n  크롬 버전에 맞는 chromedriver.exe 파일 다운(윈도우는 32버전 다운)\n\nJupyter lab 실행\n  \n\n코드는 이런식으로 작성\n  \n\n\n크롤링 연습 및 홈페이지 예제 만들기\n크롤링 연습 및 html\n  \n\nLive Server 확장 설치\n  \n\n오른쪽 아래 Go Live 클릭하면 위에 코드 친 대로 홈페이지 생성\n  \n\n","dateCreated":"2022-07-29T17:35:21+09:00","dateModified":"2022-08-05T22:36:47+09:00","datePublished":"2022-07-29T17:35:21+09:00","description":"크롤링 설치","headline":"크롤링 설치 및 연습","image":["Linux.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/07/29/Crawling_Practice/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/07/29/Crawling_Practice/","thumbnailUrl":"Linux.png"}</script>
+    <meta name="description" content="크롤링 설치">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="크롤링 설치 및 연습">
+<meta property="og:url" content="https://neewlife.github.io/2022/07/29/Crawling_Practice/index.html">
+<meta property="og:site_name" content="개발 메모장">
+<meta property="og:description" content="크롤링 설치">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://neewlife.github.io/images/Crawling_Practice/Untitled.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Crawling_Practice/Untitled%201.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Crawling_Practice/Untitled%202.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Crawling_Practice/Untitled%203.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Crawling_Practice/Untitled%204.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Crawling_Practice/Untitled%205.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Crawling_Practice/Untitled%206.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Crawling_Practice/Untitled%207.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Crawling_Practice/Untitled%208.png">
+<meta property="article:published_time" content="2022-07-29T08:35:21.000Z">
+<meta property="article:modified_time" content="2022-08-05T13:36:47.232Z">
+<meta property="article:author" content="오세영">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://neewlife.github.io/images/Crawling_Practice/Untitled.png">
+    
+    
+        
+    
+    
+    
+        <meta property="og:image" content="https://NeewLife.github.io/2022/07/29/Crawling_Practice/Linux.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://NeewLife.github.io/2022/07/29/Crawling_Practice/Linux.png"/>
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+            
+<link rel="stylesheet" href="/assets/css/gitment.css">
+
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            개발 메모장
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/NeewLife?tab=repositories/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            크롤링 설치 및 연습
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2022-07-29T17:35:21+09:00">
+	
+		    2022/07/29
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Linux/">Linux</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- excerpt -->
+
+<ul>
+<li>바탕화면에 폴더 만들고</li>
+<li>‘requirements.txt’ 파일을 생성한 후 아래 코드</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">beautifulsoup4==<span class="number">4.11</span><span class="number">.1</span></span><br><span class="line">ipywidgets==<span class="number">7.7</span><span class="number">.1</span></span><br><span class="line">jupyterlab==<span class="number">3.4</span><span class="number">.4</span></span><br><span class="line">lxml==<span class="number">4.9</span><span class="number">.1</span></span><br><span class="line">matplotlib==<span class="number">3.5</span><span class="number">.2</span></span><br><span class="line">numpy==<span class="number">1.23</span><span class="number">.1</span></span><br><span class="line">openpyxl==<span class="number">3.0</span><span class="number">.10</span></span><br><span class="line">pandas==<span class="number">1.4</span><span class="number">.3</span></span><br><span class="line">requests==<span class="number">2.28</span><span class="number">.1</span></span><br><span class="line">selenium==<span class="number">4.3</span><span class="number">.0</span></span><br><span class="line">tqdm==<span class="number">4.64</span><span class="number">.0</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>라이브러리</p>
+<p>  <img src="/images/Crawling_Practice/Untitled.png" alt="Untitled"></p>
+</li>
+<li><p>git bash 터미널로 열고 virtualenv venv 입력</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%201.png" alt="Untitled"></p>
+</li>
+<li><p>다음과 같이 가상환경에 접속한다.</p>
+</li>
+<li><p>which python 은 접속됐는지 확인하는 코드</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%202.png" alt="Untitled"></p>
+</li>
+<li><p>pip install -r requirements.txt 입력(파일은 tab키로 입력한다.)</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%203.png" alt="Untitled"></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://dschloe.github.io/python/crawling/python_selenium_crawling/">https://dschloe.github.io/python/crawling/python_selenium_crawling&#x2F;</a> 참고해서</p>
+<p>  크롬 버전에 맞는 chromedriver.exe 파일 다운(윈도우는 32버전 다운)</p>
+</li>
+<li><p>Jupyter lab 실행</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%204.png" alt="Untitled"></p>
+</li>
+<li><p>코드는 이런식으로 작성</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%205.png" alt="Untitled"></p>
+</li>
+</ul>
+<h3 id="크롤링-연습-및-홈페이지-예제-만들기"><a href="#크롤링-연습-및-홈페이지-예제-만들기" class="headerlink" title="크롤링 연습 및 홈페이지 예제 만들기"></a>크롤링 연습 및 홈페이지 예제 만들기</h3><ul>
+<li><p>크롤링 연습 및 html</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%206.png" alt="Untitled"></p>
+</li>
+<li><p>Live Server 확장 설치</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%207.png" alt="Untitled"></p>
+</li>
+<li><p>오른쪽 아래 Go Live 클릭하면 위에 코드 친 대로 홈페이지 생성</p>
+<p>  <img src="/images/Crawling_Practice/Untitled%208.png" alt="Untitled"></p>
+</li>
+</ul>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/31/day0731_Spark/"
+                    data-tooltip="Spark 툴 설치 및 설정"
+                    aria-label="이전: Spark 툴 설치 및 설정"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/29/day0729/"
+                    data-tooltip="day0729"
+                    aria-label="다음: day0729"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/07/29/Crawling_Practice/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/07/29/Crawling_Practice/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/07/29/Crawling_Practice/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="gitment"></div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2023 오세영. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/31/day0731_Spark/"
+                    data-tooltip="Spark 툴 설치 및 설정"
+                    aria-label="이전: Spark 툴 설치 및 설정"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/29/day0729/"
+                    data-tooltip="day0729"
+                    aria-label="다음: day0729"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/07/29/Crawling_Practice/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/07/29/Crawling_Practice/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/07/29/Crawling_Practice/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/07/29/Crawling_Practice/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/07/29/Crawling_Practice/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=https://neewlife.github.io/2022/07/29/Crawling_Practice/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">오세영</h4>
+        
+            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>웹 백앤드 지망생</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                경기 광명시
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+        
+<script src="/assets/js/gitment.js"></script>
+
+        <script type="text/javascript">
+          (function() {
+            new Gitment({
+              id: 'https://neewlife.github.io/2022/07/29/Crawling_Practice/',
+              owner: '',
+              repo: '',
+              oauth: {
+                client_id: '',
+                client_secret: ''
+              }
+            }).render('gitment')
+          })()
+        </script>
+    
+
+
+
+
+    </body>
+</html>

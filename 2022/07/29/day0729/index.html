@@ -1,0 +1,740 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="개발 메모장">
+    <title>day0729 - 개발 메모장</title>
+    <meta name="author" content="오세영">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n\nPyspark 들어가서\n\nPostgreSQL 설치와 설정\n다음 코드를 입력 후 주석처리 제거하기\n\n1sudo vi /etc/postgresql/12/main/postgresql.conf\n\n\n\n\ncd .. 로 상단 경로 잡은 후 코드 입력\n  \n\n\n123sudo apt-get install postgresql postgresql-contribsudo apt-get updatesudo apt-get -y upgrade\n\n\n설치가 완료된다면 코드 입력해서 버전 확인\n  \n\n여기까지 코드 정리(여기서 ‘postgres’ 가 DB서버 사용자 명 이므로 주의하기\n  \n  \n\n코드 입력\n\n\n\n\nhttps://www.pgadmin.org/download/pgadmin-4-apt/ 링크 들어가서\n  다음 칸을 sudo 부터 복붙한다.\n  \n  \n\n다음 칸도 복붙(for both 로 설치했으면 밑에 두 개는 할 필요 없다.)\n  \n\n마지막 복붙\n  \n\n만약 &#x2F;usr 경로에 &#x2F;pgadmin4 폴더가 없다면 위에서 뭔가 잘못된 것이므로\n  천천히 다시 설치해보자\n  \n\n\n\n아이디 비번 만들라는데 만들어준다\n\n\n\n\n코드 입력\n  \n\n\n1sudo /usr/pgadmin4/bin/setup-web.sh\n\n\n정상적으로 실행 됐다면 http://localhost/pgadmin4/ 링크 클릭\n  \n\n아까 만든 아이디 비번 입력\n\n\nNew Server 누른 후 General-Name 칸 입력 &#x2F; Connection 에서 Host name(ip주소로 써도 되고),\n  Username 아까 DB사용자 명으로 입력한다(여기서는 아까 ‘postgres’ 로 했으므로 입력)\n  \n\n이렇게 DB 생성 완료!\n  \n\n\n일래스틱서치 설치 및 설정\n자바 버전(8, 11)이 호환되는지 확인하기\nElasticsearch 에서 Ubuntu 쓰는 버전이랑 지원이 되는지 체크해야 함\n\n\nJSON 타입의 데이터 &#x3D; 딕셔너리 일때 Oracle에 바로 입력이 안된다.\n  간단하게 pandas로 DataFrame 형태로 입력해도 되지만 효율적이지 않다.\n  그래서 NoSQL 데이터 형태로 입력한다\n\nNoSQL : MongoDB, ElasticSearch\n\n왜 많이 쓰는가? —&gt; 이미지, 음성, 비정형 데이터 저장하는 저장소로 적절하기 때문에\n\n\n나중에 시간 들여서 배워야 할 건 Oracle 같은거 말고 비정형데이터 다루는 인프라 툴을 배워야 함!!\n코드 입력\n  \n  \n  12sudo apt-get update &amp;&amp; sudo apt-get -y upgradesudo apt-get install apt-transport-https\n\n코드 입력 후 경로 복사\n  \n\n경로 cd .. 로 이동 후 아래 코드 복사 후 입력\n  \n\n\n12wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -sudo sh -c &#x27;echo &quot;deb https://artifacts.elastic.co/packages/7.x/apt stable main&quot; &gt; /etc/apt/sources.list.d/elastic-7.x.list&#x27;\n\n\n코드 입력\n  \n\n\n1sudo apt-get update\n\n\n코드 입력\n  \n\n\n1sudo apt-get install elasticsearch","dateCreated":"2022-07-29T17:35:21+09:00","dateModified":"2022-07-31T13:42:40+09:00","datePublished":"2022-07-29T17:35:21+09:00","description":"PostgreSQL 설치와 설정일래스틱서치 설치 및 설정","headline":"day0729","image":["Linux.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/07/29/day0729/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/07/29/day0729/","thumbnailUrl":"Linux.png"}</script>
+    <meta name="description" content="PostgreSQL 설치와 설정일래스틱서치 설치 및 설정">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="day0729">
+<meta property="og:url" content="https://neewlife.github.io/2022/07/29/day0729/index.html">
+<meta property="og:site_name" content="개발 메모장">
+<meta property="og:description" content="PostgreSQL 설치와 설정일래스틱서치 설치 및 설정">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%201.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%202.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%203.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%204.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%205.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%206.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%207.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%208.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%209.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%2010.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%2011.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%2012.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%2013.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%2014.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%2015.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%2016.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%2017.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%2018.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%2019.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%2020.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%2021.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0729/Untitled%2022.png">
+<meta property="article:published_time" content="2022-07-29T08:35:21.000Z">
+<meta property="article:modified_time" content="2022-07-31T04:42:40.743Z">
+<meta property="article:author" content="오세영">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://neewlife.github.io/images/0729/Untitled.png">
+    
+    
+        
+    
+    
+    
+        <meta property="og:image" content="https://NeewLife.github.io/2022/07/29/day0729/Linux.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://NeewLife.github.io/2022/07/29/day0729/Linux.png"/>
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+            
+<link rel="stylesheet" href="/assets/css/gitment.css">
+
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            개발 메모장
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/NeewLife?tab=repositories/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            day0729
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2022-07-29T17:35:21+09:00">
+	
+		    2022/07/29
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Linux/">Linux</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- excerpt -->
+
+<ul>
+<li>Pyspark 들어가서</li>
+</ul>
+<h1 id="PostgreSQL-설치와-설정-1"><a href="#PostgreSQL-설치와-설정-1" class="headerlink" title="PostgreSQL 설치와 설정"></a>PostgreSQL 설치와 설정</h1><ul>
+<li>다음 코드를 입력 후 주석처리 제거하기</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/postgresql/<span class="number">12</span>/main/postgresql.conf</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/0729/Untitled.png" alt="Untitled"></p>
+<p><img src="/images/0729/Untitled%201.png" alt="Untitled"></p>
+<ul>
+<li><p>cd .. 로 상단 경로 잡은 후 코드 입력</p>
+<p>  <img src="/images/0729/Untitled%202.png" alt="Untitled"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install postgresql postgresql-contrib</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get -y upgrade</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>설치가 완료된다면 코드 입력해서 버전 확인</p>
+<p>  <img src="/images/0729/Untitled%203.png" alt="Untitled"></p>
+</li>
+<li><p>여기까지 코드 정리(여기서 ‘postgres’ 가 DB서버 사용자 명 이므로 주의하기</p>
+<p>  <img src="/images/0729/Untitled%204.png" alt="Untitled"></p>
+<p>  <img src="/images/0729/Untitled%205.png" alt="Untitled"></p>
+</li>
+<li><p>코드 입력</p>
+</li>
+</ul>
+<p><img src="/images/0729/Untitled%206.png" alt="Untitled"></p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.pgadmin.org/download/pgadmin-4-apt/">https://www.pgadmin.org/download/pgadmin-4-apt/</a> 링크 들어가서</p>
+<p>  다음 칸을 sudo 부터 복붙한다.</p>
+<p>  <img src="/images/0729/Untitled%207.png" alt="Untitled"></p>
+<p>  <img src="/images/0729/Untitled%208.png" alt="Untitled"></p>
+</li>
+<li><p>다음 칸도 복붙(for both 로 설치했으면 밑에 두 개는 할 필요 없다.)</p>
+<p>  <img src="/images/0729/Untitled%209.png" alt="Untitled"></p>
+</li>
+<li><p>마지막 복붙</p>
+<p>  <img src="/images/0729/Untitled%2010.png" alt="Untitled"></p>
+<ul>
+<li><p>만약 &#x2F;usr 경로에 &#x2F;pgadmin4 폴더가 없다면 위에서 뭔가 잘못된 것이므로</p>
+<p>  천천히 다시 설치해보자</p>
+<p>  <img src="/images/0729/Untitled%2011.png" alt="Untitled"></p>
+</li>
+</ul>
+</li>
+<li><p>아이디 비번 만들라는데 만들어준다</p>
+</li>
+</ul>
+<p><img src="/images/0729/Untitled%2012.png" alt="Untitled"></p>
+<ul>
+<li><p>코드 입력</p>
+<p>  <img src="/images/0729/Untitled%2013.png" alt="Untitled"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/pgadmin4/<span class="built_in">bin</span>/setup-web.sh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>정상적으로 실행 됐다면 <a target="_blank" rel="noopener" href="http://localhost/pgadmin4/">http://localhost/pgadmin4/</a> 링크 클릭</p>
+<p>  <img src="/images/0729/Untitled%2014.png" alt="Untitled"></p>
+<ul>
+<li>아까 만든 아이디 비번 입력</li>
+</ul>
+</li>
+<li><p>New Server 누른 후 General-Name 칸 입력 &#x2F; Connection 에서 Host name(ip주소로 써도 되고),</p>
+<p>  Username 아까 DB사용자 명으로 입력한다(여기서는 아까 ‘postgres’ 로 했으므로 입력)</p>
+<p>  <img src="/images/0729/Untitled%2015.png" alt="Untitled"></p>
+</li>
+<li><p>이렇게 DB 생성 완료!</p>
+<p>  <img src="/images/0729/Untitled%2016.png" alt="Untitled"></p>
+</li>
+</ul>
+<h1 id="일래스틱서치-설치-및-설정-1"><a href="#일래스틱서치-설치-및-설정-1" class="headerlink" title="일래스틱서치 설치 및 설정"></a>일래스틱서치 설치 및 설정</h1><ol>
+<li>자바 버전(8, 11)이 호환되는지 확인하기</li>
+<li>Elasticsearch 에서 Ubuntu 쓰는 버전이랑 지원이 되는지 체크해야 함</li>
+</ol>
+<ul>
+<li><p>JSON 타입의 데이터 &#x3D; 딕셔너리 일때 Oracle에 바로 입력이 안된다.</p>
+<p>  간단하게 pandas로 DataFrame 형태로 입력해도 되지만 효율적이지 않다.</p>
+<p>  그래서 NoSQL 데이터 형태로 입력한다</p>
+</li>
+<li><p>NoSQL : MongoDB, ElasticSearch</p>
+</li>
+<li><p>왜 많이 쓰는가? —&gt; 이미지, 음성, 비정형 데이터 저장하는 저장소로 적절하기 때문에</p>
+</li>
+</ul>
+<h2 id="나중에-시간-들여서-배워야-할-건-Oracle-같은거-말고-비정형데이터-다루는-인프라-툴을-배워야-함"><a href="#나중에-시간-들여서-배워야-할-건-Oracle-같은거-말고-비정형데이터-다루는-인프라-툴을-배워야-함" class="headerlink" title="나중에 시간 들여서 배워야 할 건 Oracle 같은거 말고 비정형데이터 다루는 인프라 툴을 배워야 함!!"></a>나중에 시간 들여서 배워야 할 건 Oracle 같은거 말고 비정형데이터 다루는 인프라 툴을 배워야 함!!</h2><ul>
+<li><p>코드 입력</p>
+<p>  <img src="/images/0729/Untitled%2017.png" alt="Untitled"></p>
+<p>  <img src="/images/0729/Untitled%2018.png" alt="Untitled"></p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update &amp;&amp; sudo apt-get -y upgrade</span><br><span class="line">sudo apt-get install apt-transport-https</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>코드 입력 후 경로 복사</p>
+<p>  <img src="/images/0729/Untitled%2019.png" alt="Untitled"></p>
+</li>
+<li><p>경로 cd .. 로 이동 후 아래 코드 복사 후 입력</p>
+<p>  <img src="/images/0729/Untitled%2020.png" alt="Untitled"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo apt-key add -</span><br><span class="line">sudo sh -c <span class="string">&#x27;echo &quot;deb https://artifacts.elastic.co/packages/7.x/apt stable main&quot; &gt; /etc/apt/sources.list.d/elastic-7.x.list&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>코드 입력</p>
+<p>  <img src="/images/0729/Untitled%2021.png" alt="Untitled"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>코드 입력</p>
+<p>  <img src="/images/0729/Untitled%2022.png" alt="Untitled"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install elasticsearch</span><br></pre></td></tr></table></figure>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/29/Crawling_Practice/"
+                    data-tooltip="크롤링 설치 및 연습"
+                    aria-label="이전: 크롤링 설치 및 연습"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/28/day0728/"
+                    data-tooltip="day0728"
+                    aria-label="다음: day0728"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/07/29/day0729/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/07/29/day0729/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/07/29/day0729/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="gitment"></div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2023 오세영. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/29/Crawling_Practice/"
+                    data-tooltip="크롤링 설치 및 연습"
+                    aria-label="이전: 크롤링 설치 및 연습"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/28/day0728/"
+                    data-tooltip="day0728"
+                    aria-label="다음: day0728"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/07/29/day0729/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/07/29/day0729/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/07/29/day0729/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/07/29/day0729/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/07/29/day0729/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=https://neewlife.github.io/2022/07/29/day0729/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">오세영</h4>
+        
+            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>웹 백앤드 지망생</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                경기 광명시
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+        
+<script src="/assets/js/gitment.js"></script>
+
+        <script type="text/javascript">
+          (function() {
+            new Gitment({
+              id: 'https://neewlife.github.io/2022/07/29/day0729/',
+              owner: '',
+              repo: '',
+              oauth: {
+                client_id: '',
+                client_secret: ''
+              }
+            }).render('gitment')
+          })()
+        </script>
+    
+
+
+
+
+    </body>
+</html>

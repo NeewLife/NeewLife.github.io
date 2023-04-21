@@ -1,0 +1,653 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="개발 메모장">
+    <title>개발자 공부방법 - 개발 메모장</title>
+    <meta name="author" content="오세영">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n\n로드맵을 구해야 된다.\n\n가야 될 길이 어디인지\n현재 내가 어디에 있는지 계속 파악하면서 공부하기\n\n\n5가지를 익혀야 된다.\n\n이름\n\n개념을 익힌다는 것은 용어를 익힌다는 것이고,\n  이름에는 역사와 정의가 들어있다.\n\n\n\n왜 사용하는지(기술의 탄생배경과 목적)\n\n만드는 법(정의하는 법)\n\n사용하는 법(호출하는 법)\n\n모범적인 샘플\n\n\n\nTodoList 관리\n\n아침에 오면 자기가 오늘 할 일이 뭔지 개인별로 잘게 쪼개진 구체적인 리스트가 있어야 되고,\n  한 것은 체크하고, 못한 것은 내일 리스트에 넘어가야된다.\n\n\n\n구글링\n\n복붙하는 것은 죄가 절대 아니다.\n\n검색을 하려면 키워드를 잘 뽑아내야한다.\n  “하라는 대로 했는데 안돼요” —&gt; 어떻게 질문하느냐에 따라서 답변의 퀄리티가 달라진다.\n\n정답을 다 알려주고 있는데도 내가 찾는 코드인지 모르면 쓸모없다.\n\n내 코드에 어디에 어떻게 갖다 붙일지, 제대로 동작하는지 테스트, 내 의도에 맞게 커스터마이징하기\n\n\n\n\n&lt;개발자의 격언&gt;\n\n바퀴를 또 발명하지 마라.\n 이미 선배들이 인생을 갈아 넣어서 바퀴를 만들어 놨는데 내가 그거 또 개발해봤자 내 시간낭비이다.\n\ndivide and conquer 쪼개서 차차 정복하라.\n\n","dateCreated":"2022-09-09T22:59:21+09:00","dateModified":"2022-09-09T23:00:09+09:00","datePublished":"2022-09-09T22:59:21+09:00","description":"\n공부방법","headline":"개발자 공부방법","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/09/09/%EA%B3%B5%EB%B6%80%EB%B0%A9%EB%B2%95/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/09/09/%EA%B3%B5%EB%B6%80%EB%B0%A9%EB%B2%95/"}</script>
+    <meta name="description" content="공부방법">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="개발자 공부방법">
+<meta property="og:url" content="https://neewlife.github.io/2022/09/09/%EA%B3%B5%EB%B6%80%EB%B0%A9%EB%B2%95/index.html">
+<meta property="og:site_name" content="개발 메모장">
+<meta property="og:description" content="공부방법">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2022-09-09T13:59:21.000Z">
+<meta property="article:modified_time" content="2022-09-09T14:00:09.180Z">
+<meta property="article:author" content="오세영">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+            
+<link rel="stylesheet" href="/assets/css/gitment.css">
+
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            개발 메모장
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/NeewLife?tab=repositories/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            개발자 공부방법
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2022-09-09T22:59:21+09:00">
+	
+		    2022/09/09
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/blog/">blog</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- excerpt --></li>
+</ul>
+<ol>
+<li><p>로드맵을 구해야 된다.</p>
+<ul>
+<li>가야 될 길이 어디인지</li>
+<li>현재 내가 어디에 있는지 계속 파악하면서 공부하기</li>
+</ul>
+</li>
+<li><p>5가지를 익혀야 된다.</p>
+<ol>
+<li><p>이름</p>
+<ul>
+<li><p>개념을 익힌다는 것은 용어를 익힌다는 것이고,</p>
+<p>  이름에는 역사와 정의가 들어있다.</p>
+</li>
+</ul>
+</li>
+<li><p>왜 사용하는지(기술의 탄생배경과 목적)</p>
+</li>
+<li><p>만드는 법(정의하는 법)</p>
+</li>
+<li><p>사용하는 법(호출하는 법)</p>
+</li>
+<li><p>모범적인 샘플</p>
+</li>
+</ol>
+</li>
+<li><p>TodoList 관리</p>
+<ul>
+<li><p>아침에 오면 자기가 오늘 할 일이 뭔지 개인별로 잘게 쪼개진 구체적인 리스트가 있어야 되고,</p>
+<p>  한 것은 체크하고, 못한 것은 내일 리스트에 넘어가야된다.</p>
+</li>
+</ul>
+</li>
+<li><p>구글링</p>
+<ul>
+<li><p>복붙하는 것은 죄가 절대 아니다.</p>
+</li>
+<li><p>검색을 하려면 키워드를 잘 뽑아내야한다.</p>
+<p>  “하라는 대로 했는데 안돼요” —&gt; 어떻게 질문하느냐에 따라서 답변의 퀄리티가 달라진다.</p>
+</li>
+<li><p>정답을 다 알려주고 있는데도 내가 찾는 코드인지 모르면 쓸모없다.</p>
+</li>
+<li><p>내 코드에 어디에 어떻게 갖다 붙일지, 제대로 동작하는지 테스트, 내 의도에 맞게 커스터마이징하기</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>&lt;개발자의 격언&gt;</p>
+<ol>
+<li><p>바퀴를 또 발명하지 마라.</p>
+<p> 이미 선배들이 인생을 갈아 넣어서 바퀴를 만들어 놨는데 내가 그거 또 개발해봤자 내 시간낭비이다.</p>
+</li>
+<li><p>divide and conquer 쪼개서 차차 정복하라.</p>
+</li>
+</ol>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/09/13/day0913/"
+                    data-tooltip="JScript 문제"
+                    aria-label="이전: JScript 문제"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/09/07/day0907/"
+                    data-tooltip="JScript 조건문, 반복문"
+                    aria-label="다음: JScript 조건문, 반복문"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/09/09/%EA%B3%B5%EB%B6%80%EB%B0%A9%EB%B2%95/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/09/09/%EA%B3%B5%EB%B6%80%EB%B0%A9%EB%B2%95/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/09/09/%EA%B3%B5%EB%B6%80%EB%B0%A9%EB%B2%95/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="gitment"></div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2023 오세영. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/09/13/day0913/"
+                    data-tooltip="JScript 문제"
+                    aria-label="이전: JScript 문제"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/09/07/day0907/"
+                    data-tooltip="JScript 조건문, 반복문"
+                    aria-label="다음: JScript 조건문, 반복문"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/09/09/%EA%B3%B5%EB%B6%80%EB%B0%A9%EB%B2%95/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/09/09/%EA%B3%B5%EB%B6%80%EB%B0%A9%EB%B2%95/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/09/09/%EA%B3%B5%EB%B6%80%EB%B0%A9%EB%B2%95/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/09/09/%EA%B3%B5%EB%B6%80%EB%B0%A9%EB%B2%95/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/09/09/%EA%B3%B5%EB%B6%80%EB%B0%A9%EB%B2%95/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=https://neewlife.github.io/2022/09/09/%EA%B3%B5%EB%B6%80%EB%B0%A9%EB%B2%95/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">오세영</h4>
+        
+            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>웹 백앤드 지망생</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                경기 광명시
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+        
+<script src="/assets/js/gitment.js"></script>
+
+        <script type="text/javascript">
+          (function() {
+            new Gitment({
+              id: 'https://neewlife.github.io/2022/09/09/%EA%B3%B5%EB%B6%80%EB%B0%A9%EB%B2%95/',
+              owner: '',
+              repo: '',
+              oauth: {
+                client_id: '',
+                client_secret: ''
+              }
+            }).render('gitment')
+          })()
+        </script>
+    
+
+
+
+
+    </body>
+</html>

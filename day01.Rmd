@@ -1,0 +1,24 @@
+---
+title: "Day-1 Visualization"
+output:
+  html_document:
+    keep_md: true
+date: '2022-06-20'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## ggplot2 시각화
+- 다음과 같이 시각화를 작성한다.
+
+'''{r}
+
+library(ggplot2)
+
+ggplot(data = iris, aes(x = Sepal.Length,
+y = Sepal.Width)) +
+geom_point()
+
+'''

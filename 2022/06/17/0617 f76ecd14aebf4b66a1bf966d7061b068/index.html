@@ -1,0 +1,847 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="개발 메모장">
+    <title>2022-06-17 메모 - 개발 메모장</title>
+    <meta name="author" content="오세영">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"setup, include1knitr::opts_chunk$set(echo = TRUE)\n\n06170617블로그 만들기\n\n티스토리 블로그 &#x2F; 네이버 블로그 &#x2F; medium ← 개발\n깃허브 블로그\n\n알아야 할 것 → hugo, hexo, jekyll, html, css, git &amp; github, 터미널 명령어, 마크다운\nIT&#x2F;기획자 (제안서) →→ 티스토리 블로그\n개발자(코딩) →→ 깃허브 블로그\nHexo 설치nodejs 홈페이지에서\n\n왼쪽꺼 다운로드\n설치시 Add to PATH 선택 후 다운\n\n\n\nNode 뜨면 아무키나 누르고 powershell 진입\n설치 완료 후 cmd 에서 node -v 입력\n\n\n\nnpm install -g hexo-cli 입력 후 엔터\n\n\n\n블로그 만들기\n바탕화면에서 git bash 후 hexo init blog 입력\n\n\n\ncd blog —&gt; ls 차례대로 입력\n\n\n\ngithub 에서 0616에서 배웠던 업로드 한다. (git add . 로 모든 파일 업로드)\n바탕화면에 blog 폴더 우클릭 후 PyCharm 으로 열기\n\n\n\n터미널 열고\n\n\n\nnpm install\nnpm install hexo-server –save\nnpm install hexo-deployer-git –save 차례대로 입력\nhexo server 입력\n\n\n\n하이퍼링크 클릭하면 블로그 완성\n\n\n블로그 배포하기\ngithub 들어가서 “본인닉네임.github.io” 로 만들기\nhexo 들어가서\n\n\n저렇게 쓰기(NeewLife 자리에 본인 닉네임)\n\n맨 밑에 내려와서\n\n\nhttps://github.com/본인닉네임/본인닉네임.github.io.git 임\n\n다시 깃배쉬 밑에 “hexo generate, hexo deploy” 입력\n\n\n\n\n주소창에 “본인닉네임.github.io” 검색하면 Hexo 블로그 배포완료된걸 확인\n\n\n\n다 됐으면 git add . 로 업로드\n\n주의사항\n\n\n중간에 # Site 부분만 수정가능\n\n\n\nrtools42 다운받기\n\n\n\nR Studio 들어가서 설정\n\n\n\nSoft-wrap R source files 체크\n\n\n\nDefault text encoding UTF-8 로 변경\nApperarance에서 Pastel On Dark로 설정\n\n\n\ngithub에서 R_lecture 새로 만들기(README 체크 하기)\n바탕화면에서 git bash로 R_lecture 불러오기(주소 복사 후 git clone)\nR Studio에서\n\n\n\n\n만들고 data, docs, source 폴더 만들기\n\n\n\nsource 폴더로 들어가서 경로로 설정해주기\n\n\n\n새 스크립트 만들기\n\n\n\nday01로 저장해보면 source 폴더안에 저장이 된다\n\n\n\n\nday01 폴더를 day0617로 변경한 뒤\n\n\n입력 후 ctrl + enter 누른다.\n\n\n이 창이 뜬다면 성공\nlibrary(ggplot2) 입력 후 ctrl + enter 누르기\n\n\n—&gt; ggplot2 패키지 내의 함수들을 사용하겠다는 명령어이다.\n함수 공부방법\nhttps://cran.r-project.org/에서 ggplot2 package 설명서 찾아가서\n\ngeom_point 함수 example에서 싹다 드래그\n\n\nR Studio 에 붙여넣기\n\n\n\nctrl + enter 로 하나씩 실행해보면서 익혀보기\naes가 뭔데? 싶으면\n\n\n\n저기서 aes 클릭해서\n\n\n\n또 공부\n영어 모르겠으면 파파고에 복붙\n하다 모르겠다?\n\n\n\nCheat Sheets 활용\n\nhttp://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html\n===&gt;조금 더 나은 표\n\n\n\n\n\n\n함수의 분포도\n\n\n\n함수의 그래프 형태(다음과 같이 나온다)\n\n\n\n\nR Markdown 클릭\n\n\n\nDocument로 만들기\n\n\n\n초록색 C 아이콘 클릭 후 R 클릭\n\n\n\n##R Markdown 밑으로 지우고\n\n123456789101112## ggplot2 시각화- 다음과 같이 시각화를 작성한다.&#x27;&#x27;&#x27;&#123;r&#125;library(ggplot2)ggplot(data = iris, aes(x = Sepal.Length,y = Sepal.Width)) +geom_point()&#x27;&#x27;&#x27;\n\n\n입력한 후 맨 위에 output 부분을 다음과 같이 변경한다.(shift + enter 로 줄바꿈)\n  \n\n그 후에 저장\n\n바탕화면의 R_lecture\\source 안에 “day0617” Markdown 원본파일을\n\nblog\\source 에 복붙한다.\n\n\n\n\nblog 폴더를 PyCharm 으로 열어서 hexo server 하면 업로드 끝\n\n\n","dateCreated":"2022-06-17T09:00:00+09:00","dateModified":"2022-09-07T19:19:55+09:00","datePublished":"2022-06-17T09:00:00+09:00","description":"","headline":"2022-06-17 메모","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/17/0617%20f76ecd14aebf4b66a1bf966d7061b068/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/06/17/0617%20f76ecd14aebf4b66a1bf966d7061b068/"}</script>
+    <meta name="description" content="setup, include1knitr::opts_chunk$set(echo &#x3D; TRUE)  06170617블로그 만들기  티스토리 블로그 &#x2F; 네이버 블로그 &#x2F; medium ← 개발 깃허브 블로그  알아야 할 것 → hugo, hexo, jekyll, html, css, git &amp; github, 터미널 명령어, 마크다운 IT&amp;#x2F">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="2022-06-17 메모">
+<meta property="og:url" content="https://neewlife.github.io/2022/06/17/0617%20f76ecd14aebf4b66a1bf966d7061b068/index.html">
+<meta property="og:site_name" content="개발 메모장">
+<meta property="og:description" content="setup, include1knitr::opts_chunk$set(echo &#x3D; TRUE)  06170617블로그 만들기  티스토리 블로그 &#x2F; 네이버 블로그 &#x2F; medium ← 개발 깃허브 블로그  알아야 할 것 → hugo, hexo, jekyll, html, css, git &amp; github, 터미널 명령어, 마크다운 IT&amp;#x2F">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%201.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%202.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%203.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%204.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%205.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%206.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%207.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%208.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%209.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2010.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2011.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2012.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2013.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2014.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2015.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2016.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2017.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2018.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2019.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2020.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2021.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2022.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2023.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2024.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2025.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2026.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2027.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2028.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2029.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2030.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2031.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2032.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2033.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2034.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2035.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2036.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2037.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2038.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2039.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2040.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2041.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0617/Untitled%2042.png">
+<meta property="article:published_time" content="2022-06-17T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-07T10:19:55.596Z">
+<meta property="article:author" content="오세영">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://neewlife.github.io/images/0617/Untitled.png">
+    
+    
+        
+    
+    
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+            
+<link rel="stylesheet" href="/assets/css/gitment.css">
+
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            개발 메모장
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/NeewLife?tab=repositories/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-left">
+    
+        <h1 class="post-title">
+            2022-06-17 메모
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2022-06-17T09:00:00+09:00">
+	
+		    2022/06/17
+    	
+    </time>
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <figure class="highlight plaintext"><figcaption><span>setup, include</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knitr::opts_chunk$set(echo = TRUE)</span><br></pre></td></tr></table></figure>
+
+<h1 id="0617"><a href="#0617" class="headerlink" title="0617"></a>0617</h1><h1 id="0617-1"><a href="#0617-1" class="headerlink" title="0617"></a>0617</h1><p>블로그 만들기</p>
+<ul>
+<li>티스토리 블로그 &#x2F; 네이버 블로그 &#x2F; medium ← 개발</li>
+<li>깃허브 블로그</li>
+</ul>
+<p>알아야 할 것 → hugo, hexo, jekyll, html, css, git &amp; github, 터미널 명령어, 마크다운</p>
+<p>IT&#x2F;기획자 (제안서) →→ <strong>티스토리 블로그</strong></p>
+<p>개발자(코딩) →→ <strong>깃허브 블로그</strong></p>
+<h1 id="Hexo-설치"><a href="#Hexo-설치" class="headerlink" title="Hexo 설치"></a>Hexo 설치</h1><p>nodejs 홈페이지에서</p>
+<p><img src="/images/0617/Untitled.png" alt="Untitled"></p>
+<p>왼쪽꺼 다운로드</p>
+<p>설치시 Add to PATH 선택 후 다운</p>
+<p><img src="/images/0617/Untitled%201.png" alt="Untitled"></p>
+<p><img src="/images/0617/Untitled%202.png" alt="Untitled"></p>
+<ul>
+<li>Node 뜨면 아무키나 누르고 powershell 진입</li>
+<li>설치 완료 후 cmd 에서 node -v 입력</li>
+</ul>
+<p><img src="/images/0617/Untitled%203.png" alt="Untitled"></p>
+<ul>
+<li>npm install -g hexo-cli 입력 후 엔터</li>
+</ul>
+<p><img src="/images/0617/Untitled%204.png" alt="Untitled"></p>
+<hr>
+<h1 id="블로그-만들기"><a href="#블로그-만들기" class="headerlink" title="블로그 만들기"></a>블로그 만들기</h1><ul>
+<li>바탕화면에서 git bash 후 hexo init blog 입력</li>
+</ul>
+<p><img src="/images/0617/Untitled%205.png" alt="Untitled"></p>
+<ul>
+<li>cd blog —&gt; ls 차례대로 입력</li>
+</ul>
+<p><img src="/images/0617/Untitled%206.png" alt="Untitled"></p>
+<ul>
+<li>github 에서 0616에서 배웠던 업로드 한다. (git add . 로 모든 파일 업로드)</li>
+<li>바탕화면에 blog 폴더 우클릭 후 PyCharm 으로 열기</li>
+</ul>
+<p><img src="/images/0617/Untitled%207.png" alt="Untitled"></p>
+<ul>
+<li>터미널 열고</li>
+</ul>
+<p><img src="/images/0617/Untitled%208.png" alt="Untitled"></p>
+<ul>
+<li>npm install</li>
+<li>npm install hexo-server –save</li>
+<li>npm install hexo-deployer-git –save 차례대로 입력</li>
+<li>hexo server 입력</li>
+</ul>
+<p><img src="/images/0617/Untitled%209.png" alt="Untitled"></p>
+<ul>
+<li>하이퍼링크 클릭하면 블로그 완성</li>
+</ul>
+<hr>
+<h1 id="블로그-배포하기"><a href="#블로그-배포하기" class="headerlink" title="블로그 배포하기"></a>블로그 배포하기</h1><ul>
+<li>github 들어가서 “본인닉네임.github.io” 로 만들기</li>
+<li>hexo 들어가서</li>
+</ul>
+<p><img src="/images/0617/Untitled%2010.png" alt="Untitled"></p>
+<p>저렇게 쓰기(NeewLife 자리에 본인 닉네임)</p>
+<ul>
+<li>맨 밑에 내려와서</li>
+</ul>
+<p><img src="/images/0617/Untitled%2011.png" alt="Untitled"></p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/%EB%B3%B8%EC%9D%B8%EB%8B%89%EB%84%A4%EC%9E%84/%EB%B3%B8%EC%9D%B8%EB%8B%89%EB%84%A4%EC%9E%84.github.io.git">https://github.com/본인닉네임/본인닉네임.github.io.git</a></strong> 임</p>
+<ul>
+<li>다시 깃배쉬 밑에 “hexo generate, hexo deploy” 입력</li>
+</ul>
+<p><img src="/images/0617/Untitled%2012.png" alt="Untitled"></p>
+<p><img src="/images/0617/Untitled%2013.png" alt="Untitled"></p>
+<ul>
+<li>주소창에 “본인닉네임.github.io” 검색하면 Hexo 블로그 배포완료된걸 확인</li>
+</ul>
+<p><img src="/images/0617/Untitled%2014.png" alt="Untitled"></p>
+<ul>
+<li><p>다 됐으면 git add . 로 업로드</p>
+</li>
+<li><p>주의사항</p>
+</li>
+</ul>
+<p>중간에 <em><strong># Site</strong></em> 부분만 수정가능</p>
+<p><img src="/images/0617/Untitled%2015.png" alt="Untitled"></p>
+<hr>
+<ul>
+<li>rtools42 다운받기</li>
+</ul>
+<p><img src="/images/0617/Untitled%2016.png" alt="Untitled"></p>
+<ul>
+<li>R Studio 들어가서 설정</li>
+</ul>
+<p><img src="/images/0617/Untitled%2017.png" alt="Untitled"></p>
+<ul>
+<li>Soft-wrap R source files 체크</li>
+</ul>
+<p><img src="/images/0617/Untitled%2018.png" alt="Untitled"></p>
+<ul>
+<li>Default text encoding UTF-8 로 변경</li>
+<li>Apperarance에서 Pastel On Dark로 설정</li>
+</ul>
+<p><img src="/images/0617/Untitled%2019.png" alt="Untitled"></p>
+<ul>
+<li>github에서 R_lecture 새로 만들기(README 체크 하기)</li>
+<li>바탕화면에서 git bash로 R_lecture 불러오기(주소 복사 후 git clone)</li>
+<li>R Studio에서</li>
+</ul>
+<p><img src="/images/0617/Untitled%2020.png" alt="Untitled"></p>
+<p><img src="/images/0617/Untitled%2021.png" alt="Untitled"></p>
+<ul>
+<li>만들고 data, docs, source 폴더 만들기</li>
+</ul>
+<p><img src="/images/0617/Untitled%2022.png" alt="Untitled"></p>
+<ul>
+<li>source 폴더로 들어가서 경로로 설정해주기</li>
+</ul>
+<p><img src="/images/0617/Untitled%2023.png" alt="Untitled"></p>
+<ul>
+<li>새 스크립트 만들기</li>
+</ul>
+<p><img src="/images/0617/Untitled%2024.png" alt="Untitled"></p>
+<ul>
+<li>day01로 저장해보면 source 폴더안에 저장이 된다</li>
+</ul>
+<p><img src="/images/0617/Untitled%2025.png" alt="Untitled"></p>
+<hr>
+<ul>
+<li>day01 폴더를 day0617로 변경한 뒤</li>
+</ul>
+<p><img src="/images/0617/Untitled%2026.png" alt="Untitled"></p>
+<p>입력 후 ctrl + enter 누른다.</p>
+<p><img src="/images/0617/Untitled%2027.png" alt="Untitled"></p>
+<ul>
+<li>이 창이 뜬다면 성공</li>
+<li>library(ggplot2) 입력 후 ctrl + enter 누르기</li>
+</ul>
+<p><img src="/images/0617/Untitled%2028.png" alt="Untitled"></p>
+<p>—&gt; ggplot2 패키지 내의 함수들을 사용하겠다는 명령어이다.</p>
+<h1 id="함수-공부방법"><a href="#함수-공부방법" class="headerlink" title="함수 공부방법"></a>함수 공부방법</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://cran.r-project.org/">https://cran.r-project.org/</a>에서 ggplot2 package 설명서 찾아가서</li>
+</ul>
+<p>geom_point 함수 example에서 싹다 드래그</p>
+<p><img src="/images/0617/Untitled%2029.png" alt="Untitled"></p>
+<ul>
+<li>R Studio 에 붙여넣기</li>
+</ul>
+<p><img src="/images/0617/Untitled%2030.png" alt="Untitled"></p>
+<ul>
+<li>ctrl + enter 로 하나씩 실행해보면서 익혀보기</li>
+<li>aes가 뭔데? 싶으면</li>
+</ul>
+<p><img src="/images/0617/Untitled%2031.png" alt="Untitled"></p>
+<ul>
+<li>저기서 aes 클릭해서</li>
+</ul>
+<p><img src="/images/0617/Untitled%2032.png" alt="Untitled"></p>
+<ul>
+<li>또 공부</li>
+<li>영어 모르겠으면 파파고에 복붙</li>
+<li>하다 모르겠다?</li>
+</ul>
+<p><img src="/images/0617/Untitled%2033.png" alt="Untitled"></p>
+<ul>
+<li><p>Cheat Sheets 활용</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</a></p>
+<pre><code>===&gt;조금 더 나은 표
+</code></pre>
+</li>
+</ul>
+<hr>
+<p><img src="/images/0617/Untitled%2034.png" alt="Untitled"></p>
+<ul>
+<li>함수의 분포도</li>
+</ul>
+<p><img src="/images/0617/Untitled%2035.png" alt="Untitled"></p>
+<ul>
+<li>함수의 그래프 형태(다음과 같이 나온다)</li>
+</ul>
+<p><img src="/images/0617/Untitled%2036.png" alt="Untitled"></p>
+<hr>
+<ul>
+<li>R Markdown 클릭</li>
+</ul>
+<p><img src="/images/0617/Untitled%2037.png" alt="Untitled"></p>
+<ul>
+<li>Document로 만들기</li>
+</ul>
+<p><img src="/images/0617/Untitled%2038.png" alt="Untitled"></p>
+<ul>
+<li>초록색 C 아이콘 클릭 후 R 클릭</li>
+</ul>
+<p><img src="/images/0617/Untitled%2039.png" alt="Untitled"></p>
+<ul>
+<li>##R Markdown 밑으로 지우고</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## ggplot2 시각화</span></span><br><span class="line"><span class="operator">-</span> 다음과 같이 시각화를 작성한다.</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27;&#123;r&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">library(ggplot2)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">ggplot(data = iris, aes(x = Sepal.Length,</span></span><br><span class="line"><span class="string">y = Sepal.Width)) +</span></span><br><span class="line"><span class="string">geom_point()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;</span><span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>입력한 후 맨 위에 <strong>output</strong> 부분을 다음과 같이 변경한다.(shift + enter 로 줄바꿈)</p>
+<p>  <img src="/images/0617/Untitled%2040.png" alt="Untitled"></p>
+</li>
+<li><p>그 후에 저장</p>
+</li>
+<li><p>바탕화면의 R_lecture\source 안에 “day0617” Markdown 원본파일을</p>
+</li>
+<li><p>blog\source 에 복붙한다.</p>
+</li>
+</ul>
+<p><img src="/images/0617/Untitled%2041.png" alt="Untitled"></p>
+<ul>
+<li>blog 폴더를 PyCharm 으로 열어서 hexo server 하면 업로드 끝</li>
+</ul>
+<p><img src="/images/0617/Untitled%2042.png" alt="Untitled"></p>
+
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/20/test/"
+                    data-tooltip="test"
+                    aria-label="이전: test"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/17/0617/"
+                    data-tooltip="2022-06-17 메모"
+                    aria-label="다음: 2022-06-17 메모"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/06/17/0617%20f76ecd14aebf4b66a1bf966d7061b068/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/06/17/0617%20f76ecd14aebf4b66a1bf966d7061b068/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/06/17/0617%20f76ecd14aebf4b66a1bf966d7061b068/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="gitment"></div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2023 오세영. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/20/test/"
+                    data-tooltip="test"
+                    aria-label="이전: test"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/17/0617/"
+                    data-tooltip="2022-06-17 메모"
+                    aria-label="다음: 2022-06-17 메모"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/06/17/0617%20f76ecd14aebf4b66a1bf966d7061b068/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/06/17/0617%20f76ecd14aebf4b66a1bf966d7061b068/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/06/17/0617%20f76ecd14aebf4b66a1bf966d7061b068/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/06/17/0617%20f76ecd14aebf4b66a1bf966d7061b068/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/06/17/0617%20f76ecd14aebf4b66a1bf966d7061b068/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=https://neewlife.github.io/2022/06/17/0617%20f76ecd14aebf4b66a1bf966d7061b068/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">오세영</h4>
+        
+            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>웹 백앤드 지망생</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                경기 광명시
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+        
+<script src="/assets/js/gitment.js"></script>
+
+        <script type="text/javascript">
+          (function() {
+            new Gitment({
+              id: 'https://neewlife.github.io/2022/06/17/0617%20f76ecd14aebf4b66a1bf966d7061b068/',
+              owner: '',
+              repo: '',
+              oauth: {
+                client_id: '',
+                client_secret: ''
+              }
+            }).render('gitment')
+          })()
+        </script>
+    
+
+
+
+
+    </body>
+</html>

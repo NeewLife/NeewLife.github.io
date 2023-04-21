@@ -1,0 +1,802 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="개발 메모장">
+    <title>Heroku 세팅 - 개발 메모장</title>
+    <meta name="author" content="오세영">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n\n\n\n\nHeroku 홈페이지에 들어가서 회원가입\n\n비밀번호양식 → 영문+숫자+특수문자\n\n\nHeroku 다운로드\n\nGitHub 에서 새로운 Repository 생성하기\n  \n\nAdd a README File 체크 후 생성한다.\n\n바탕화면에 git clone 으로 불러온 후 VSCode로 연다.\n  \n\n가상환경 생성 및 접속, Flask 설치\n  \n\n\n12345virtualenv venvsource venv/Scripts/activatepip install Flask gunicorn\n\n\n파일 만들기\n  \n  \n\n\n1pip freeze &gt; requirements.txt\n\n\n코드 입력\n\n1python.exe -m pip install --upgrade pip\n\n\n\napp.py 파일 만들기\n  \n\napp.py 파일 안에 코드 입력 후 저장\n\n\n12345678# -*- coding: utf-8 -*-from flask import Flaskapp = Flask(__name__)@app.route(&quot;/&quot;)def index():    return &quot;Hello World!&quot;\n\n\n코드 입력\n  \n\n\n12345export FLASK_ENV=developmentexport FLASK_APP=appflask run\n\n\nflask run 까지 입력했다면 다음과 같이 나오는데 주소창을 클릭하면 로컬에서 테스트 하는 형태로 된다.(Git 블로그 hexo server 와 같은 로직)\n  \n\napp.py 에 코드 추가\n  \n\n\n12if __name__ == &quot;__main__&quot;:\tapp.run(port=5000)\n\n\n‘Procfile’ 파일을 하나 만들고 코드 입력\n  \n  \n\n\n1web: gunicorn wsgi:app\n\n\n‘wsgi.py’ 파일을 하나 만들고 코드 입력\n  \n\n\n1234from app import appif __name__ == &quot;__main__&quot;:    app.run()\n\n\n파이썬 버전체크, 파이썬 실행(나가는 명령어는 exit())\n  \n  \n\n\n123python -Vpython\n\n\n‘runtime.txt’ 를 만들어서 파이썬 버전을 입력해준다\n  \n\nflask run 으로 로컬 테스트 해본 뒤 git 에 업로드 한다\n\n\n1234567flask fungit add .git commit -m &quot;your msg&quot;git push\n\n\nHeroku 로그인\nheroku login 입력\n  \n\n\n1heroku login\n\n\n사이트 업그레이드(app.py 만 업그레이드)\n\n만약 “app” 를 “main “ 으로 이름을 바꾼다면 Procfile, wsgi.py 등등 수정을 해야한다.\n\n  \n  \n\ntemplates 폴더 하나 만들기(그 안에 index.html 파일 만들기)\n  \n  \n\nindex.html 파일 만들고 세팅한 후 flask run 으로 홈페이지 들어가기\n  \n\n샘플 html\n\n\n12345678910&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset=&quot;UTF-8&quot;&gt;    &lt;title&gt;FlaskBlog&lt;/title&gt;&lt;/head&gt;&lt;body&gt;   &lt;h1&gt;aaaaa&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;\n\n\napp.py 에 다음 코드 입력 수정\n  \n\n\n123render_templatereturn render_template(&#x27;index.html&#x27;)\n\n\ngit 블로그와 로직은 똑같다. 로컬 환경에서 테스트 —&gt; 서버로 배포\n\nflask run 으로 로컬 환경에서 테스트\n  \n\n잘 나왔다면 Heroku로 배포\n\nHeroku 로 배포 할 때\n\ngit add.\ngit commit -m “”\ngit push origin main\ngit push heroku main\n\n   4 까지 진행했으면 Heroku에서 Open App 누르면 수정된 홈페이지가 나온다\n  \n  \n  주소 창 비교 확인!\n\n\n폰트 바꿔보기\nstatic폴더를 만들고 안에 또 css 폴더를 만들고 그 안에 style.css 파일을 하나 만든다.\n  \n\nstyle.css 파일에 다음 샘플코드 복붙\n\n\n123456h1 &#123;    border: 2px #eee solid;    color: brown;    text-align: center;    padding: 10px;&#125;\n\n\nindex.html 파일에 head 부분에 다음 문장 복붙\n\n1&lt;link rel=&quot;stylesheet&quot; href=&quot;&#123;&#123; url_for(&#x27;static&#x27;, filename= &#x27;css/style.css&#x27;) &#125;&#125;&quot;&gt;\n\n\n\n저장 후 flask run 으로 테스트 하고 heroku 에 배포\n","dateCreated":"2022-08-01T16:32:01+09:00","dateModified":"2022-09-07T19:19:55+09:00","datePublished":"2022-08-01T16:32:01+09:00","description":"Heroku 세팅하기","headline":"Heroku 세팅","image":["python.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/08/01/day0801Heroku/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/08/01/day0801Heroku/","thumbnailUrl":"python.png"}</script>
+    <meta name="description" content="Heroku 세팅하기">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="Heroku 세팅">
+<meta property="og:url" content="https://neewlife.github.io/2022/08/01/day0801Heroku/index.html">
+<meta property="og:site_name" content="개발 메모장">
+<meta property="og:description" content="Heroku 세팅하기">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%201.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%202.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%203.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%204.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%205.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%206.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%207.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%208.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%209.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2010.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2011.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2012.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2013.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2014.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2015.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2016.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2017.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2018.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2019.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2020.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2021.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2022.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2023.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2024.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2025.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2026.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2027.png">
+<meta property="og:image" content="https://neewlife.github.io/images/Heroku/Untitled%2028.png">
+<meta property="article:published_time" content="2022-08-01T07:32:01.000Z">
+<meta property="article:modified_time" content="2022-09-07T10:19:55.604Z">
+<meta property="article:author" content="오세영">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://neewlife.github.io/images/Heroku/Untitled.png">
+    
+    
+        
+    
+    
+    
+        <meta property="og:image" content="https://NeewLife.github.io/2022/08/01/day0801Heroku/python.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://NeewLife.github.io/2022/08/01/day0801Heroku/python.png"/>
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+            
+<link rel="stylesheet" href="/assets/css/gitment.css">
+
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            개발 메모장
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/NeewLife?tab=repositories/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            Heroku 세팅
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2022-08-01T16:32:01+09:00">
+	
+		    2022/08/01
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Python/">Python</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- excerpt -->
+
+<hr>
+<p><img src="/images/Heroku/Untitled.png" alt="Untitled"></p>
+<p><img src="/images/Heroku/Untitled%201.png" alt="Untitled"></p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://id.heroku.com/login">Heroku 홈페이지</a>에 들어가서 회원가입</p>
+<ul>
+<li>비밀번호양식 → 영문+숫자+특수문자</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://devcenter.heroku.com/articles/heroku-cli">Heroku 다운로드</a></p>
+</li>
+<li><p>GitHub 에서 새로운 Repository 생성하기</p>
+<p>  <img src="/images/Heroku/Untitled%202.png" alt="Untitled"></p>
+</li>
+<li><p>Add a README File 체크 후 생성한다.</p>
+</li>
+<li><p>바탕화면에 git clone 으로 불러온 후 VSCode로 연다.</p>
+<p>  <img src="/images/Heroku/Untitled%203.png" alt="Untitled"></p>
+</li>
+<li><p>가상환경 생성 및 접속, Flask 설치</p>
+<p>  <img src="/images/Heroku/Untitled%204.png" alt="Untitled"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">virtualenv venv</span><br><span class="line"></span><br><span class="line">source venv/Scripts/activate</span><br><span class="line"></span><br><span class="line">pip install Flask gunicorn</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>파일 만들기</p>
+<p>  <img src="/images/Heroku/Untitled%205.png" alt="Untitled"></p>
+<p>  <img src="/images/Heroku/Untitled%206.png" alt="Untitled"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip freeze &gt; requirements.txt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>코드 입력</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python.exe -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/Heroku/Untitled%207.png" alt="Untitled"></p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://app.py/">app.py</a> 파일 만들기</p>
+<p>  <img src="/images/Heroku/Untitled%208.png" alt="Untitled"></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://app.py/">app.py</a> 파일 안에 코드 입력 후 저장</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"></span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&quot;/&quot;</span></span>)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">index</span>():</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;Hello World!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>코드 입력</p>
+<p>  <img src="/images/Heroku/Untitled%209.png" alt="Untitled"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">export FLASK_ENV=development</span><br><span class="line"></span><br><span class="line">export FLASK_APP=app</span><br><span class="line"></span><br><span class="line">flask run</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>flask run 까지 입력했다면 다음과 같이 나오는데 주소창을 클릭하면 로컬에서 테스트 하는 형태로 된다.(Git 블로그 hexo server 와 같은 로직)</p>
+<p>  <img src="/images/Heroku/Untitled%2010.png" alt="Untitled"></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://app.py/">app.py</a> 에 코드 추가</p>
+<p>  <img src="/images/Heroku/Untitled%2011.png" alt="Untitled"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">	app.run(port=<span class="number">5000</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>‘Procfile’ 파일을 하나 만들고 코드 입력</p>
+<p>  <img src="/images/Heroku/Untitled%2012.png" alt="Untitled"></p>
+<p>  <img src="/images/Heroku/Untitled%2013.png" alt="Untitled"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">web: gunicorn wsgi:app</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>‘<a target="_blank" rel="noopener" href="http://wsgi.py/">wsgi.py</a>’ 파일을 하나 만들고 코드 입력</p>
+<p>  <img src="/images/Heroku/Untitled%2014.png" alt="Untitled"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> app <span class="keyword">import</span> app</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>파이썬 버전체크, 파이썬 실행(나가는 명령어는 exit())</p>
+<p>  <img src="/images/Heroku/Untitled%2015.png" alt="Untitled"></p>
+<p>  <img src="/images/Heroku/Untitled%2016.png" alt="Untitled"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python -V</span><br><span class="line"></span><br><span class="line">python</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>‘runtime.txt’ 를 만들어서 파이썬 버전을 입력해준다</p>
+<p>  <img src="/images/Heroku/Untitled%2017.png" alt="Untitled"></p>
+</li>
+<li><p>flask run 으로 로컬 테스트 해본 뒤 git 에 업로드 한다</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">flask fun</span><br><span class="line"></span><br><span class="line">git add .</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">&quot;your msg&quot;</span></span><br><span class="line"></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Heroku-로그인"><a href="#Heroku-로그인" class="headerlink" title="Heroku 로그인"></a>Heroku 로그인</h2><ul>
+<li><p>heroku login 입력</p>
+<p>  <img src="/images/Heroku/Untitled%2018.png" alt="Untitled"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heroku login</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>사이트 업그레이드(app.py 만 업그레이드)</p>
+<ul>
+<li>만약 “app” 를 “main “ 으로 이름을 바꾼다면 Procfile, <a target="_blank" rel="noopener" href="http://wsgi.py/">wsgi.py</a> 등등 수정을 해야한다.</li>
+</ul>
+<p>  <img src="/images/Heroku/Untitled%2019.png" alt="Untitled">
+  </p>
+</li>
+<li><p>templates 폴더 하나 만들기(그 안에 index.html 파일 만들기)</p>
+<p>  <img src="/images/Heroku/Untitled%2020.png" alt="Untitled"></p>
+<p>  <img src="/images/Heroku/Untitled%2021.png" alt="Untitled"></p>
+</li>
+<li><p>index.html 파일 만들고 세팅한 후 flask run 으로 홈페이지 들어가기</p>
+<p>  <img src="/images/Heroku/Untitled%2022.png" alt="Untitled"></p>
+</li>
+<li><p>샘플 html</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">&quot;en&quot;</span>&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">    &lt;title&gt;FlaskBlog&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">   &lt;h1&gt;aaaaa&lt;/h1&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://app.py/">app.py</a> 에 다음 코드 입력 수정</p>
+<p>  <img src="/images/Heroku/Untitled%2023.png" alt="Untitled"></p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">render_template</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> render_template(<span class="string">&#x27;index.html&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>git 블로그와 로직은 똑같다. 로컬 환경에서 테스트 —&gt; 서버로 배포</p>
+</li>
+<li><p>flask run 으로 로컬 환경에서 테스트</p>
+<p>  <img src="/images/Heroku/Untitled%2024.png" alt="Untitled"></p>
+</li>
+<li><p>잘 나왔다면 Heroku로 배포</p>
+</li>
+<li><p>Heroku 로 배포 할 때</p>
+<ol>
+<li>git add.</li>
+<li>git commit -m “”</li>
+<li>git push origin main</li>
+<li>git push heroku main</li>
+</ol>
+<p>   4 까지 진행했으면 Heroku에서 Open App 누르면 수정된 홈페이지가 나온다</p>
+<p>  <img src="/images/Heroku/Untitled%2025.png" alt="Untitled"></p>
+<p>  <img src="/images/Heroku/Untitled%2026.png" alt="Untitled"></p>
+<p>  주소 창 비교 확인!</p>
+</li>
+</ul>
+<h2 id="폰트-바꿔보기"><a href="#폰트-바꿔보기" class="headerlink" title="폰트 바꿔보기"></a>폰트 바꿔보기</h2><ul>
+<li><p>static폴더를 만들고 안에 또 css 폴더를 만들고 그 안에 style.css 파일을 하나 만든다.</p>
+<p>  <img src="/images/Heroku/Untitled%2027.png" alt="Untitled"></p>
+</li>
+<li><p>style.css 파일에 다음 샘플코드 복붙</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">h1 &#123;</span><br><span class="line">    border: 2px <span class="comment">#eee solid;</span></span><br><span class="line">    color: brown;</span><br><span class="line">    text-align: center;</span><br><span class="line">    padding: 10px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>index.html 파일에 head 부분에 다음 문장 복붙</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;link rel=<span class="string">&quot;stylesheet&quot;</span> href=<span class="string">&quot;&#123;&#123; url_for(&#x27;static&#x27;, filename= &#x27;css/style.css&#x27;) &#125;&#125;&quot;</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/Heroku/Untitled%2028.png" alt="Untitled"></p>
+<ul>
+<li>저장 후 flask run 으로 테스트 하고 heroku 에 배포</li>
+</ul>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/08/05/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D%20%ED%95%B4%EB%B3%B4%EA%B8%B0/"
+                    data-tooltip="머신러닝 세팅 및 실습"
+                    aria-label="이전: 머신러닝 세팅 및 실습"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/31/day0731_Spark/"
+                    data-tooltip="Spark 툴 설치 및 설정"
+                    aria-label="다음: Spark 툴 설치 및 설정"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/08/01/day0801Heroku/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/08/01/day0801Heroku/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/08/01/day0801Heroku/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="gitment"></div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2023 오세영. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/08/05/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D%20%ED%95%B4%EB%B3%B4%EA%B8%B0/"
+                    data-tooltip="머신러닝 세팅 및 실습"
+                    aria-label="이전: 머신러닝 세팅 및 실습"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/07/31/day0731_Spark/"
+                    data-tooltip="Spark 툴 설치 및 설정"
+                    aria-label="다음: Spark 툴 설치 및 설정"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/08/01/day0801Heroku/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/08/01/day0801Heroku/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/08/01/day0801Heroku/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/08/01/day0801Heroku/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/08/01/day0801Heroku/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=https://neewlife.github.io/2022/08/01/day0801Heroku/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">오세영</h4>
+        
+            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>웹 백앤드 지망생</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                경기 광명시
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+        
+<script src="/assets/js/gitment.js"></script>
+
+        <script type="text/javascript">
+          (function() {
+            new Gitment({
+              id: 'https://neewlife.github.io/2022/08/01/day0801Heroku/',
+              owner: '',
+              repo: '',
+              oauth: {
+                client_id: '',
+                client_secret: ''
+              }
+            }).render('gitment')
+          })()
+        </script>
+    
+
+
+
+
+    </body>
+</html>

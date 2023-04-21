@@ -1,0 +1,898 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="개발 메모장">
+    <title>딥러닝 실습 - 개발 메모장</title>
+    <meta name="author" content="오세영">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n데이터 불러오기1234from tensorflow.keras.datasets import imdb(train_input, train_target), (test_input, test_target) = imdb.load_data(num_words=500)train_input.shape, test_input.shape\n\nDownloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/imdb.npz\n17465344/17464789 [==============================] - 0s 0us/step\n17473536/17464789 [==============================] - 0s 0us/step\n\n\n\n\n\n((25000,), (25000,))\n\n12print(len(train_input[0]))print(len(train_input[1]))\n\n218\n189\n\n1print(train_input[0])\n\n[1, 14, 22, 16, 43, 2, 2, 2, 2, 65, 458, 2, 66, 2, 4, 173, 36, 256, 5, 25, 100, 43, 2, 112, 50, 2, 2, 9, 35, 480, 284, 5, 150, 4, 172, 112, 167, 2, 336, 385, 39, 4, 172, 2, 2, 17, 2, 38, 13, 447, 4, 192, 50, 16, 6, 147, 2, 19, 14, 22, 4, 2, 2, 469, 4, 22, 71, 87, 12, 16, 43, 2, 38, 76, 15, 13, 2, 4, 22, 17, 2, 17, 12, 16, 2, 18, 2, 5, 62, 386, 12, 8, 316, 8, 106, 5, 4, 2, 2, 16, 480, 66, 2, 33, 4, 130, 12, 16, 38, 2, 5, 25, 124, 51, 36, 135, 48, 25, 2, 33, 6, 22, 12, 215, 28, 77, 52, 5, 14, 407, 16, 82, 2, 8, 4, 107, 117, 2, 15, 256, 4, 2, 7, 2, 5, 2, 36, 71, 43, 2, 476, 26, 400, 317, 46, 7, 4, 2, 2, 13, 104, 88, 4, 381, 15, 297, 98, 32, 2, 56, 26, 141, 6, 194, 2, 18, 4, 226, 22, 21, 134, 476, 26, 480, 5, 144, 30, 2, 18, 51, 36, 28, 224, 92, 25, 104, 4, 226, 65, 16, 38, 2, 88, 12, 16, 283, 5, 16, 2, 113, 103, 32, 15, 16, 2, 19, 178, 32]\n\n\n0은 리뷰가 부정적인 문장\n1은 리뷰가 긍정적인 문장\n\n1print(train_target[:20])\n\n[1 0 0 1 0 0 1 0 1 0 1 0 0 0 0 0 1 1 0 1]\n\n\n훈련데이터 테스트데이터 분리\n\n123456from sklearn.model_selection import train_test_splittrain_input, val_input, train_target, val_target = train_test_split(    train_input, train_target, test_size=0.2, random_state=42)train_input.shape, val_input.shape, train_target.shape, val_target.shape\n\n\n\n\n((20000,), (5000,), (20000,), (5000,))\n\n1234import numpy as nplengths = np.array([len(x) for x in train_input])  # 리스트 컴프리헨션print(np.mean(lengths), np.median(lengths))\n\n239.00925 178.0\n\n12345import matplotlib.pyplot as pltplt.hist(lengths)plt.xlabel(&#x27;length&#x27;)plt.ylabel(&#x27;frequency&#x27;)plt.show()\n\n\n\n\n20,000개의 리뷰 순회하면서 길이가 100이 되도록 잘라낸다.\n100개보다 적은 문장은 0으로 채운다.\n\n1234from tensorflow.keras.preprocessing.sequence import pad_sequencestrain_seq = pad_sequences(train_input, maxlen=100)print(train_seq.shape)\n\n(20000, 100)\n\n1print(train_seq[0])\n\n[ 10   4  20   9   2 364 352   5  45   6   2   2  33 269   8   2 142   2\n   5   2  17  73  17 204   5   2  19  55   2   2  92  66 104  14  20  93\n  76   2 151  33   4  58  12 188   2 151  12 215  69 224 142  73 237   6\n   2   7   2   2 188   2 103  14  31  10  10 451   7   2   5   2  80  91\n   2  30   2  34  14  20 151  50  26 131  49   2  84  46  50  37  80  79\n   6   2  46   7  14  20  10  10 470 158]\n\n1print(train_input[0][-10:])   # 보통 댓글의 결말은 마지막에 작성하는걸로 예상해서 -10으로 거꾸로 추출\n\n[6, 2, 46, 7, 14, 20, 10, 10, 470, 158]\n\n1print(train_seq[5])\n\n[  0   0   0   0   1   2 195  19  49   2   2 190   4   2 352   2 183  10\n  10  13  82  79   4   2  36  71 269   8   2  25  19  49   7   4   2   2\n   2   2   2  10  10  48  25  40   2  11   2   2  40   2   2   5   4   2\n   2  95  14 238  56 129   2  10  10  21   2  94 364 352   2   2  11 190\n  24 484   2   7  94 205 405  10  10  87   2  34  49   2   7   2   2   2\n   2   2 290   2  46  48  64  18   4   2]\n\n1val_seq = pad_sequences(val_input, maxlen=100)\n\n\n1train_seq.shape, val_seq.shape\n\n\n\n\n((20000, 100), (5000, 100))\n\n순환신경망 모델 만들기1234from tensorflow import kerasmodel = keras.Sequential()model.add(keras.layers.SimpleRNN(8,input_shape=(100,500)))model.add(keras.layers.Dense(1, activation=&#x27;sigmoid&#x27;))\n\nLSTM\nLong Short-Term Memory의 약자.\n단기 기억을 오래 기억하기 위해 고안되었다.\n\n12345678910from tensorflow.keras.datasets import imdbfrom sklearn.model_selection import train_test_split(train_input, train_target), (test_input, test_target) = imdb.load_data(num_words=500)train_input, val_input, train_target, val_target = train_test_split(    train_input, train_target, test_size=0.2, random_state=42)train_input.shape, val_input.shape, train_target.shape, val_target.shape\n\n\n\n\n((20000,), (5000,), (20000,), (5000,))\n\n\n패딩 작업\n\n12345from tensorflow.keras.preprocessing.sequence import pad_sequencestrain_seq = pad_sequences(train_input, maxlen=100)val_seq = pad_sequences(val_input, maxlen=100)train_seq.shape, val_seq.shape\n\n\n\n\n((20000, 100), (5000, 100))\n\n\nLSTM 순환층을 만든다\n모델 아키텍처를 구성한다\n\n1234567from tensorflow import kerasmodel = keras.Sequential()model.add(keras.layers.Embedding(500,16,input_length = 100))model.add(keras.layers.LSTM(8))model.add(keras.layers.Dense(1, activation=&#x27;sigmoid&#x27;))model.summary()\n\nModel: &quot;sequential_2&quot;\n_________________________________________________________________\n Layer (type)                Output Shape              Param #   \n=================================================================\n embedding_1 (Embedding)     (None, 100, 16)           8000      \n                                                                 \n lstm (LSTM)                 (None, 8)                 800       \n                                                                 \n dense_1 (Dense)             (None, 1)                 9         \n                                                                 \n=================================================================\nTotal params: 8,809\nTrainable params: 8,809\nNon-trainable params: 0\n_________________________________________________________________\n\n\n모델 컴파일\n\n1234567rmsprop = keras.optimizers.RMSprop(learning_rate=1e-4)model.compile(optimizer=rmsprop, loss = &#x27;binary_crossentropy&#x27;, metrics = [&#x27;accuracy&#x27;])checkpoint_cb = keras.callbacks.ModelCheckpoint(&#x27;best-lstm-model.h5&#x27;, save_best_only=True)early_stopping_cb = keras.callbacks.EarlyStopping(patience=3, restore_best_weights = True)history = model.fit(train_seq, train_target, epochs = 100, batch_size = 64,                    validation_data = (val_seq, val_target),                    callbacks=[checkpoint_cb, early_stopping_cb])\n\nEpoch 1/100\n313/313 [==============================] - 11s 10ms/step - loss: 0.6916 - accuracy: 0.5670 - val_loss: 0.6895 - val_accuracy: 0.6242\nEpoch 2/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.6825 - accuracy: 0.6376 - val_loss: 0.6659 - val_accuracy: 0.6560\nEpoch 3/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.6278 - accuracy: 0.7081 - val_loss: 0.6109 - val_accuracy: 0.7158\nEpoch 4/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.5935 - accuracy: 0.7249 - val_loss: 0.5872 - val_accuracy: 0.7226\nEpoch 5/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.5693 - accuracy: 0.7377 - val_loss: 0.5643 - val_accuracy: 0.7322\nEpoch 6/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.5461 - accuracy: 0.7513 - val_loss: 0.5450 - val_accuracy: 0.7336\nEpoch 7/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.5243 - accuracy: 0.7649 - val_loss: 0.5213 - val_accuracy: 0.7600\nEpoch 8/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.5059 - accuracy: 0.7749 - val_loss: 0.5054 - val_accuracy: 0.7700\nEpoch 9/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4904 - accuracy: 0.7828 - val_loss: 0.4922 - val_accuracy: 0.7832\nEpoch 10/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4774 - accuracy: 0.7923 - val_loss: 0.4813 - val_accuracy: 0.7906\nEpoch 11/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4665 - accuracy: 0.7955 - val_loss: 0.4720 - val_accuracy: 0.7890\nEpoch 12/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4579 - accuracy: 0.8007 - val_loss: 0.4649 - val_accuracy: 0.7916\nEpoch 13/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4504 - accuracy: 0.8019 - val_loss: 0.4591 - val_accuracy: 0.7954\nEpoch 14/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4438 - accuracy: 0.8027 - val_loss: 0.4694 - val_accuracy: 0.7822\nEpoch 15/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4394 - accuracy: 0.8058 - val_loss: 0.4504 - val_accuracy: 0.8002\nEpoch 16/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4349 - accuracy: 0.8077 - val_loss: 0.4487 - val_accuracy: 0.7970\nEpoch 17/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4314 - accuracy: 0.8077 - val_loss: 0.4462 - val_accuracy: 0.7978\nEpoch 18/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4277 - accuracy: 0.8087 - val_loss: 0.4440 - val_accuracy: 0.8014\nEpoch 19/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4257 - accuracy: 0.8094 - val_loss: 0.4465 - val_accuracy: 0.7978\nEpoch 20/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4233 - accuracy: 0.8099 - val_loss: 0.4400 - val_accuracy: 0.8026\nEpoch 21/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4214 - accuracy: 0.8091 - val_loss: 0.4375 - val_accuracy: 0.8034\nEpoch 22/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4199 - accuracy: 0.8110 - val_loss: 0.4361 - val_accuracy: 0.8028\nEpoch 23/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4185 - accuracy: 0.8120 - val_loss: 0.4359 - val_accuracy: 0.8030\nEpoch 24/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4173 - accuracy: 0.8108 - val_loss: 0.4352 - val_accuracy: 0.8036\nEpoch 25/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4164 - accuracy: 0.8107 - val_loss: 0.4353 - val_accuracy: 0.8046\nEpoch 26/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4153 - accuracy: 0.8120 - val_loss: 0.4350 - val_accuracy: 0.7966\nEpoch 27/100\n313/313 [==============================] - 3s 11ms/step - loss: 0.4146 - accuracy: 0.8106 - val_loss: 0.4351 - val_accuracy: 0.8062\nEpoch 28/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4138 - accuracy: 0.8123 - val_loss: 0.4333 - val_accuracy: 0.8014\nEpoch 29/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4132 - accuracy: 0.8116 - val_loss: 0.4336 - val_accuracy: 0.8014\nEpoch 30/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4125 - accuracy: 0.8117 - val_loss: 0.4347 - val_accuracy: 0.7996\nEpoch 31/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4122 - accuracy: 0.8110 - val_loss: 0.4332 - val_accuracy: 0.8046\nEpoch 32/100\n313/313 [==============================] - 3s 10ms/step - loss: 0.4115 - accuracy: 0.8134 - val_loss: 0.4325 - val_accuracy: 0.8010\nEpoch 33/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4114 - accuracy: 0.8122 - val_loss: 0.4356 - val_accuracy: 0.8036\nEpoch 34/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4107 - accuracy: 0.8130 - val_loss: 0.4334 - val_accuracy: 0.8054\nEpoch 35/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4105 - accuracy: 0.8139 - val_loss: 0.4325 - val_accuracy: 0.8038\n\n\n모형 학습이 잘 되었는가?\n\n12345678import matplotlib.pyplot as pltplt.plot(history.history[&#x27;loss&#x27;])plt.plot(history.history[&#x27;val_loss&#x27;])plt.xlabel(&#x27;epoch&#x27;)plt.ylabel(&#x27;loss&#x27;)  # 오차plt.legend([&#x27;train&#x27;, &#x27;val&#x27;])plt.show()# 오차가 점점 많아질수록 과적합 된다는 뜻\n\n\n\n1234model = keras.Sequential()model.add(keras.layers.Embedding(500,16,input_length = 100))model.add(keras.layers.LSTM(8, dropout=0.3))model.add(keras.layers.Dense(1, activation=&#x27;sigmoid&#x27;))\n\n\n123456789rmsprop = keras.optimizers.RMSprop(learning_rate=1e-4)model.compile(optimizer=rmsprop, loss = &#x27;binary_crossentropy&#x27;, metrics = [&#x27;accuracy&#x27;])checkpoint_cb = keras.callbacks.ModelCheckpoint(&#x27;best-lstm-model.h5&#x27;, save_best_only=True)early_stopping_cb = keras.callbacks.EarlyStopping(patience=3, restore_best_weights = True)history = model.fit(train_seq, train_target, epochs = 100, batch_size = 64,                    validation_data = (val_seq, val_target),                    callbacks=[checkpoint_cb, early_stopping_cb])\n\nEpoch 1/100\n313/313 [==============================] - 5s 10ms/step - loss: 0.4186 - accuracy: 0.8083 - val_loss: 0.4319 - val_accuracy: 0.8032\nEpoch 2/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4169 - accuracy: 0.8098 - val_loss: 0.4337 - val_accuracy: 0.7972\nEpoch 3/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4154 - accuracy: 0.8113 - val_loss: 0.4326 - val_accuracy: 0.8012\nEpoch 4/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4161 - accuracy: 0.8099 - val_loss: 0.4310 - val_accuracy: 0.8018\nEpoch 5/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4144 - accuracy: 0.8134 - val_loss: 0.4312 - val_accuracy: 0.8032\nEpoch 6/100\n313/313 [==============================] - 3s 11ms/step - loss: 0.4143 - accuracy: 0.8106 - val_loss: 0.4307 - val_accuracy: 0.7992\nEpoch 7/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4139 - accuracy: 0.8127 - val_loss: 0.4295 - val_accuracy: 0.8018\nEpoch 8/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4133 - accuracy: 0.8118 - val_loss: 0.4294 - val_accuracy: 0.8028\nEpoch 9/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4125 - accuracy: 0.8112 - val_loss: 0.4291 - val_accuracy: 0.8034\nEpoch 10/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4113 - accuracy: 0.8129 - val_loss: 0.4290 - val_accuracy: 0.8034\nEpoch 11/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4106 - accuracy: 0.8111 - val_loss: 0.4314 - val_accuracy: 0.8046\nEpoch 12/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4095 - accuracy: 0.8145 - val_loss: 0.4279 - val_accuracy: 0.8018\nEpoch 13/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4099 - accuracy: 0.8141 - val_loss: 0.4275 - val_accuracy: 0.8032\nEpoch 14/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4098 - accuracy: 0.8128 - val_loss: 0.4299 - val_accuracy: 0.8036\nEpoch 15/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4087 - accuracy: 0.8153 - val_loss: 0.4282 - val_accuracy: 0.8052\nEpoch 16/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4081 - accuracy: 0.8141 - val_loss: 0.4272 - val_accuracy: 0.8064\nEpoch 17/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4074 - accuracy: 0.8158 - val_loss: 0.4285 - val_accuracy: 0.8016\nEpoch 18/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4065 - accuracy: 0.8140 - val_loss: 0.4286 - val_accuracy: 0.8006\nEpoch 19/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4075 - accuracy: 0.8152 - val_loss: 0.4255 - val_accuracy: 0.8036\nEpoch 20/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4080 - accuracy: 0.8117 - val_loss: 0.4265 - val_accuracy: 0.8026\nEpoch 21/100\n313/313 [==============================] - 3s 8ms/step - loss: 0.4060 - accuracy: 0.8152 - val_loss: 0.4252 - val_accuracy: 0.8034\nEpoch 22/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4065 - accuracy: 0.8149 - val_loss: 0.4258 - val_accuracy: 0.8040\nEpoch 23/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4051 - accuracy: 0.8164 - val_loss: 0.4251 - val_accuracy: 0.8042\nEpoch 24/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4059 - accuracy: 0.8167 - val_loss: 0.4249 - val_accuracy: 0.8036\nEpoch 25/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4037 - accuracy: 0.8162 - val_loss: 0.4244 - val_accuracy: 0.8034\nEpoch 26/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4041 - accuracy: 0.8160 - val_loss: 0.4262 - val_accuracy: 0.8062\nEpoch 27/100\n313/313 [==============================] - 3s 10ms/step - loss: 0.4021 - accuracy: 0.8152 - val_loss: 0.4245 - val_accuracy: 0.8050\nEpoch 28/100\n313/313 [==============================] - 3s 9ms/step - loss: 0.4020 - accuracy: 0.8162 - val_loss: 0.4270 - val_accuracy: 0.8056\n\n\n\n\n\n[&lt;matplotlib.lines.Line2D at 0x7f9996fbb050&gt;]\n\n\n123456plt.plot(history.history[&#x27;loss&#x27;])plt.plot(history.history[&#x27;val_loss&#x27;])plt.xlabel(&#x27;epoch&#x27;)plt.ylabel(&#x27;loss&#x27;)  # 오차plt.legend([&#x27;train&#x27;, &#x27;val&#x27;])plt.show()\n\n\n\n\n2개의 층을 연결하기\n\n12345678910111213model = keras.Sequential()model.add(keras.layers.Embedding(500,16,input_length = 100))model.add(keras.layers.LSTM(8, dropout=0.3, return_sequences=True))model.add(keras.layers.LSTM(8, dropout=0.3))model.add(keras.layers.Dense(1, activation=&#x27;sigmoid&#x27;))rmsprop = keras.optimizers.RMSprop(learning_rate=1e-4)model.compile(optimizer=rmsprop, loss = &#x27;binary_crossentropy&#x27;, metrics = [&#x27;accuracy&#x27;])checkpoint_cb = keras.callbacks.ModelCheckpoint(&#x27;best-lstm-model.h5&#x27;, save_best_only=True)early_stopping_cb = keras.callbacks.EarlyStopping(patience=3, restore_best_weights = True)history = model.fit(train_seq, train_target, epochs = 100, batch_size = 64,                    validation_data = (val_seq, val_target),                    callbacks=[checkpoint_cb, early_stopping_cb])","dateCreated":"2022-08-06T22:08:01+09:00","dateModified":"2022-08-07T13:46:08+09:00","datePublished":"2022-08-06T22:08:01+09:00","description":"\n딥러닝 실습","headline":"딥러닝 실습","image":["python.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/08/06/day0805/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/08/06/day0805/","thumbnailUrl":"python.png"}</script>
+    <meta name="description" content="딥러닝 실습">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="딥러닝 실습">
+<meta property="og:url" content="https://neewlife.github.io/2022/08/06/day0805/index.html">
+<meta property="og:site_name" content="개발 메모장">
+<meta property="og:description" content="딥러닝 실습">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://neewlife.github.io/images/0806/output_9_0.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0806/output_28_0.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0806/output_30_2.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0806/output_31_0.png">
+<meta property="article:published_time" content="2022-08-06T13:08:01.000Z">
+<meta property="article:modified_time" content="2022-08-07T04:46:08.708Z">
+<meta property="article:author" content="오세영">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://neewlife.github.io/images/0806/output_9_0.png">
+    
+    
+        
+    
+    
+    
+        <meta property="og:image" content="https://NeewLife.github.io/2022/08/06/day0805/python.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://NeewLife.github.io/2022/08/06/day0805/python.png"/>
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+            
+<link rel="stylesheet" href="/assets/css/gitment.css">
+
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            개발 메모장
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/NeewLife?tab=repositories/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            딥러닝 실습
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2022-08-06T22:08:01+09:00">
+	
+		    2022/08/06
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Python/">Python</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- excerpt --></li>
+</ul>
+<h2 id="데이터-불러오기"><a href="#데이터-불러오기" class="headerlink" title="데이터 불러오기"></a>데이터 불러오기</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.keras.datasets <span class="keyword">import</span> imdb</span><br><span class="line">(train_input, train_target), (test_input, test_target) = imdb.load_data(num_words=<span class="number">500</span>)</span><br><span class="line"></span><br><span class="line">train_input.shape, test_input.shape</span><br></pre></td></tr></table></figure>
+
+<pre><code>Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/imdb.npz
+17465344/17464789 [==============================] - 0s 0us/step
+17473536/17464789 [==============================] - 0s 0us/step
+
+
+
+
+
+((25000,), (25000,))
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(train_input[<span class="number">0</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(train_input[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+
+<pre><code>218
+189
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(train_input[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1, 14, 22, 16, 43, 2, 2, 2, 2, 65, 458, 2, 66, 2, 4, 173, 36, 256, 5, 25, 100, 43, 2, 112, 50, 2, 2, 9, 35, 480, 284, 5, 150, 4, 172, 112, 167, 2, 336, 385, 39, 4, 172, 2, 2, 17, 2, 38, 13, 447, 4, 192, 50, 16, 6, 147, 2, 19, 14, 22, 4, 2, 2, 469, 4, 22, 71, 87, 12, 16, 43, 2, 38, 76, 15, 13, 2, 4, 22, 17, 2, 17, 12, 16, 2, 18, 2, 5, 62, 386, 12, 8, 316, 8, 106, 5, 4, 2, 2, 16, 480, 66, 2, 33, 4, 130, 12, 16, 38, 2, 5, 25, 124, 51, 36, 135, 48, 25, 2, 33, 6, 22, 12, 215, 28, 77, 52, 5, 14, 407, 16, 82, 2, 8, 4, 107, 117, 2, 15, 256, 4, 2, 7, 2, 5, 2, 36, 71, 43, 2, 476, 26, 400, 317, 46, 7, 4, 2, 2, 13, 104, 88, 4, 381, 15, 297, 98, 32, 2, 56, 26, 141, 6, 194, 2, 18, 4, 226, 22, 21, 134, 476, 26, 480, 5, 144, 30, 2, 18, 51, 36, 28, 224, 92, 25, 104, 4, 226, 65, 16, 38, 2, 88, 12, 16, 283, 5, 16, 2, 113, 103, 32, 15, 16, 2, 19, 178, 32]
+</code></pre>
+<ul>
+<li>0은 리뷰가 부정적인 문장</li>
+<li>1은 리뷰가 긍정적인 문장</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(train_target[:<span class="number">20</span>])</span><br></pre></td></tr></table></figure>
+
+<pre><code>[1 0 0 1 0 0 1 0 1 0 1 0 0 0 0 0 1 1 0 1]
+</code></pre>
+<ul>
+<li>훈련데이터 테스트데이터 분리</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line">train_input, val_input, train_target, val_target = train_test_split(</span><br><span class="line">    train_input, train_target, test_size=<span class="number">0.2</span>, random_state=<span class="number">42</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">train_input.shape, val_input.shape, train_target.shape, val_target.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>((20000,), (5000,), (20000,), (5000,))
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">lengths = np.array([<span class="built_in">len</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> train_input])  <span class="comment"># 리스트 컴프리헨션</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(np.mean(lengths), np.median(lengths))</span><br></pre></td></tr></table></figure>
+
+<pre><code>239.00925 178.0
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.hist(lengths)</span><br><span class="line">plt.xlabel(<span class="string">&#x27;length&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;frequency&#x27;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/0806/output_9_0.png" alt="png"></p>
+<ul>
+<li>20,000개의 리뷰 순회하면서 길이가 100이 되도록 잘라낸다.</li>
+<li>100개보다 적은 문장은 0으로 채운다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.keras.preprocessing.sequence <span class="keyword">import</span> pad_sequences</span><br><span class="line">train_seq = pad_sequences(train_input, maxlen=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(train_seq.shape)</span><br></pre></td></tr></table></figure>
+
+<pre><code>(20000, 100)
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(train_seq[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+
+<pre><code>[ 10   4  20   9   2 364 352   5  45   6   2   2  33 269   8   2 142   2
+   5   2  17  73  17 204   5   2  19  55   2   2  92  66 104  14  20  93
+  76   2 151  33   4  58  12 188   2 151  12 215  69 224 142  73 237   6
+   2   7   2   2 188   2 103  14  31  10  10 451   7   2   5   2  80  91
+   2  30   2  34  14  20 151  50  26 131  49   2  84  46  50  37  80  79
+   6   2  46   7  14  20  10  10 470 158]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(train_input[<span class="number">0</span>][-<span class="number">10</span>:])   <span class="comment"># 보통 댓글의 결말은 마지막에 작성하는걸로 예상해서 -10으로 거꾸로 추출</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>[6, 2, 46, 7, 14, 20, 10, 10, 470, 158]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(train_seq[<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+
+<pre><code>[  0   0   0   0   1   2 195  19  49   2   2 190   4   2 352   2 183  10
+  10  13  82  79   4   2  36  71 269   8   2  25  19  49   7   4   2   2
+   2   2   2  10  10  48  25  40   2  11   2   2  40   2   2   5   4   2
+   2  95  14 238  56 129   2  10  10  21   2  94 364 352   2   2  11 190
+  24 484   2   7  94 205 405  10  10  87   2  34  49   2   7   2   2   2
+   2   2 290   2  46  48  64  18   4   2]
+</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val_seq = pad_sequences(val_input, maxlen=<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_seq.shape, val_seq.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>((20000, 100), (5000, 100))
+</code></pre>
+<h2 id="순환신경망-모델-만들기"><a href="#순환신경망-모델-만들기" class="headerlink" title="순환신경망 모델 만들기"></a>순환신경망 모델 만들기</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras</span><br><span class="line">model = keras.Sequential()</span><br><span class="line">model.add(keras.layers.SimpleRNN(<span class="number">8</span>,input_shape=(<span class="number">100</span>,<span class="number">500</span>)))</span><br><span class="line">model.add(keras.layers.Dense(<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h2><ul>
+<li>Long Short-Term Memory의 약자.</li>
+<li>단기 기억을 오래 기억하기 위해 고안되었다.</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.keras.datasets <span class="keyword">import</span> imdb</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line">(train_input, train_target), (test_input, test_target) = imdb.load_data(num_words=<span class="number">500</span>)</span><br><span class="line"></span><br><span class="line">train_input, val_input, train_target, val_target = train_test_split(</span><br><span class="line">    train_input, train_target, test_size=<span class="number">0.2</span>, random_state=<span class="number">42</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">train_input.shape, val_input.shape, train_target.shape, val_target.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>((20000,), (5000,), (20000,), (5000,))
+</code></pre>
+<ul>
+<li>패딩 작업</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow.keras.preprocessing.sequence <span class="keyword">import</span> pad_sequences</span><br><span class="line">train_seq = pad_sequences(train_input, maxlen=<span class="number">100</span>)</span><br><span class="line">val_seq = pad_sequences(val_input, maxlen=<span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">train_seq.shape, val_seq.shape</span><br></pre></td></tr></table></figure>
+
+
+
+
+<pre><code>((20000, 100), (5000, 100))
+</code></pre>
+<ul>
+<li>LSTM 순환층을 만든다</li>
+<li>모델 아키텍처를 구성한다</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> tensorflow <span class="keyword">import</span> keras</span><br><span class="line">model = keras.Sequential()</span><br><span class="line">model.add(keras.layers.Embedding(<span class="number">500</span>,<span class="number">16</span>,input_length = <span class="number">100</span>))</span><br><span class="line">model.add(keras.layers.LSTM(<span class="number">8</span>))</span><br><span class="line">model.add(keras.layers.Dense(<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>))</span><br><span class="line"></span><br><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
+
+<pre><code>Model: &quot;sequential_2&quot;
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ embedding_1 (Embedding)     (None, 100, 16)           8000      
+                                                                 
+ lstm (LSTM)                 (None, 8)                 800       
+                                                                 
+ dense_1 (Dense)             (None, 1)                 9         
+                                                                 
+=================================================================
+Total params: 8,809
+Trainable params: 8,809
+Non-trainable params: 0
+_________________________________________________________________
+</code></pre>
+<ul>
+<li>모델 컴파일</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rmsprop = keras.optimizers.RMSprop(learning_rate=<span class="number">1e-4</span>)</span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=rmsprop, loss = <span class="string">&#x27;binary_crossentropy&#x27;</span>, metrics = [<span class="string">&#x27;accuracy&#x27;</span>])</span><br><span class="line">checkpoint_cb = keras.callbacks.ModelCheckpoint(<span class="string">&#x27;best-lstm-model.h5&#x27;</span>, save_best_only=<span class="literal">True</span>)</span><br><span class="line">early_stopping_cb = keras.callbacks.EarlyStopping(patience=<span class="number">3</span>, restore_best_weights = <span class="literal">True</span>)</span><br><span class="line">history = model.fit(train_seq, train_target, epochs = <span class="number">100</span>, batch_size = <span class="number">64</span>,</span><br><span class="line">                    validation_data = (val_seq, val_target),</span><br><span class="line">                    callbacks=[checkpoint_cb, early_stopping_cb])</span><br></pre></td></tr></table></figure>
+
+<pre><code>Epoch 1/100
+313/313 [==============================] - 11s 10ms/step - loss: 0.6916 - accuracy: 0.5670 - val_loss: 0.6895 - val_accuracy: 0.6242
+Epoch 2/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.6825 - accuracy: 0.6376 - val_loss: 0.6659 - val_accuracy: 0.6560
+Epoch 3/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.6278 - accuracy: 0.7081 - val_loss: 0.6109 - val_accuracy: 0.7158
+Epoch 4/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.5935 - accuracy: 0.7249 - val_loss: 0.5872 - val_accuracy: 0.7226
+Epoch 5/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.5693 - accuracy: 0.7377 - val_loss: 0.5643 - val_accuracy: 0.7322
+Epoch 6/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.5461 - accuracy: 0.7513 - val_loss: 0.5450 - val_accuracy: 0.7336
+Epoch 7/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.5243 - accuracy: 0.7649 - val_loss: 0.5213 - val_accuracy: 0.7600
+Epoch 8/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.5059 - accuracy: 0.7749 - val_loss: 0.5054 - val_accuracy: 0.7700
+Epoch 9/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4904 - accuracy: 0.7828 - val_loss: 0.4922 - val_accuracy: 0.7832
+Epoch 10/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4774 - accuracy: 0.7923 - val_loss: 0.4813 - val_accuracy: 0.7906
+Epoch 11/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4665 - accuracy: 0.7955 - val_loss: 0.4720 - val_accuracy: 0.7890
+Epoch 12/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4579 - accuracy: 0.8007 - val_loss: 0.4649 - val_accuracy: 0.7916
+Epoch 13/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4504 - accuracy: 0.8019 - val_loss: 0.4591 - val_accuracy: 0.7954
+Epoch 14/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4438 - accuracy: 0.8027 - val_loss: 0.4694 - val_accuracy: 0.7822
+Epoch 15/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4394 - accuracy: 0.8058 - val_loss: 0.4504 - val_accuracy: 0.8002
+Epoch 16/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4349 - accuracy: 0.8077 - val_loss: 0.4487 - val_accuracy: 0.7970
+Epoch 17/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4314 - accuracy: 0.8077 - val_loss: 0.4462 - val_accuracy: 0.7978
+Epoch 18/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4277 - accuracy: 0.8087 - val_loss: 0.4440 - val_accuracy: 0.8014
+Epoch 19/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4257 - accuracy: 0.8094 - val_loss: 0.4465 - val_accuracy: 0.7978
+Epoch 20/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4233 - accuracy: 0.8099 - val_loss: 0.4400 - val_accuracy: 0.8026
+Epoch 21/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4214 - accuracy: 0.8091 - val_loss: 0.4375 - val_accuracy: 0.8034
+Epoch 22/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4199 - accuracy: 0.8110 - val_loss: 0.4361 - val_accuracy: 0.8028
+Epoch 23/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4185 - accuracy: 0.8120 - val_loss: 0.4359 - val_accuracy: 0.8030
+Epoch 24/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4173 - accuracy: 0.8108 - val_loss: 0.4352 - val_accuracy: 0.8036
+Epoch 25/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4164 - accuracy: 0.8107 - val_loss: 0.4353 - val_accuracy: 0.8046
+Epoch 26/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4153 - accuracy: 0.8120 - val_loss: 0.4350 - val_accuracy: 0.7966
+Epoch 27/100
+313/313 [==============================] - 3s 11ms/step - loss: 0.4146 - accuracy: 0.8106 - val_loss: 0.4351 - val_accuracy: 0.8062
+Epoch 28/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4138 - accuracy: 0.8123 - val_loss: 0.4333 - val_accuracy: 0.8014
+Epoch 29/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4132 - accuracy: 0.8116 - val_loss: 0.4336 - val_accuracy: 0.8014
+Epoch 30/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4125 - accuracy: 0.8117 - val_loss: 0.4347 - val_accuracy: 0.7996
+Epoch 31/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4122 - accuracy: 0.8110 - val_loss: 0.4332 - val_accuracy: 0.8046
+Epoch 32/100
+313/313 [==============================] - 3s 10ms/step - loss: 0.4115 - accuracy: 0.8134 - val_loss: 0.4325 - val_accuracy: 0.8010
+Epoch 33/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4114 - accuracy: 0.8122 - val_loss: 0.4356 - val_accuracy: 0.8036
+Epoch 34/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4107 - accuracy: 0.8130 - val_loss: 0.4334 - val_accuracy: 0.8054
+Epoch 35/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4105 - accuracy: 0.8139 - val_loss: 0.4325 - val_accuracy: 0.8038
+</code></pre>
+<ul>
+<li>모형 학습이 잘 되었는가?</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.plot(history.history[<span class="string">&#x27;loss&#x27;</span>])</span><br><span class="line">plt.plot(history.history[<span class="string">&#x27;val_loss&#x27;</span>])</span><br><span class="line">plt.xlabel(<span class="string">&#x27;epoch&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;loss&#x27;</span>)  <span class="comment"># 오차</span></span><br><span class="line">plt.legend([<span class="string">&#x27;train&#x27;</span>, <span class="string">&#x27;val&#x27;</span>])</span><br><span class="line">plt.show()</span><br><span class="line"><span class="comment"># 오차가 점점 많아질수록 과적합 된다는 뜻</span></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/0806/output_28_0.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">model = keras.Sequential()</span><br><span class="line">model.add(keras.layers.Embedding(<span class="number">500</span>,<span class="number">16</span>,input_length = <span class="number">100</span>))</span><br><span class="line">model.add(keras.layers.LSTM(<span class="number">8</span>, dropout=<span class="number">0.3</span>))</span><br><span class="line">model.add(keras.layers.Dense(<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">rmsprop = keras.optimizers.RMSprop(learning_rate=<span class="number">1e-4</span>)</span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=rmsprop, loss = <span class="string">&#x27;binary_crossentropy&#x27;</span>, metrics = [<span class="string">&#x27;accuracy&#x27;</span>])</span><br><span class="line">checkpoint_cb = keras.callbacks.ModelCheckpoint(<span class="string">&#x27;best-lstm-model.h5&#x27;</span>, save_best_only=<span class="literal">True</span>)</span><br><span class="line">early_stopping_cb = keras.callbacks.EarlyStopping(patience=<span class="number">3</span>, restore_best_weights = <span class="literal">True</span>)</span><br><span class="line">history = model.fit(train_seq, train_target, epochs = <span class="number">100</span>, batch_size = <span class="number">64</span>,</span><br><span class="line">                    validation_data = (val_seq, val_target),</span><br><span class="line">                    callbacks=[checkpoint_cb, early_stopping_cb])</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<pre><code>Epoch 1/100
+313/313 [==============================] - 5s 10ms/step - loss: 0.4186 - accuracy: 0.8083 - val_loss: 0.4319 - val_accuracy: 0.8032
+Epoch 2/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4169 - accuracy: 0.8098 - val_loss: 0.4337 - val_accuracy: 0.7972
+Epoch 3/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4154 - accuracy: 0.8113 - val_loss: 0.4326 - val_accuracy: 0.8012
+Epoch 4/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4161 - accuracy: 0.8099 - val_loss: 0.4310 - val_accuracy: 0.8018
+Epoch 5/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4144 - accuracy: 0.8134 - val_loss: 0.4312 - val_accuracy: 0.8032
+Epoch 6/100
+313/313 [==============================] - 3s 11ms/step - loss: 0.4143 - accuracy: 0.8106 - val_loss: 0.4307 - val_accuracy: 0.7992
+Epoch 7/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4139 - accuracy: 0.8127 - val_loss: 0.4295 - val_accuracy: 0.8018
+Epoch 8/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4133 - accuracy: 0.8118 - val_loss: 0.4294 - val_accuracy: 0.8028
+Epoch 9/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4125 - accuracy: 0.8112 - val_loss: 0.4291 - val_accuracy: 0.8034
+Epoch 10/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4113 - accuracy: 0.8129 - val_loss: 0.4290 - val_accuracy: 0.8034
+Epoch 11/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4106 - accuracy: 0.8111 - val_loss: 0.4314 - val_accuracy: 0.8046
+Epoch 12/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4095 - accuracy: 0.8145 - val_loss: 0.4279 - val_accuracy: 0.8018
+Epoch 13/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4099 - accuracy: 0.8141 - val_loss: 0.4275 - val_accuracy: 0.8032
+Epoch 14/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4098 - accuracy: 0.8128 - val_loss: 0.4299 - val_accuracy: 0.8036
+Epoch 15/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4087 - accuracy: 0.8153 - val_loss: 0.4282 - val_accuracy: 0.8052
+Epoch 16/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4081 - accuracy: 0.8141 - val_loss: 0.4272 - val_accuracy: 0.8064
+Epoch 17/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4074 - accuracy: 0.8158 - val_loss: 0.4285 - val_accuracy: 0.8016
+Epoch 18/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4065 - accuracy: 0.8140 - val_loss: 0.4286 - val_accuracy: 0.8006
+Epoch 19/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4075 - accuracy: 0.8152 - val_loss: 0.4255 - val_accuracy: 0.8036
+Epoch 20/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4080 - accuracy: 0.8117 - val_loss: 0.4265 - val_accuracy: 0.8026
+Epoch 21/100
+313/313 [==============================] - 3s 8ms/step - loss: 0.4060 - accuracy: 0.8152 - val_loss: 0.4252 - val_accuracy: 0.8034
+Epoch 22/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4065 - accuracy: 0.8149 - val_loss: 0.4258 - val_accuracy: 0.8040
+Epoch 23/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4051 - accuracy: 0.8164 - val_loss: 0.4251 - val_accuracy: 0.8042
+Epoch 24/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4059 - accuracy: 0.8167 - val_loss: 0.4249 - val_accuracy: 0.8036
+Epoch 25/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4037 - accuracy: 0.8162 - val_loss: 0.4244 - val_accuracy: 0.8034
+Epoch 26/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4041 - accuracy: 0.8160 - val_loss: 0.4262 - val_accuracy: 0.8062
+Epoch 27/100
+313/313 [==============================] - 3s 10ms/step - loss: 0.4021 - accuracy: 0.8152 - val_loss: 0.4245 - val_accuracy: 0.8050
+Epoch 28/100
+313/313 [==============================] - 3s 9ms/step - loss: 0.4020 - accuracy: 0.8162 - val_loss: 0.4270 - val_accuracy: 0.8056
+
+
+
+
+
+[&lt;matplotlib.lines.Line2D at 0x7f9996fbb050&gt;]
+</code></pre>
+<p><img src="/images/0806/output_30_2.png" alt="png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(history.history[<span class="string">&#x27;loss&#x27;</span>])</span><br><span class="line">plt.plot(history.history[<span class="string">&#x27;val_loss&#x27;</span>])</span><br><span class="line">plt.xlabel(<span class="string">&#x27;epoch&#x27;</span>)</span><br><span class="line">plt.ylabel(<span class="string">&#x27;loss&#x27;</span>)  <span class="comment"># 오차</span></span><br><span class="line">plt.legend([<span class="string">&#x27;train&#x27;</span>, <span class="string">&#x27;val&#x27;</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+<p><img src="/images/0806/output_31_0.png" alt="png"></p>
+<ul>
+<li>2개의 층을 연결하기</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">model = keras.Sequential()</span><br><span class="line">model.add(keras.layers.Embedding(<span class="number">500</span>,<span class="number">16</span>,input_length = <span class="number">100</span>))</span><br><span class="line">model.add(keras.layers.LSTM(<span class="number">8</span>, dropout=<span class="number">0.3</span>, return_sequences=<span class="literal">True</span>))</span><br><span class="line">model.add(keras.layers.LSTM(<span class="number">8</span>, dropout=<span class="number">0.3</span>))</span><br><span class="line">model.add(keras.layers.Dense(<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>))</span><br><span class="line"></span><br><span class="line">rmsprop = keras.optimizers.RMSprop(learning_rate=<span class="number">1e-4</span>)</span><br><span class="line">model.<span class="built_in">compile</span>(optimizer=rmsprop, loss = <span class="string">&#x27;binary_crossentropy&#x27;</span>, metrics = [<span class="string">&#x27;accuracy&#x27;</span>])</span><br><span class="line">checkpoint_cb = keras.callbacks.ModelCheckpoint(<span class="string">&#x27;best-lstm-model.h5&#x27;</span>, save_best_only=<span class="literal">True</span>)</span><br><span class="line">early_stopping_cb = keras.callbacks.EarlyStopping(patience=<span class="number">3</span>, restore_best_weights = <span class="literal">True</span>)</span><br><span class="line">history = model.fit(train_seq, train_target, epochs = <span class="number">100</span>, batch_size = <span class="number">64</span>,</span><br><span class="line">                    validation_data = (val_seq, val_target),</span><br><span class="line">                    callbacks=[checkpoint_cb, early_stopping_cb])</span><br></pre></td></tr></table></figure>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/08/07/day0806%20Git%20%EC%9E%94%EB%94%94%EC%8B%AC%EA%B8%B0%20%EC%98%A4%EB%A5%98%ED%95%B4%EA%B2%B0/"
+                    data-tooltip="Git 잔디심기 오류해결"
+                    aria-label="이전: Git 잔디심기 오류해결"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/08/05/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D%20%ED%95%B4%EB%B3%B4%EA%B8%B0/"
+                    data-tooltip="머신러닝 세팅 및 실습"
+                    aria-label="다음: 머신러닝 세팅 및 실습"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/08/06/day0805/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/08/06/day0805/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/08/06/day0805/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="gitment"></div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2023 오세영. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/08/07/day0806%20Git%20%EC%9E%94%EB%94%94%EC%8B%AC%EA%B8%B0%20%EC%98%A4%EB%A5%98%ED%95%B4%EA%B2%B0/"
+                    data-tooltip="Git 잔디심기 오류해결"
+                    aria-label="이전: Git 잔디심기 오류해결"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/08/05/%EB%A8%B8%EC%8B%A0%EB%9F%AC%EB%8B%9D%20%ED%95%B4%EB%B3%B4%EA%B8%B0/"
+                    data-tooltip="머신러닝 세팅 및 실습"
+                    aria-label="다음: 머신러닝 세팅 및 실습"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/08/06/day0805/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/08/06/day0805/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/08/06/day0805/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/08/06/day0805/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/08/06/day0805/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=https://neewlife.github.io/2022/08/06/day0805/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">오세영</h4>
+        
+            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>웹 백앤드 지망생</p>
+
+            </div>
+        
+        
+            <div id="about-card-location">
+                <i class="fa fa-map-marker-alt"></i>
+                <br/>
+                경기 광명시
+            </div>
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+        
+<script src="/assets/js/gitment.js"></script>
+
+        <script type="text/javascript">
+          (function() {
+            new Gitment({
+              id: 'https://neewlife.github.io/2022/08/06/day0805/',
+              owner: '',
+              repo: '',
+              oauth: {
+                client_id: '',
+                client_secret: ''
+              }
+            }).render('gitment')
+          })()
+        </script>
+    
+
+
+
+
+    </body>
+</html>
