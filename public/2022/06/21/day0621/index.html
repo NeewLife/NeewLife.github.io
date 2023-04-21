@@ -1,0 +1,889 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="개발 메모장">
+    <title>5장 - 개발 메모장</title>
+    <meta name="author" content="오세영">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"\n\n5장산술연산자1234567# &quot;+&quot; : 덧셈# &quot;-&quot; : 뺄셈# &quot;*&quot; : 곱셈# &quot;/&quot; : 나누기# &quot;%/%&quot; : 몫# &quot;%%&quot; : 나머지# &quot;^&quot; : 제곱\n\n\n\n\n숫자형, 정수형 벡터에도 연산이 가능하다\n\n12a&lt;-c(1,3,4)a*3\n\n1## [1]  3  9 12\n\n1a^2\n\n1## [1]  1  9 16\n\n비교연산자123456# == : 같다# != : 다르다# &gt; : 크다# &gt;= : 크거나 같다# &lt; : 작다# &lt;= :작거나 같다\n\n\na:z : a부터 z까지를 의미\nseq(a,z,by&#x3D;2) : a부터 z까지 2씩 증가\n\n1seq(1,9,by=2)\n\n1## [1] 1 3 5 7 9\n\n3씩 감소\n\n1seq(9,1,by=-3)\n\n1## [1] 9 6 3\n\n\nrep(x,each&#x3D;2,times&#x3D;3) : x를 각각 2번 반복하고, 그  결과를 3번 반복출력\n\n1rep(c(1,2),each=2,times=2)\n\n1## [1] 1 1 2 2 1 1 2 2\n\n논리 연산자123# | : (엔키 위에 원화표시)합집합 &quot;or&quot;의 개념# &amp; : 교집합 &quot;and&quot;의 개념# ! : 제외할 때, &quot;not&quot;의 개념\n\n\n\n데이터세트 구조 함수\nhead(,2) : 앞에서 2개 행만 출력\n\n1head(iris,2)\n\n123##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species## 1          5.1         3.5          1.4         0.2  setosa## 2          4.9         3.0          1.4         0.2  setosa\n\ntail(,2) : 뒤에서 2개 행만 출력\n\n1tail(iris,2)\n\n123##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species## 149          6.2         3.4          5.4         2.3 virginica## 150          5.9         3.0          5.1         1.8 virginica\n\nstr() : 데이터 전체 구조 및 유형 출력\n\n1str(iris)\n\n123456## &#x27;data.frame&#x27;:\t150 obs. of  5 variables:##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...\n\nView() : 엑셀 형식으로 출력\n\n1View(iris)\n\ndim() : 행과 열의 갯수 출력\n\n1dim(iris)\n\n1## [1] 150   5\n\nlength() : 열의 개수 출력\n\n1length(iris)\n\n1## [1] 5\n\nclass() : 유형 출력\n\n1class(iris)\n\n1## [1] &quot;data.frame&quot;\n\nls() : 벡터 이름을 출력\n\n1ls(iris)\n\n1## [1] &quot;Petal.Length&quot; &quot;Petal.Width&quot;  &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Species&quot;\n\n데이터 불러오기경로 설정이 매우 중요\ngetwd() 현재 경로 설정된 곳 보기\nsetwd(“C:&#x2F;“) 이 경로로 설정\n\np.91\nstringsAsFactors -&gt; 범주형 벡터로 바꿀것인가?\n\n12mpg1&lt;- read.csv(&quot;mpg1.csv&quot;, stringsAsFactors=F)  #문자형 벡터로 출력, T이면 범주형 벡터로 출력str(mpg1)\n\n123456## &#x27;data.frame&#x27;:\t234 obs. of  5 variables:##  $ manufacturer: chr  &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; ...##  $ trans       : chr  &quot;auto&quot; &quot;manual&quot; &quot;manual&quot; &quot;auto&quot; ...##  $ drv         : chr  &quot;f&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; ...##  $ cty         : int  18 21 20 21 16 18 18 18 16 20 ...##  $ hwy         : int  29 29 31 30 26 26 27 26 25 28 ...\n\n\n평균\n평균\n\n1mean(mtcars$mpg)   #mtcars$mpg의 평균\n\n1## [1] 20.09062\n\n분산\n\n1var(mtcars$mpg)   #mtcars$mpg의 분산\n\n1## [1] 36.3241\n\n표준편차\n\n1sd(mtcars$mpg)   #mtcars$mpg의 표준편차\n\n1## [1] 6.026948\n\n\n\n수리통계 –&gt; 증명(대학원 가라)\n\n일반인 &#x2F; 비전공자 –&gt; 활용 &#x2F; 의미 정도 파악\n\nsummary() : 데이터를 요약해서 보여주는 함수\n\n\n1summary(iris)   #iris 데이터의 5개 범주별 통계량\n\n1234567891011121314##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   ##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  ##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  ##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  ##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  ##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  ##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  ##        Species  ##  setosa    :50  ##  versicolor:50  ##  virginica :50  ##                 ##                 ## \n\niris 데이터의 Sepal.Length 항목의 통계량\n\n1summary(iris$Sepal.Length)\n\n12##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. ##   4.300   5.100   5.800   5.843   6.400   7.900\n\n\n범주별 빈도 분석\ntrans 항목의 범주별 ‘빈도’ 분석\n\n1table(mpg1$trans)\n\n123## ##   auto manual ##    157     77\n\nmanufacturer 항목의 범주별 ‘빈도’ 분석\n\n1table(mpg1$manufacturer)\n\n1234567## ##       audi  chevrolet      dodge       ford      honda    hyundai       jeep ##         18         19         37         25          9         14          8 ## land rover    lincoln    mercury     nissan    pontiac     subaru     toyota ##          4          3          4         13          5         14         34 ## volkswagen ##         27\n\n\ntrans와 manufacturer 항목을 합쳐 ‘빈도’ 만들기\n\n1table(mpg1$trans, mpg1$manufacturer)\n\n12345678##         ##          audi chevrolet dodge ford honda hyundai jeep land rover lincoln##   auto     11        16    30   17     4       7    8          4       3##   manual    7         3     7    8     5       7    0          0       0##         ##          mercury nissan pontiac subaru toyota volkswagen##   auto         4      8       5      7     20         13##   manual       0      5       0      7     14         14\n\n빈도의 비율 구하기\ntrans 항목의 ‘비율’구하기(a라는 변수에 입력해야함)\n\n12a &lt;- table(mpg1$trans)prop.table(a)\n\n123## ##      auto    manual ## 0.6709402 0.3290598\n\n백분율로 나타내고 싶다면 100을 곱해준다\n\n1prop.table(a)*100\n\n123## ##     auto   manual ## 67.09402 32.90598\n\ntrans와 drv 항목을 합쳐 ‘비율’ 구하기\n\n12b &lt;- table(mpg1$trans, mpg1$drv)   prop.table(b)\n\n1234##         ##                   4          f          r##   auto   0.32051282 0.27777778 0.07264957##   manual 0.11965812 0.17521368 0.03418803\n1prop.table(table(mpg1$manufacturer))   #함수 지정이 귀찮다면 이렇게 바로 써도 된다.\n\n1234567## ##       audi  chevrolet      dodge       ford      honda    hyundai       jeep ## 0.07692308 0.08119658 0.15811966 0.10683761 0.03846154 0.05982906 0.03418803 ## land rover    lincoln    mercury     nissan    pontiac     subaru     toyota ## 0.01709402 0.01282051 0.01709402 0.05555556 0.02136752 0.05982906 0.14529915 ## volkswagen ## 0.11538462\n\n12# prop.table(mpg1$manufacturer) &lt;-- 에러# table안에table 안 넣으면 에러\n\n행과 열의 비율 형식 맞춘다\n가로 합을 1로 두고 계산한 비율\n\n1prop.table(b, margin = 1)\n\n1234##         ##                  4         f         r##   auto   0.4777070 0.4140127 0.1082803##   manual 0.3636364 0.5324675 0.1038961\n\n세로 합을 1로 두고 계산한 비율\n\n1prop.table(b, margin = 2)\n\n1234##         ##                  4         f         r##   auto   0.7281553 0.6132075 0.6800000##   manual 0.2718447 0.3867925 0.3200000\n\n소수점 아래 자리 지정\nround는 반올림\n\n1round(0.32123141,2)  #(,뒤는 자릿수)\n\n1## [1] 0.32\n\n1round(prop.table(table(mpg1$trans)),3) #이렇게 써도 가능\n\n123## ##   auto manual ##  0.671  0.329","dateCreated":"2022-06-21T09:00:00+09:00","dateModified":"2022-07-11T00:30:52+09:00","datePublished":"2022-06-21T09:00:00+09:00","description":"각종 연산자 및 평균, 분산, 표준편차","headline":"5장","image":["R_logo.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/21/day0621/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"https://neewlife.github.io/2022/06/21/day0621/","thumbnailUrl":"R_logo.jpg"}</script>
+    <meta name="description" content="각종 연산자 및 평균, 분산, 표준편차">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="5장">
+<meta property="og:url" content="https://neewlife.github.io/2022/06/21/day0621/index.html">
+<meta property="og:site_name" content="개발 메모장">
+<meta property="og:description" content="각종 연산자 및 평균, 분산, 표준편차">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2022-06-21T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-10T15:30:52.651Z">
+<meta property="article:author" content="오세영">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+        <meta property="og:image" content="https://NeewLife.github.io/2022/06/21/day0621/R_logo.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://NeewLife.github.io/2022/06/21/day0621/R_logo.jpg"/>
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            개발 메모장
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="http://stackoverflow.com/users"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Stack Overflow"
+                        >
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://twitter.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Twitter"
+                        >
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://facebook.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Facebook"
+                        >
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://plus.google.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Google +"
+                        >
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google +</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://www.linkedin.com/profile/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="LinkedIn"
+                        >
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/mailto"
+                            
+                            rel="noopener"
+                            title="Mail"
+                        >
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            5장
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2022-06-21T09:00:00+09:00">
+	
+		    2022/06/21
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/R-studio/">R studio</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- excerpt -->
+
+<h1 id="5장"><a href="#5장" class="headerlink" title="5장"></a>5장</h1><h3 id="산술연산자"><a href="#산술연산자" class="headerlink" title="산술연산자"></a>산술연산자</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># &quot;+&quot; : 덧셈</span></span><br><span class="line"><span class="comment"># &quot;-&quot; : 뺄셈</span></span><br><span class="line"><span class="comment"># &quot;*&quot; : 곱셈</span></span><br><span class="line"><span class="comment"># &quot;/&quot; : 나누기</span></span><br><span class="line"><span class="comment"># &quot;%/%&quot; : 몫</span></span><br><span class="line"><span class="comment"># &quot;%%&quot; : 나머지</span></span><br><span class="line"><span class="comment"># &quot;^&quot; : 제곱</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>숫자형, 정수형 벡터에도 연산이 가능하다</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a<span class="operator">&lt;-</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">,</span><span class="number">4</span><span class="punctuation">)</span></span><br><span class="line">a<span class="operator">*</span><span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1]  3  9 12</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a<span class="operator">^</span><span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1]  1  9 16</span><br></pre></td></tr></table></figure>
+
+<h3 id="비교연산자"><a href="#비교연산자" class="headerlink" title="비교연산자"></a>비교연산자</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># == : 같다</span></span><br><span class="line"><span class="comment"># != : 다르다</span></span><br><span class="line"><span class="comment"># &gt; : 크다</span></span><br><span class="line"><span class="comment"># &gt;= : 크거나 같다</span></span><br><span class="line"><span class="comment"># &lt; : 작다</span></span><br><span class="line"><span class="comment"># &lt;= :작거나 같다</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>a:z : a부터 z까지를 의미</li>
+<li>seq(a,z,by&#x3D;2) : a부터 z까지 2씩 증가</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">seq<span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">9</span><span class="punctuation">,</span>by<span class="operator">=</span><span class="number">2</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 1 3 5 7 9</span><br></pre></td></tr></table></figure>
+<ul>
+<li>3씩 감소</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">seq<span class="punctuation">(</span><span class="number">9</span><span class="punctuation">,</span><span class="number">1</span><span class="punctuation">,</span>by<span class="operator">=</span><span class="operator">-</span><span class="number">3</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 9 6 3</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>rep(x,each&#x3D;2,times&#x3D;3) : x를 각각 2번 반복하고, 그  결과를 3번 반복출력</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rep</span><span class="punctuation">(</span><span class="built_in">c</span><span class="punctuation">(</span><span class="number">1</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">)</span><span class="punctuation">,</span>each<span class="operator">=</span><span class="number">2</span><span class="punctuation">,</span>times<span class="operator">=</span><span class="number">2</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 1 1 2 2 1 1 2 2</span><br></pre></td></tr></table></figure>
+
+<h3 id="논리-연산자"><a href="#논리-연산자" class="headerlink" title="논리 연산자"></a>논리 연산자</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># | : (엔키 위에 원화표시)합집합 &quot;or&quot;의 개념</span></span><br><span class="line"><span class="comment"># &amp; : 교집합 &quot;and&quot;의 개념</span></span><br><span class="line"><span class="comment"># ! : 제외할 때, &quot;not&quot;의 개념</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="데이터세트-구조-함수"><a href="#데이터세트-구조-함수" class="headerlink" title="데이터세트 구조 함수"></a>데이터세트 구조 함수</h3><ul>
+<li>head(,2) : 앞에서 2개 행만 출력</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head<span class="punctuation">(</span>iris<span class="punctuation">,</span><span class="number">2</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span><br><span class="line">## 1          5.1         3.5          1.4         0.2  setosa</span><br><span class="line">## 2          4.9         3.0          1.4         0.2  setosa</span><br></pre></td></tr></table></figure>
+<ul>
+<li>tail(,2) : 뒤에서 2개 행만 출력</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail<span class="punctuation">(</span>iris<span class="punctuation">,</span><span class="number">2</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species</span><br><span class="line">## 149          6.2         3.4          5.4         2.3 virginica</span><br><span class="line">## 150          5.9         3.0          5.1         1.8 virginica</span><br></pre></td></tr></table></figure>
+<ul>
+<li>str() : 데이터 전체 구조 및 유형 출력</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str<span class="punctuation">(</span>iris<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">## &#x27;data.frame&#x27;:	150 obs. of  5 variables:</span><br><span class="line">##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...</span><br><span class="line">##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...</span><br><span class="line">##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...</span><br><span class="line">##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...</span><br><span class="line">##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>View() : 엑셀 형식으로 출력</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">View<span class="punctuation">(</span>iris<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>dim() : 행과 열의 갯수 출력</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dim</span><span class="punctuation">(</span>iris<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 150   5</span><br></pre></td></tr></table></figure>
+<ul>
+<li>length() : 열의 개수 출력</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">length</span><span class="punctuation">(</span>iris<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 5</span><br></pre></td></tr></table></figure>
+<ul>
+<li>class() : 유형 출력</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">class</span><span class="punctuation">(</span>iris<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;data.frame&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>ls() : 벡터 이름을 출력</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls<span class="punctuation">(</span>iris<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] &quot;Petal.Length&quot; &quot;Petal.Width&quot;  &quot;Sepal.Length&quot; &quot;Sepal.Width&quot;  &quot;Species&quot;</span><br></pre></td></tr></table></figure>
+
+<h1 id="데이터-불러오기"><a href="#데이터-불러오기" class="headerlink" title="데이터 불러오기"></a>데이터 불러오기</h1><h1 id="경로-설정이-매우-중요"><a href="#경로-설정이-매우-중요" class="headerlink" title="경로 설정이 매우 중요"></a>경로 설정이 매우 중요</h1><ul>
+<li>getwd() 현재 경로 설정된 곳 보기</li>
+<li>setwd(“C:&#x2F;“) 이 경로로 설정</li>
+</ul>
+<h1 id="p-91"><a href="#p-91" class="headerlink" title="p.91"></a>p.91</h1><ul>
+<li>stringsAsFactors -&gt; 범주형 벡터로 바꿀것인가?</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mpg1<span class="operator">&lt;-</span> read.csv<span class="punctuation">(</span><span class="string">&quot;mpg1.csv&quot;</span><span class="punctuation">,</span> stringsAsFactors<span class="operator">=</span><span class="built_in">F</span><span class="punctuation">)</span>  <span class="comment">#문자형 벡터로 출력, T이면 범주형 벡터로 출력</span></span><br><span class="line">str<span class="punctuation">(</span>mpg1<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">## &#x27;data.frame&#x27;:	234 obs. of  5 variables:</span><br><span class="line">##  $ manufacturer: chr  &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; ...</span><br><span class="line">##  $ trans       : chr  &quot;auto&quot; &quot;manual&quot; &quot;manual&quot; &quot;auto&quot; ...</span><br><span class="line">##  $ drv         : chr  &quot;f&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; ...</span><br><span class="line">##  $ cty         : int  18 21 20 21 16 18 18 18 16 20 ...</span><br><span class="line">##  $ hwy         : int  29 29 31 30 26 26 27 26 25 28 ...</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="평균"><a href="#평균" class="headerlink" title="평균"></a>평균</h2><ul>
+<li>평균</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mean<span class="punctuation">(</span>mtcars<span class="operator">$</span>mpg<span class="punctuation">)</span>   <span class="comment">#mtcars$mpg의 평균</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 20.09062</span><br></pre></td></tr></table></figure>
+<ul>
+<li>분산</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var<span class="punctuation">(</span>mtcars<span class="operator">$</span>mpg<span class="punctuation">)</span>   <span class="comment">#mtcars$mpg의 분산</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 36.3241</span><br></pre></td></tr></table></figure>
+<ul>
+<li>표준편차</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sd<span class="punctuation">(</span>mtcars<span class="operator">$</span>mpg<span class="punctuation">)</span>   <span class="comment">#mtcars$mpg의 표준편차</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 6.026948</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><p>수리통계 –&gt; 증명(대학원 가라)</p>
+</li>
+<li><p>일반인 &#x2F; 비전공자 –&gt; 활용 &#x2F; 의미 정도 파악</p>
+</li>
+<li><p>summary() : 데이터를 요약해서 보여주는 함수</p>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">summary<span class="punctuation">(</span>iris<span class="punctuation">)</span>   <span class="comment">#iris 데이터의 5개 범주별 통계량</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   </span><br><span class="line">##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  </span><br><span class="line">##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  </span><br><span class="line">##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  </span><br><span class="line">##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  </span><br><span class="line">##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  </span><br><span class="line">##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  </span><br><span class="line">##        Species  </span><br><span class="line">##  setosa    :50  </span><br><span class="line">##  versicolor:50  </span><br><span class="line">##  virginica :50  </span><br><span class="line">##                 </span><br><span class="line">##                 </span><br><span class="line">## </span><br></pre></td></tr></table></figure>
+<ul>
+<li>iris 데이터의 Sepal.Length 항목의 통계량</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">summary<span class="punctuation">(</span>iris<span class="operator">$</span>Sepal.Length<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span><br><span class="line">##   4.300   5.100   5.800   5.843   6.400   7.900</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="범주별-빈도-분석"><a href="#범주별-빈도-분석" class="headerlink" title="범주별 빈도 분석"></a>범주별 빈도 분석</h3><ul>
+<li>trans 항목의 범주별 ‘빈도’ 분석</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mpg1<span class="operator">$</span>trans<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">##   auto manual </span><br><span class="line">##    157     77</span><br></pre></td></tr></table></figure>
+<ul>
+<li>manufacturer 항목의 범주별 ‘빈도’ 분석</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mpg1<span class="operator">$</span>manufacturer<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">##       audi  chevrolet      dodge       ford      honda    hyundai       jeep </span><br><span class="line">##         18         19         37         25          9         14          8 </span><br><span class="line">## land rover    lincoln    mercury     nissan    pontiac     subaru     toyota </span><br><span class="line">##          4          3          4         13          5         14         34 </span><br><span class="line">## volkswagen </span><br><span class="line">##         27</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>trans와 manufacturer 항목을 합쳐 ‘빈도’ 만들기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table<span class="punctuation">(</span>mpg1<span class="operator">$</span>trans<span class="punctuation">,</span> mpg1<span class="operator">$</span>manufacturer<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">##         </span><br><span class="line">##          audi chevrolet dodge ford honda hyundai jeep land rover lincoln</span><br><span class="line">##   auto     11        16    30   17     4       7    8          4       3</span><br><span class="line">##   manual    7         3     7    8     5       7    0          0       0</span><br><span class="line">##         </span><br><span class="line">##          mercury nissan pontiac subaru toyota volkswagen</span><br><span class="line">##   auto         4      8       5      7     20         13</span><br><span class="line">##   manual       0      5       0      7     14         14</span><br></pre></td></tr></table></figure>
+
+<h3 id="빈도의-비율-구하기"><a href="#빈도의-비율-구하기" class="headerlink" title="빈도의 비율 구하기"></a>빈도의 비율 구하기</h3><ul>
+<li>trans 항목의 ‘비율’구하기(a라는 변수에 입력해야함)</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a <span class="operator">&lt;-</span> table<span class="punctuation">(</span>mpg1<span class="operator">$</span>trans<span class="punctuation">)</span></span><br><span class="line">prop.table<span class="punctuation">(</span>a<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">##      auto    manual </span><br><span class="line">## 0.6709402 0.3290598</span><br></pre></td></tr></table></figure>
+<ul>
+<li>백분율로 나타내고 싶다면 100을 곱해준다</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prop.table<span class="punctuation">(</span>a<span class="punctuation">)</span><span class="operator">*</span><span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">##     auto   manual </span><br><span class="line">## 67.09402 32.90598</span><br></pre></td></tr></table></figure>
+<ul>
+<li>trans와 drv 항목을 합쳐 ‘비율’ 구하기</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">b <span class="operator">&lt;-</span> table<span class="punctuation">(</span>mpg1<span class="operator">$</span>trans<span class="punctuation">,</span> mpg1<span class="operator">$</span>drv<span class="punctuation">)</span>   </span><br><span class="line">prop.table<span class="punctuation">(</span>b<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##         </span><br><span class="line">##                   4          f          r</span><br><span class="line">##   auto   0.32051282 0.27777778 0.07264957</span><br><span class="line">##   manual 0.11965812 0.17521368 0.03418803</span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prop.table<span class="punctuation">(</span>table<span class="punctuation">(</span>mpg1<span class="operator">$</span>manufacturer<span class="punctuation">)</span><span class="punctuation">)</span>   <span class="comment">#함수 지정이 귀찮다면 이렇게 바로 써도 된다.</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">##       audi  chevrolet      dodge       ford      honda    hyundai       jeep </span><br><span class="line">## 0.07692308 0.08119658 0.15811966 0.10683761 0.03846154 0.05982906 0.03418803 </span><br><span class="line">## land rover    lincoln    mercury     nissan    pontiac     subaru     toyota </span><br><span class="line">## 0.01709402 0.01282051 0.01709402 0.05555556 0.02136752 0.05982906 0.14529915 </span><br><span class="line">## volkswagen </span><br><span class="line">## 0.11538462</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># prop.table(mpg1$manufacturer) &lt;-- 에러</span></span><br><span class="line"><span class="comment"># table안에table 안 넣으면 에러</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="행과-열의-비율-형식-맞춘다"><a href="#행과-열의-비율-형식-맞춘다" class="headerlink" title="행과 열의 비율 형식 맞춘다"></a>행과 열의 비율 형식 맞춘다</h3><ul>
+<li>가로 합을 1로 두고 계산한 비율</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prop.table<span class="punctuation">(</span>b<span class="punctuation">,</span> margin <span class="operator">=</span> <span class="number">1</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##         </span><br><span class="line">##                  4         f         r</span><br><span class="line">##   auto   0.4777070 0.4140127 0.1082803</span><br><span class="line">##   manual 0.3636364 0.5324675 0.1038961</span><br></pre></td></tr></table></figure>
+<ul>
+<li>세로 합을 1로 두고 계산한 비율</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prop.table<span class="punctuation">(</span>b<span class="punctuation">,</span> margin <span class="operator">=</span> <span class="number">2</span><span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">##         </span><br><span class="line">##                  4         f         r</span><br><span class="line">##   auto   0.7281553 0.6132075 0.6800000</span><br><span class="line">##   manual 0.2718447 0.3867925 0.3200000</span><br></pre></td></tr></table></figure>
+
+<h4 id="소수점-아래-자리-지정"><a href="#소수점-아래-자리-지정" class="headerlink" title="소수점 아래 자리 지정"></a>소수점 아래 자리 지정</h4><ul>
+<li>round는 반올림</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">round</span><span class="punctuation">(</span><span class="number">0.32123141</span><span class="punctuation">,</span><span class="number">2</span><span class="punctuation">)</span>  <span class="comment">#(,뒤는 자릿수)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [1] 0.32</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">round</span><span class="punctuation">(</span>prop.table<span class="punctuation">(</span>table<span class="punctuation">(</span>mpg1<span class="operator">$</span>trans<span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">,</span><span class="number">3</span><span class="punctuation">)</span> <span class="comment">#이렇게 써도 가능</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">## </span><br><span class="line">##   auto manual </span><br><span class="line">##  0.671  0.329</span><br></pre></td></tr></table></figure>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/21/day0621_dplyr/"
+                    data-tooltip="6장"
+                    aria-label="이전: 6장"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/20/0620/"
+                    data-tooltip="2022-06-20 메모"
+                    aria-label="다음: 2022-06-20 메모"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/06/21/day0621/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/06/21/day0621/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/06/21/day0621/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2023 오세영. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/21/day0621_dplyr/"
+                    data-tooltip="6장"
+                    aria-label="이전: 6장"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/20/0620/"
+                    data-tooltip="2022-06-20 메모"
+                    aria-label="다음: 2022-06-20 메모"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/06/21/day0621/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/06/21/day0621/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/06/21/day0621/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/06/21/day0621/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/06/21/day0621/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=https://neewlife.github.io/2022/06/21/day0621/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">오세영</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>

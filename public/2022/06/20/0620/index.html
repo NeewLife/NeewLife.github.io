@@ -1,0 +1,833 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="개발 메모장">
+    <title>2022-06-20 메모 - 개발 메모장</title>
+    <meta name="author" content="오세영">
+    
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"\n\nsetup, include1knitr::opts_chunk$set(echo = TRUE)\n\n\n0620\nR Script, R Markdown 새로 만들기\n\n\n\n이 정도 남기고 다 삭제\n\n\n\n\n‘’’{r}   ‘’’ 안에 코드 작성해서 업로드 할 수 있다. (R Markdown 에서 가능)\n\n\n\n\n서열, 비서열 변수 입력\n\n\n서열 변수(ordered &#x3D; TRUE)\n\n비서열 변수\n\n\nclass(exam$no) : exam이란 데이터에서 no라는 값의 유형을 나타내는 것\nstr(exam) : exam이란 데이터의 전체의 값의 유형을 나타내는 것\n\n\n\ngetwd() : 현재 저장위치 확인\nwrite.csv(x &#x3D; exam, file &#x3D; “temp.csv”) : exam의 데이터를 temp.csv로 내보내기\n\n\n\n“t 에서 TAB키를 누르면 이렇게 “현재 Working Directory” 에서 t를 포함하는 목록들이 뜬다\n\n\n\n이런 식으로 상위 폴더에서 경로 지정해서 긁어 올 수도 있다. (현재 Working Directory 위치 주의!!)\nhttps://drive.google.com/file/d/1zoUx11rNQXLLCQb4R8NeaTgIltHnLJHy/view 에서 파일 다운로드, 압축풀기\n데이터 분량이 많은 빅데이터는 read.csv() 보다 fread() 함수가 더 빨리 불러온다.\nfread() 함수는 data.table 패키지에 있는 함수로,\n\n12install.packages(&quot;data.table&quot;)library(data.table)\n\n\n입력 후에 이용하면 된다.\n\n엑셀 파일은 read_excel() 함수로 불러오고 마찬가지로,\n\n\n12install.packages(&quot;readxl&quot;)library(readxl)\n\n\n입력 후에 이용하면 된다.\n아까 압축 푼 경로로 지정한 후\n\n\n\n\n압축 푼 데이터 폴더에서 “mpg1.csv” 파일 복사 후 R_lecture\\source 폴더에 rmd\\rmd_0620 폴더 생성 후 붙여넣기\n\n\n\n새 R Md 파일을 “test” 로 생성, 저장도 test로 하기\n\n\n\ntitle 옵션 화면과 동일하게 바꾸기(0617에서 했었음)\n\n\n\nR 코드 생성 후 입력\n\n123```&#123;r&#125;mpg1&lt;-read.csv(&quot;mpg1.csv&quot;)str(mpg1)\n123456789- 한번 더 R 코드 생성 후 입력```r```&#123;r&#125;library(ggplot2)ggplot(mpg1, aes(x = cty, y = hwy)) +   geom_point()\n\n\n\n그래프가 떴다면 위쪽에 Knit 누른다. 누르면 그래프가 뜨고, 폴더, 파일들이 생성된다.\n\n\n\n\n에러 뜨면 ggplot2 가 설치 되어있는지 체크, 경로 맞게 설정 했는지 체크\n\n블로그 이미지 업로드 하기\n생성된 test_files\\figure-html 에서 사진 복사 후\n\n\n\nblog\\source\\image 에 rmd_0620으로 동일 폴더 만든 후 사진 붙여넣기(폴더 이름 상관없음)\n\n\n\n원본 rmd_0620 폴더에서 test R Md 파일 복사해서\n\n\n\nblog\\source_posts 에 파일 붙여넣기\n\n\n\nPyCharm 으로 blog 폴더 열어서 “test.md” 파일 열기\n\n\n\n밑으로 내려가서 images 폴더 안의 사진 우클릭 → 경로&#x2F;참조복사 → 콘텐츠 루트로부터의 경로 복사\n\n\n\n\n경로 복사 후 빨간색에 붙여넣기 하고 “source” 를 지운다.\n\n\n\n다음과 같이 나와야 됨\n\n\n\n됐으면 저장 후 hexo server로 체크\n","dateCreated":"2022-06-20T09:00:00+09:00","dateModified":"2022-07-11T00:30:52+09:00","datePublished":"2022-06-20T09:00:00+09:00","description":"R Markdown 세팅","headline":"2022-06-20 메모","image":["R_logo.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/20/0620/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"https://neewlife.github.io/2022/06/20/0620/","thumbnailUrl":"R_logo.jpg"}</script>
+    <meta name="description" content="R Markdown 세팅">
+<meta property="og:type" content="blog">
+<meta property="og:title" content="2022-06-20 메모">
+<meta property="og:url" content="https://neewlife.github.io/2022/06/20/0620/index.html">
+<meta property="og:site_name" content="개발 메모장">
+<meta property="og:description" content="R Markdown 세팅">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%201.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%202.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%203.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%204.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%205.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%206.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%207.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%208.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%209.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2010.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2011.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2012.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2013.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2014.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2015.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2016.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2017.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2018.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2019.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2020.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2021.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2022.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2023.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2024.png">
+<meta property="og:image" content="https://neewlife.github.io/images/0620/Untitled%2025.png">
+<meta property="article:published_time" content="2022-06-20T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-07-10T15:30:52.644Z">
+<meta property="article:author" content="오세영">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://neewlife.github.io/images/0620/Untitled.png">
+    
+    
+        
+    
+    
+    
+        <meta property="og:image" content="https://NeewLife.github.io/2022/06/20/0620/R_logo.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://NeewLife.github.io/2022/06/20/0620/R_logo.jpg"/>
+    
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="4">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            개발 메모장
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="4">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link open-algolia-search"
+                            href="#search"
+                            
+                            rel="noopener"
+                            title="검색"
+                        >
+                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">검색</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="#about"
+                            
+                            rel="noopener"
+                            title="About"
+                        >
+                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">About</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="http://stackoverflow.com/users"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Stack Overflow"
+                        >
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://twitter.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Twitter"
+                        >
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://facebook.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Facebook"
+                        >
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://plus.google.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Google +"
+                        >
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google +</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://www.linkedin.com/profile/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="LinkedIn"
+                        >
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/mailto"
+                            
+                            rel="noopener"
+                            title="Mail"
+                        >
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+            <div id="main" data-behavior="4"
+                 class="
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+        <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            2022-06-20 메모
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2022-06-20T09:00:00+09:00">
+	
+		    2022/06/20
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/R-studio/">R studio</a>
+
+
+    
+</div>
+
+    
+</div>
+
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- excerpt -->
+
+<figure class="highlight plaintext"><figcaption><span>setup, include</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knitr::opts_chunk$set(echo = TRUE)</span><br></pre></td></tr></table></figure>
+
+
+<h1 id="0620"><a href="#0620" class="headerlink" title="0620"></a>0620</h1><ul>
+<li>R Script, R Markdown 새로 만들기</li>
+</ul>
+<p><img src="/images/0620/Untitled.png" alt="Untitled"></p>
+<ul>
+<li>이 정도 남기고 다 삭제</li>
+</ul>
+<p><img src="/images/0620/Untitled%201.png" alt="Untitled"></p>
+<p><img src="/images/0620/Untitled%202.png" alt="Untitled"></p>
+<ul>
+<li>‘’’{r}   ‘’’ 안에 코드 작성해서 업로드 할 수 있다. (R Markdown 에서 가능)</li>
+</ul>
+<p><img src="/images/0620/Untitled%203.png" alt="Untitled"></p>
+<p><img src="/images/0620/Untitled%204.png" alt="Untitled"></p>
+<ul>
+<li>서열, 비서열 변수 입력</li>
+</ul>
+<p><img src="/images/0620/Untitled%205.png" alt="Untitled"></p>
+<p>서열 변수(ordered &#x3D; TRUE)</p>
+<p><img src="/images/0620/Untitled%206.png" alt="Untitled"></p>
+<p>비서열 변수</p>
+<p><img src="/images/0620/Untitled%207.png" alt="Untitled"></p>
+<ul>
+<li>class(exam$no) : exam이란 데이터에서 no라는 값의 유형을 나타내는 것</li>
+<li>str(exam) : exam이란 데이터의 전체의 값의 유형을 나타내는 것</li>
+</ul>
+<p><img src="/images/0620/Untitled%208.png" alt="Untitled"></p>
+<ul>
+<li>getwd() : 현재 저장위치 확인</li>
+<li>write.csv(x &#x3D; exam, file &#x3D; “temp.csv”) : exam의 데이터를 temp.csv로 내보내기</li>
+</ul>
+<p><img src="/images/0620/Untitled%209.png" alt="Untitled"></p>
+<ul>
+<li><strong>“t</strong> 에서 TAB키를 누르면 이렇게 “<strong>현재 Working Directory</strong>” 에서 t를 포함하는 목록들이 뜬다</li>
+</ul>
+<p><img src="/images/0620/Untitled%2010.png" alt="Untitled"></p>
+<ul>
+<li>이런 식으로 상위 폴더에서 경로 지정해서 긁어 올 수도 있다. (현재 Working Directory 위치 주의!!)</li>
+<li><a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1zoUx11rNQXLLCQb4R8NeaTgIltHnLJHy/view">https://drive.google.com/file/d/1zoUx11rNQXLLCQb4R8NeaTgIltHnLJHy/view</a> 에서 파일 다운로드, 압축풀기</li>
+<li>데이터 분량이 많은 빅데이터는 read.csv() 보다 fread() 함수가 더 빨리 불러온다.</li>
+<li>fread() 함수는 data.table 패키지에 있는 함수로,</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;data.table&quot;</span><span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>data.table<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>입력 후에 이용하면 된다.</p>
+</li>
+<li><p>엑셀 파일은 read_excel() 함수로 불러오고 마찬가지로,</p>
+</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">install.packages<span class="punctuation">(</span><span class="string">&quot;readxl&quot;</span><span class="punctuation">)</span></span><br><span class="line">library<span class="punctuation">(</span>readxl<span class="punctuation">)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>입력 후에 이용하면 된다.</li>
+<li>아까 압축 푼 경로로 지정한 후</li>
+</ul>
+<p><img src="/images/0620/Untitled%2011.png" alt="Untitled"></p>
+<hr>
+<ul>
+<li>압축 푼 데이터 폴더에서 “mpg1.csv” 파일 복사 후 R_lecture\source 폴더에 rmd\rmd_0620 폴더 생성 후 붙여넣기</li>
+</ul>
+<p><img src="/images/0620/Untitled%2012.png" alt="Untitled"></p>
+<ul>
+<li>새 R Md 파일을 “test” 로 생성, 저장도 test로 하기</li>
+</ul>
+<p><img src="/images/0620/Untitled%2013.png" alt="Untitled"></p>
+<ul>
+<li>title 옵션 화면과 동일하게 바꾸기(0617에서 했었음)</li>
+</ul>
+<p><img src="/images/0620/Untitled%2014.png" alt="Untitled"></p>
+<ul>
+<li>R 코드 생성 후 입력</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">```&#123;r&#125;</span><br><span class="line">mpg1&lt;-read.csv(&quot;mpg1.csv&quot;)</span><br><span class="line">str(mpg1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 한번 더 R 코드 생성 후 입력</span><br><span class="line"></span><br><span class="line">```r</span><br><span class="line">```&#123;r&#125;</span><br><span class="line">library(ggplot2)</span><br><span class="line"></span><br><span class="line">ggplot(mpg1, aes(x = cty, y = hwy)) + </span><br><span class="line">  geom_point()</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li>그래프가 떴다면 위쪽에 Knit 누른다. 누르면 그래프가 뜨고, 폴더, 파일들이 생성된다.</li>
+</ul>
+<p><img src="/images/0620/Untitled%2015.png" alt="Untitled"></p>
+<p><img src="/images/0620/Untitled%2016.png" alt="Untitled"></p>
+<ul>
+<li>에러 뜨면 ggplot2 가 설치 되어있는지 체크, 경로 맞게 설정 했는지 체크</li>
+</ul>
+<h1 id="블로그-이미지-업로드-하기"><a href="#블로그-이미지-업로드-하기" class="headerlink" title="블로그 이미지 업로드 하기"></a>블로그 이미지 업로드 하기</h1><ul>
+<li>생성된 test_files\figure-html 에서 사진 복사 후</li>
+</ul>
+<p><img src="/images/0620/Untitled%2017.png" alt="Untitled"></p>
+<ul>
+<li>blog\source\image 에 rmd_0620으로 동일 폴더 만든 후 사진 붙여넣기(폴더 이름 상관없음)</li>
+</ul>
+<p><img src="/images/0620/Untitled%2018.png" alt="Untitled"></p>
+<ul>
+<li>원본 rmd_0620 폴더에서 test R Md 파일 복사해서</li>
+</ul>
+<p><img src="/images/0620/Untitled%2019.png" alt="Untitled"></p>
+<ul>
+<li>blog\source_posts 에 파일 붙여넣기</li>
+</ul>
+<p><img src="/images/0620/Untitled%2020.png" alt="Untitled"></p>
+<ul>
+<li>PyCharm 으로 blog 폴더 열어서 “test.md” 파일 열기</li>
+</ul>
+<p><img src="/images/0620/Untitled%2021.png" alt="Untitled"></p>
+<ul>
+<li>밑으로 내려가서 images 폴더 안의 사진 우클릭 → 경로&#x2F;참조복사 → 콘텐츠 루트로부터의 경로 복사</li>
+</ul>
+<p><img src="/images/0620/Untitled%2022.png" alt="Untitled"></p>
+<p><img src="/images/0620/Untitled%2023.png" alt="Untitled"></p>
+<ul>
+<li>경로 복사 후 빨간색에 붙여넣기 하고 “source” 를 지운다.</li>
+</ul>
+<p><img src="/images/0620/Untitled%2024.png" alt="Untitled"></p>
+<ul>
+<li>다음과 같이 나와야 됨</li>
+</ul>
+<p><img src="/images/0620/Untitled%2025.png" alt="Untitled"></p>
+<ul>
+<li>됐으면 저장 후 hexo server로 체크</li>
+</ul>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/21/day0621/"
+                    data-tooltip="5장"
+                    aria-label="이전: 5장"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/20/day0620/"
+                    data-tooltip="3장, 4장"
+                    aria-label="다음: 3장, 4장"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/06/20/0620/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/06/20/0620/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/06/20/0620/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2023 오세영. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/21/day0621/"
+                    data-tooltip="5장"
+                    aria-label="이전: 5장"
+                >
+                    
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2022/06/20/day0620/"
+                    data-tooltip="3장, 4장"
+                    aria-label="다음: 3장, 4장"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/06/20/0620/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/06/20/0620/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2022/06/20/0620/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2022/06/20/0620/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2022/06/20/0620/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=https://neewlife.github.io/2022/06/20/0620/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">오세영</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+
+
+
+
+    </body>
+</html>
