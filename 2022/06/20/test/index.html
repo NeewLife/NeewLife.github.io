@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n\ncsv 파일 불러오기\ncsv 파일을 불러온다.\n\n12mpg1&lt;-read.csv(&quot;mpg1.csv&quot;)str(mpg1)\n\n123456## &#x27;data.frame&#x27;:\t234 obs. of  5 variables:##  $ manufacturer: chr  &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; ...##  $ trans       : chr  &quot;auto&quot; &quot;manual&quot; &quot;manual&quot; &quot;auto&quot; ...##  $ drv         : chr  &quot;f&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; ...##  $ cty         : int  18 21 20 21 16 18 18 18 16 20 ...##  $ hwy         : int  29 29 31 30 26 26 27 26 25 28 ...\n\n데이터 시각화 하기\ncty, hwy 산점도를 그려본다.\n\n1234library(ggplot2)ggplot(mpg1, aes(x = cty, y = hwy)) +   geom_point()\n\n","dateCreated":"2022-06-20T09:00:00+09:00","dateModified":"2022-07-11T00:26:32+09:00","datePublished":"2022-06-20T09:00:00+09:00","description":"test","headline":"test","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/20/test/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/06/20/test/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n\ncsv 파일 불러오기\ncsv 파일을 불러온다.\n\n12mpg1&lt;-read.csv(&quot;mpg1.csv&quot;)str(mpg1)\n\n123456## &#x27;data.frame&#x27;:\t234 obs. of  5 variables:##  $ manufacturer: chr  &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; ...##  $ trans       : chr  &quot;auto&quot; &quot;manual&quot; &quot;manual&quot; &quot;auto&quot; ...##  $ drv         : chr  &quot;f&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; ...##  $ cty         : int  18 21 20 21 16 18 18 18 16 20 ...##  $ hwy         : int  29 29 31 30 26 26 27 26 25 28 ...\n\n데이터 시각화 하기\ncty, hwy 산점도를 그려본다.\n\n1234library(ggplot2)ggplot(mpg1, aes(x = cty, y = hwy)) +   geom_point()\n\n","dateCreated":"2022-06-20T09:00:00+09:00","dateModified":"2022-07-11T00:26:32+09:00","datePublished":"2022-06-20T09:00:00+09:00","description":"test","headline":"test","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/20/test/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/06/20/test/"}</script>
     <meta name="description" content="test">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="test">
@@ -133,6 +133,10 @@
                     </a>
             </li>
             
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
                 <li class="sidebar-button">
                     
                         <a
@@ -150,20 +154,6 @@
                 <li class="sidebar-button">
                     
                         <a
-                            class="sidebar-button-link open-algolia-search"
-                            href="#search"
-                            
-                            rel="noopener"
-                            title="검색"
-                        >
-                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">검색</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
                             class="sidebar-button-link "
                             href="#about"
                             
@@ -174,10 +164,6 @@
                         <span class="sidebar-button-desc">About</span>
                     </a>
             </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
             
                 <li class="sidebar-button">
                     

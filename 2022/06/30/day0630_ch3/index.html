@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\nK-최근접 이웃 회귀\n지도 학습 알고리즘은 크게 분류와 회귀\n지도 학습 : 종속변수 존재\n분류 : 도미와 빙어를 분류하는 작업 해결\n회귀 : 통계 회귀분석 y &#x3D; ax + b &#x2F; 수치 예측\n\n\n\n데이터 불러오기12import numpy as npprint(np.__version__)\n\n1.21.6\n\n1234567891011121314151617perch_length = np.array(    [8.4, 13.7, 15.0, 16.2, 17.4, 18.0, 18.7, 19.0, 19.6, 20.0,      21.0, 21.0, 21.0, 21.3, 22.0, 22.0, 22.0, 22.0, 22.0, 22.5,      22.5, 22.7, 23.0, 23.5, 24.0, 24.0, 24.6, 25.0, 25.6, 26.5,      27.3, 27.5, 27.5, 27.5, 28.0, 28.7, 30.0, 32.8, 34.5, 35.0,      36.5, 36.0, 37.0, 37.0, 39.0, 39.0, 39.0, 40.0, 40.0, 40.0,      40.0, 42.0, 43.0, 43.0, 43.5, 44.0]     )perch_weight = np.array(    [5.9, 32.0, 40.0, 51.5, 70.0, 100.0, 78.0, 80.0, 85.0, 85.0,      110.0, 115.0, 125.0, 130.0, 120.0, 120.0, 130.0, 135.0, 110.0,      130.0, 150.0, 145.0, 150.0, 170.0, 225.0, 145.0, 188.0, 180.0,      197.0, 218.0, 300.0, 260.0, 265.0, 250.0, 250.0, 300.0, 320.0,      514.0, 556.0, 840.0, 685.0, 700.0, 700.0, 690.0, 900.0, 650.0,      820.0, 850.0, 900.0, 1015.0, 820.0, 1100.0, 1000.0, 1100.0,      1000.0, 1000.0]     )\n\n\n123456import matplotlib.pyplot as pltfig, ax = plt.subplots()  # 객체지향의 시작ax.scatter(perch_length, perch_weight)ax.set_xlabel(&#x27;length&#x27;)ax.set_ylabel(&#x27;weight&#x27;)plt.show()\n\n\n\n1234567from sklearn.model_selection import train_test_splittrain_input, test_input, train_target, test_target = train_test_split(    perch_length, perch_weight, random_state = 42)train_input.shape, test_input.shape, train_target.shape, test_target.shapeprint(train_input.ndim)\n\n1\n\n\n1차원 배열.. –&gt; 2차원 배열\n\n1234train_input = train_input.reshape(-1, 1)test_input = test_input.reshape(-1, 1)print(train_input.shape, test_input.shape)print(train_input.ndim)\n\n(42, 1) (14, 1)\n2\n\n결정계수\nAdjusted-R Squared \n정확한 지표\n0 ~ 1 사이의 지표\n1에 가까울수록, 예측 모형이 잘 맞는다.\n\n123456789from sklearn.neighbors import KNeighborsRegressorknr = KNeighborsRegressor()# 모형학습knr.fit(train_input, train_target)# 테스트 세트의 점수를 확인한다.print(knr.score(test_input, test_target))\n\n0.992809406101064\n\n1test_target\n\n\n\n\narray([  5.9, 100. , 250. , 130. , 130. ])\n\n\nmae : 실제데이터 - 예측데이터 해서 나온 오차 값을 절댓값 해서 모두 더한 값\n\n12345678from sklearn.metrics import mean_absolute_error# 예측 데이터test_prediction = knr.predict(test_input)# 테스트 세트에 대한 평균 절댓값 오차를mae = mean_absolute_error(test_target, test_prediction)print(mae)\n\n19.157142857142862\n\n\n예측이 평균적으로 19g 정도 다르다.\n확실한 건 오차가 존재한다.\n19g 정도가 의미하는 게 무엇인가?\n개선해서 17g 이라도 오차는 존재하는 것\n개선해서 15g…13g…0g 에 가까워질 때 까지 반복\n\n\n\n1print(knr.score(train_input, train_target))\n\n0.9698823289099254\n\n과대적합 vs 과소적합\n매우 힘듬. 도망 가고 싶음….\n과대적합 : 훈련세트 점수 좋음, 테스트 점수 (매우) 안 좋음\n과소적합 : 테스트 세트의 점수가 매우 좋음\n결론 : 제대로 모형이 훈련이 안된 것이다.\n모형을 서비스에 탑재 시킬 수 없음.\n테스트 세트의 점수가 훈련 점수보다 높아도 안되고, 약간만 낮아야 함\n\n\n\n12print(&quot;훈련 평가:&quot;, knr.score(train_input, train_target))print(&quot;테스트 평가:&quot;, knr.score(test_input, test_target))\n\n훈련 평가: 0.9698823289099254\n테스트 평가: 0.992809406101064\n\n\n모형 개선\n\n1234567# 이웃의 개수를 3으로 재 지정knr.n_neighbors = 3# 모형 다시 훈련knr.fit(train_input, train_target)print(&quot;훈련 평가:&quot;, knr.score(train_input, train_target))print(&quot;테스트 평가:&quot;, knr.score(test_input, test_target))\n\n훈련 평가: 0.9804899950518966\n테스트 평가: 0.9746459963987609\n","dateCreated":"2022-06-30T17:53:30+09:00","dateModified":"2022-07-21T21:49:59+09:00","datePublished":"2022-06-30T17:53:30+09:00","description":"\n최근접 이웃회귀, 과대적합, 과소적합","headline":"day 0630_1","image":["python.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/30/day0630_ch3/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/06/30/day0630_ch3/","thumbnailUrl":"python.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\nK-최근접 이웃 회귀\n지도 학습 알고리즘은 크게 분류와 회귀\n지도 학습 : 종속변수 존재\n분류 : 도미와 빙어를 분류하는 작업 해결\n회귀 : 통계 회귀분석 y &#x3D; ax + b &#x2F; 수치 예측\n\n\n\n데이터 불러오기12import numpy as npprint(np.__version__)\n\n1.21.6\n\n1234567891011121314151617perch_length = np.array(    [8.4, 13.7, 15.0, 16.2, 17.4, 18.0, 18.7, 19.0, 19.6, 20.0,      21.0, 21.0, 21.0, 21.3, 22.0, 22.0, 22.0, 22.0, 22.0, 22.5,      22.5, 22.7, 23.0, 23.5, 24.0, 24.0, 24.6, 25.0, 25.6, 26.5,      27.3, 27.5, 27.5, 27.5, 28.0, 28.7, 30.0, 32.8, 34.5, 35.0,      36.5, 36.0, 37.0, 37.0, 39.0, 39.0, 39.0, 40.0, 40.0, 40.0,      40.0, 42.0, 43.0, 43.0, 43.5, 44.0]     )perch_weight = np.array(    [5.9, 32.0, 40.0, 51.5, 70.0, 100.0, 78.0, 80.0, 85.0, 85.0,      110.0, 115.0, 125.0, 130.0, 120.0, 120.0, 130.0, 135.0, 110.0,      130.0, 150.0, 145.0, 150.0, 170.0, 225.0, 145.0, 188.0, 180.0,      197.0, 218.0, 300.0, 260.0, 265.0, 250.0, 250.0, 300.0, 320.0,      514.0, 556.0, 840.0, 685.0, 700.0, 700.0, 690.0, 900.0, 650.0,      820.0, 850.0, 900.0, 1015.0, 820.0, 1100.0, 1000.0, 1100.0,      1000.0, 1000.0]     )\n\n\n123456import matplotlib.pyplot as pltfig, ax = plt.subplots()  # 객체지향의 시작ax.scatter(perch_length, perch_weight)ax.set_xlabel(&#x27;length&#x27;)ax.set_ylabel(&#x27;weight&#x27;)plt.show()\n\n\n\n1234567from sklearn.model_selection import train_test_splittrain_input, test_input, train_target, test_target = train_test_split(    perch_length, perch_weight, random_state = 42)train_input.shape, test_input.shape, train_target.shape, test_target.shapeprint(train_input.ndim)\n\n1\n\n\n1차원 배열.. –&gt; 2차원 배열\n\n1234train_input = train_input.reshape(-1, 1)test_input = test_input.reshape(-1, 1)print(train_input.shape, test_input.shape)print(train_input.ndim)\n\n(42, 1) (14, 1)\n2\n\n결정계수\nAdjusted-R Squared \n정확한 지표\n0 ~ 1 사이의 지표\n1에 가까울수록, 예측 모형이 잘 맞는다.\n\n123456789from sklearn.neighbors import KNeighborsRegressorknr = KNeighborsRegressor()# 모형학습knr.fit(train_input, train_target)# 테스트 세트의 점수를 확인한다.print(knr.score(test_input, test_target))\n\n0.992809406101064\n\n1test_target\n\n\n\n\narray([  5.9, 100. , 250. , 130. , 130. ])\n\n\nmae : 실제데이터 - 예측데이터 해서 나온 오차 값을 절댓값 해서 모두 더한 값\n\n12345678from sklearn.metrics import mean_absolute_error# 예측 데이터test_prediction = knr.predict(test_input)# 테스트 세트에 대한 평균 절댓값 오차를mae = mean_absolute_error(test_target, test_prediction)print(mae)\n\n19.157142857142862\n\n\n예측이 평균적으로 19g 정도 다르다.\n확실한 건 오차가 존재한다.\n19g 정도가 의미하는 게 무엇인가?\n개선해서 17g 이라도 오차는 존재하는 것\n개선해서 15g…13g…0g 에 가까워질 때 까지 반복\n\n\n\n1print(knr.score(train_input, train_target))\n\n0.9698823289099254\n\n과대적합 vs 과소적합\n매우 힘듬. 도망 가고 싶음….\n과대적합 : 훈련세트 점수 좋음, 테스트 점수 (매우) 안 좋음\n과소적합 : 테스트 세트의 점수가 매우 좋음\n결론 : 제대로 모형이 훈련이 안된 것이다.\n모형을 서비스에 탑재 시킬 수 없음.\n테스트 세트의 점수가 훈련 점수보다 높아도 안되고, 약간만 낮아야 함\n\n\n\n12print(&quot;훈련 평가:&quot;, knr.score(train_input, train_target))print(&quot;테스트 평가:&quot;, knr.score(test_input, test_target))\n\n훈련 평가: 0.9698823289099254\n테스트 평가: 0.992809406101064\n\n\n모형 개선\n\n1234567# 이웃의 개수를 3으로 재 지정knr.n_neighbors = 3# 모형 다시 훈련knr.fit(train_input, train_target)print(&quot;훈련 평가:&quot;, knr.score(train_input, train_target))print(&quot;테스트 평가:&quot;, knr.score(test_input, test_target))\n\n훈련 평가: 0.9804899950518966\n테스트 평가: 0.9746459963987609\n","dateCreated":"2022-06-30T17:53:30+09:00","dateModified":"2022-07-21T21:49:59+09:00","datePublished":"2022-06-30T17:53:30+09:00","description":"\n최근접 이웃회귀, 과대적합, 과소적합","headline":"day 0630_1","image":["python.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/30/day0630_ch3/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/06/30/day0630_ch3/","thumbnailUrl":"python.png"}</script>
     <meta name="description" content="최근접 이웃회귀, 과대적합, 과소적합">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="day 0630_1">
@@ -136,6 +136,10 @@
                     </a>
             </li>
             
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
                 <li class="sidebar-button">
                     
                         <a
@@ -153,20 +157,6 @@
                 <li class="sidebar-button">
                     
                         <a
-                            class="sidebar-button-link open-algolia-search"
-                            href="#search"
-                            
-                            rel="noopener"
-                            title="검색"
-                        >
-                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">검색</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
                             class="sidebar-button-link "
                             href="#about"
                             
@@ -177,10 +167,6 @@
                         <span class="sidebar-button-desc">About</span>
                     </a>
             </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
             
                 <li class="sidebar-button">
                     

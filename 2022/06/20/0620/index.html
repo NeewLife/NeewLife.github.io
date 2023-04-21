@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\nsetup, include1knitr::opts_chunk$set(echo = TRUE)\n\n\n0620\nR Script, R Markdown 새로 만들기\n\n\n\n이 정도 남기고 다 삭제\n\n\n\n\n‘’’{r}   ‘’’ 안에 코드 작성해서 업로드 할 수 있다. (R Markdown 에서 가능)\n\n\n\n\n서열, 비서열 변수 입력\n\n\n서열 변수(ordered &#x3D; TRUE)\n\n비서열 변수\n\n\nclass(exam$no) : exam이란 데이터에서 no라는 값의 유형을 나타내는 것\nstr(exam) : exam이란 데이터의 전체의 값의 유형을 나타내는 것\n\n\n\ngetwd() : 현재 저장위치 확인\nwrite.csv(x &#x3D; exam, file &#x3D; “temp.csv”) : exam의 데이터를 temp.csv로 내보내기\n\n\n\n“t 에서 TAB키를 누르면 이렇게 “현재 Working Directory” 에서 t를 포함하는 목록들이 뜬다\n\n\n\n이런 식으로 상위 폴더에서 경로 지정해서 긁어 올 수도 있다. (현재 Working Directory 위치 주의!!)\nhttps://drive.google.com/file/d/1zoUx11rNQXLLCQb4R8NeaTgIltHnLJHy/view 에서 파일 다운로드, 압축풀기\n데이터 분량이 많은 빅데이터는 read.csv() 보다 fread() 함수가 더 빨리 불러온다.\nfread() 함수는 data.table 패키지에 있는 함수로,\n\n12install.packages(&quot;data.table&quot;)library(data.table)\n\n\n입력 후에 이용하면 된다.\n\n엑셀 파일은 read_excel() 함수로 불러오고 마찬가지로,\n\n\n12install.packages(&quot;readxl&quot;)library(readxl)\n\n\n입력 후에 이용하면 된다.\n아까 압축 푼 경로로 지정한 후\n\n\n\n\n압축 푼 데이터 폴더에서 “mpg1.csv” 파일 복사 후 R_lecture\\source 폴더에 rmd\\rmd_0620 폴더 생성 후 붙여넣기\n\n\n\n새 R Md 파일을 “test” 로 생성, 저장도 test로 하기\n\n\n\ntitle 옵션 화면과 동일하게 바꾸기(0617에서 했었음)\n\n\n\nR 코드 생성 후 입력\n\n123```&#123;r&#125;mpg1&lt;-read.csv(&quot;mpg1.csv&quot;)str(mpg1)\n123456789- 한번 더 R 코드 생성 후 입력```r```&#123;r&#125;library(ggplot2)ggplot(mpg1, aes(x = cty, y = hwy)) +   geom_point()\n\n\n\n그래프가 떴다면 위쪽에 Knit 누른다. 누르면 그래프가 뜨고, 폴더, 파일들이 생성된다.\n\n\n\n\n에러 뜨면 ggplot2 가 설치 되어있는지 체크, 경로 맞게 설정 했는지 체크\n\n블로그 이미지 업로드 하기\n생성된 test_files\\figure-html 에서 사진 복사 후\n\n\n\nblog\\source\\image 에 rmd_0620으로 동일 폴더 만든 후 사진 붙여넣기(폴더 이름 상관없음)\n\n\n\n원본 rmd_0620 폴더에서 test R Md 파일 복사해서\n\n\n\nblog\\source_posts 에 파일 붙여넣기\n\n\n\nPyCharm 으로 blog 폴더 열어서 “test.md” 파일 열기\n\n\n\n밑으로 내려가서 images 폴더 안의 사진 우클릭 → 경로&#x2F;참조복사 → 콘텐츠 루트로부터의 경로 복사\n\n\n\n\n경로 복사 후 빨간색에 붙여넣기 하고 “source” 를 지운다.\n\n\n\n다음과 같이 나와야 됨\n\n\n\n됐으면 저장 후 hexo server로 체크\n","dateCreated":"2022-06-20T09:00:00+09:00","dateModified":"2022-07-11T00:30:52+09:00","datePublished":"2022-06-20T09:00:00+09:00","description":"R Markdown 세팅","headline":"2022-06-20 메모","image":["R_logo.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/20/0620/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/06/20/0620/","thumbnailUrl":"R_logo.jpg"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\nsetup, include1knitr::opts_chunk$set(echo = TRUE)\n\n\n0620\nR Script, R Markdown 새로 만들기\n\n\n\n이 정도 남기고 다 삭제\n\n\n\n\n‘’’{r}   ‘’’ 안에 코드 작성해서 업로드 할 수 있다. (R Markdown 에서 가능)\n\n\n\n\n서열, 비서열 변수 입력\n\n\n서열 변수(ordered &#x3D; TRUE)\n\n비서열 변수\n\n\nclass(exam$no) : exam이란 데이터에서 no라는 값의 유형을 나타내는 것\nstr(exam) : exam이란 데이터의 전체의 값의 유형을 나타내는 것\n\n\n\ngetwd() : 현재 저장위치 확인\nwrite.csv(x &#x3D; exam, file &#x3D; “temp.csv”) : exam의 데이터를 temp.csv로 내보내기\n\n\n\n“t 에서 TAB키를 누르면 이렇게 “현재 Working Directory” 에서 t를 포함하는 목록들이 뜬다\n\n\n\n이런 식으로 상위 폴더에서 경로 지정해서 긁어 올 수도 있다. (현재 Working Directory 위치 주의!!)\nhttps://drive.google.com/file/d/1zoUx11rNQXLLCQb4R8NeaTgIltHnLJHy/view 에서 파일 다운로드, 압축풀기\n데이터 분량이 많은 빅데이터는 read.csv() 보다 fread() 함수가 더 빨리 불러온다.\nfread() 함수는 data.table 패키지에 있는 함수로,\n\n12install.packages(&quot;data.table&quot;)library(data.table)\n\n\n입력 후에 이용하면 된다.\n\n엑셀 파일은 read_excel() 함수로 불러오고 마찬가지로,\n\n\n12install.packages(&quot;readxl&quot;)library(readxl)\n\n\n입력 후에 이용하면 된다.\n아까 압축 푼 경로로 지정한 후\n\n\n\n\n압축 푼 데이터 폴더에서 “mpg1.csv” 파일 복사 후 R_lecture\\source 폴더에 rmd\\rmd_0620 폴더 생성 후 붙여넣기\n\n\n\n새 R Md 파일을 “test” 로 생성, 저장도 test로 하기\n\n\n\ntitle 옵션 화면과 동일하게 바꾸기(0617에서 했었음)\n\n\n\nR 코드 생성 후 입력\n\n123```&#123;r&#125;mpg1&lt;-read.csv(&quot;mpg1.csv&quot;)str(mpg1)\n123456789- 한번 더 R 코드 생성 후 입력```r```&#123;r&#125;library(ggplot2)ggplot(mpg1, aes(x = cty, y = hwy)) +   geom_point()\n\n\n\n그래프가 떴다면 위쪽에 Knit 누른다. 누르면 그래프가 뜨고, 폴더, 파일들이 생성된다.\n\n\n\n\n에러 뜨면 ggplot2 가 설치 되어있는지 체크, 경로 맞게 설정 했는지 체크\n\n블로그 이미지 업로드 하기\n생성된 test_files\\figure-html 에서 사진 복사 후\n\n\n\nblog\\source\\image 에 rmd_0620으로 동일 폴더 만든 후 사진 붙여넣기(폴더 이름 상관없음)\n\n\n\n원본 rmd_0620 폴더에서 test R Md 파일 복사해서\n\n\n\nblog\\source_posts 에 파일 붙여넣기\n\n\n\nPyCharm 으로 blog 폴더 열어서 “test.md” 파일 열기\n\n\n\n밑으로 내려가서 images 폴더 안의 사진 우클릭 → 경로&#x2F;참조복사 → 콘텐츠 루트로부터의 경로 복사\n\n\n\n\n경로 복사 후 빨간색에 붙여넣기 하고 “source” 를 지운다.\n\n\n\n다음과 같이 나와야 됨\n\n\n\n됐으면 저장 후 hexo server로 체크\n","dateCreated":"2022-06-20T09:00:00+09:00","dateModified":"2022-07-11T00:30:52+09:00","datePublished":"2022-06-20T09:00:00+09:00","description":"R Markdown 세팅","headline":"2022-06-20 메모","image":["R_logo.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/20/0620/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/06/20/0620/","thumbnailUrl":"R_logo.jpg"}</script>
     <meta name="description" content="R Markdown 세팅">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="2022-06-20 메모">
@@ -161,6 +161,10 @@
                     </a>
             </li>
             
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
                 <li class="sidebar-button">
                     
                         <a
@@ -178,20 +182,6 @@
                 <li class="sidebar-button">
                     
                         <a
-                            class="sidebar-button-link open-algolia-search"
-                            href="#search"
-                            
-                            rel="noopener"
-                            title="검색"
-                        >
-                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">검색</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
                             class="sidebar-button-link "
                             href="#about"
                             
@@ -202,10 +192,6 @@
                         <span class="sidebar-button-desc">About</span>
                     </a>
             </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
             
                 <li class="sidebar-button">
                     

@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\niris 데이터, sepal.length, sepal.width 활용해서 종별로 산점도를 그리세요\n\n제목과 X축, Y축 제목을 변경하세요\n제목은 자유\nX축 -&gt; 길이, Y축 -&gt; 너비\n\n\n\n123library(ggplot2)str(iris)\n\n123456## &#x27;data.frame&#x27;:\t150 obs. of  5 variables:##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...\n\n123456789101112131415161718ggplot(iris, aes(x = Sepal.Length,                  y =Sepal.Width, colour = Species)) +  geom_point()+  labs(    title = &quot;자유&quot;,    subtitle = &quot;Freedom&quot;,    x = &quot;길이&quot;,    y = &quot;너비&quot;,    ) +    # 항목별로 색깔 바꾸기  scale_color_manual(        labels = c(&quot;setosa&quot;, &quot;versicolor&quot;, &quot;virginica&quot;),    values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;)  ) +    #그래프 테마 바꾸기  theme_dark()\n\n","dateCreated":"2022-06-23T09:45:00+09:00","dateModified":"2022-07-10T22:44:49+09:00","datePublished":"2022-06-23T09:45:00+09:00","description":"\n똑같은 코드 입력은 의미 없다. 다른 데이터로 만들어 볼 것!!! ","headline":"복습","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/23/remind/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/06/23/remind/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\niris 데이터, sepal.length, sepal.width 활용해서 종별로 산점도를 그리세요\n\n제목과 X축, Y축 제목을 변경하세요\n제목은 자유\nX축 -&gt; 길이, Y축 -&gt; 너비\n\n\n\n123library(ggplot2)str(iris)\n\n123456## &#x27;data.frame&#x27;:\t150 obs. of  5 variables:##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...\n\n123456789101112131415161718ggplot(iris, aes(x = Sepal.Length,                  y =Sepal.Width, colour = Species)) +  geom_point()+  labs(    title = &quot;자유&quot;,    subtitle = &quot;Freedom&quot;,    x = &quot;길이&quot;,    y = &quot;너비&quot;,    ) +    # 항목별로 색깔 바꾸기  scale_color_manual(        labels = c(&quot;setosa&quot;, &quot;versicolor&quot;, &quot;virginica&quot;),    values = c(&quot;red&quot;, &quot;blue&quot;, &quot;green&quot;)  ) +    #그래프 테마 바꾸기  theme_dark()\n\n","dateCreated":"2022-06-23T09:45:00+09:00","dateModified":"2022-07-10T22:44:49+09:00","datePublished":"2022-06-23T09:45:00+09:00","description":"\n똑같은 코드 입력은 의미 없다. 다른 데이터로 만들어 볼 것!!! ","headline":"복습","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/23/remind/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/06/23/remind/"}</script>
     <meta name="description" content="똑같은 코드 입력은 의미 없다. 다른 데이터로 만들어 볼 것!!!">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="복습">
@@ -133,6 +133,10 @@
                     </a>
             </li>
             
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
                 <li class="sidebar-button">
                     
                         <a
@@ -150,20 +154,6 @@
                 <li class="sidebar-button">
                     
                         <a
-                            class="sidebar-button-link open-algolia-search"
-                            href="#search"
-                            
-                            rel="noopener"
-                            title="검색"
-                        >
-                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">검색</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
                             class="sidebar-button-link "
                             href="#about"
                             
@@ -174,10 +164,6 @@
                         <span class="sidebar-button-desc">About</span>
                     </a>
             </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
             
                 <li class="sidebar-button">
                     

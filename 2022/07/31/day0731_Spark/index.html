@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n\nApache Spark 설치 및 설정\nhadoop 폴더를 하나 만들고\n  \n\ncd hadoop 으로 이동 후 다음 코드 입력\n\n\n123sudo apt-get install openjdk-8-jdksudo wget https://archive.apache.org/dist/spark/spark-3.2.0/spark-3.2.0-bin-hadoop3.2.tgz\n\n\nls로 압축파일만 있는지 확인하고, 다른게 있으면 삭제하기.\n\nTAB 키 활용하기!!\nsudo tar -xvzf s 까지 치고 tab키 누르고 압축파일 풀기\n  \n\nmv s (tab키) ~&#x2F;spark3 입력\n  \n\ncd .. 입력 후, spark3 폴더로 이동\n\ncp -r spark3&#x2F; spark-node입력\n  \n\nspark3 폴더 안에 sbin 폴더로 이동\n  \n\n다음 명령어 입력\n  \n  123cp start-master.sh start-head.shcd ~/spark-node/sbincp start-slave.sh start-node.sh\n\n이렇게 하면 spark3 폴더에는 master → head 로 이름이 변경되었고\n  spark-node 폴더에는 slave → node 로 이름이 변경되었다.\n\n이제 spark3&#x2F;sbin 폴더에서 head 를 실행시키고 spark-node&#x2F;sbin 폴더에서 node를\n  실행 시키자.\n  \n  \n\n그 뒤에 인터넷 주소창에 localhost:8080 을 치면 사이트가 나온다.\n  \n\n\n\nPySpark 설치 및 설정\n환경 변수 설정으로 (vi ~&#x2F;.bashrc)  들어가서 다음과 같이 입력한다\n  \n\n\n1234567export AIRFLOW_HOME=/home/dhtpdud2009/airflowexport JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64export SPARK_HOME=/home/dhtpdud2009/spark3export PATH=$JAVA_HOME/bin:$PATHexport PATH=$SPARK_HOME/bin:$PATHexport PYSPARK_PYTHON=/usr/bin/python3# export PYSPARK_DRIVER_PYTHON_OPTS=&#x27;notebook&#x27;\n\n\ndhtpdud2009 부분은 알아서 바꾸기\n\nchapter14 폴더 만들고 가상환경 세팅하기\n  \n\npip3 install findspark 입력 &#x2F; pip install pyspark 입력\n  \n  \n\npip3 install jupyter 입력\n  \n\n그리고 다시 환경 변수 세팅 들어가서 주석처리 제거\n  \n  source ~&#x2F;.bashrc 까지 하기!\n\nUbuntu 껐다가 다시 켜서 CHAPTER14 에서 code . 로 열기\n\n새 파일 만들고 가상환경 접속 후 다음과 같이 입력\n  \n  \n\njupyter notebook 입력\n  \n\nlocalhost:8888 여기 ctrl+클릭하면 Jupyter Notebook 를 열 수 있음\n  \n\n","dateCreated":"2022-07-31T13:34:21+09:00","dateModified":"2022-07-31T13:42:40+09:00","datePublished":"2022-07-31T13:34:21+09:00","description":"Apache Spark 설치 및 설정PySpark 설치 및 설정","headline":"Spark 툴 설치 및 설정","image":["Linux.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/07/31/day0731_Spark/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/07/31/day0731_Spark/","thumbnailUrl":"Linux.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n\nApache Spark 설치 및 설정\nhadoop 폴더를 하나 만들고\n  \n\ncd hadoop 으로 이동 후 다음 코드 입력\n\n\n123sudo apt-get install openjdk-8-jdksudo wget https://archive.apache.org/dist/spark/spark-3.2.0/spark-3.2.0-bin-hadoop3.2.tgz\n\n\nls로 압축파일만 있는지 확인하고, 다른게 있으면 삭제하기.\n\nTAB 키 활용하기!!\nsudo tar -xvzf s 까지 치고 tab키 누르고 압축파일 풀기\n  \n\nmv s (tab키) ~&#x2F;spark3 입력\n  \n\ncd .. 입력 후, spark3 폴더로 이동\n\ncp -r spark3&#x2F; spark-node입력\n  \n\nspark3 폴더 안에 sbin 폴더로 이동\n  \n\n다음 명령어 입력\n  \n  123cp start-master.sh start-head.shcd ~/spark-node/sbincp start-slave.sh start-node.sh\n\n이렇게 하면 spark3 폴더에는 master → head 로 이름이 변경되었고\n  spark-node 폴더에는 slave → node 로 이름이 변경되었다.\n\n이제 spark3&#x2F;sbin 폴더에서 head 를 실행시키고 spark-node&#x2F;sbin 폴더에서 node를\n  실행 시키자.\n  \n  \n\n그 뒤에 인터넷 주소창에 localhost:8080 을 치면 사이트가 나온다.\n  \n\n\n\nPySpark 설치 및 설정\n환경 변수 설정으로 (vi ~&#x2F;.bashrc)  들어가서 다음과 같이 입력한다\n  \n\n\n1234567export AIRFLOW_HOME=/home/dhtpdud2009/airflowexport JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64export SPARK_HOME=/home/dhtpdud2009/spark3export PATH=$JAVA_HOME/bin:$PATHexport PATH=$SPARK_HOME/bin:$PATHexport PYSPARK_PYTHON=/usr/bin/python3# export PYSPARK_DRIVER_PYTHON_OPTS=&#x27;notebook&#x27;\n\n\ndhtpdud2009 부분은 알아서 바꾸기\n\nchapter14 폴더 만들고 가상환경 세팅하기\n  \n\npip3 install findspark 입력 &#x2F; pip install pyspark 입력\n  \n  \n\npip3 install jupyter 입력\n  \n\n그리고 다시 환경 변수 세팅 들어가서 주석처리 제거\n  \n  source ~&#x2F;.bashrc 까지 하기!\n\nUbuntu 껐다가 다시 켜서 CHAPTER14 에서 code . 로 열기\n\n새 파일 만들고 가상환경 접속 후 다음과 같이 입력\n  \n  \n\njupyter notebook 입력\n  \n\nlocalhost:8888 여기 ctrl+클릭하면 Jupyter Notebook 를 열 수 있음\n  \n\n","dateCreated":"2022-07-31T13:34:21+09:00","dateModified":"2022-07-31T13:42:40+09:00","datePublished":"2022-07-31T13:34:21+09:00","description":"Apache Spark 설치 및 설정PySpark 설치 및 설정","headline":"Spark 툴 설치 및 설정","image":["Linux.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/07/31/day0731_Spark/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/07/31/day0731_Spark/","thumbnailUrl":"Linux.png"}</script>
     <meta name="description" content="Apache Spark 설치 및 설정PySpark 설치 및 설정">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Spark 툴 설치 및 설정">
@@ -154,6 +154,10 @@
                     </a>
             </li>
             
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
                 <li class="sidebar-button">
                     
                         <a
@@ -171,20 +175,6 @@
                 <li class="sidebar-button">
                     
                         <a
-                            class="sidebar-button-link open-algolia-search"
-                            href="#search"
-                            
-                            rel="noopener"
-                            title="검색"
-                        >
-                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">검색</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
                             class="sidebar-button-link "
                             href="#about"
                             
@@ -195,10 +185,6 @@
                         <span class="sidebar-button-desc">About</span>
                     </a>
             </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
             
                 <li class="sidebar-button">
                     

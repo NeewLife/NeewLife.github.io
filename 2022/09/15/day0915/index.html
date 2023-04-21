@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\ndom요소를 자유자재로 가지고 올 수 있는가?\n\nid를 통해서\n\nhtml에서 해당 태그에id 값을 부여한다\n\n\n태그의 계층구조를 활용\n\n 태그 안에  안에  태그를 가져올 수 있다.\n\n\ncss 선택자를 통해서\n 12345&lt;div id=&quot;divId1&quot;&gt;    &lt;span id=&quot;spanId1&quot;&gt;&lt;/span&gt;    &lt;span id=&quot;spanId2&quot;&gt;&lt;/span&gt;    &lt;span id=&quot;spanId3&quot;&gt;&lt;/span&gt;&lt;/div&gt;\n\n다음 html코드에서 id값이 “spanId3” 인 span 태그를 불러오려면\n\n 1let abc = document.getElementId(&quot;spanId3&quot;);\n 로 불러온 후 abc 를 이용한다.\n\n태그를 불러오는 방법은\ndocument.getElementId(”아이디값”)\ndocument.getElementClass(”클래스값”)등등 있고, VSCode 자동완성을 참고하면 무수히 다양한 방법이 있다.\n\n\n\n\n무엇이 리스트로 가져와지는지 아는가\n\n해당 id나 클래스값에 해당하는 태그가 리스트로 불러와진다.\n\n\n하나가 아니라 리스트로 받았을 때 그것중에 하나를 가져올 수 있다.\n\ncss 연산자를 통해서 or 리스트 IndexOf[0] 등을 사용하여 가져온다.\n\n\n\n\n이벤트 처리\n\n어떤 마우스 이벤트, 어떤 키보드 이벤트가 있는 지 대강 안다.\n\n클릭할 때, 더블클릭할 때, 마우스가 올라가있을 때,\n키보드로 입력할 때, 방향키를 사용할 때, 등등\n“연결할함수.on이벤트”  까지 입력하면 자동완성으로 대강 이벤트를 볼 수 있다.\n\n\n가져온 dom 요소에 원하는 이벤트를 연결할 수 있다.\n\n연결되면 실행할 함수 또는 문장을 연결할 수 있다.\n\n위에서 abc로 불러온 dom 요소를\n\n 123abc.onclick = function()&#123;    alert(&quot;클릭시 실행&quot;)&#125;\n\n이런 식으로 불러서 연결할 수 있다.\n\n\n\n\n","dateCreated":"2022-09-15T22:20:21+09:00","dateModified":"2022-09-15T22:22:23+09:00","datePublished":"2022-09-15T22:20:21+09:00","description":"자바스크립트 복습","headline":"day0915 복습","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/09/15/day0915/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/09/15/day0915/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\ndom요소를 자유자재로 가지고 올 수 있는가?\n\nid를 통해서\n\nhtml에서 해당 태그에id 값을 부여한다\n\n\n태그의 계층구조를 활용\n\n 태그 안에  안에  태그를 가져올 수 있다.\n\n\ncss 선택자를 통해서\n 12345&lt;div id=&quot;divId1&quot;&gt;    &lt;span id=&quot;spanId1&quot;&gt;&lt;/span&gt;    &lt;span id=&quot;spanId2&quot;&gt;&lt;/span&gt;    &lt;span id=&quot;spanId3&quot;&gt;&lt;/span&gt;&lt;/div&gt;\n\n다음 html코드에서 id값이 “spanId3” 인 span 태그를 불러오려면\n\n 1let abc = document.getElementId(&quot;spanId3&quot;);\n 로 불러온 후 abc 를 이용한다.\n\n태그를 불러오는 방법은\ndocument.getElementId(”아이디값”)\ndocument.getElementClass(”클래스값”)등등 있고, VSCode 자동완성을 참고하면 무수히 다양한 방법이 있다.\n\n\n\n\n무엇이 리스트로 가져와지는지 아는가\n\n해당 id나 클래스값에 해당하는 태그가 리스트로 불러와진다.\n\n\n하나가 아니라 리스트로 받았을 때 그것중에 하나를 가져올 수 있다.\n\ncss 연산자를 통해서 or 리스트 IndexOf[0] 등을 사용하여 가져온다.\n\n\n\n\n이벤트 처리\n\n어떤 마우스 이벤트, 어떤 키보드 이벤트가 있는 지 대강 안다.\n\n클릭할 때, 더블클릭할 때, 마우스가 올라가있을 때,\n키보드로 입력할 때, 방향키를 사용할 때, 등등\n“연결할함수.on이벤트”  까지 입력하면 자동완성으로 대강 이벤트를 볼 수 있다.\n\n\n가져온 dom 요소에 원하는 이벤트를 연결할 수 있다.\n\n연결되면 실행할 함수 또는 문장을 연결할 수 있다.\n\n위에서 abc로 불러온 dom 요소를\n\n 123abc.onclick = function()&#123;    alert(&quot;클릭시 실행&quot;)&#125;\n\n이런 식으로 불러서 연결할 수 있다.\n\n\n\n\n","dateCreated":"2022-09-15T22:20:21+09:00","dateModified":"2022-09-15T22:22:23+09:00","datePublished":"2022-09-15T22:20:21+09:00","description":"자바스크립트 복습","headline":"day0915 복습","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/09/15/day0915/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/09/15/day0915/"}</script>
     <meta name="description" content="자바스크립트 복습">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="day0915 복습">
@@ -131,6 +131,10 @@
                     </a>
             </li>
             
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
                 <li class="sidebar-button">
                     
                         <a
@@ -148,20 +152,6 @@
                 <li class="sidebar-button">
                     
                         <a
-                            class="sidebar-button-link open-algolia-search"
-                            href="#search"
-                            
-                            rel="noopener"
-                            title="검색"
-                        >
-                        <i class="sidebar-button-icon fa fa-search" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">검색</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
                             class="sidebar-button-link "
                             href="#about"
                             
@@ -172,10 +162,6 @@
                         <span class="sidebar-button-desc">About</span>
                     </a>
             </li>
-            
-        </ul>
-        
-            <ul class="sidebar-buttons">
             
                 <li class="sidebar-button">
                     
