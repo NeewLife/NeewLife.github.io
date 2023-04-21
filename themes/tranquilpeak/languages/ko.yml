@@ -81,7 +81,7 @@ post:
 
 author:
     # Your biography (마크다운과 HTML이 지원됩니다.)
-    bio: "긍정적인 마인드로 오늘도 가보자~"
+    bio: ""
     # Your job
-    job: "웹 백앤드 지망생"
+    job: ""
 

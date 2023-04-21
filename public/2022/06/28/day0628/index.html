@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n반복문 복습\nfor loop and while loop\n\n123for i in range(3):  print(&quot;Hello World&quot;)  print(&quot;안녕하세요&quot;)\n\nHello World\n안녕하세요\nHello World\n안녕하세요\nHello World\n안녕하세요\n\n123456for i in range(1000):  print(&quot;No.&quot;, i+1)  if i == 10:    break                  # Hello World, 안녕하세요 가 10번 출력 됨  print(&quot;Hello World&quot;)  print(&quot;안녕하세요&quot;)      # i 값이 11이라서 &quot;No. 11&quot; 까지는 출력 되지만 if문 조건에서 통과 안됨\n\nNo. 1\nHello World\n안녕하세요\nNo. 2\nHello World\n안녕하세요\nNo. 3\nHello World\n안녕하세요\nNo. 4\nHello World\n안녕하세요\nNo. 5\nHello World\n안녕하세요\nNo. 6\nHello World\n안녕하세요\nNo. 7\nHello World\n안녕하세요\nNo. 8\nHello World\n안녕하세요\nNo. 9\nHello World\n안녕하세요\nNo. 10\nHello World\n안녕하세요\nNo. 11\n\n1\n\n\n1234567a = &quot;Kaggle&quot;for i in a:  print(i)  if i == &quot;a&quot;:    break    #print(i)  # 이 위치에 print가 있다면 어떻게 출력될까?\n\nK\na\n\n\n리스트의 값이 존재\n전체 총합 구하기\n\n12345678910numbers = [1, 2, 3, 4, 5]sum = 0for num in numbers:  print(&quot;numbers: &quot;, num)   # num 1 일때 sum = 1,  num 2 일때 sum = 2 + 1 = 3,   num 3 일때 sum = 3 + 3 = 6  sum = sum+num  print(&quot;total:&quot;, sum)print(&quot;----최종 결괏값----&quot;)print(sum)\n\nnumbers:  1\ntotal: 1\nnumbers:  2\ntotal: 3\nnumbers:  3\ntotal: 6\nnumbers:  4\ntotal: 10\nnumbers:  5\ntotal: 15\n----최종 결괏값----\n15\n\n123456789101112131415fruits = [&#x27;apple&#x27;, &#x27;kiwi&#x27;, &#x27;mango&#x27;]newlist = []&#x27;&#x27;&#x27;apple : a가 있나요? 있네요, newlist에 추가하세요.kiwi : a가 있나요? 없네요. 그럼 넘어가요.mango : a가 있나요? 있네요. newlist에 추가하세요.&#x27;&#x27;&#x27;for fruit in fruits:  print(&quot;조건문 밖 : &quot;, fruit)  if &quot;a&quot; in fruit:    print(&quot;조건문 안쪽 : &quot;, fruit)    newlist.append(fruit)print(newlist)\n\n조건문 밖 :  apple\n조건문 안쪽 :  apple\n조건문 밖 :  kiwi\n조건문 밖 :  mango\n조건문 안쪽 :  mango\n[&#39;apple&#39;, &#39;mango&#39;]\n\nWhile Loop\nwhile문 : 분석할 때는 거의 쓸 일이 없음(분석할 때는 거의 틀이 정해져 있음)개발할 때는 많이 씀\n\n123456i = 1while i &lt; 10: #참일때만 반복문 코드가 돌아감  # 코드  print(i)  i += 1          # 1씩 증감  #i -= 1         # 1씩 감소\n\n1\n2\n3\n4\n5\n6\n7\n8\n9\n\n사용자 정의 함수\n내가 필요에 의해 직접 함수를 작성(취업 준비)\n\n123def 함수명(param1, param2):      # 함수 정의  # 코드  return None\n\n\n1234567def add(a = 0, b = 1):  c = a + b  return c  return a + bprint(add(a = 5, b =4))print(add())\n\n9\n1\n\n\n사칙연산 사용자 정의 함수 만들기\n함수 문서화\nprint(함수명.doc)\n키워드 : Docstring\n\n\n\n12345678910def code(a, b, c):  d =  (b - c) * a / 10  return d&#x27;&#x27;&#x27;a = 10회 뽑기에 필요한 다이아b = 확정 뽑기 횟수c = 현재 누적 뽑기 횟수&#x27;&#x27;&#x27;print(&quot;확정 뽑기에 필요한 다이아 수 : &quot;, code(a = 2700, b = 200, c = 40))\n\n확정 뽑기에 필요한 다이아 수 :  43200.0\n\n1234567891011121314151617def subtract(a, b):  &quot;&quot;&quot;a, b를 빼는 함수  Parameters:  a (int): int형 숫자 a가 입력  b (int): int형 숫자 b가 입력  Returns:  int : 반환값    &quot;&quot;&quot;  return a-bprint(subtract(a = 5, b= 10))print(subtract.__doc__)\n\n-5\na, b를 빼는 함수\n\n  Parameters:\n  a (int): int형 숫자 a가 입력\n  \n  b (int): int형 숫자 b가 입력\n\n  Returns:\n    int : 반환값\n\n  \n\n123456789## NumPy- 내장 모듈(=라이브러리=패키지) (X)- 별도 라이브러리 설치```pythonimport numpy as npprint(np.__version__)\n\n1.21.6\n\n12345temp = [1, 2, 3]temp_array = np.array(temp)  # 리스트에서 배열로 변환print(type(temp))print(type(temp_array))\n\n&lt;class &#39;list&#39;&gt;\n&lt;class &#39;numpy.ndarray&#39;&gt;\n\n사칙연산12345678910math_score = [90,85,95]eng_score = [83, 77, 80]# math_score + eng_score              # 단순 리스트 추가math_array = np.array(math_score)eng_array = np.array(eng_score)total = math_array + eng_array        # 리스트 안의 변수 값을 더하는 과정print(total)print(type(total))\n\n[173 162 175]\n&lt;class &#39;numpy.ndarray&#39;&gt;\n\n집계함수123print(np.min(total))    # total 함수의 최솟값print(np.max(total))    # total 함수의 최댓값print(np.sum(total))    # total 함수의 모든 변수를 더한 값\n\n162\n175\n510\n\n차원 확인\nshape 함수 사용\n배열의 차원 확인 필요(함수명.ndim)\n\n12345# 1차원 배열 생상temp_arr = np.array([1, 2, 3])print(temp_arr.shape)     # [1], [2], [3] 이라서 3print(temp_arr.ndim)      # temp_arr 함수의 차원print(temp_arr)\n\n(3,)\n1\n[1 2 3]\n\n1234567# 2차원 배열 생성temp_arr = np.array([[1, 2, 3], [4, 5, 6]])print(temp_arr.shape)   print(temp_arr.ndim)    # temp_arr 함수의 차원print(temp_arr)# [[1, 2, 3], [4, 5, 6]] 2개 라서 2# 그 속에 각각 [1], [2], [3] 3개 라서 3\n\n(2, 3)\n2\n[[1 2 3]\n [4 5 6]]\n\n1234567# 3차원 배열 생성 -&gt; 이미지temp_arr = np.array([[[1, 2, 3], [4, 5, 6]],[[7, 8, 9], [10, 11, 12]]])print(temp_arr.shape)print(temp_arr.ndim)# [[1, 2, 3],[4, 5, 6]]이랑 [[7, 8, 9], [10, 11, 12]]라서 2# 그 속에 [1, 2, 3]이랑 [4, 5, 6] 이라서 2# 그 속에 [1],[2],[3] 이라서 3\n\n(2, 2, 3)\n3\n\n배열 생성의 다양한 방법들\n모두 0으로 채운다.\n\n12import numpy as np print(np.__version__)\n\n1.21.6\n\n12temp_arr = np.zeros((2, 3))temp_arr\n\n\n\n\narray([[0., 0., 0.],\n       [0., 0., 0.]])\n\n\n모두 1로 채운다.\n\n12temp_arr = np.ones((2, 3))temp_arr\n\n\n\n\narray([[1., 1., 1.],\n       [1., 1., 1.]])\n\n\n임의의 상수값으로 채운다.\n\n12temp_arr = np.full((3, 3), 100)temp_arr\n\n\n\n\narray([[100, 100, 100],\n       [100, 100, 100],\n       [100, 100, 100]])\n\n\n최소, 최대 숫자의 범위를 정해두고, 각 구간별로 값을 생성\n\n12temp_arr = np.linspace(5, 10, 10)temp_arr\n\n\n\n\narray([ 5.        ,  5.55555556,  6.11111111,  6.66666667,  7.22222222,\n        7.77777778,  8.33333333,  8.88888889,  9.44444444, 10.        ])\n\n\n반복문 시, 자주 등장하는 배열\n\n12temp_arr = np.arange(1, 11, 1)temp_arr\n\n\n\n\narray([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10])\n\n난수 생성123from numpy import randomx = random.rand()print(x)\n\n0.11621638529248979\n\n123import numpy x = numpy.random.rand()print(x)\n\n0.3315584451465583\n\n\n랜덤 정수값 추출\n\n12345from numpy import random # x = random.randint(100, size = (5))x = random.randint(100, size = (3, 5))print(x)print(type(x))\n\n[[88  2 19 78 13]\n [92 80 62 22 96]\n [66 71 89 62 76]]\n&lt;class &#39;numpy.ndarray&#39;&gt;\n\n\n랜덤 배열, 실숫값 추출\n\n1234from numpy import random x = random.rand(2, 5)print(x)print(type(x))\n\n[[0.06336531 0.34486775 0.66923826 0.31566607 0.84566463]\n [0.61713876 0.67541796 0.65161201 0.04912466 0.45433901]]\n&lt;class &#39;numpy.ndarray&#39;&gt;\n\nNumPy 사칙 연산123import numpy as nparray_01 = np.array([1, 2, 3])array_02 = np.array([10, 20, 30])\n\n\n123456789101112131415161718192021# 덧셈newArr = np.add(array_01, array_02)print(newArr)# 뺄셈newArr = np.subtract(array_01, array_02)print(newArr)# 곱셈newArr = np.multiply(array_01, array_02)print(newArr)# 나누기newArr = np.divide(array_01, array_02)print(newArr)# 거듭제곱array_01 = np.array([1, 2, 3])array_02 = np.array([2, 4, 2])newArr = np.power(array_01, array_02)print(newArr)\n\n[3 5 5]\n[-1 -1  1]\n[2 6 6]\n[0.5        0.66666667 1.5       ]\n[ 1 16  9]\n\n소숫점 정렬\n소숫점을 정렬하는 다양한 방법\n\n1234567# 소숫점 제거 import numpy as nptemp_arr = np.trunc([-1.23, 1.23])print(temp_arr)temp_arr = np.fix([-1.23, 1.23])print(temp_arr)\n\n[-1.  1.]\n[-1.  1.]\n\n123# 임의의 소숫점 자리에서 반올림temp_arr = np.around([-1.234546123, 1.238791631], 5)print(temp_arr)\n\n[-1.23455  1.23879]\n\n123# 소숫점 모두 내림temp_arr = np.floor([-1.234546123, 1.238791631])print(temp_arr)\n\n[-2.  1.]\n\n123# 소숫점 모두 올림temp_arr = np.ceil([-1.234546123, 1.238791631])print(temp_arr)\n\n[-1.  2.]\n\n조건식\npandas 가공\nnumpy\n조건식\n하나의 조건식 (&#x3D; np.where)\n다중 조건식\n\n\n\n12temp_arr = np.arange(10)temp_arr\n\n\n\n\narray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])\n\n12# 5보다 작으면 원 값 유지# 5보다 크면 곱하기 10을 해줌\n\n\n12# np.where(조건식, 참일 때, 거짓일 때)np.where(temp_arr &lt; 5, temp_arr, temp_arr * 10)\n\n\n\n\narray([ 0,  1,  2,  3,  4, 50, 60, 70, 80, 90])\n\n1234567temp_arr = np.arange(10)# temp_arrcond_list   = [temp_arr &gt; 5 , temp_arr &lt; 2]choice_list = [temp_arr  * 2, temp_arr + 100]# np.select(조건식 리스트, 결괏값 리스트, default = )np.select(cond_list, choice_list, default = temp_arr)\n\n\n\n\narray([100, 101,   2,   3,   4,   5,  12,  14,  16,  18])\n\nReshape\n배열의 차원 또는 크기를 바꾼다. \n곱셈만 할줄 알면 끝.\n\n1234import numpy as np temp_array = np.ones((3, 4))print(temp_array.shape)print(temp_array)\n\n(3, 4)\n[[1. 1. 1. 1.]\n [1. 1. 1. 1.]\n [1. 1. 1. 1.]]\n\n123after_reshape = temp_array.reshape(2, 2, 5)print(after_reshape.shape)print(after_reshape)\n\n\n---------------------------------------------------------------------------\n\nValueError                                Traceback (most recent call last)\n\n&lt;ipython-input-50-d57dd065a075&gt; in &lt;module&gt;()\n----&gt; 1 after_reshape = temp_array.reshape(2, 2, 5)\n      2 print(after_reshape.shape)\n      3 print(after_reshape)\n\n\nValueError: cannot reshape array of size 12 into shape (2,2,5)\n\n123after_reshape = temp_array.reshape(7, -1)print(after_reshape.shape)print(after_reshape)\n\n\n---------------------------------------------------------------------------\n\nValueError                                Traceback (most recent call last)\n\n&lt;ipython-input-53-00ad0ee6a004&gt; in &lt;module&gt;()\n----&gt; 1 after_reshape = temp_array.reshape(7, -1)\n      2 print(after_reshape.shape)\n      3 print(after_reshape)\n\n\nValueError: cannot reshape array of size 12 into shape (7,newaxis)\n\n브로드 캐스팅pandas 튜토리얼12import pandas as pd print(pd.__version__)\n\n1.3.5\n\n12345678temp_dict = &#123;    &#x27;col1&#x27; : [1, 2],     &#x27;col2&#x27; : [3, 4]&#125;df = pd.DataFrame(temp_dict)print(df)print(type(df))\n\n   col1  col2\n0     1     3\n1     2     4\n&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;\n\n구글 드라이브 연동12from google.colab import drive drive.mount(&#x27;/content/drive&#x27;)\n\nMounted at /content/drive\n\n1234567DATA_PATH = &#x27;/content/drive/MyDrive/Colab Notebooks/human_AI/Basic/Chapter 3. pandas/data/&#x27;print(DATA_PATH + &#x27;Lemonade2016.csv&#x27;)lemonade = pd.read_csv(DATA_PATH + &#x27;Lemonade2016.csv&#x27;)# covid_df = pd.read_csv(DATA_PATH + &#x27;owid-covid-data.csv&#x27;)lemonade.info() # str()\n\n/content/drive/MyDrive/Colab Notebooks/human_AI/Basic/Chapter 3. pandas/data/Lemonade2016.csv\n&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;\nRangeIndex: 32 entries, 0 to 31\nData columns (total 7 columns):\n #   Column       Non-Null Count  Dtype  \n---  ------       --------------  -----  \n 0   Date         31 non-null     object \n 1   Location     32 non-null     object \n 2   Lemon        32 non-null     int64  \n 3   Orange       32 non-null     int64  \n 4   Temperature  32 non-null     int64  \n 5   Leaflets     31 non-null     float64\n 6   Price        32 non-null     float64\ndtypes: float64(2), int64(3), object(2)\nmemory usage: 1.9+ KB\n","dateCreated":"2022-06-28T11:31:30+09:00","dateModified":"2022-08-06T22:49:49+09:00","datePublished":"2022-06-28T11:31:30+09:00","description":"공부하자","headline":"day 0628","image":["python.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/28/day0628/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/06/28/day0628/","thumbnailUrl":"python.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"\n\n반복문 복습\nfor loop and while loop\n\n123for i in range(3):  print(&quot;Hello World&quot;)  print(&quot;안녕하세요&quot;)\n\nHello World\n안녕하세요\nHello World\n안녕하세요\nHello World\n안녕하세요\n\n123456for i in range(1000):  print(&quot;No.&quot;, i+1)  if i == 10:    break                  # Hello World, 안녕하세요 가 10번 출력 됨  print(&quot;Hello World&quot;)  print(&quot;안녕하세요&quot;)      # i 값이 11이라서 &quot;No. 11&quot; 까지는 출력 되지만 if문 조건에서 통과 안됨\n\nNo. 1\nHello World\n안녕하세요\nNo. 2\nHello World\n안녕하세요\nNo. 3\nHello World\n안녕하세요\nNo. 4\nHello World\n안녕하세요\nNo. 5\nHello World\n안녕하세요\nNo. 6\nHello World\n안녕하세요\nNo. 7\nHello World\n안녕하세요\nNo. 8\nHello World\n안녕하세요\nNo. 9\nHello World\n안녕하세요\nNo. 10\nHello World\n안녕하세요\nNo. 11\n\n1\n\n\n1234567a = &quot;Kaggle&quot;for i in a:  print(i)  if i == &quot;a&quot;:    break    #print(i)  # 이 위치에 print가 있다면 어떻게 출력될까?\n\nK\na\n\n\n리스트의 값이 존재\n전체 총합 구하기\n\n12345678910numbers = [1, 2, 3, 4, 5]sum = 0for num in numbers:  print(&quot;numbers: &quot;, num)   # num 1 일때 sum = 1,  num 2 일때 sum = 2 + 1 = 3,   num 3 일때 sum = 3 + 3 = 6  sum = sum+num  print(&quot;total:&quot;, sum)print(&quot;----최종 결괏값----&quot;)print(sum)\n\nnumbers:  1\ntotal: 1\nnumbers:  2\ntotal: 3\nnumbers:  3\ntotal: 6\nnumbers:  4\ntotal: 10\nnumbers:  5\ntotal: 15\n----최종 결괏값----\n15\n\n123456789101112131415fruits = [&#x27;apple&#x27;, &#x27;kiwi&#x27;, &#x27;mango&#x27;]newlist = []&#x27;&#x27;&#x27;apple : a가 있나요? 있네요, newlist에 추가하세요.kiwi : a가 있나요? 없네요. 그럼 넘어가요.mango : a가 있나요? 있네요. newlist에 추가하세요.&#x27;&#x27;&#x27;for fruit in fruits:  print(&quot;조건문 밖 : &quot;, fruit)  if &quot;a&quot; in fruit:    print(&quot;조건문 안쪽 : &quot;, fruit)    newlist.append(fruit)print(newlist)\n\n조건문 밖 :  apple\n조건문 안쪽 :  apple\n조건문 밖 :  kiwi\n조건문 밖 :  mango\n조건문 안쪽 :  mango\n[&#39;apple&#39;, &#39;mango&#39;]\n\nWhile Loop\nwhile문 : 분석할 때는 거의 쓸 일이 없음(분석할 때는 거의 틀이 정해져 있음)개발할 때는 많이 씀\n\n123456i = 1while i &lt; 10: #참일때만 반복문 코드가 돌아감  # 코드  print(i)  i += 1          # 1씩 증감  #i -= 1         # 1씩 감소\n\n1\n2\n3\n4\n5\n6\n7\n8\n9\n\n사용자 정의 함수\n내가 필요에 의해 직접 함수를 작성(취업 준비)\n\n123def 함수명(param1, param2):      # 함수 정의  # 코드  return None\n\n\n1234567def add(a = 0, b = 1):  c = a + b  return c  return a + bprint(add(a = 5, b =4))print(add())\n\n9\n1\n\n\n사칙연산 사용자 정의 함수 만들기\n함수 문서화\nprint(함수명.doc)\n키워드 : Docstring\n\n\n\n12345678910def code(a, b, c):  d =  (b - c) * a / 10  return d&#x27;&#x27;&#x27;a = 10회 뽑기에 필요한 다이아b = 확정 뽑기 횟수c = 현재 누적 뽑기 횟수&#x27;&#x27;&#x27;print(&quot;확정 뽑기에 필요한 다이아 수 : &quot;, code(a = 2700, b = 200, c = 40))\n\n확정 뽑기에 필요한 다이아 수 :  43200.0\n\n1234567891011121314151617def subtract(a, b):  &quot;&quot;&quot;a, b를 빼는 함수  Parameters:  a (int): int형 숫자 a가 입력  b (int): int형 숫자 b가 입력  Returns:  int : 반환값    &quot;&quot;&quot;  return a-bprint(subtract(a = 5, b= 10))print(subtract.__doc__)\n\n-5\na, b를 빼는 함수\n\n  Parameters:\n  a (int): int형 숫자 a가 입력\n  \n  b (int): int형 숫자 b가 입력\n\n  Returns:\n    int : 반환값\n\n  \n\n123456789## NumPy- 내장 모듈(=라이브러리=패키지) (X)- 별도 라이브러리 설치```pythonimport numpy as npprint(np.__version__)\n\n1.21.6\n\n12345temp = [1, 2, 3]temp_array = np.array(temp)  # 리스트에서 배열로 변환print(type(temp))print(type(temp_array))\n\n&lt;class &#39;list&#39;&gt;\n&lt;class &#39;numpy.ndarray&#39;&gt;\n\n사칙연산12345678910math_score = [90,85,95]eng_score = [83, 77, 80]# math_score + eng_score              # 단순 리스트 추가math_array = np.array(math_score)eng_array = np.array(eng_score)total = math_array + eng_array        # 리스트 안의 변수 값을 더하는 과정print(total)print(type(total))\n\n[173 162 175]\n&lt;class &#39;numpy.ndarray&#39;&gt;\n\n집계함수123print(np.min(total))    # total 함수의 최솟값print(np.max(total))    # total 함수의 최댓값print(np.sum(total))    # total 함수의 모든 변수를 더한 값\n\n162\n175\n510\n\n차원 확인\nshape 함수 사용\n배열의 차원 확인 필요(함수명.ndim)\n\n12345# 1차원 배열 생상temp_arr = np.array([1, 2, 3])print(temp_arr.shape)     # [1], [2], [3] 이라서 3print(temp_arr.ndim)      # temp_arr 함수의 차원print(temp_arr)\n\n(3,)\n1\n[1 2 3]\n\n1234567# 2차원 배열 생성temp_arr = np.array([[1, 2, 3], [4, 5, 6]])print(temp_arr.shape)   print(temp_arr.ndim)    # temp_arr 함수의 차원print(temp_arr)# [[1, 2, 3], [4, 5, 6]] 2개 라서 2# 그 속에 각각 [1], [2], [3] 3개 라서 3\n\n(2, 3)\n2\n[[1 2 3]\n [4 5 6]]\n\n1234567# 3차원 배열 생성 -&gt; 이미지temp_arr = np.array([[[1, 2, 3], [4, 5, 6]],[[7, 8, 9], [10, 11, 12]]])print(temp_arr.shape)print(temp_arr.ndim)# [[1, 2, 3],[4, 5, 6]]이랑 [[7, 8, 9], [10, 11, 12]]라서 2# 그 속에 [1, 2, 3]이랑 [4, 5, 6] 이라서 2# 그 속에 [1],[2],[3] 이라서 3\n\n(2, 2, 3)\n3\n\n배열 생성의 다양한 방법들\n모두 0으로 채운다.\n\n12import numpy as np print(np.__version__)\n\n1.21.6\n\n12temp_arr = np.zeros((2, 3))temp_arr\n\n\n\n\narray([[0., 0., 0.],\n       [0., 0., 0.]])\n\n\n모두 1로 채운다.\n\n12temp_arr = np.ones((2, 3))temp_arr\n\n\n\n\narray([[1., 1., 1.],\n       [1., 1., 1.]])\n\n\n임의의 상수값으로 채운다.\n\n12temp_arr = np.full((3, 3), 100)temp_arr\n\n\n\n\narray([[100, 100, 100],\n       [100, 100, 100],\n       [100, 100, 100]])\n\n\n최소, 최대 숫자의 범위를 정해두고, 각 구간별로 값을 생성\n\n12temp_arr = np.linspace(5, 10, 10)temp_arr\n\n\n\n\narray([ 5.        ,  5.55555556,  6.11111111,  6.66666667,  7.22222222,\n        7.77777778,  8.33333333,  8.88888889,  9.44444444, 10.        ])\n\n\n반복문 시, 자주 등장하는 배열\n\n12temp_arr = np.arange(1, 11, 1)temp_arr\n\n\n\n\narray([ 1,  2,  3,  4,  5,  6,  7,  8,  9, 10])\n\n난수 생성123from numpy import randomx = random.rand()print(x)\n\n0.11621638529248979\n\n123import numpy x = numpy.random.rand()print(x)\n\n0.3315584451465583\n\n\n랜덤 정수값 추출\n\n12345from numpy import random # x = random.randint(100, size = (5))x = random.randint(100, size = (3, 5))print(x)print(type(x))\n\n[[88  2 19 78 13]\n [92 80 62 22 96]\n [66 71 89 62 76]]\n&lt;class &#39;numpy.ndarray&#39;&gt;\n\n\n랜덤 배열, 실숫값 추출\n\n1234from numpy import random x = random.rand(2, 5)print(x)print(type(x))\n\n[[0.06336531 0.34486775 0.66923826 0.31566607 0.84566463]\n [0.61713876 0.67541796 0.65161201 0.04912466 0.45433901]]\n&lt;class &#39;numpy.ndarray&#39;&gt;\n\nNumPy 사칙 연산123import numpy as nparray_01 = np.array([1, 2, 3])array_02 = np.array([10, 20, 30])\n\n\n123456789101112131415161718192021# 덧셈newArr = np.add(array_01, array_02)print(newArr)# 뺄셈newArr = np.subtract(array_01, array_02)print(newArr)# 곱셈newArr = np.multiply(array_01, array_02)print(newArr)# 나누기newArr = np.divide(array_01, array_02)print(newArr)# 거듭제곱array_01 = np.array([1, 2, 3])array_02 = np.array([2, 4, 2])newArr = np.power(array_01, array_02)print(newArr)\n\n[3 5 5]\n[-1 -1  1]\n[2 6 6]\n[0.5        0.66666667 1.5       ]\n[ 1 16  9]\n\n소숫점 정렬\n소숫점을 정렬하는 다양한 방법\n\n1234567# 소숫점 제거 import numpy as nptemp_arr = np.trunc([-1.23, 1.23])print(temp_arr)temp_arr = np.fix([-1.23, 1.23])print(temp_arr)\n\n[-1.  1.]\n[-1.  1.]\n\n123# 임의의 소숫점 자리에서 반올림temp_arr = np.around([-1.234546123, 1.238791631], 5)print(temp_arr)\n\n[-1.23455  1.23879]\n\n123# 소숫점 모두 내림temp_arr = np.floor([-1.234546123, 1.238791631])print(temp_arr)\n\n[-2.  1.]\n\n123# 소숫점 모두 올림temp_arr = np.ceil([-1.234546123, 1.238791631])print(temp_arr)\n\n[-1.  2.]\n\n조건식\npandas 가공\nnumpy\n조건식\n하나의 조건식 (&#x3D; np.where)\n다중 조건식\n\n\n\n12temp_arr = np.arange(10)temp_arr\n\n\n\n\narray([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])\n\n12# 5보다 작으면 원 값 유지# 5보다 크면 곱하기 10을 해줌\n\n\n12# np.where(조건식, 참일 때, 거짓일 때)np.where(temp_arr &lt; 5, temp_arr, temp_arr * 10)\n\n\n\n\narray([ 0,  1,  2,  3,  4, 50, 60, 70, 80, 90])\n\n1234567temp_arr = np.arange(10)# temp_arrcond_list   = [temp_arr &gt; 5 , temp_arr &lt; 2]choice_list = [temp_arr  * 2, temp_arr + 100]# np.select(조건식 리스트, 결괏값 리스트, default = )np.select(cond_list, choice_list, default = temp_arr)\n\n\n\n\narray([100, 101,   2,   3,   4,   5,  12,  14,  16,  18])\n\nReshape\n배열의 차원 또는 크기를 바꾼다. \n곱셈만 할줄 알면 끝.\n\n1234import numpy as np temp_array = np.ones((3, 4))print(temp_array.shape)print(temp_array)\n\n(3, 4)\n[[1. 1. 1. 1.]\n [1. 1. 1. 1.]\n [1. 1. 1. 1.]]\n\n123after_reshape = temp_array.reshape(2, 2, 5)print(after_reshape.shape)print(after_reshape)\n\n\n---------------------------------------------------------------------------\n\nValueError                                Traceback (most recent call last)\n\n&lt;ipython-input-50-d57dd065a075&gt; in &lt;module&gt;()\n----&gt; 1 after_reshape = temp_array.reshape(2, 2, 5)\n      2 print(after_reshape.shape)\n      3 print(after_reshape)\n\n\nValueError: cannot reshape array of size 12 into shape (2,2,5)\n\n123after_reshape = temp_array.reshape(7, -1)print(after_reshape.shape)print(after_reshape)\n\n\n---------------------------------------------------------------------------\n\nValueError                                Traceback (most recent call last)\n\n&lt;ipython-input-53-00ad0ee6a004&gt; in &lt;module&gt;()\n----&gt; 1 after_reshape = temp_array.reshape(7, -1)\n      2 print(after_reshape.shape)\n      3 print(after_reshape)\n\n\nValueError: cannot reshape array of size 12 into shape (7,newaxis)\n\n브로드 캐스팅pandas 튜토리얼12import pandas as pd print(pd.__version__)\n\n1.3.5\n\n12345678temp_dict = &#123;    &#x27;col1&#x27; : [1, 2],     &#x27;col2&#x27; : [3, 4]&#125;df = pd.DataFrame(temp_dict)print(df)print(type(df))\n\n   col1  col2\n0     1     3\n1     2     4\n&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;\n\n구글 드라이브 연동12from google.colab import drive drive.mount(&#x27;/content/drive&#x27;)\n\nMounted at /content/drive\n\n1234567DATA_PATH = &#x27;/content/drive/MyDrive/Colab Notebooks/human_AI/Basic/Chapter 3. pandas/data/&#x27;print(DATA_PATH + &#x27;Lemonade2016.csv&#x27;)lemonade = pd.read_csv(DATA_PATH + &#x27;Lemonade2016.csv&#x27;)# covid_df = pd.read_csv(DATA_PATH + &#x27;owid-covid-data.csv&#x27;)lemonade.info() # str()\n\n/content/drive/MyDrive/Colab Notebooks/human_AI/Basic/Chapter 3. pandas/data/Lemonade2016.csv\n&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;\nRangeIndex: 32 entries, 0 to 31\nData columns (total 7 columns):\n #   Column       Non-Null Count  Dtype  \n---  ------       --------------  -----  \n 0   Date         31 non-null     object \n 1   Location     32 non-null     object \n 2   Lemon        32 non-null     int64  \n 3   Orange       32 non-null     int64  \n 4   Temperature  32 non-null     int64  \n 5   Leaflets     31 non-null     float64\n 6   Price        32 non-null     float64\ndtypes: float64(2), int64(3), object(2)\nmemory usage: 1.9+ KB\n","dateCreated":"2022-06-28T11:31:30+09:00","dateModified":"2022-08-06T22:49:49+09:00","datePublished":"2022-06-28T11:31:30+09:00","description":"공부하자","headline":"day 0628","image":["python.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/28/day0628/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"https://neewlife.github.io/2022/06/28/day0628/","thumbnailUrl":"python.png"}</script>
     <meta name="description" content="공부하자">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="day 0628">
@@ -36,7 +36,16 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
 
     <!--STYLES END-->
     
@@ -44,10 +53,6 @@
     
 
     
-        
-            
-<link rel="stylesheet" href="/assets/css/gitment.css">
-
         
     
 </head>
@@ -184,7 +189,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="https://github.com/NeewLife?tab=repositories/"
+                            href="https://github.com/"
                             
                                 target="_blank"
                             
@@ -193,6 +198,118 @@
                         >
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="http://stackoverflow.com/users"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Stack Overflow"
+                        >
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://twitter.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Twitter"
+                        >
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://facebook.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Facebook"
+                        >
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://plus.google.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Google +"
+                        >
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google +</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://www.linkedin.com/profile/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="LinkedIn"
+                        >
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/mailto"
+                            
+                            rel="noopener"
+                            title="Mail"
+                        >
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
                     </a>
             </li>
             
@@ -734,16 +851,6 @@ memory usage: 1.9+ KB
         
         
             
-                <li class="post-action">
-                    <a
-                        class="post-action-btn btn btn--default"
-                        href="#gitment"
-                        aria-label="댓글을 남겨주세요"
-                    >
-                        <i class="fa fa-comment"></i>
-                    </a>
-                </li>
-            
         
         <li class="post-action">
             
@@ -758,8 +865,6 @@ memory usage: 1.9+ KB
 
         
         
-            
-                <div id="gitment"></div>
             
         
     </div>
@@ -861,16 +966,6 @@ memory usage: 1.9+ KB
         
         
             
-                <li class="post-action">
-                    <a
-                        class="post-action-btn btn btn--default"
-                        href="#gitment"
-                        aria-label="댓글을 남겨주세요"
-                    >
-                        <i class="fa fa-comment"></i>
-                    </a>
-                </li>
-            
         
         <li class="post-action">
             
@@ -945,23 +1040,17 @@ memory usage: 1.9+ KB
         
             <h4 id="about-card-name">오세영</h4>
         
-            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+            <div id="about-card-bio"><p>author.bio</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>웹 백앤드 지망생</p>
+                <p>author.job</p>
 
             </div>
         
-        
-            <div id="about-card-location">
-                <i class="fa fa-map-marker-alt"></i>
-                <br/>
-                경기 광명시
-            </div>
         
     </div>
 </div>
@@ -971,28 +1060,20 @@ memory usage: 1.9+ KB
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
 
 <!--SCRIPTS END-->
 
 
-    
-        
-<script src="/assets/js/gitment.js"></script>
-
-        <script type="text/javascript">
-          (function() {
-            new Gitment({
-              id: 'https://neewlife.github.io/2022/06/28/day0628/',
-              owner: '',
-              repo: '',
-              oauth: {
-                client_id: '',
-                client_secret: ''
-              }
-            }).render('gitment')
-          })()
-        </script>
     
 
 

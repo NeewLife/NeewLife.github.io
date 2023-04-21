@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n9장ggplot2 강의\n데이터 불러오기\n\n123library(readxl)library(ggplot2)who_disease &lt;- read_xlsx(&quot;data/who_disease.xlsx&quot;)\n\n기본 시각화\n\n1234# x축에 year, y축에 cases 라는 값을 넣겠다.ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point()\n\n\n\n옵션 변화 주기(투명도)\n\n123ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point(alpha = 0.1)  # alpha 는 투명도\n\n\n\n옵션 색상 변화\n\n123ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point(alpha = 0.1, colour = &quot;#A243F5&quot;)  # &quot;#A243F5&quot; 색상으로 변경\n\n\n\ncolour 입력 위치\ngeom_point(colour&#x3D;”red”)       -&gt;  색상명 작성\naes(x, y, colour &#x3D; 컬럼이름)   -&gt;  aes 안에는 컬럼 이름작성\n\n\n\n1str(iris)\n\n123456## &#x27;data.frame&#x27;:\t150 obs. of  5 variables:##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...\n\n12345ggplot(iris, aes(x = Sepal.Length,                 y = Sepal.Width,                 colour = Species,                 size = Petal.Length)) +  geom_point()\n\n\n\n원하는 색상값 참조 사이트\n\nhttps://color.adobe.com/ko/create/color-wheel\n\n\n산점도 : x축 수치형 연속형 데이터, y축 수치형 연속형 데이터\n\n연속형 데이터 : 숫자 같이 연속하는 데이터\n\n이산형 데이터 : 문자 같이 연속하지 않는 데이터\n\n\n123ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point(alpha = 0.1)\n\n\n\n커널 밀도 곡선\n\n12ggplot(data=diamonds, aes(x=carat))+  geom_density()\n\n\n\n상자 그래프\n전체 데이터 기준의 그림\n\n\n\n12ggplot(data=diamonds, aes(x=1, y=price))+  #통상 x값에 1을 부여한다  geom_boxplot()\n\n\n\n범주형 변수 기준의 그림\n\n12ggplot(data=diamonds,aes(x=cut,y=price))+  geom_boxplot()\n\n\n\n선 그래프\n속도에 따른 제동거리의 그래프\n\n\n\n12ggplot(data=cars, aes(x=speed,y=dist))+  geom_line()\n\n\n\n실업자수 변화 그래프\n\n12ggplot(data=economics,aes(x=date,y=unemploy))+  geom_line()\n\n\n\n개인 저축률 변화\n\n12ggplot(data=economics,aes(x=date, y=psavert))+  geom_line()\n\n\n\n두 선 그래프를 연결해서 그리기\n\n123ggplot()+  geom_line(data=economics,aes(x=date,y=uempmed,color=&quot;red&quot;))+  geom_line(data=economics,aes(x=date,y=psavert,color=&quot;blue&quot;))\n\n\n12# 빨간색이 주당평균실업기간# 파란색이 개인저축률\n\n히스토그램\n질병데이터region &#x3D; AMR, year &#x3D; 1980, disease &#x3D; 백일해(pertussis)cases &gt; 0\n\n\n\n12library(dplyr)str(who_disease)\n\n1234567## tibble [43,262 × 6] (S3: tbl_df/tbl/data.frame)##  $ region     : chr [1:43262] &quot;EMR&quot; &quot;EUR&quot; &quot;AFR&quot; &quot;EUR&quot; ...##  $ countryCode: chr [1:43262] &quot;AFG&quot; &quot;ALB&quot; &quot;DZA&quot; &quot;AND&quot; ...##  $ country    : chr [1:43262] &quot;Afghanistan&quot; &quot;Albania&quot; &quot;Algeria&quot; &quot;Andorra&quot; ...##  $ disease    : chr [1:43262] &quot;measles&quot; &quot;measles&quot; &quot;measles&quot; &quot;measles&quot; ...##  $ year       : num [1:43262] 2016 2016 2016 2016 2016 ...##  $ cases      : num [1:43262] 638 17 41 0 53 0 0 2 99 27 ...\n\n12345who_disease %&gt;%   filter(region == &#x27;AMR&#x27;,         year == 1980,         disease == &#x27;pertussis&#x27;,         cases &gt; 0) -&gt; data2\n\ndata2 시각화(histogram)\n\n123ggplot(data2, aes(x = cases)) +  # 빨간색으로 채운다.  geom_histogram(fill = &quot;red&quot;)    # 분포가 어느 지역에 몰려 있는지에 집중\n\n1## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\ndata2 시각화(col)\n\n1234ggplot(data2, aes(x =country, y =cases)) +  geom_col(fill = &quot;blue&quot;) +  # 옵션(가로로 그래프 나타내기)  coord_flip()\n\n\nggplot() 정교하게 그리기\n산점도 그리기\n\n1234ggplot(data = diamonds, aes(x = carat,                             y = price,                             col = cut)) +  geom_point()\n\n\n\n막대그래프에 2개 범주 내용 반영하기\n\n12ggplot(diamonds, aes(x = color, fill = cut)) +  geom_bar()\n\n\n\nposition을 이용한 막대그래프(특정 그래프 모양에만 적용된다)\n\n12ggplot(diamonds, aes(x = color, fill = cut)) +  geom_bar(position=&quot;dodge&quot;)\n\n\n12ggplot(diamonds, aes(x = color, fill = cut)) +  geom_bar(position=&quot;fill&quot;)\n\n\n\n선 그래프에 2개 범주 내용 반영\n데이터 불러오기\n\n12leisure &lt;- read.csv(&quot;data/leisure.csv&quot;)str(leisure)\n\n1234## &#x27;data.frame&#x27;:\t200 obs. of  3 variables:##  $ age    : int  2 2 3 3 4 4 5 5 6 6 ...##  $ sex    : chr  &quot;female&quot; &quot;male&quot; &quot;female&quot; &quot;male&quot; ...##  $ expense: num  25.8 21 30 16.3 25.7 ...\n\n연령별 교양오락지출비 그래프 그리기\n\n12ggplot(data=leisure, aes(x=age, y=expense, col = sex)) +  geom_line(size=1, linetype=2)   #사이즈, 선 타입 조절\n\n\n막대그래프의 순서 변경\nreorder()\n\n1234567mpg1 &lt;- read.csv(&quot;data/mpg1.csv&quot;,                 stringsAsFactors = FALSE)#데이터 가공drv_hwy &lt;- mpg1 %&gt;%   group_by(drv) %&gt;%   summarise(mean_hwy = mean(hwy))\n\n\n1234# 기본 그래프ggplot(data = drv_hwy, aes(x = drv,                            y = mean_hwy)) +  geom_col()\n\n\n1234#오름차순ggplot(data = drv_hwy, aes(x = reorder(drv, mean_hwy),                             y = mean_hwy)) +  geom_col()\n\n\n12345678910111213#내림차순ggplot(data = drv_hwy, aes(x = reorder(drv, -mean_hwy),                            y = mean_hwy)) +  geom_col() +    # 그래프와 축에 이름 붙이기  labs(                title = &quot;그래프 제목을 입력하세요&quot;,    subtitle = &quot;그래프 소제목을 입력하세요&quot;,    x = &quot;x변수명을 입력하세요&quot;,    y = &quot;y변수명을 입력하세요&quot;,    caption = &quot;데이터 출처를 입력하세요&quot;  )\n\n","dateCreated":"2022-06-22T09:30:00+09:00","dateModified":"2022-07-11T00:30:52+09:00","datePublished":"2022-06-22T09:30:00+09:00","description":"ggplot2를 이용한 R 시각화","headline":"9장","image":["R_logo.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/22/day0622_1/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/NeewLife?tab=repositories/"],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/06/22/day0622_1/","thumbnailUrl":"R_logo.jpg"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"articleBody":"\n\n9장ggplot2 강의\n데이터 불러오기\n\n123library(readxl)library(ggplot2)who_disease &lt;- read_xlsx(&quot;data/who_disease.xlsx&quot;)\n\n기본 시각화\n\n1234# x축에 year, y축에 cases 라는 값을 넣겠다.ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point()\n\n\n\n옵션 변화 주기(투명도)\n\n123ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point(alpha = 0.1)  # alpha 는 투명도\n\n\n\n옵션 색상 변화\n\n123ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point(alpha = 0.1, colour = &quot;#A243F5&quot;)  # &quot;#A243F5&quot; 색상으로 변경\n\n\n\ncolour 입력 위치\ngeom_point(colour&#x3D;”red”)       -&gt;  색상명 작성\naes(x, y, colour &#x3D; 컬럼이름)   -&gt;  aes 안에는 컬럼 이름작성\n\n\n\n1str(iris)\n\n123456## &#x27;data.frame&#x27;:\t150 obs. of  5 variables:##  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...##  $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...##  $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...##  $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...##  $ Species     : Factor w/ 3 levels &quot;setosa&quot;,&quot;versicolor&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...\n\n12345ggplot(iris, aes(x = Sepal.Length,                 y = Sepal.Width,                 colour = Species,                 size = Petal.Length)) +  geom_point()\n\n\n\n원하는 색상값 참조 사이트\n\nhttps://color.adobe.com/ko/create/color-wheel\n\n\n산점도 : x축 수치형 연속형 데이터, y축 수치형 연속형 데이터\n\n연속형 데이터 : 숫자 같이 연속하는 데이터\n\n이산형 데이터 : 문자 같이 연속하지 않는 데이터\n\n\n123ggplot(who_disease, aes(x = year, y = cases)) +  #그래프 종류  geom_point(alpha = 0.1)\n\n\n\n커널 밀도 곡선\n\n12ggplot(data=diamonds, aes(x=carat))+  geom_density()\n\n\n\n상자 그래프\n전체 데이터 기준의 그림\n\n\n\n12ggplot(data=diamonds, aes(x=1, y=price))+  #통상 x값에 1을 부여한다  geom_boxplot()\n\n\n\n범주형 변수 기준의 그림\n\n12ggplot(data=diamonds,aes(x=cut,y=price))+  geom_boxplot()\n\n\n\n선 그래프\n속도에 따른 제동거리의 그래프\n\n\n\n12ggplot(data=cars, aes(x=speed,y=dist))+  geom_line()\n\n\n\n실업자수 변화 그래프\n\n12ggplot(data=economics,aes(x=date,y=unemploy))+  geom_line()\n\n\n\n개인 저축률 변화\n\n12ggplot(data=economics,aes(x=date, y=psavert))+  geom_line()\n\n\n\n두 선 그래프를 연결해서 그리기\n\n123ggplot()+  geom_line(data=economics,aes(x=date,y=uempmed,color=&quot;red&quot;))+  geom_line(data=economics,aes(x=date,y=psavert,color=&quot;blue&quot;))\n\n\n12# 빨간색이 주당평균실업기간# 파란색이 개인저축률\n\n히스토그램\n질병데이터region &#x3D; AMR, year &#x3D; 1980, disease &#x3D; 백일해(pertussis)cases &gt; 0\n\n\n\n12library(dplyr)str(who_disease)\n\n1234567## tibble [43,262 × 6] (S3: tbl_df/tbl/data.frame)##  $ region     : chr [1:43262] &quot;EMR&quot; &quot;EUR&quot; &quot;AFR&quot; &quot;EUR&quot; ...##  $ countryCode: chr [1:43262] &quot;AFG&quot; &quot;ALB&quot; &quot;DZA&quot; &quot;AND&quot; ...##  $ country    : chr [1:43262] &quot;Afghanistan&quot; &quot;Albania&quot; &quot;Algeria&quot; &quot;Andorra&quot; ...##  $ disease    : chr [1:43262] &quot;measles&quot; &quot;measles&quot; &quot;measles&quot; &quot;measles&quot; ...##  $ year       : num [1:43262] 2016 2016 2016 2016 2016 ...##  $ cases      : num [1:43262] 638 17 41 0 53 0 0 2 99 27 ...\n\n12345who_disease %&gt;%   filter(region == &#x27;AMR&#x27;,         year == 1980,         disease == &#x27;pertussis&#x27;,         cases &gt; 0) -&gt; data2\n\ndata2 시각화(histogram)\n\n123ggplot(data2, aes(x = cases)) +  # 빨간색으로 채운다.  geom_histogram(fill = &quot;red&quot;)    # 분포가 어느 지역에 몰려 있는지에 집중\n\n1## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\ndata2 시각화(col)\n\n1234ggplot(data2, aes(x =country, y =cases)) +  geom_col(fill = &quot;blue&quot;) +  # 옵션(가로로 그래프 나타내기)  coord_flip()\n\n\nggplot() 정교하게 그리기\n산점도 그리기\n\n1234ggplot(data = diamonds, aes(x = carat,                             y = price,                             col = cut)) +  geom_point()\n\n\n\n막대그래프에 2개 범주 내용 반영하기\n\n12ggplot(diamonds, aes(x = color, fill = cut)) +  geom_bar()\n\n\n\nposition을 이용한 막대그래프(특정 그래프 모양에만 적용된다)\n\n12ggplot(diamonds, aes(x = color, fill = cut)) +  geom_bar(position=&quot;dodge&quot;)\n\n\n12ggplot(diamonds, aes(x = color, fill = cut)) +  geom_bar(position=&quot;fill&quot;)\n\n\n\n선 그래프에 2개 범주 내용 반영\n데이터 불러오기\n\n12leisure &lt;- read.csv(&quot;data/leisure.csv&quot;)str(leisure)\n\n1234## &#x27;data.frame&#x27;:\t200 obs. of  3 variables:##  $ age    : int  2 2 3 3 4 4 5 5 6 6 ...##  $ sex    : chr  &quot;female&quot; &quot;male&quot; &quot;female&quot; &quot;male&quot; ...##  $ expense: num  25.8 21 30 16.3 25.7 ...\n\n연령별 교양오락지출비 그래프 그리기\n\n12ggplot(data=leisure, aes(x=age, y=expense, col = sex)) +  geom_line(size=1, linetype=2)   #사이즈, 선 타입 조절\n\n\n막대그래프의 순서 변경\nreorder()\n\n1234567mpg1 &lt;- read.csv(&quot;data/mpg1.csv&quot;,                 stringsAsFactors = FALSE)#데이터 가공drv_hwy &lt;- mpg1 %&gt;%   group_by(drv) %&gt;%   summarise(mean_hwy = mean(hwy))\n\n\n1234# 기본 그래프ggplot(data = drv_hwy, aes(x = drv,                            y = mean_hwy)) +  geom_col()\n\n\n1234#오름차순ggplot(data = drv_hwy, aes(x = reorder(drv, mean_hwy),                             y = mean_hwy)) +  geom_col()\n\n\n12345678910111213#내림차순ggplot(data = drv_hwy, aes(x = reorder(drv, -mean_hwy),                            y = mean_hwy)) +  geom_col() +    # 그래프와 축에 이름 붙이기  labs(                title = &quot;그래프 제목을 입력하세요&quot;,    subtitle = &quot;그래프 소제목을 입력하세요&quot;,    x = &quot;x변수명을 입력하세요&quot;,    y = &quot;y변수명을 입력하세요&quot;,    caption = &quot;데이터 출처를 입력하세요&quot;  )\n\n","dateCreated":"2022-06-22T09:30:00+09:00","dateModified":"2022-07-11T00:30:52+09:00","datePublished":"2022-06-22T09:30:00+09:00","description":"ggplot2를 이용한 R 시각화","headline":"9장","image":["R_logo.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/22/day0622_1/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":["https://github.com/","http://stackoverflow.com/users","https://twitter.com/","https://facebook.com/","https://plus.google.com/","https://www.linkedin.com/profile/","mailto"]},"url":"https://neewlife.github.io/2022/06/22/day0622_1/","thumbnailUrl":"R_logo.jpg"}</script>
     <meta name="description" content="ggplot2를 이용한 R 시각화">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="9장">
@@ -59,7 +59,16 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
 
     <!--STYLES END-->
     
@@ -67,10 +76,6 @@
     
 
     
-        
-            
-<link rel="stylesheet" href="/assets/css/gitment.css">
-
         
     
 </head>
@@ -207,7 +212,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="https://github.com/NeewLife?tab=repositories/"
+                            href="https://github.com/"
                             
                                 target="_blank"
                             
@@ -216,6 +221,118 @@
                         >
                         <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
                         <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="http://stackoverflow.com/users"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Stack Overflow"
+                        >
+                        <i class="sidebar-button-icon fab fa-stack-overflow" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Stack Overflow</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://twitter.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Twitter"
+                        >
+                        <i class="sidebar-button-icon fab fa-twitter" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Twitter</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://facebook.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Facebook"
+                        >
+                        <i class="sidebar-button-icon fab fa-facebook" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Facebook</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://plus.google.com/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="Google +"
+                        >
+                        <i class="sidebar-button-icon fab fa-google-plus" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Google +</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://www.linkedin.com/profile/"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="LinkedIn"
+                        >
+                        <i class="sidebar-button-icon fab fa-linkedin" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">LinkedIn</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/mailto"
+                            
+                            rel="noopener"
+                            title="Mail"
+                        >
+                        <i class="sidebar-button-icon fa fa-envelope" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Mail</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/atom.xml"
+                            
+                            rel="noopener"
+                            title="RSS"
+                        >
+                        <i class="sidebar-button-icon fa fa-rss" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">RSS</span>
                     </a>
             </li>
             
@@ -531,16 +648,6 @@
         
         
             
-                <li class="post-action">
-                    <a
-                        class="post-action-btn btn btn--default"
-                        href="#gitment"
-                        aria-label="댓글을 남겨주세요"
-                    >
-                        <i class="fa fa-comment"></i>
-                    </a>
-                </li>
-            
         
         <li class="post-action">
             
@@ -555,8 +662,6 @@
 
         
         
-            
-                <div id="gitment"></div>
             
         
     </div>
@@ -658,16 +763,6 @@
         
         
             
-                <li class="post-action">
-                    <a
-                        class="post-action-btn btn btn--default"
-                        href="#gitment"
-                        aria-label="댓글을 남겨주세요"
-                    >
-                        <i class="fa fa-comment"></i>
-                    </a>
-                </li>
-            
         
         <li class="post-action">
             
@@ -742,23 +837,17 @@
         
             <h4 id="about-card-name">오세영</h4>
         
-            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+            <div id="about-card-bio"><p>author.bio</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>웹 백앤드 지망생</p>
+                <p>author.job</p>
 
             </div>
         
-        
-            <div id="about-card-location">
-                <i class="fa fa-map-marker-alt"></i>
-                <br/>
-                경기 광명시
-            </div>
         
     </div>
 </div>
@@ -768,28 +857,20 @@
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
 
 <!--SCRIPTS END-->
 
 
-    
-        
-<script src="/assets/js/gitment.js"></script>
-
-        <script type="text/javascript">
-          (function() {
-            new Gitment({
-              id: 'https://neewlife.github.io/2022/06/22/day0622_1/',
-              owner: '',
-              repo: '',
-              oauth: {
-                client_id: '',
-                client_secret: ''
-              }
-            }).render('gitment')
-          })()
-        </script>
     
 
 

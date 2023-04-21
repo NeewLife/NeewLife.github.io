@@ -59,8 +59,37 @@ sidebar:
     author_links:
         github:
             title: global.github
-            url: https://github.com/NeewLife?tab=repositories/
+            url: https://github.com/
             icon: fab fa-github
+        stack_overflow:
+            title: global.stack_overflow
+            url: http://stackoverflow.com/users
+            icon: fab fa-stack-overflow
+        twitter:
+            title: global.twitter
+            url: https://twitter.com/
+            icon: fab fa-twitter
+        facebook:
+            title: global.facebook
+            url: https://facebook.com/
+            icon: fab fa-facebook
+        google_plus:
+            title: global.google_plus
+            url: https://plus.google.com/
+            icon: fab fa-google-plus
+        linked_in:
+            title: global.linkedin
+            url: https://www.linkedin.com/profile/
+            icon: fab fa-linkedin
+        mail:
+            title: global.mail
+            url: mailto
+            icon: fa fa-envelope
+    rss:
+        rss:
+            title: global.rss
+            url: /atom.xml
+            icon: fa fa-rss
 
 
 # --------------------
@@ -88,8 +117,8 @@ header:
 
 # Your biography and your job is editable in each languages files in `languages` folder
 author:
-    email: dhtpdud2009@gmail.com
-    location: 경기 광명시
+    email:
+    location:
     # Your profile picture located in folder `source/_images/` (development)
     # or in `source/assets/images/` (production)
     # or you can use an external url
@@ -163,7 +192,7 @@ disqus_shortname:
 # Read https://github.com/imsun/gitment#get-started to setup Gitment
 gitment:
     # Switch
-    enable: true
+    enable: false
     # Your Github ID (Github username):
     github_id:
     # The repo to store comments:
