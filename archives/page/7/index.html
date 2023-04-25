@@ -183,6 +183,269 @@
     <section class="postShorten-group main-content-wrap">
     
     
+    <article class="postShorten postShorten--thumbnailimg-bottom">
+        <div class="postShorten-wrap">
+            
+            <div class="postShorten-header">
+                <h1 class="postShorten-title">
+                    
+                        <a
+                            class="link-unstyled"
+                            href="/2022/06/17/0617%20f76ecd14aebf4b66a1bf966d7061b068/"
+                            aria-label=": 2022-06-17 메모"
+                        >
+                            2022-06-17 메모
+                        </a>
+                    
+                </h1>
+                <div class="postShorten-meta">
+    <time datetime="2022-06-17T09:00:00+09:00">
+	
+		    2022/06/17
+    	
+    </time>
+    
+</div>
+
+            </div>
+            
+                <div class="postShorten-content">
+                    <figure class="highlight plaintext"><figcaption><span>setup, include</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">knitr::opts_chunk$set(echo = TRUE)</span><br></pre></td></tr></table></figure>
+
+<h1 id="0617"><a href="#0617" class="headerlink" title="0617"></a>0617</h1><h1 id="0617-1"><a href="#0617-1" class="headerlink" title="0617"></a>0617</h1><p>블로그 만들기</p>
+<ul>
+<li>티스토리 블로그 &#x2F; 네이버 블로그 &#x2F; medium ← 개발</li>
+<li>깃허브 블로그</li>
+</ul>
+<p>알아야 할 것 → hugo, hexo, jekyll, html, css, git &amp; github, 터미널 명령어, 마크다운</p>
+<p>IT&#x2F;기획자 (제안서) →→ <strong>티스토리 블로그</strong></p>
+<p>개발자(코딩) →→ <strong>깃허브 블로그</strong></p>
+<h1 id="Hexo-설치"><a href="#Hexo-설치" class="headerlink" title="Hexo 설치"></a>Hexo 설치</h1><p>nodejs 홈페이지에서</p>
+<p><img src="/images/0617/Untitled.png" alt="Untitled"></p>
+<p>왼쪽꺼 다운로드</p>
+<p>설치시 Add to PATH 선택 후 다운</p>
+<p><img src="/images/0617/Untitled%201.png" alt="Untitled"></p>
+<p><img src="/images/0617/Untitled%202.png" alt="Untitled"></p>
+<ul>
+<li>Node 뜨면 아무키나 누르고 powershell 진입</li>
+<li>설치 완료 후 cmd 에서 node -v 입력</li>
+</ul>
+<p><img src="/images/0617/Untitled%203.png" alt="Untitled"></p>
+<ul>
+<li>npm install -g hexo-cli 입력 후 엔터</li>
+</ul>
+<p><img src="/images/0617/Untitled%204.png" alt="Untitled"></p>
+<hr>
+<h1 id="블로그-만들기"><a href="#블로그-만들기" class="headerlink" title="블로그 만들기"></a>블로그 만들기</h1><ul>
+<li>바탕화면에서 git bash 후 hexo init blog 입력</li>
+</ul>
+<p><img src="/images/0617/Untitled%205.png" alt="Untitled"></p>
+<ul>
+<li>cd blog —&gt; ls 차례대로 입력</li>
+</ul>
+<p><img src="/images/0617/Untitled%206.png" alt="Untitled"></p>
+<ul>
+<li>github 에서 0616에서 배웠던 업로드 한다. (git add . 로 모든 파일 업로드)</li>
+<li>바탕화면에 blog 폴더 우클릭 후 PyCharm 으로 열기</li>
+</ul>
+<p><img src="/images/0617/Untitled%207.png" alt="Untitled"></p>
+<ul>
+<li>터미널 열고</li>
+</ul>
+<p><img src="/images/0617/Untitled%208.png" alt="Untitled"></p>
+<ul>
+<li>npm install</li>
+<li>npm install hexo-server –save</li>
+<li>npm install hexo-deployer-git –save 차례대로 입력</li>
+<li>hexo server 입력</li>
+</ul>
+<p><img src="/images/0617/Untitled%209.png" alt="Untitled"></p>
+<ul>
+<li>하이퍼링크 클릭하면 블로그 완성</li>
+</ul>
+<hr>
+<h1 id="블로그-배포하기"><a href="#블로그-배포하기" class="headerlink" title="블로그 배포하기"></a>블로그 배포하기</h1><ul>
+<li>github 들어가서 “본인닉네임.github.io” 로 만들기</li>
+<li>hexo 들어가서</li>
+</ul>
+<p><img src="/images/0617/Untitled%2010.png" alt="Untitled"></p>
+<p>저렇게 쓰기(NeewLife 자리에 본인 닉네임)</p>
+<ul>
+<li>맨 밑에 내려와서</li>
+</ul>
+<p><img src="/images/0617/Untitled%2011.png" alt="Untitled"></p>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/%EB%B3%B8%EC%9D%B8%EB%8B%89%EB%84%A4%EC%9E%84/%EB%B3%B8%EC%9D%B8%EB%8B%89%EB%84%A4%EC%9E%84.github.io.git">https://github.com/본인닉네임/본인닉네임.github.io.git</a></strong> 임</p>
+<ul>
+<li>다시 깃배쉬 밑에 “hexo generate, hexo deploy” 입력</li>
+</ul>
+<p><img src="/images/0617/Untitled%2012.png" alt="Untitled"></p>
+<p><img src="/images/0617/Untitled%2013.png" alt="Untitled"></p>
+<ul>
+<li>주소창에 “본인닉네임.github.io” 검색하면 Hexo 블로그 배포완료된걸 확인</li>
+</ul>
+<p><img src="/images/0617/Untitled%2014.png" alt="Untitled"></p>
+<ul>
+<li><p>다 됐으면 git add . 로 업로드</p>
+</li>
+<li><p>주의사항</p>
+</li>
+</ul>
+<p>중간에 <em><strong># Site</strong></em> 부분만 수정가능</p>
+<p><img src="/images/0617/Untitled%2015.png" alt="Untitled"></p>
+<hr>
+<ul>
+<li>rtools42 다운받기</li>
+</ul>
+<p><img src="/images/0617/Untitled%2016.png" alt="Untitled"></p>
+<ul>
+<li>R Studio 들어가서 설정</li>
+</ul>
+<p><img src="/images/0617/Untitled%2017.png" alt="Untitled"></p>
+<ul>
+<li>Soft-wrap R source files 체크</li>
+</ul>
+<p><img src="/images/0617/Untitled%2018.png" alt="Untitled"></p>
+<ul>
+<li>Default text encoding UTF-8 로 변경</li>
+<li>Apperarance에서 Pastel On Dark로 설정</li>
+</ul>
+<p><img src="/images/0617/Untitled%2019.png" alt="Untitled"></p>
+<ul>
+<li>github에서 R_lecture 새로 만들기(README 체크 하기)</li>
+<li>바탕화면에서 git bash로 R_lecture 불러오기(주소 복사 후 git clone)</li>
+<li>R Studio에서</li>
+</ul>
+<p><img src="/images/0617/Untitled%2020.png" alt="Untitled"></p>
+<p><img src="/images/0617/Untitled%2021.png" alt="Untitled"></p>
+<ul>
+<li>만들고 data, docs, source 폴더 만들기</li>
+</ul>
+<p><img src="/images/0617/Untitled%2022.png" alt="Untitled"></p>
+<ul>
+<li>source 폴더로 들어가서 경로로 설정해주기</li>
+</ul>
+<p><img src="/images/0617/Untitled%2023.png" alt="Untitled"></p>
+<ul>
+<li>새 스크립트 만들기</li>
+</ul>
+<p><img src="/images/0617/Untitled%2024.png" alt="Untitled"></p>
+<ul>
+<li>day01로 저장해보면 source 폴더안에 저장이 된다</li>
+</ul>
+<p><img src="/images/0617/Untitled%2025.png" alt="Untitled"></p>
+<hr>
+<ul>
+<li>day01 폴더를 day0617로 변경한 뒤</li>
+</ul>
+<p><img src="/images/0617/Untitled%2026.png" alt="Untitled"></p>
+<p>입력 후 ctrl + enter 누른다.</p>
+<p><img src="/images/0617/Untitled%2027.png" alt="Untitled"></p>
+<ul>
+<li>이 창이 뜬다면 성공</li>
+<li>library(ggplot2) 입력 후 ctrl + enter 누르기</li>
+</ul>
+<p><img src="/images/0617/Untitled%2028.png" alt="Untitled"></p>
+<p>—&gt; ggplot2 패키지 내의 함수들을 사용하겠다는 명령어이다.</p>
+<h1 id="함수-공부방법"><a href="#함수-공부방법" class="headerlink" title="함수 공부방법"></a>함수 공부방법</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://cran.r-project.org/">https://cran.r-project.org/</a>에서 ggplot2 package 설명서 찾아가서</li>
+</ul>
+<p>geom_point 함수 example에서 싹다 드래그</p>
+<p><img src="/images/0617/Untitled%2029.png" alt="Untitled"></p>
+<ul>
+<li>R Studio 에 붙여넣기</li>
+</ul>
+<p><img src="/images/0617/Untitled%2030.png" alt="Untitled"></p>
+<ul>
+<li>ctrl + enter 로 하나씩 실행해보면서 익혀보기</li>
+<li>aes가 뭔데? 싶으면</li>
+</ul>
+<p><img src="/images/0617/Untitled%2031.png" alt="Untitled"></p>
+<ul>
+<li>저기서 aes 클릭해서</li>
+</ul>
+<p><img src="/images/0617/Untitled%2032.png" alt="Untitled"></p>
+<ul>
+<li>또 공부</li>
+<li>영어 모르겠으면 파파고에 복붙</li>
+<li>하다 모르겠다?</li>
+</ul>
+<p><img src="/images/0617/Untitled%2033.png" alt="Untitled"></p>
+<ul>
+<li><p>Cheat Sheets 활용</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html">http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html</a></p>
+<pre><code>===&gt;조금 더 나은 표
+</code></pre>
+</li>
+</ul>
+<hr>
+<p><img src="/images/0617/Untitled%2034.png" alt="Untitled"></p>
+<ul>
+<li>함수의 분포도</li>
+</ul>
+<p><img src="/images/0617/Untitled%2035.png" alt="Untitled"></p>
+<ul>
+<li>함수의 그래프 형태(다음과 같이 나온다)</li>
+</ul>
+<p><img src="/images/0617/Untitled%2036.png" alt="Untitled"></p>
+<hr>
+<ul>
+<li>R Markdown 클릭</li>
+</ul>
+<p><img src="/images/0617/Untitled%2037.png" alt="Untitled"></p>
+<ul>
+<li>Document로 만들기</li>
+</ul>
+<p><img src="/images/0617/Untitled%2038.png" alt="Untitled"></p>
+<ul>
+<li>초록색 C 아이콘 클릭 후 R 클릭</li>
+</ul>
+<p><img src="/images/0617/Untitled%2039.png" alt="Untitled"></p>
+<ul>
+<li>##R Markdown 밑으로 지우고</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## ggplot2 시각화</span></span><br><span class="line"><span class="operator">-</span> 다음과 같이 시각화를 작성한다.</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;</span><span class="string">&#x27;&#123;r&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">library(ggplot2)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">ggplot(data = iris, aes(x = Sepal.Length,</span></span><br><span class="line"><span class="string">y = Sepal.Width)) +</span></span><br><span class="line"><span class="string">geom_point()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#x27;</span><span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>입력한 후 맨 위에 <strong>output</strong> 부분을 다음과 같이 변경한다.(shift + enter 로 줄바꿈)</p>
+<p>  <img src="/images/0617/Untitled%2040.png" alt="Untitled"></p>
+</li>
+<li><p>그 후에 저장</p>
+</li>
+<li><p>바탕화면의 R_lecture\source 안에 “day0617” Markdown 원본파일을</p>
+</li>
+<li><p>blog\source 에 복붙한다.</p>
+</li>
+</ul>
+<p><img src="/images/0617/Untitled%2041.png" alt="Untitled"></p>
+<ul>
+<li>blog 폴더를 PyCharm 으로 열어서 hexo server 하면 업로드 끝</li>
+</ul>
+<p><img src="/images/0617/Untitled%2042.png" alt="Untitled"></p>
+
+                    
+                        
+
+
+                    
+                    
+                        <p>
+                            <a
+                                href="/2022/06/17/0617%20f76ecd14aebf4b66a1bf966d7061b068/#post-footer"
+                                class="postShorten-excerpt_link link"
+                                aria-label=""
+                            >
+                                댓글 공유
+                            </a>
+                        </p>
+                    
+                </div>
+            
+        </div>
+        
+    </article>
+    
+    
     <article class="postShorten postShorten--thumbnailimg-left">
         <div class="postShorten-wrap">
             
