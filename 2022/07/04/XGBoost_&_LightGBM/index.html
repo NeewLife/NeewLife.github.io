@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\nXGBoost &amp; LightGBM (2016 ~ 2017)\n전통적인 머신러닝 알고리즘의 융합\n선형회귀 릿지 라쏘, 과적합 방지 위한 규제\n결정 트리의 핵심적인 알고리즘\n경사 하강법\n부스팅 기법\n\n\n문제점 : 파라미터의 개수가 너무 많음\n근데 왜 많이 쓰느냐\n모델 학습 속도\n성능\n가장 좋은 모델이란, 학습속도 + 성능 (지금까지 나온 알고리즘 보다)이 좋은 것\n\n\n개발자로 성공하고 싶다?\nPython으로 시작 하지만\nJAVA, C, C++ 을 배워야 함\n이 알고리즘들도 C, C++ 로 만들었음\n\n\n큰 회사들의 개발\n\n우리가 자체적으로 배포를 해보자 –&gt; Python Wrapper API\n\n\n\n파이썬 머신러닝 &#x3D; Scikit-Learn 이 돼버림 –&gt; Scikit-Learn에서 쉽게 쓸 수 있도록 개발하자\n\n\n\n\n시장성은 Scikit-Learn 이 지배\n방식구분을 잘 해야됨\n왜? 방식마다 지원하거나 지원 안하는 코드가 다 다름\n\n\n\nPython Wrapper 방식\nX_train, y_train\n각 모듈에 맞도록 행렬을 재변환 해야 함.\n\n1234567891011121314151617181920import xgboost as xgb from sklearn.model_selection import train_test_splitimport seaborn as sns # 데이터 분리titanic = sns.load_dataset(&#x27;titanic&#x27;)titanic.info()# X, 독립변수, y 종속변수X = titanic[[&#x27;pclass&#x27;, &#x27;parch&#x27;, &#x27;fare&#x27;]]y = titanic[&#x27;survived&#x27;]# 훈련데이터, 테스트 데이터 분리X_train, X_test, y_train, y_test = train_test_split(X,                                                     y,                                                     stratify = y,                                                     test_size = 0.3,                                                     random_state=42)X_train.shape, X_test.shape, y_train.shape, y_test.shape\n\n&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;\nRangeIndex: 891 entries, 0 to 890\nData columns (total 15 columns):\n #   Column       Non-Null Count  Dtype   \n---  ------       --------------  -----   \n 0   survived     891 non-null    int64   \n 1   pclass       891 non-null    int64   \n 2   sex          891 non-null    object  \n 3   age          714 non-null    float64 \n 4   sibsp        891 non-null    int64   \n 5   parch        891 non-null    int64   \n 6   fare         891 non-null    float64 \n 7   embarked     889 non-null    object  \n 8   class        891 non-null    category\n 9   who          891 non-null    object  \n 10  adult_male   891 non-null    bool    \n 11  deck         203 non-null    category\n 12  embark_town  889 non-null    object  \n 13  alive        891 non-null    object  \n 14  alone        891 non-null    bool    \ndtypes: bool(2), category(2), float64(2), int64(4), object(5)\nmemory usage: 80.7+ KB\n\n\n\n\n\n((623, 3), (268, 3), (623,), (268,))\n\n\n여기가 핵심\n\n12345dtrain = xgb.DMatrix(data = X_train, label = y_train)dtest = xgb.DMatrix(data = X_test, label = y_test)# 이 코드 형태를 보면 &#x27;Python Wrapper API 형태로 코드를 짰구나.&#x27; 하고 알아야 한다.print(dtrain)\n\n&lt;xgboost.core.DMatrix object at 0x7f3dfa354610&gt;\n\n\n머신러닝 코드\n\n123456789101112131415# from sklearn.tree import Class~~~~ 코드가 없이 바로 xgb.train 으로 간다params = &#123;    &#x27;max_depth&#x27; : 3,    &#x27;n_estimators&#x27; : 100,    &#x27;eta&#x27; : 0.1,    &#x27;objective&#x27; : &#x27;binary:logistic&#x27;&#125;num_rounds = 400   # 내가 얘를 400번 돌리겠다w_list = [(dtrain, &#x27;train&#x27;), (dtest, &#x27;test&#x27;)]xgb_ml = xgb.train(params = params,                    dtrain = dtrain,                    num_boost_round = 400,                   early_stopping_rounds = 100,    # 의미 없이 돌리지말고 100번만 돌리겠다                   evals = w_list)  # dtrain = X_train 쓰면 에러난다. 변환을 해줘야 됨\n\n\n1234567# 평가from sklearn.metrics import accuracy_scorepred_probs = xgb_ml.predict(dtest)y_pred = [1 if x &gt; 0.5 else 0 for x in pred_probs]# 예측 라벨과 실제 라벨 사이의 정확도 측정accuracy_score(y_pred, y_test)\n\n\n\n\n0.6865671641791045\n\nScikit-Learn API 방식1234567891011121314151617181920from sklearn.tree import DecisionTreeClassifierfrom xgboost import XGBClassifier # &lt;--- 이 코드가 보이면 Scikit-Learn API 방식을 사용했다# dt = DecisionTreeClassifier()xgb_model = XGBClassifier(objective = &#x27;binary:logistic&#x27;,                           n_estimators=100,                           max_depth=3,                           learning_rate = 0.1,                           num_rounds = 400,                          random_state=42)w_list = [(X_train, y_train), (X_test, y_test)]xgb_model.fit(X_train, y_train, eval_set = w_list, eval_metric=&#x27;error&#x27;, verbose=True)y_probas = xgb_model.predict_proba(X_test)y_pred = [1 if x &gt; 0.5 else 0 for x in pred_probs]# 예측 라벨과 실제 라벨 사이의 정확도 측정accuracy_score(y_pred, y_test)\n\nLightGBM Python Wrapper 방식1234567891011121314151617181920212223242526272829303132333435import lightgbm as lgb from sklearn.model_selection import train_test_split from sklearn.metrics import accuracy_scoreimport seaborn as sns # tips 데이터셋 titanic = sns.load_dataset(&#x27;titanic&#x27;)X = titanic[[&#x27;pclass&#x27;, &#x27;parch&#x27;, &#x27;fare&#x27;]]y = titanic[&#x27;survived&#x27;]# 훈련데이터, 테스트 데이터 분리X_train, X_test, y_train, y_test = train_test_split(X, y, stratify = y, test_size = 0.3, random_state=42)# XGBoost 코드와 유사하다. dtrain = lgb.Dataset(data = X_train, label = y_train)dtest = lgb.Dataset(data = X_test, label = y_test)params = &#123;&#x27;max_depth&#x27;:3,          &#x27;n_estimators&#x27;:100,          &#x27;learning_rate&#x27;: 0.1,          &#x27;objective&#x27;:&#x27;binary&#x27;,          &#x27;metric&#x27; : &#x27;binary_error&#x27;,           &#x27;num_boost_round&#x27; : 400,           &#x27;verbose&#x27; : 1&#125; w_list = [dtrain, dtest]lgb_ml = lgb.train(params=params, train_set = dtrain,\\                  early_stopping_rounds=100, valid_sets= w_list)pred_probs = lgb_ml.predict(X_test)y_pred=[1 if x &gt; 0.5 else 0 for x in pred_probs]# 예측 라벨과 실제 라벨 사이의 정확도 측정accuracy_score(y_pred, y_test)\n\nLightGBM Scikit-Learn API 방식12345678910111213141516171819202122from lightgbm import LGBMClassifierfrom sklearn.metrics import accuracy_score# model w_list = [dtrain, dtest]model = LGBMClassifier(objective = &#x27;binary&#x27;,                        metric = &#x27;binary_error&#x27;,                       n_estimators=100,                        learning_rate=0.1,                        max_depth=3,                        num_boost_round = 400,                       random_state = 32)model.fit(X_train,           y_train,           eval_set = [(X_train, y_train), (X_test, y_test)],           verbose=1,          early_stopping_rounds = 100)y_probas = model.predict_proba(X_test) y_pred=[1 if x &gt; 0.5 else 0 for x in y_probas[:, 1]] # 예측 라벨(0과 1로 예측)# 예측 라벨과 실제 라벨 사이의 정확도 측정accuracy_score(y_pred, y_test)","dateCreated":"2022-07-04T12:50:55+09:00","dateModified":"2022-08-06T22:02:51+09:00","datePublished":"2022-07-04T12:50:55+09:00","description":"XGBoost &amp; LightGBM 방식 구별","headline":"XGBoost & LightGBM (2016 ~ 2017)","image":["image.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/07/04/XGBoost_&_LightGBM/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/07/04/XGBoost_&_LightGBM/","thumbnailUrl":"image.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\nXGBoost &amp; LightGBM (2016 ~ 2017)\n전통적인 머신러닝 알고리즘의 융합\n선형회귀 릿지 라쏘, 과적합 방지 위한 규제\n결정 트리의 핵심적인 알고리즘\n경사 하강법\n부스팅 기법\n\n\n문제점 : 파라미터의 개수가 너무 많음\n근데 왜 많이 쓰느냐\n모델 학습 속도\n성능\n가장 좋은 모델이란, 학습속도 + 성능 (지금까지 나온 알고리즘 보다)이 좋은 것\n\n\n개발자로 성공하고 싶다?\nPython으로 시작 하지만\nJAVA, C, C++ 을 배워야 함\n이 알고리즘들도 C, C++ 로 만들었음\n\n\n큰 회사들의 개발\n\n우리가 자체적으로 배포를 해보자 –&gt; Python Wrapper API\n\n\n\n파이썬 머신러닝 &#x3D; Scikit-Learn 이 돼버림 –&gt; Scikit-Learn에서 쉽게 쓸 수 있도록 개발하자\n\n\n\n\n시장성은 Scikit-Learn 이 지배\n방식구분을 잘 해야됨\n왜? 방식마다 지원하거나 지원 안하는 코드가 다 다름\n\n\n\nPython Wrapper 방식\nX_train, y_train\n각 모듈에 맞도록 행렬을 재변환 해야 함.\n\n1234567891011121314151617181920import xgboost as xgb from sklearn.model_selection import train_test_splitimport seaborn as sns # 데이터 분리titanic = sns.load_dataset(&#x27;titanic&#x27;)titanic.info()# X, 독립변수, y 종속변수X = titanic[[&#x27;pclass&#x27;, &#x27;parch&#x27;, &#x27;fare&#x27;]]y = titanic[&#x27;survived&#x27;]# 훈련데이터, 테스트 데이터 분리X_train, X_test, y_train, y_test = train_test_split(X,                                                     y,                                                     stratify = y,                                                     test_size = 0.3,                                                     random_state=42)X_train.shape, X_test.shape, y_train.shape, y_test.shape\n\n&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;\nRangeIndex: 891 entries, 0 to 890\nData columns (total 15 columns):\n #   Column       Non-Null Count  Dtype   \n---  ------       --------------  -----   \n 0   survived     891 non-null    int64   \n 1   pclass       891 non-null    int64   \n 2   sex          891 non-null    object  \n 3   age          714 non-null    float64 \n 4   sibsp        891 non-null    int64   \n 5   parch        891 non-null    int64   \n 6   fare         891 non-null    float64 \n 7   embarked     889 non-null    object  \n 8   class        891 non-null    category\n 9   who          891 non-null    object  \n 10  adult_male   891 non-null    bool    \n 11  deck         203 non-null    category\n 12  embark_town  889 non-null    object  \n 13  alive        891 non-null    object  \n 14  alone        891 non-null    bool    \ndtypes: bool(2), category(2), float64(2), int64(4), object(5)\nmemory usage: 80.7+ KB\n\n\n\n\n\n((623, 3), (268, 3), (623,), (268,))\n\n\n여기가 핵심\n\n12345dtrain = xgb.DMatrix(data = X_train, label = y_train)dtest = xgb.DMatrix(data = X_test, label = y_test)# 이 코드 형태를 보면 &#x27;Python Wrapper API 형태로 코드를 짰구나.&#x27; 하고 알아야 한다.print(dtrain)\n\n&lt;xgboost.core.DMatrix object at 0x7f3dfa354610&gt;\n\n\n머신러닝 코드\n\n123456789101112131415# from sklearn.tree import Class~~~~ 코드가 없이 바로 xgb.train 으로 간다params = &#123;    &#x27;max_depth&#x27; : 3,    &#x27;n_estimators&#x27; : 100,    &#x27;eta&#x27; : 0.1,    &#x27;objective&#x27; : &#x27;binary:logistic&#x27;&#125;num_rounds = 400   # 내가 얘를 400번 돌리겠다w_list = [(dtrain, &#x27;train&#x27;), (dtest, &#x27;test&#x27;)]xgb_ml = xgb.train(params = params,                    dtrain = dtrain,                    num_boost_round = 400,                   early_stopping_rounds = 100,    # 의미 없이 돌리지말고 100번만 돌리겠다                   evals = w_list)  # dtrain = X_train 쓰면 에러난다. 변환을 해줘야 됨\n\n\n1234567# 평가from sklearn.metrics import accuracy_scorepred_probs = xgb_ml.predict(dtest)y_pred = [1 if x &gt; 0.5 else 0 for x in pred_probs]# 예측 라벨과 실제 라벨 사이의 정확도 측정accuracy_score(y_pred, y_test)\n\n\n\n\n0.6865671641791045\n\nScikit-Learn API 방식1234567891011121314151617181920from sklearn.tree import DecisionTreeClassifierfrom xgboost import XGBClassifier # &lt;--- 이 코드가 보이면 Scikit-Learn API 방식을 사용했다# dt = DecisionTreeClassifier()xgb_model = XGBClassifier(objective = &#x27;binary:logistic&#x27;,                           n_estimators=100,                           max_depth=3,                           learning_rate = 0.1,                           num_rounds = 400,                          random_state=42)w_list = [(X_train, y_train), (X_test, y_test)]xgb_model.fit(X_train, y_train, eval_set = w_list, eval_metric=&#x27;error&#x27;, verbose=True)y_probas = xgb_model.predict_proba(X_test)y_pred = [1 if x &gt; 0.5 else 0 for x in pred_probs]# 예측 라벨과 실제 라벨 사이의 정확도 측정accuracy_score(y_pred, y_test)\n\nLightGBM Python Wrapper 방식1234567891011121314151617181920212223242526272829303132333435import lightgbm as lgb from sklearn.model_selection import train_test_split from sklearn.metrics import accuracy_scoreimport seaborn as sns # tips 데이터셋 titanic = sns.load_dataset(&#x27;titanic&#x27;)X = titanic[[&#x27;pclass&#x27;, &#x27;parch&#x27;, &#x27;fare&#x27;]]y = titanic[&#x27;survived&#x27;]# 훈련데이터, 테스트 데이터 분리X_train, X_test, y_train, y_test = train_test_split(X, y, stratify = y, test_size = 0.3, random_state=42)# XGBoost 코드와 유사하다. dtrain = lgb.Dataset(data = X_train, label = y_train)dtest = lgb.Dataset(data = X_test, label = y_test)params = &#123;&#x27;max_depth&#x27;:3,          &#x27;n_estimators&#x27;:100,          &#x27;learning_rate&#x27;: 0.1,          &#x27;objective&#x27;:&#x27;binary&#x27;,          &#x27;metric&#x27; : &#x27;binary_error&#x27;,           &#x27;num_boost_round&#x27; : 400,           &#x27;verbose&#x27; : 1&#125; w_list = [dtrain, dtest]lgb_ml = lgb.train(params=params, train_set = dtrain,\\                  early_stopping_rounds=100, valid_sets= w_list)pred_probs = lgb_ml.predict(X_test)y_pred=[1 if x &gt; 0.5 else 0 for x in pred_probs]# 예측 라벨과 실제 라벨 사이의 정확도 측정accuracy_score(y_pred, y_test)\n\nLightGBM Scikit-Learn API 방식12345678910111213141516171819202122from lightgbm import LGBMClassifierfrom sklearn.metrics import accuracy_score# model w_list = [dtrain, dtest]model = LGBMClassifier(objective = &#x27;binary&#x27;,                        metric = &#x27;binary_error&#x27;,                       n_estimators=100,                        learning_rate=0.1,                        max_depth=3,                        num_boost_round = 400,                       random_state = 32)model.fit(X_train,           y_train,           eval_set = [(X_train, y_train), (X_test, y_test)],           verbose=1,          early_stopping_rounds = 100)y_probas = model.predict_proba(X_test) y_pred=[1 if x &gt; 0.5 else 0 for x in y_probas[:, 1]] # 예측 라벨(0과 1로 예측)# 예측 라벨과 실제 라벨 사이의 정확도 측정accuracy_score(y_pred, y_test)","dateCreated":"2022-07-04T12:50:55+09:00","dateModified":"2022-08-06T22:02:51+09:00","datePublished":"2022-07-04T12:50:55+09:00","description":"XGBoost &amp; LightGBM 방식 구별","headline":"XGBoost & LightGBM (2016 ~ 2017)","image":["image.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/07/04/XGBoost_&_LightGBM/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2022/07/04/XGBoost_&_LightGBM/","thumbnailUrl":"image.png"}</script>
     <meta name="description" content="XGBoost &amp; LightGBM 방식 구별">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="XGBoost &amp; LightGBM (2016 ~ 2017)">
@@ -36,7 +36,16 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
 
     <!--STYLES END-->
     
@@ -59,7 +68,7 @@
 
     
 
-<header id="header" data-behavior="3">
+<header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a
@@ -86,7 +95,7 @@
             <!-- Define author's picture -->
 
 
-<nav id="sidebar" data-behavior="3">
+<nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
         
         
@@ -134,10 +143,6 @@
                     </a>
             </li>
             
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
                 <li class="sidebar-button">
                     
                         <a
@@ -156,21 +161,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="#about"
-                            
-                            rel="noopener"
-                            title="About"
-                        >
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://github.com/NeewLife?tab=repositories/"
+                            href="https://github.com/"
                             
                                 target="_blank"
                             
@@ -188,7 +179,7 @@
 </nav>
 
             
-            <div id="main" data-behavior="3"
+            <div id="main" data-behavior="5"
                  class="
                         hasCoverMetaIn
                         ">
@@ -458,7 +449,7 @@ memory usage: 80.7+ KB
 
             </div>
             
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
                     <div class="post-actions-wrap">
     <nav>
         <ul class="post-actions post-action-nav">
@@ -568,7 +559,7 @@ memory usage: 80.7+ KB
 
                 </div>
                 
-    <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
         <i id="btn-close-shareoptions" class="fa fa-times"></i>
         <ul class="share-options">
             
@@ -628,23 +619,17 @@ memory usage: 80.7+ KB
         
             <h4 id="about-card-name">오세영</h4>
         
-            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+            <div id="about-card-bio"><p>author.bio</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>웹 백앤드 지망생</p>
+                <p>author.job</p>
 
             </div>
         
-        
-            <div id="about-card-location">
-                <i class="fa fa-map-marker-alt"></i>
-                <br/>
-                경기 광명시
-            </div>
         
     </div>
 </div>
@@ -654,7 +639,16 @@ memory usage: 80.7+ KB
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
 
 <!--SCRIPTS END-->
 

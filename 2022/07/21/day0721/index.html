@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n챗봇 프로젝트 주제\n법률, 금융, 부동산\n\n\n\nday0721123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204205206207208209210211212213214215216217218219220221222223224225226227228229230231232233234235236237238239240241242243244245246247248249250251252253254255256257258259260261262263264265266267268269270271272273274275276277278279280281282283284285286287288289290291292293294295296297298299300301302303304305306307308309310311312313314315316317318319320321322323324325326327328329330331332333334335336337338339340341342343344345346347348349350351352353354355356357358359360361362363364365366367368369370371372373374375376377378379380381382383384385386387388389390391392393394395396397398399400401402403404405406407408409410411412413414415416417418419420-- p.152-- 기본집계함수SELECT count(*) FROM employees; SELECT count(employee_id) FROM employees;-- NULL은 카운트를 하지 않는다.SELECT count(department_id) FROM employees;  -- 106개-- DISTINCT : 중복값 제외한 값SELECT count(DISTINCT department_id)FROM employees;SELECT DISTINCT department_idFROM employeesORDER BY 1;-- p.154-- 기초통계량-- 합계, 평균, 최소, 최대, 분산, 표준편차SELECT SUM(salary)FROM employees;SELECT SUM(salary), SUM(DISTINCT salary)FROM employees;-- 평균 값 반환SELECT AVG(salary), AVG(DISTINCT salary)FROM employees;-- 최소, 최댓값 반환SELECT MIN(DISTINCT salary), MAX(DISTINCT salary)FROM employees;-- 분산, 표준편차SELECT VARIANCE(salary), STDDEV(salary)FROM employees;-- GROUP BY 절과 HAVING 절-- 그 전까지는 전체 데이터를 기준으로 집계-- 특정그룹으로 묶어서 데이터를 집계할 때 GROUP BY 절 사용SELECT department_id,        SUM(salary)FROM employeesGROUP BY department_idORDER BY department_id;SELECT *FROM kor_loan_status; -- 가계대출 단위는 10억-- 2013년 11월 총 잔액 구하기SELECT period,        region,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY period, regionORDER BY period, region;SELECT period,        region,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period = &#x27;201311&#x27;GROUP BY period, regionHAVING SUM(loan_jan_amt)&gt;100000ORDER BY region;-- ROLLUP-- 2013년도 대출 종류별 총 잔액SELECT period,        gubun,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY period, gubunORDER BY period;--SELECT period,        gubun,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY ROLLUP(period, gubun);SELECT period,        gubun,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY period, ROLLUP(gubun );SELECT period,        gubun,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY ROLLUP(period), gubun;-- CUBESELECT period,        gubun,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY CUBE(period, gubun);SELECT period,        gubun,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY period, CUBE(gubun);CREATE TABLE exp_goods_asia (           country VARCHAR2(10),           seq     NUMBER,           goods   VARCHAR2(80));    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 1, &#x27;원유제외 석유류&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 2, &#x27;자동차&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 3, &#x27;전자집적회로&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 4, &#x27;선박&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 5,  &#x27;LCD&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 6,  &#x27;자동차부품&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 7,  &#x27;휴대전화&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 8,  &#x27;환식탄화수소&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 9,  &#x27;무선송신기 디스플레이 부속품&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 10,  &#x27;철 또는 비합금강&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 1, &#x27;자동차&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 2, &#x27;자동차부품&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 3, &#x27;전자집적회로&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 4, &#x27;선박&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 5, &#x27;반도체웨이퍼&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 6, &#x27;화물차&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 7, &#x27;원유제외 석유류&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 8, &#x27;건설기계&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 9, &#x27;다이오드, 트랜지스터&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 10, &#x27;기계류&#x27;);commit;SELECT goodsFROM exp_goods_asiaWHERE country = &#x27;한국&#x27;ORDER BY seq;SELECT goodsFROM exp_goods_asiaWHERE country = &#x27;일본&#x27;ORDER BY seq;-- 두 국가가 겹치는 수출품목은 한번만 조회가 되도록 함-- UNION : 합집합SELECT goodsFROM exp_goods_asiaWHERE country = &#x27;한국&#x27;UNIONSELECT goodsFROM exp_goods_asiaWHERE country = &#x27;일본&#x27;;-- 선박, 자동차 등등 겹치는 품목들을 1번만 조회되도록 함-- UNION ALL : 중복되는 항목도 모두 조회SELECT goodsFROM exp_goods_asiaWHERE country = &#x27;한국&#x27;UNION ALLSELECT goodsFROM exp_goods_asiaWHERE country = &#x27;일본&#x27;;-- INTERSECT : 교집합SELECT goodsFROM exp_goods_asiaWHERE country = &#x27;한국&#x27;INTERSECTSELECT goodsFROM exp_goods_asiaWHERE country = &#x27;일본&#x27;;-- MINUS : 차집합SELECT goodsFROM exp_goods_asiaWHERE country = &#x27;한국&#x27;MINUSSELECT goodsFROM exp_goods_asiaWHERE country = &#x27;일본&#x27;;-- GROUPING SETS 절SELECT    PERIOD, gubun, SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY GROUPING SETS(period, gubun);-- 기타대출 총액 / 주택담보대출 총액 / 2013년10월 총액 / 2013년11월 총액SELECT    PERIOD, gubun, region, SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;    AND region IN(&#x27;서울&#x27;, &#x27;경기&#x27;)GROUP BY GROUPING SETS(period, (gubun,region));-- 프로그래머스(SQL 연습) https://programmers.co.kr/-- p.177-- 조인의 종류-- 동등 조인SELECT a.employee_id,       a.emp_name,       a.department_id,       b.department_nameFROM employees a,     departments bWHERE a.department_id = b.department_id;-- 세미 조인 : 서브쿼리를 이용해 서브쿼리에 존재하는 데이터만 메인쿼리에서 추출-- EXISTS 사용(조건을 만족하는 데이터가 있으면 결과를 즉시 반환)SELECT    department_id,     department_nameFROM departments aWHERE EXISTS(SELECT *             FROM employees b             WHERE a.department_id = b.department_id             AND b.salary &gt; 3000);-- IN 사용(OR 조건으로 변환할 수 있다.)-- 주의!! 서브 쿼리 내에 두 테이블의 조인 조건이 없다는 점SELECT    department_id,     department_nameFROM departments aWHERE a. department_id IN(SELECT b.department_id                          FROM employees b                          WHERE a.department_id = b.department_id                          AND b.salary &gt; 3000);-- 일반 조인문으로 변환했을 시.. 결과가 많아진다.--            |--            VSELECT     a.department_id,    a.department_nameFROM departments a, employees bWHERE a.department_id = b.department_id    AND b.salary &gt; 3000ORDER BY a.department_name;-- 안티 조인 : 세미 조인의 반대개념(NOT IN, NOT EXISTS 사용)-- manager_id 가 NULL 값이 아닌 애들 표현SELECT a.employee_id,        a.emp_name,        a.department_id,       b.department_nameFROM employees a,     departments bWHERE a.department_id = b.department_id    AND a.department_id NOT IN(SELECT department_id                                FROM departments                                WHERE manager_id IS NULL);-- p.180SELECT count(*)FROM employees aWHERE NOT EXISTS(SELECT 1                 FROM departments c                 WHERE a.department_id = c.department_id                 AND manager_id IS NULL);-- 셀프 조인-- 조인을 하려면 두개의 테이블이 필요했는데, 셀프 조인은 하나의 테이블을 두개로 분리한다SELECT    a.employee_id,    a.emp_name,    b.employee_id,    b.emp_name,    a.department_idFROM    employees a,    employees bWHERE a.employee_id &lt; b. employee_id    AND a.department_id = b.department_id    AND a.department_id = 20;-- 같은 부서번호를 가진 사원 중 A사원번호가 B사원보다 작은 건 조회-- p.181-- 일반 조인SELECT     a.department_id,    a.department_name,    b.job_id,    b.department_idFROM departments a,     job_history bWHERE a.department_id = b.department_id;-- 외부 조인SELECT     a.department_id,    a.department_name,    b.job_id,    b.department_idFROM departments a,     job_history bWHERE a.department_id = b.department_id(+);SELECT     a.employee_id,    a.emp_name,    b.job_id,    b.department_idFROM employees a,     job_history bWHERE a.employee_id = b.employee_id(+)    AND a.department_id = b.department_id;-- ANSI 조인SELECT     a.employee_id    , a.emp_name    , b.department_id    , b.department_nameFROM employees aINNER JOIN departments b    ON (a.department_id = b.department_id)WHERE a.hire_Date &gt;= TO_DATE(&#x27;2003-01-01&#x27;, &#x27;YYYY-MM-DD&#x27;);-- p.187-- 외부조인SELECT     a.employee_id    , a.emp_name    , b.job_id    , b.department_idFROM employees aRIGHT OUTER JOIN job_history b    ON (a.employee_id = b.employee_id             and a.department_id = b.department_id);            -- RIGHT JOIN : 결측치까지 싹 다 조인SELECT     a.employee_id    , a.emp_name    , b.job_id    , b.department_idFROM job_history bRIGHT OUTER JOIN employees a    ON (a.employee_id       = b.employee_id        and a.department_id = b.department_id);-- 서브 쿼리-- SQL수업의 하이라이트!!-- 서브쿼리 사용가능 -&gt; SELECT, FROM, WHERE 에서 사용가능-- 배치 자동화SELECT count(*)FROM employeesWHERE salary &gt;= (SELECT AVG(salary)FROM employees); -- () 안이 변수같은 느낌SELECT count(*)FROM employeesWHERE salary &gt;= -- 서브쿼리에서 출력되는 값이 단일 행;-- IN(복수 결괏값을 넣을 수 있음)SELECT count(*)FROM employeesWHERE department_id IN (SELECT department_id                        FROM departments                        WHERE parent_id IS NULL);SELECT employee_id,       emp_name,       job_idFROM employeesWHERE (employee_id, job_id) IN (SELECT employee_id,                                       job_id                                FROM job_history);-- 서브 쿼리는 SELECT 뿐만 아니라 UPDATE, DELETE 문에서도 사용할 수 있다.-- p.194SELECT a.employee_id,       (SELECT b.emp_name       FROM employees b       WHERE a.employee_id = b.employee_id) AS emp_name,       a.department_id,       (SELECT b.department_name       FROM departments b       WHERE a.department_id = b.department_id) AS dep_nameFROM job_history a;-- 서브쿼리(서브쿼리2(서브쿼리3(...))) 이런식으로 무한정 증식할 수 있음SELECT a.department_id,       a.department_nameFROM departments aWHERE EXISTS (SELECT 1              FROM employees b              WHERE a.department_id = b.department_id              AND b.salary &gt; (SELECT AVG(salary)                              FROM employees)             );-- p.196-- 메인 쿼리 : 사원 테이블의 사원들의 부서별 평균 급여를 조회-- 서브 쿼리 : 상위 부서가 기획부(부서번호가 90)에 속함SELECT department_id, AVG(salary)FROM employeesWHERE department_id IN (SELECT department_id                        FROM departments                        WHERE parent_id = 90)GROUP BY department_id;","dateCreated":"2022-07-21T21:16:21+09:00","dateModified":"2022-07-21T21:24:05+09:00","datePublished":"2022-07-21T21:16:21+09:00","description":"\nGROUP BY 절, HAVING 절\n평균, 최소&#x2F;댓값, 분산, 표준편차\nROLLUP, CUBE\n교&#x2F;합&#x2F;차집합\n세미&#x2F;셀프&#x2F;일반&#x2F;외부 조인\nANSI 문법 조인\n서브 쿼리","headline":"Oracle day0721","image":["oracle.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/07/21/day0721/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/07/21/day0721/","thumbnailUrl":"oracle.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n챗봇 프로젝트 주제\n법률, 금융, 부동산\n\n\n\nday0721123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132133134135136137138139140141142143144145146147148149150151152153154155156157158159160161162163164165166167168169170171172173174175176177178179180181182183184185186187188189190191192193194195196197198199200201202203204205206207208209210211212213214215216217218219220221222223224225226227228229230231232233234235236237238239240241242243244245246247248249250251252253254255256257258259260261262263264265266267268269270271272273274275276277278279280281282283284285286287288289290291292293294295296297298299300301302303304305306307308309310311312313314315316317318319320321322323324325326327328329330331332333334335336337338339340341342343344345346347348349350351352353354355356357358359360361362363364365366367368369370371372373374375376377378379380381382383384385386387388389390391392393394395396397398399400401402403404405406407408409410411412413414415416417418419420-- p.152-- 기본집계함수SELECT count(*) FROM employees; SELECT count(employee_id) FROM employees;-- NULL은 카운트를 하지 않는다.SELECT count(department_id) FROM employees;  -- 106개-- DISTINCT : 중복값 제외한 값SELECT count(DISTINCT department_id)FROM employees;SELECT DISTINCT department_idFROM employeesORDER BY 1;-- p.154-- 기초통계량-- 합계, 평균, 최소, 최대, 분산, 표준편차SELECT SUM(salary)FROM employees;SELECT SUM(salary), SUM(DISTINCT salary)FROM employees;-- 평균 값 반환SELECT AVG(salary), AVG(DISTINCT salary)FROM employees;-- 최소, 최댓값 반환SELECT MIN(DISTINCT salary), MAX(DISTINCT salary)FROM employees;-- 분산, 표준편차SELECT VARIANCE(salary), STDDEV(salary)FROM employees;-- GROUP BY 절과 HAVING 절-- 그 전까지는 전체 데이터를 기준으로 집계-- 특정그룹으로 묶어서 데이터를 집계할 때 GROUP BY 절 사용SELECT department_id,        SUM(salary)FROM employeesGROUP BY department_idORDER BY department_id;SELECT *FROM kor_loan_status; -- 가계대출 단위는 10억-- 2013년 11월 총 잔액 구하기SELECT period,        region,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY period, regionORDER BY period, region;SELECT period,        region,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period = &#x27;201311&#x27;GROUP BY period, regionHAVING SUM(loan_jan_amt)&gt;100000ORDER BY region;-- ROLLUP-- 2013년도 대출 종류별 총 잔액SELECT period,        gubun,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY period, gubunORDER BY period;--SELECT period,        gubun,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY ROLLUP(period, gubun);SELECT period,        gubun,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY period, ROLLUP(gubun );SELECT period,        gubun,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY ROLLUP(period), gubun;-- CUBESELECT period,        gubun,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY CUBE(period, gubun);SELECT period,        gubun,        SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY period, CUBE(gubun);CREATE TABLE exp_goods_asia (           country VARCHAR2(10),           seq     NUMBER,           goods   VARCHAR2(80));    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 1, &#x27;원유제외 석유류&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 2, &#x27;자동차&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 3, &#x27;전자집적회로&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 4, &#x27;선박&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 5,  &#x27;LCD&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 6,  &#x27;자동차부품&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 7,  &#x27;휴대전화&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 8,  &#x27;환식탄화수소&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 9,  &#x27;무선송신기 디스플레이 부속품&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;한국&#x27;, 10,  &#x27;철 또는 비합금강&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 1, &#x27;자동차&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 2, &#x27;자동차부품&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 3, &#x27;전자집적회로&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 4, &#x27;선박&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 5, &#x27;반도체웨이퍼&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 6, &#x27;화물차&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 7, &#x27;원유제외 석유류&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 8, &#x27;건설기계&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 9, &#x27;다이오드, 트랜지스터&#x27;);    INSERT INTO exp_goods_asia VALUES (&#x27;일본&#x27;, 10, &#x27;기계류&#x27;);commit;SELECT goodsFROM exp_goods_asiaWHERE country = &#x27;한국&#x27;ORDER BY seq;SELECT goodsFROM exp_goods_asiaWHERE country = &#x27;일본&#x27;ORDER BY seq;-- 두 국가가 겹치는 수출품목은 한번만 조회가 되도록 함-- UNION : 합집합SELECT goodsFROM exp_goods_asiaWHERE country = &#x27;한국&#x27;UNIONSELECT goodsFROM exp_goods_asiaWHERE country = &#x27;일본&#x27;;-- 선박, 자동차 등등 겹치는 품목들을 1번만 조회되도록 함-- UNION ALL : 중복되는 항목도 모두 조회SELECT goodsFROM exp_goods_asiaWHERE country = &#x27;한국&#x27;UNION ALLSELECT goodsFROM exp_goods_asiaWHERE country = &#x27;일본&#x27;;-- INTERSECT : 교집합SELECT goodsFROM exp_goods_asiaWHERE country = &#x27;한국&#x27;INTERSECTSELECT goodsFROM exp_goods_asiaWHERE country = &#x27;일본&#x27;;-- MINUS : 차집합SELECT goodsFROM exp_goods_asiaWHERE country = &#x27;한국&#x27;MINUSSELECT goodsFROM exp_goods_asiaWHERE country = &#x27;일본&#x27;;-- GROUPING SETS 절SELECT    PERIOD, gubun, SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;GROUP BY GROUPING SETS(period, gubun);-- 기타대출 총액 / 주택담보대출 총액 / 2013년10월 총액 / 2013년11월 총액SELECT    PERIOD, gubun, region, SUM(loan_jan_amt) totl_janFROM kor_loan_statusWHERE period LIKE &#x27;2013%&#x27;    AND region IN(&#x27;서울&#x27;, &#x27;경기&#x27;)GROUP BY GROUPING SETS(period, (gubun,region));-- 프로그래머스(SQL 연습) https://programmers.co.kr/-- p.177-- 조인의 종류-- 동등 조인SELECT a.employee_id,       a.emp_name,       a.department_id,       b.department_nameFROM employees a,     departments bWHERE a.department_id = b.department_id;-- 세미 조인 : 서브쿼리를 이용해 서브쿼리에 존재하는 데이터만 메인쿼리에서 추출-- EXISTS 사용(조건을 만족하는 데이터가 있으면 결과를 즉시 반환)SELECT    department_id,     department_nameFROM departments aWHERE EXISTS(SELECT *             FROM employees b             WHERE a.department_id = b.department_id             AND b.salary &gt; 3000);-- IN 사용(OR 조건으로 변환할 수 있다.)-- 주의!! 서브 쿼리 내에 두 테이블의 조인 조건이 없다는 점SELECT    department_id,     department_nameFROM departments aWHERE a. department_id IN(SELECT b.department_id                          FROM employees b                          WHERE a.department_id = b.department_id                          AND b.salary &gt; 3000);-- 일반 조인문으로 변환했을 시.. 결과가 많아진다.--            |--            VSELECT     a.department_id,    a.department_nameFROM departments a, employees bWHERE a.department_id = b.department_id    AND b.salary &gt; 3000ORDER BY a.department_name;-- 안티 조인 : 세미 조인의 반대개념(NOT IN, NOT EXISTS 사용)-- manager_id 가 NULL 값이 아닌 애들 표현SELECT a.employee_id,        a.emp_name,        a.department_id,       b.department_nameFROM employees a,     departments bWHERE a.department_id = b.department_id    AND a.department_id NOT IN(SELECT department_id                                FROM departments                                WHERE manager_id IS NULL);-- p.180SELECT count(*)FROM employees aWHERE NOT EXISTS(SELECT 1                 FROM departments c                 WHERE a.department_id = c.department_id                 AND manager_id IS NULL);-- 셀프 조인-- 조인을 하려면 두개의 테이블이 필요했는데, 셀프 조인은 하나의 테이블을 두개로 분리한다SELECT    a.employee_id,    a.emp_name,    b.employee_id,    b.emp_name,    a.department_idFROM    employees a,    employees bWHERE a.employee_id &lt; b. employee_id    AND a.department_id = b.department_id    AND a.department_id = 20;-- 같은 부서번호를 가진 사원 중 A사원번호가 B사원보다 작은 건 조회-- p.181-- 일반 조인SELECT     a.department_id,    a.department_name,    b.job_id,    b.department_idFROM departments a,     job_history bWHERE a.department_id = b.department_id;-- 외부 조인SELECT     a.department_id,    a.department_name,    b.job_id,    b.department_idFROM departments a,     job_history bWHERE a.department_id = b.department_id(+);SELECT     a.employee_id,    a.emp_name,    b.job_id,    b.department_idFROM employees a,     job_history bWHERE a.employee_id = b.employee_id(+)    AND a.department_id = b.department_id;-- ANSI 조인SELECT     a.employee_id    , a.emp_name    , b.department_id    , b.department_nameFROM employees aINNER JOIN departments b    ON (a.department_id = b.department_id)WHERE a.hire_Date &gt;= TO_DATE(&#x27;2003-01-01&#x27;, &#x27;YYYY-MM-DD&#x27;);-- p.187-- 외부조인SELECT     a.employee_id    , a.emp_name    , b.job_id    , b.department_idFROM employees aRIGHT OUTER JOIN job_history b    ON (a.employee_id = b.employee_id             and a.department_id = b.department_id);            -- RIGHT JOIN : 결측치까지 싹 다 조인SELECT     a.employee_id    , a.emp_name    , b.job_id    , b.department_idFROM job_history bRIGHT OUTER JOIN employees a    ON (a.employee_id       = b.employee_id        and a.department_id = b.department_id);-- 서브 쿼리-- SQL수업의 하이라이트!!-- 서브쿼리 사용가능 -&gt; SELECT, FROM, WHERE 에서 사용가능-- 배치 자동화SELECT count(*)FROM employeesWHERE salary &gt;= (SELECT AVG(salary)FROM employees); -- () 안이 변수같은 느낌SELECT count(*)FROM employeesWHERE salary &gt;= -- 서브쿼리에서 출력되는 값이 단일 행;-- IN(복수 결괏값을 넣을 수 있음)SELECT count(*)FROM employeesWHERE department_id IN (SELECT department_id                        FROM departments                        WHERE parent_id IS NULL);SELECT employee_id,       emp_name,       job_idFROM employeesWHERE (employee_id, job_id) IN (SELECT employee_id,                                       job_id                                FROM job_history);-- 서브 쿼리는 SELECT 뿐만 아니라 UPDATE, DELETE 문에서도 사용할 수 있다.-- p.194SELECT a.employee_id,       (SELECT b.emp_name       FROM employees b       WHERE a.employee_id = b.employee_id) AS emp_name,       a.department_id,       (SELECT b.department_name       FROM departments b       WHERE a.department_id = b.department_id) AS dep_nameFROM job_history a;-- 서브쿼리(서브쿼리2(서브쿼리3(...))) 이런식으로 무한정 증식할 수 있음SELECT a.department_id,       a.department_nameFROM departments aWHERE EXISTS (SELECT 1              FROM employees b              WHERE a.department_id = b.department_id              AND b.salary &gt; (SELECT AVG(salary)                              FROM employees)             );-- p.196-- 메인 쿼리 : 사원 테이블의 사원들의 부서별 평균 급여를 조회-- 서브 쿼리 : 상위 부서가 기획부(부서번호가 90)에 속함SELECT department_id, AVG(salary)FROM employeesWHERE department_id IN (SELECT department_id                        FROM departments                        WHERE parent_id = 90)GROUP BY department_id;","dateCreated":"2022-07-21T21:16:21+09:00","dateModified":"2022-07-21T21:24:05+09:00","datePublished":"2022-07-21T21:16:21+09:00","description":"\nGROUP BY 절, HAVING 절\n평균, 최소&#x2F;댓값, 분산, 표준편차\nROLLUP, CUBE\n교&#x2F;합&#x2F;차집합\n세미&#x2F;셀프&#x2F;일반&#x2F;외부 조인\nANSI 문법 조인\n서브 쿼리","headline":"Oracle day0721","image":["oracle.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/07/21/day0721/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2022/07/21/day0721/","thumbnailUrl":"oracle.png"}</script>
     <meta name="description" content="GROUP BY 절, HAVING 절 평균, 최소&#x2F;댓값, 분산, 표준편차 ROLLUP, CUBE 교&#x2F;합&#x2F;차집합 세미&#x2F;셀프&#x2F;일반&#x2F;외부 조인 ANSI 문법 조인 서브 쿼리">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Oracle day0721">
@@ -36,7 +36,16 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
 
     <!--STYLES END-->
     
@@ -59,7 +68,7 @@
 
     
 
-<header id="header" data-behavior="3">
+<header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a
@@ -86,7 +95,7 @@
             <!-- Define author's picture -->
 
 
-<nav id="sidebar" data-behavior="3">
+<nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
         
         
@@ -134,10 +143,6 @@
                     </a>
             </li>
             
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
                 <li class="sidebar-button">
                     
                         <a
@@ -156,21 +161,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="#about"
-                            
-                            rel="noopener"
-                            title="About"
-                        >
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://github.com/NeewLife?tab=repositories/"
+                            href="https://github.com/"
                             
                                 target="_blank"
                             
@@ -188,7 +179,7 @@
 </nav>
 
             
-            <div id="main" data-behavior="3"
+            <div id="main" data-behavior="5"
                  class="
                         hasCoverMetaIn
                         ">
@@ -365,7 +356,7 @@
 
             </div>
             
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
                     <div class="post-actions-wrap">
     <nav>
         <ul class="post-actions post-action-nav">
@@ -475,7 +466,7 @@
 
                 </div>
                 
-    <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
         <i id="btn-close-shareoptions" class="fa fa-times"></i>
         <ul class="share-options">
             
@@ -535,23 +526,17 @@
         
             <h4 id="about-card-name">오세영</h4>
         
-            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+            <div id="about-card-bio"><p>author.bio</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>웹 백앤드 지망생</p>
+                <p>author.job</p>
 
             </div>
         
-        
-            <div id="about-card-location">
-                <i class="fa fa-map-marker-alt"></i>
-                <br/>
-                경기 광명시
-            </div>
         
     </div>
 </div>
@@ -561,7 +546,16 @@
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
 
 <!--SCRIPTS END-->
 

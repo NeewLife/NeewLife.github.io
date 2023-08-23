@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n배경블로그를 작업하려 이것저것 끄적이다가 블로그 주소를 README 파일에 올려서 이동할 수 있게 하고 싶었다.\n\n방법GitHub는 Markdown 문법을 사용하니 HTML의 a 태그를 사용해봤다.\n\nhtml을 작성할 때는 a 태그에 target=&quot;_blank&quot; 를 사용하고,\nmd파일을 작성할 때는 {:target&#x3D;”_blank”} 를 사용한다.\n\n여기서는 예시로 Google 창이 열리게 해보았다.\n12345HTML에서 새 링크로 여는 방법&lt;a href=&quot;https://www.google.com/&quot; target=&quot;_blank&quot;&gt;구글링크&lt;/a&gt;MD에서 새 링크로 여는 방법[구글링크](https://www.google.com/)&#123;:target=&quot;*_blank&quot;&#125;*\n\n그런데 문제가 하나 있었다….GitHub 페이지 엔진이 Kramdown 이라는 또 다른 Markdown 방식을 사용한다는 것이다.\n그래서 GitHub README 파일에서는 {:target&#x3D;”_blank”} 이 코드가 먹히지 않는다..\nStackOverflow 관련 답변\n\n여담구글링해서 찾아보니까 예전부터 “이걸 새 창으로 띄우는 방식으로 만들어야 돼? 말아야 돼?” 하는 토론이 있었던 것 같다.\nhttps://github.com/okjsp/okky/issues/63\n입장이 두 개로 나뉘는데,\n\n사용자한테 왜 CTRL + 클릭 방식으로 선택지를 안 주고 너가 강제로 새 창을 띄우려 하느냐 라는 입장(관련링크 : Top 10 Mistakes in Web Design 에서 9번째)\nCTRL + 클릭 방식을 일반적인 사용자는 모른다. 사용자의 편의를 위해서 우리같은 개발자들이 추가 해주는 게 낫다는 입장(관련링크 : Why external links should open in new-tabs)\n\n\n💡 전자의 입장은\n\n\n뒤로가기 버튼이 비활성화된 채로 사이트에 머물게 하는 것은 굉장히 자멸적인 전략이다\n사용자는 종종 새로운 창이 열렸다는 것을 인식하지 못한다, 특히 모니터가 작을 경우 더욱 그렇다. \n그러므로 계속 여러개의 창이 열리게 되면 오염되는 기분을 느낄 것이다.\n\n\n\n\n💡 후자의 입장은\n\n\n브라우저 탭의 도입으로 예전보다 새 창을 새 탭으로 대신하여 관리하기가 쉬워졌다.\n자기가 뒤로 다시가고 싶은 사이트로 뒤로가기 버튼을 계속 누르게 되면 피로도가 쌓일 것이다.\n또한, 웹사이트의 리소스를 사용하기 때문에 자원적으로도 비효율적이다.\n\n전자의 입장과 후자의 입장이 팽팽한 것 같다. 꽤 오랜 시간이 지났는데도 불구하고 결론이 나지 않은 것 같다.이게 모바일이나 웹에 친숙한 10~30대 정도면 몰라도 50~60대 분들도 인터넷을 사용하니까…\n실제로 전자의 입장측에서 예시를 들었다.자기 아버지가 컴퓨터를 잘 못하는데, 판매사이트가 물품 검색중에 새 탭을 열어주었나보다.그런데 아버지는 다시 있던 사이트로 돌아가려 했는데, 뒤로가기 버튼이 비활성화된 것을 보고 혼란스러워하다가 그냥 컴퓨터를 끄고 매장에 직접 방문하기로 했다고 한다.그러면 그 판매사이트는 구매력을 잃게 된 것이지 않느냐 하면서 반박하는 내용도 있더라.\n\n느낀 점웹 페이지의 제작과정에서 사용자의 UX를 편리하게 하기 위해 이렇게 찾아봤는데,생각보다 많은 사람들이 UX를 편리하게 하기 위해서 토론하는 모습들을 보면서 재밌었다. (역시 싸움구경이 꿀잼)\nUI&#x2F;UX는 언제나 고민해도 어려운 것 같다. 계속 공부해서 익숙해지는 길을 가려고 노력해야지","dateCreated":"2023-04-20T19:17:13+09:00","dateModified":"2023-04-20T19:30:42+09:00","datePublished":"2023-04-20T19:17:13+09:00","description":"결론부터 말하자면 안 됨 ….","headline":"[Github] README 파일에서 새 창 열기가 될까?","image":["GitHub.jpg","wallpaper.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2023/04/20/[Github]%20README%20%ED%8C%8C%EC%9D%BC%EC%97%90%EC%84%9C%20%EC%83%88%20%EC%B0%BD%20%EC%97%B4%EA%B8%B0%EA%B0%80%20%EB%90%A0%EA%B9%8C/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2023/04/20/[Github]%20README%20%ED%8C%8C%EC%9D%BC%EC%97%90%EC%84%9C%20%EC%83%88%20%EC%B0%BD%20%EC%97%B4%EA%B8%B0%EA%B0%80%20%EB%90%A0%EA%B9%8C/","thumbnailUrl":"GitHub.jpg"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n배경블로그를 작업하려 이것저것 끄적이다가 블로그 주소를 README 파일에 올려서 이동할 수 있게 하고 싶었다.\n\n방법GitHub는 Markdown 문법을 사용하니 HTML의 a 태그를 사용해봤다.\n\nhtml을 작성할 때는 a 태그에 target=&quot;_blank&quot; 를 사용하고,\nmd파일을 작성할 때는 {:target&#x3D;”_blank”} 를 사용한다.\n\n여기서는 예시로 Google 창이 열리게 해보았다.\n12345HTML에서 새 링크로 여는 방법&lt;a href=&quot;https://www.google.com/&quot; target=&quot;_blank&quot;&gt;구글링크&lt;/a&gt;MD에서 새 링크로 여는 방법[구글링크](https://www.google.com/)&#123;:target=&quot;*_blank&quot;&#125;*\n\n그런데 문제가 하나 있었다….GitHub 페이지 엔진이 Kramdown 이라는 또 다른 Markdown 방식을 사용한다는 것이다.\n그래서 GitHub README 파일에서는 {:target&#x3D;”_blank”} 이 코드가 먹히지 않는다..\nStackOverflow 관련 답변\n\n여담구글링해서 찾아보니까 예전부터 “이걸 새 창으로 띄우는 방식으로 만들어야 돼? 말아야 돼?” 하는 토론이 있었던 것 같다.\nhttps://github.com/okjsp/okky/issues/63\n입장이 두 개로 나뉘는데,\n\n사용자한테 왜 CTRL + 클릭 방식으로 선택지를 안 주고 너가 강제로 새 창을 띄우려 하느냐 라는 입장(관련링크 : Top 10 Mistakes in Web Design 에서 9번째)\nCTRL + 클릭 방식을 일반적인 사용자는 모른다. 사용자의 편의를 위해서 우리같은 개발자들이 추가 해주는 게 낫다는 입장(관련링크 : Why external links should open in new-tabs)\n\n\n💡 전자의 입장은\n\n\n뒤로가기 버튼이 비활성화된 채로 사이트에 머물게 하는 것은 굉장히 자멸적인 전략이다\n사용자는 종종 새로운 창이 열렸다는 것을 인식하지 못한다, 특히 모니터가 작을 경우 더욱 그렇다. \n그러므로 계속 여러개의 창이 열리게 되면 오염되는 기분을 느낄 것이다.\n\n\n\n\n💡 후자의 입장은\n\n\n브라우저 탭의 도입으로 예전보다 새 창을 새 탭으로 대신하여 관리하기가 쉬워졌다.\n자기가 뒤로 다시가고 싶은 사이트로 뒤로가기 버튼을 계속 누르게 되면 피로도가 쌓일 것이다.\n또한, 웹사이트의 리소스를 사용하기 때문에 자원적으로도 비효율적이다.\n\n전자의 입장과 후자의 입장이 팽팽한 것 같다. 꽤 오랜 시간이 지났는데도 불구하고 결론이 나지 않은 것 같다.이게 모바일이나 웹에 친숙한 10~30대 정도면 몰라도 50~60대 분들도 인터넷을 사용하니까…\n실제로 전자의 입장측에서 예시를 들었다.자기 아버지가 컴퓨터를 잘 못하는데, 판매사이트가 물품 검색중에 새 탭을 열어주었나보다.그런데 아버지는 다시 있던 사이트로 돌아가려 했는데, 뒤로가기 버튼이 비활성화된 것을 보고 혼란스러워하다가 그냥 컴퓨터를 끄고 매장에 직접 방문하기로 했다고 한다.그러면 그 판매사이트는 구매력을 잃게 된 것이지 않느냐 하면서 반박하는 내용도 있더라.\n\n느낀 점웹 페이지의 제작과정에서 사용자의 UX를 편리하게 하기 위해 이렇게 찾아봤는데,생각보다 많은 사람들이 UX를 편리하게 하기 위해서 토론하는 모습들을 보면서 재밌었다. (역시 싸움구경이 꿀잼)\nUI&#x2F;UX는 언제나 고민해도 어려운 것 같다. 계속 공부해서 익숙해지는 길을 가려고 노력해야지","dateCreated":"2023-04-20T19:17:13+09:00","dateModified":"2023-04-20T19:30:42+09:00","datePublished":"2023-04-20T19:17:13+09:00","description":"결론부터 말하자면 안 됨 ….","headline":"[Github] README 파일에서 새 창 열기가 될까?","image":["GitHub.jpg","wallpaper.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2023/04/20/[Github]%20README%20%ED%8C%8C%EC%9D%BC%EC%97%90%EC%84%9C%20%EC%83%88%20%EC%B0%BD%20%EC%97%B4%EA%B8%B0%EA%B0%80%20%EB%90%A0%EA%B9%8C/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2023/04/20/[Github]%20README%20%ED%8C%8C%EC%9D%BC%EC%97%90%EC%84%9C%20%EC%83%88%20%EC%B0%BD%20%EC%97%B4%EA%B8%B0%EA%B0%80%20%EB%90%A0%EA%B9%8C/","thumbnailUrl":"GitHub.jpg"}</script>
     <meta name="description" content="결론부터 말하자면 안 됨 ….">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="[Github] README 파일에서 새 창 열기가 될까?">
@@ -39,7 +39,16 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
 
     <!--STYLES END-->
     
@@ -62,7 +71,7 @@
 
     
 
-<header id="header" data-behavior="3">
+<header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a
@@ -89,7 +98,7 @@
             <!-- Define author's picture -->
 
 
-<nav id="sidebar" data-behavior="3">
+<nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
         
         
@@ -137,10 +146,6 @@
                     </a>
             </li>
             
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
                 <li class="sidebar-button">
                     
                         <a
@@ -159,21 +164,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="#about"
-                            
-                            rel="noopener"
-                            title="About"
-                        >
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://github.com/NeewLife?tab=repositories/"
+                            href="https://github.com/"
                             
                                 target="_blank"
                             
@@ -195,11 +186,11 @@
                     text-center
                     post-header-cover--full"
              style="background-image:url('/2023/04/20/%5BGithub%5D%20README%20%ED%8C%8C%EC%9D%BC%EC%97%90%EC%84%9C%20%EC%83%88%20%EC%B0%BD%20%EC%97%B4%EA%B8%B0%EA%B0%80%20%EB%90%A0%EA%B9%8C/wallpaper.jpg');"
-             data-behavior="3">
+             data-behavior="5">
             
         </div>
 
-            <div id="main" data-behavior="3"
+            <div id="main" data-behavior="5"
                  class="hasCover
                         hasCoverMetaOut
                         ">
@@ -415,7 +406,7 @@
 
             </div>
             
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
                     <div class="post-actions-wrap">
     <nav>
         <ul class="post-actions post-action-nav">
@@ -525,7 +516,7 @@
 
                 </div>
                 
-    <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
         <i id="btn-close-shareoptions" class="fa fa-times"></i>
         <ul class="share-options">
             
@@ -585,23 +576,17 @@
         
             <h4 id="about-card-name">오세영</h4>
         
-            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+            <div id="about-card-bio"><p>author.bio</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>웹 백앤드 지망생</p>
+                <p>author.job</p>
 
             </div>
         
-        
-            <div id="about-card-location">
-                <i class="fa fa-map-marker-alt"></i>
-                <br/>
-                경기 광명시
-            </div>
         
     </div>
 </div>
@@ -611,7 +596,16 @@
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
 
 <!--SCRIPTS END-->
 

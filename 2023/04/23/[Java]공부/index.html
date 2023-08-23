@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n변수(Variable)데이터를 저장하기 위해 프로그램으로 할당받은 메모리 공간\n\n변수 선언 &#x3D; 프로그래밍을 하기 위해 변수를 선언 해주는 것(반드시 데이터타입을 명시 해주어야 한다.)\n변수 초기화 &#x3D; 선언된 변수에 최초로 값을 넣어서 저장해주는 것(리셋이 아니다)\n\n1234567891011int a;                 //변수 선언String time;           //변수 선언\t\t\t\t             //변수 선언 및 초기화int a = 3;\t\t\t\t\t\t //int 자료형의 a 변수를 선언하고 값을 3으로 초기화String java = &quot;자바&quot;;  //String 자료형의 java 변수를 선언하고 값을 &quot;자바&quot; 문자열로 초기화a = 5;                 //int 자료형의 a 변수에 값을 5로 초기화java = &quot;어려워&quot;;       //String 자료형의 java 변수에 값을 &quot;어려워&quot; 문자열로 초기화// 선언과 초기화를 분리해서 할 수 있지만 같이 작성하는 것을 지향하자.\n\n객체(object)효율적으로 정보를 관리하기 위해 사람들이 의미를 부여하고 분류하는 논리적인 단위\n프로그래밍에서는 클래스에 정의된 내용대로 메모리에 생성된 것을 말함.\n클래스(class)클래스란 어떤 특정 종류의 모든 객체들에 대해 일반적으로 적용할 수 있는 멤버 변수와 메소드를 정의한 소프트웨어적 설계도 또는 프로토타입(Prototype)이라 할 수 있다.\n\n프로토타입 : 정보시스템의 미완성 버전 혹은 중요한 기능들이 포함되어 있는 시스템의 초기모델이다.\n\n즉, 실세계에 존재하는 객체들이 가질 수 있는 상태와 행동들에 대해 소프트웨어적으로 추상화(abstraction) 해 놓은 것이다.\n인스턴스클래스로부터 객체를 만들어 내는 과정을 클래스의 인스턴스화 라고 하며,어떤 클래스로부터 만들어진 객체를 클래스의 인스턴스 라고 한다.\n인스턴스는 객체를 소프트웨어에 실체화한것 이라고 말할 수 있다.\n실체화된 객체(인스턴스)는 메모리에 할당된다.\n클래스는 설계도&#x2F;객체는 설계도로 구현한 모든 대상\n생성자인스턴스가 호출될때 호출되는 ‘인스턴스 초기화 메서드’ 이다.\n인스턴스 변수의 초기화에 사용되고, 몇가지 특징을 제외하면 메서드와 다를게 거의 없다.\n\n생성자는 리턴 값이 없다. void 또한 사용하지 않는다.\n생성자의 이름은 반드시 클래스명과 동일해야 한다.\n생성자는 메서드처럼 클래스 내에 선언되고, 오버로딩이 가능하므로 하나의 클래스 안에 여러개의 생성자가 존재할 수 있다.\n생성자를 설정 안해도 하나의 클래스에는 기본적으로 기본 생성자가 들어가있다.\n\n123456Cat cat1 = new Cat();Cat cat2 = new Cat();// Cat 이라는 클래스로 cat1, cat2의 변수명을 가진 객체를 초기화 하겠다는 뜻// 오른쪽의 &#x27;new Cat&#x27; 이 생성자이다.// 클래스타입 변수명 = new 클래스명(값1, 값2, ...);\n\n객체지향 프로그래밍(Object-Oriented Programming, OOP)프로그래밍에서 필요한 데이터들을 추상화 시켜 상태와 행위를 가진 객체 로 만들고, 객체들간의 상호작용을 통해 로직을 구성하는 프로그래밍 방법이다.\n예를 들어 객체가 레고 조각들이라면 그 레고들을 조립해서 만드는 것이 객체지향 프로그래밍이라고 할 수 있다.\n객체지향 프로그래밍의 5개 키워드\n클래스 + 인스턴스\n추상화\n현실적으로 불필요한 부분들을 생략하고 객체의 속성중 중요한 것에만 중점을 두어 개략화 하는 것 예) 지하철 노선도를 추상화 한다면 위성사진 → 지적도 → 실제 노선도 → 우리가 보는 지하철 노선도\n\n\n캡슐화\n기능과 특성의 모음을 “클래스” 라는 캡슐에 분류해서 넣는 것이 캡슐화 이다.\n객체가 외부에 노출되지 않아야 할 정보 또는 기능을 접근제어자를 통해서 적절히 제어 권한이 있는 객체에서만 접근하도록 하기 위해서 쓴다.\n\n\n상속\n부모클래스의 속성과 기능을 그대로 이어받아 사용할 수 있게 하고, 기능의 일부분을 변경해야 할 경우 상속받은 자식클래스에서 해당 기능만 다시 수정(정의)하여 사용할 수 있게 하는 것이다.\n다중상속은 불가능하다. (클래스간의 혼란을 줄 수 있기 때문에 반드시 하나의 상속만 가능하고, 필요에 따라서 인터페이스를 사용한다.)\n\n\n다형성\n하나의 변수명, 함수명이 상황에 따라 다른 의미로 해석될 수 있는 것을 의미한다.\n오버로딩 : 부모클래스의 메서드와 같은 이름, 매개변수를 새로 재정의 하는 것\n오버라이딩 : 같은 이름의 함수를 여러개 정의하고, 매개변수의 타입과 개수를 다르게 하여 매개변수에 따라 다르게 호출할 수 있게 하는 것\n\n\n\n\n\n\n객체지향 프로그래밍의 장단점\n\n장점\n\n코드 재사용이 용이하다  다른 사람이이 만든 클래스를 가져와서 이용할 수 있고 상속을 통해 확장해서 사용할 수 있다.\n유지보수가 쉽다.  수정해야할 부분들이 클래스 내부에 멤버 변수 혹은 메서드로 존재하기 때문에 해당 부분만 수정하면 된다.\n대형 프로젝트에 적합  클래스 단위로 모듈화 시켜서 개발할 수 있으므로 대형 프로젝트처럼 여러 명, 여러 회사에서 프로젝트를 개발할 때 업무 분담하기 쉽다.\n\n\n단점\n\n처리속도가 느리다.\n객체가 많으면 용량이 커질 수 있다.\n설계시에 많은 시간과 노력이 필요하다.\n\n\n\n추상클래스와 인터페이스추상클래스 \n\n실체클래스의 공통적인 부분(변수, 메서드)을 추출해서 선언한 클래스 즉, 실체클래스를 추상화 한 클래스\n따라서 실체클래스와는 상속관계에 있다.\n추상클래스는 객체를 만들 만큼의 실체성과 구체성이 없기 때문에 객체 생성이 불가하다.\n\n예) A키보드는 적축, B키보드는 갈축, C키보드는 청축이라고 할 때 소리는 다 다르지만, 기계식 키보드라는 공통점이 있다.\n그러므로 ‘기계식 키보드’ 라는 추상클래스 안에 A키보드 B키보드 C키보드 등등 이 상속되어 있는 개념이다.\nA 키보드라는 객체를 만든다고 하면 ‘기계식 키보드’ 추상클래스를 상속 받아서 객체를 생성한다. 그 안에서 Override를 하든 새로운 A키보드만의 기능을 만들든 상관없지만,\nA키보드 B키보드 C키보드 모두 기계식 키보드라는 공통 특성을 가지게 된 객체이다.\n왜 사용하는가?\n\n공통된 필드와 메서드를 통일할 목적으로\n실체클래스를 구현하게 될 시 시간절약 하기 위해\n추상클래스라는 공통규격 안의 실체클래스를 구현하기 위해 사용한다.\n\n인터페이스\n\n극단적으로 동일한 목적 하에 동일한 기능을 강제하는 것\n자바의 다형성을 이용하여 개발코드 수정을 줄이고 유지보수성을 높인다.\n인터페이스 끼리는 다중상속이 가능하다.\n\n왜 사용하는가?\n\n상속은 하나의 상속밖에 안되지만 인터페이스를 사용하면 다중상속이 가능하다.\n대규모 프로젝트 개발 시 일관되고 정형화된 개발이 가능하다.\n\n추상클래스와 인터페이스 공통점과 차이점공통점\n\n메서드의 선언만 있고 구현내용은 없다. (추상메서드)\n객체를 생성할 수 없으며, 상속받은 실체클래스가 반드시 선언된 추상메서드를 사용해야한다.\n\n차이점\n\n추상클래스는 다중상속이 불가능 &#x2F; 인터페이스는 다중상속 가능\n추상클래스는 클래스처럼 일반 변수, 생성자, 일반메서드, 추상메서드를 가질 수 있지만 &#x2F;인터페이스는 상수와 추상메서드만 가질 수 있다.(자바 8부터 인터페이스에서 default method로 구현이 가능하지만 일반적으로 구현은 없다.)\n추상클래스는 그대로 자신의 기능들을 하위로 확장(extends)시키는 느낌(부모의 유전자를 물려받는다.)인터페이스는 인터페이스에 정의된 메서드를 각 클래스의 목적에 맞게 동일한 기능으로(implements)구현하는 느낌.(부모로부터 유전자를 물려받는 것이 아니라 사교적으로 필요에 따라 결합하는 관계)즉, 구현 객체가 같은 동작을 한다는 것을 보장하기 위함.\n","dateCreated":"2023-04-23T23:55:40+09:00","dateModified":"2023-05-03T15:11:17+09:00","datePublished":"2023-04-23T23:55:40+09:00","description":"\n변수\n객체\n클래스\n인스턴스\n생성자\n객체지향 프로그래밍\n추상클래스와 인터페이스\n","headline":"[Java] 기초 종합","image":["Java.png","wallpaper.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2023/04/23/[Java]%EA%B3%B5%EB%B6%80/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2023/04/23/[Java]%EA%B3%B5%EB%B6%80/","thumbnailUrl":"Java.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n변수(Variable)데이터를 저장하기 위해 프로그램으로 할당받은 메모리 공간\n\n변수 선언 &#x3D; 프로그래밍을 하기 위해 변수를 선언 해주는 것(반드시 데이터타입을 명시 해주어야 한다.)\n변수 초기화 &#x3D; 선언된 변수에 최초로 값을 넣어서 저장해주는 것(리셋이 아니다)\n\n1234567891011int a;                 //변수 선언String time;           //변수 선언\t\t\t\t             //변수 선언 및 초기화int a = 3;\t\t\t\t\t\t //int 자료형의 a 변수를 선언하고 값을 3으로 초기화String java = &quot;자바&quot;;  //String 자료형의 java 변수를 선언하고 값을 &quot;자바&quot; 문자열로 초기화a = 5;                 //int 자료형의 a 변수에 값을 5로 초기화java = &quot;어려워&quot;;       //String 자료형의 java 변수에 값을 &quot;어려워&quot; 문자열로 초기화// 선언과 초기화를 분리해서 할 수 있지만 같이 작성하는 것을 지향하자.\n\n객체(object)효율적으로 정보를 관리하기 위해 사람들이 의미를 부여하고 분류하는 논리적인 단위\n프로그래밍에서는 클래스에 정의된 내용대로 메모리에 생성된 것을 말함.\n클래스(class)클래스란 어떤 특정 종류의 모든 객체들에 대해 일반적으로 적용할 수 있는 멤버 변수와 메소드를 정의한 소프트웨어적 설계도 또는 프로토타입(Prototype)이라 할 수 있다.\n\n프로토타입 : 정보시스템의 미완성 버전 혹은 중요한 기능들이 포함되어 있는 시스템의 초기모델이다.\n\n즉, 실세계에 존재하는 객체들이 가질 수 있는 상태와 행동들에 대해 소프트웨어적으로 추상화(abstraction) 해 놓은 것이다.\n인스턴스클래스로부터 객체를 만들어 내는 과정을 클래스의 인스턴스화 라고 하며,어떤 클래스로부터 만들어진 객체를 클래스의 인스턴스 라고 한다.\n인스턴스는 객체를 소프트웨어에 실체화한것 이라고 말할 수 있다.\n실체화된 객체(인스턴스)는 메모리에 할당된다.\n클래스는 설계도&#x2F;객체는 설계도로 구현한 모든 대상\n생성자인스턴스가 호출될때 호출되는 ‘인스턴스 초기화 메서드’ 이다.\n인스턴스 변수의 초기화에 사용되고, 몇가지 특징을 제외하면 메서드와 다를게 거의 없다.\n\n생성자는 리턴 값이 없다. void 또한 사용하지 않는다.\n생성자의 이름은 반드시 클래스명과 동일해야 한다.\n생성자는 메서드처럼 클래스 내에 선언되고, 오버로딩이 가능하므로 하나의 클래스 안에 여러개의 생성자가 존재할 수 있다.\n생성자를 설정 안해도 하나의 클래스에는 기본적으로 기본 생성자가 들어가있다.\n\n123456Cat cat1 = new Cat();Cat cat2 = new Cat();// Cat 이라는 클래스로 cat1, cat2의 변수명을 가진 객체를 초기화 하겠다는 뜻// 오른쪽의 &#x27;new Cat&#x27; 이 생성자이다.// 클래스타입 변수명 = new 클래스명(값1, 값2, ...);\n\n객체지향 프로그래밍(Object-Oriented Programming, OOP)프로그래밍에서 필요한 데이터들을 추상화 시켜 상태와 행위를 가진 객체 로 만들고, 객체들간의 상호작용을 통해 로직을 구성하는 프로그래밍 방법이다.\n예를 들어 객체가 레고 조각들이라면 그 레고들을 조립해서 만드는 것이 객체지향 프로그래밍이라고 할 수 있다.\n객체지향 프로그래밍의 5개 키워드\n클래스 + 인스턴스\n추상화\n현실적으로 불필요한 부분들을 생략하고 객체의 속성중 중요한 것에만 중점을 두어 개략화 하는 것 예) 지하철 노선도를 추상화 한다면 위성사진 → 지적도 → 실제 노선도 → 우리가 보는 지하철 노선도\n\n\n캡슐화\n기능과 특성의 모음을 “클래스” 라는 캡슐에 분류해서 넣는 것이 캡슐화 이다.\n객체가 외부에 노출되지 않아야 할 정보 또는 기능을 접근제어자를 통해서 적절히 제어 권한이 있는 객체에서만 접근하도록 하기 위해서 쓴다.\n\n\n상속\n부모클래스의 속성과 기능을 그대로 이어받아 사용할 수 있게 하고, 기능의 일부분을 변경해야 할 경우 상속받은 자식클래스에서 해당 기능만 다시 수정(정의)하여 사용할 수 있게 하는 것이다.\n다중상속은 불가능하다. (클래스간의 혼란을 줄 수 있기 때문에 반드시 하나의 상속만 가능하고, 필요에 따라서 인터페이스를 사용한다.)\n\n\n다형성\n하나의 변수명, 함수명이 상황에 따라 다른 의미로 해석될 수 있는 것을 의미한다.\n오버로딩 : 부모클래스의 메서드와 같은 이름, 매개변수를 새로 재정의 하는 것\n오버라이딩 : 같은 이름의 함수를 여러개 정의하고, 매개변수의 타입과 개수를 다르게 하여 매개변수에 따라 다르게 호출할 수 있게 하는 것\n\n\n\n\n\n\n객체지향 프로그래밍의 장단점\n\n장점\n\n코드 재사용이 용이하다  다른 사람이이 만든 클래스를 가져와서 이용할 수 있고 상속을 통해 확장해서 사용할 수 있다.\n유지보수가 쉽다.  수정해야할 부분들이 클래스 내부에 멤버 변수 혹은 메서드로 존재하기 때문에 해당 부분만 수정하면 된다.\n대형 프로젝트에 적합  클래스 단위로 모듈화 시켜서 개발할 수 있으므로 대형 프로젝트처럼 여러 명, 여러 회사에서 프로젝트를 개발할 때 업무 분담하기 쉽다.\n\n\n단점\n\n처리속도가 느리다.\n객체가 많으면 용량이 커질 수 있다.\n설계시에 많은 시간과 노력이 필요하다.\n\n\n\n추상클래스와 인터페이스추상클래스 \n\n실체클래스의 공통적인 부분(변수, 메서드)을 추출해서 선언한 클래스 즉, 실체클래스를 추상화 한 클래스\n따라서 실체클래스와는 상속관계에 있다.\n추상클래스는 객체를 만들 만큼의 실체성과 구체성이 없기 때문에 객체 생성이 불가하다.\n\n예) A키보드는 적축, B키보드는 갈축, C키보드는 청축이라고 할 때 소리는 다 다르지만, 기계식 키보드라는 공통점이 있다.\n그러므로 ‘기계식 키보드’ 라는 추상클래스 안에 A키보드 B키보드 C키보드 등등 이 상속되어 있는 개념이다.\nA 키보드라는 객체를 만든다고 하면 ‘기계식 키보드’ 추상클래스를 상속 받아서 객체를 생성한다. 그 안에서 Override를 하든 새로운 A키보드만의 기능을 만들든 상관없지만,\nA키보드 B키보드 C키보드 모두 기계식 키보드라는 공통 특성을 가지게 된 객체이다.\n왜 사용하는가?\n\n공통된 필드와 메서드를 통일할 목적으로\n실체클래스를 구현하게 될 시 시간절약 하기 위해\n추상클래스라는 공통규격 안의 실체클래스를 구현하기 위해 사용한다.\n\n인터페이스\n\n극단적으로 동일한 목적 하에 동일한 기능을 강제하는 것\n자바의 다형성을 이용하여 개발코드 수정을 줄이고 유지보수성을 높인다.\n인터페이스 끼리는 다중상속이 가능하다.\n\n왜 사용하는가?\n\n상속은 하나의 상속밖에 안되지만 인터페이스를 사용하면 다중상속이 가능하다.\n대규모 프로젝트 개발 시 일관되고 정형화된 개발이 가능하다.\n\n추상클래스와 인터페이스 공통점과 차이점공통점\n\n메서드의 선언만 있고 구현내용은 없다. (추상메서드)\n객체를 생성할 수 없으며, 상속받은 실체클래스가 반드시 선언된 추상메서드를 사용해야한다.\n\n차이점\n\n추상클래스는 다중상속이 불가능 &#x2F; 인터페이스는 다중상속 가능\n추상클래스는 클래스처럼 일반 변수, 생성자, 일반메서드, 추상메서드를 가질 수 있지만 &#x2F;인터페이스는 상수와 추상메서드만 가질 수 있다.(자바 8부터 인터페이스에서 default method로 구현이 가능하지만 일반적으로 구현은 없다.)\n추상클래스는 그대로 자신의 기능들을 하위로 확장(extends)시키는 느낌(부모의 유전자를 물려받는다.)인터페이스는 인터페이스에 정의된 메서드를 각 클래스의 목적에 맞게 동일한 기능으로(implements)구현하는 느낌.(부모로부터 유전자를 물려받는 것이 아니라 사교적으로 필요에 따라 결합하는 관계)즉, 구현 객체가 같은 동작을 한다는 것을 보장하기 위함.\n","dateCreated":"2023-04-23T23:55:40+09:00","dateModified":"2023-05-03T15:11:17+09:00","datePublished":"2023-04-23T23:55:40+09:00","description":"\n변수\n객체\n클래스\n인스턴스\n생성자\n객체지향 프로그래밍\n추상클래스와 인터페이스\n","headline":"[Java] 기초 종합","image":["Java.png","wallpaper.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2023/04/23/[Java]%EA%B3%B5%EB%B6%80/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2023/04/23/[Java]%EA%B3%B5%EB%B6%80/","thumbnailUrl":"Java.png"}</script>
     <meta name="description" content="변수 객체 클래스 인스턴스 생성자 객체지향 프로그래밍 추상클래스와 인터페이스">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="[Java] 기초 종합">
@@ -39,7 +39,16 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
 
     <!--STYLES END-->
     
@@ -62,7 +71,7 @@
 
     
 
-<header id="header" data-behavior="3">
+<header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a
@@ -89,7 +98,7 @@
             <!-- Define author's picture -->
 
 
-<nav id="sidebar" data-behavior="3">
+<nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
         
         
@@ -137,10 +146,6 @@
                     </a>
             </li>
             
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
                 <li class="sidebar-button">
                     
                         <a
@@ -159,21 +164,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="#about"
-                            
-                            rel="noopener"
-                            title="About"
-                        >
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://github.com/NeewLife?tab=repositories/"
+                            href="https://github.com/"
                             
                                 target="_blank"
                             
@@ -195,11 +186,11 @@
                     text-center
                     post-header-cover--full"
              style="background-image:url('/2023/04/23/%5BJava%5D%EA%B3%B5%EB%B6%80/wallpaper.jpg');"
-             data-behavior="3">
+             data-behavior="5">
             
         </div>
 
-            <div id="main" data-behavior="3"
+            <div id="main" data-behavior="5"
                  class="hasCover
                         hasCoverMetaOut
                         ">
@@ -481,7 +472,7 @@
 
             </div>
             
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
                     <div class="post-actions-wrap">
     <nav>
         <ul class="post-actions post-action-nav">
@@ -591,7 +582,7 @@
 
                 </div>
                 
-    <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
         <i id="btn-close-shareoptions" class="fa fa-times"></i>
         <ul class="share-options">
             
@@ -651,23 +642,17 @@
         
             <h4 id="about-card-name">오세영</h4>
         
-            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+            <div id="about-card-bio"><p>author.bio</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>웹 백앤드 지망생</p>
+                <p>author.job</p>
 
             </div>
         
-        
-            <div id="about-card-location">
-                <i class="fa fa-map-marker-alt"></i>
-                <br/>
-                경기 광명시
-            </div>
         
     </div>
 </div>
@@ -677,7 +662,16 @@
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
 
 <!--SCRIPTS END-->
 

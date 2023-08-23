@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n메모리 구조static 을 알려면 먼저 메모리의 구조를 알아야 하는데,\n메모리의 공간은 크게 스택, 힙, 스태틱 으로 구분 되어져 있다.\nStack 메모리영역\nStack(스택) 메모리 영역은 기본형 데이터(int, byte, boolean 등)에 해당하는 지역변수, 매개변수 데이터값이 저장된다.\n\n메서드가 호출될 때 메모리에 할당되고 종료되면 메모리에서 사라진다.\n\n스택은 후입선출(나중에 들어온게 먼저 나가는) 방식을 가지며, 스코프의 범위(중괄호)를 벗어나면 스택 메모리에서 사라진다.\n  \n  \n  main 메서드의 a 가 먼저 선언 되고 그 다음에 m1 메서드, m2 메서드 순으로 Stack 메모리에 저장된다.\n  \n  m2 메서드가 변수 c, z 를 선언하고 스코프 범위를 벗어나 종료되었으므로 Stack 메모리에서 삭제된다.\n  \n  \n  출처 : https://devlogofchris.tistory.com/77\n\n\n메서드가 종료되면 자동으로 메모리가 종료된다.\nHeap 메모리 영역\nJVM 이 관리하는 프로그램 상에서 데이터를 저장하기 위해서 런타임 시에 동적으로 할당하여 사용하는 영역이다.\n\n참조형 데이터 타입을 갖는 객체(String 이나 인스턴스 등등)나 배열 등이 저장되는 공간\n\n단, Heap 영역에 있는 오브젝트들을 가리키는 레퍼런스 변수는 Stack 영역에 적재\n\nHeap 영역은 Stack 영역과는 다르게 메모리 호출이 끝나더라도 삭제되지 않고 유지된다.그러다가 어떤 참조 변수도 Heap 영역에 있는 인스턴스를 참조하지 않게 된다면 가비지컬렉터 에 의해서 메모리에서 청소된다.\n  \n  처음에 Stack 영역의 m3 메서드를 호출해서 str &#x3D; “크리스입니다.” 를 실행하여 Heap 영역에 저장한다.\n  \n  그 뒤에 str 을 한번 더 초기화 해서 Heap 영역에 저장한다.  이 때 먼저 초기화 되었던 str 은 사라지지 않는다..!\n  \n  먼저 초기화 된 str 은 Heap 영역에서 사라지진 않았지만 Stack 영역에서 참조하고 있지는 않는 상태이다.\n  \n  가비지 컬렉터(GC) 가 Heap 영역의 참조하지 않는 데이터를 제거한다.\n  \n  Heap 영역에는 참조하고 있는 데이터만 남게 된다.  만약 메서드가 종료되면 Stack 메모리의 데이터가 없어지므로 Heap 도 없어지게 되는 구조이다.  출처 : https://devlogofchris.tistory.com/77\n\n\nStatic 메모리 영역\nStatic 영역에 있는 데이터들은 프로그램이 실행될 때 생성 및 초기화가 된다.따라서 Stack 이나 Heap 영역에 있는 데이터들은 객체를 생성해서 접근을 하는데,Static 영역의 데이터들은 객체를 생성 안 해도 처음부터 접근이 가능하다.\n\nStatic 영역의 데이터들은 객체를 생성해도, 안 해도 접근이 가능하지만, 클래스를 통해서 접근해야 한다.왜?\n  12345678910111213Car car1 = new Car();Car car2 = new Car();Car car3 = new Car();// 올바른 접근(Car 의 멤버변수로 접근함)System.out.println(Car.CAR_NAME);System.out.println(Car.MANUFACTURE_NAME);System.out.println(&quot;Number of cars : &quot; + Car.sNumberOfCars);// 잘못된 접근(car1의 변수인지 static 변수인지 구분하기 힘듬)System.out.println(car1.CAR_NAME);System.out.println(car1.MANUFACTURE_NAME);System.out.println(&quot;Number of cars : &quot; + car1.sNumberOfCars);\n  다음과 같은 예시에서 멤버 변수에 접근하고 있는건지, static 변수에 접근하고 있는건지 구별하기가 어렵기 때문이다.\n\n많은 개발자들이 static 으로 변수 선언하는 것을 꺼려한다.\n\n덜 객체 지향적이다.\n무분별하게 사용했을 때 문제의 발생원인을 찾기 힘들다.\n\n\nstatic 선언으로 이득보는 게 많거나, 잘 관리할 수 있겠다 싶으면 써도 된다.그러나 static 으로 변수를 많이 선언하게 되면 객체지향과 거리가 점점 멀어지게 된다.\n\n\nStatic 메모리 영역은 프로그램 실행시 선언 및 초기화가 된다. main 함수도 static 함수이기 때문에 프로그램을 실행하면 바로 선언 및 초기화가 되어서 프로그램이 돌아가는 구조이다.\n\n프로그램 실행 → Static 변수, 메서드 들이 생성됨 → 그 안에 Stack 메모리 영역에 들어가 있는 데이터들을 호출함 → 경우에 맞게 맨 위 Stack 그림처럼 차례대로 실행됨 → 그에 맞는 Heap 메모리 영역을 참조함→ 프로그램이 종료 되어도 Static 메모리 영역은 Garbage Collector 가 관여하지 않는다.\nStatic 메서드static 메서드도 static 필드와 비슷하다. 객체를 생성하지 않아도 호출할 수 있다.\n즉, 객체랑 분리되어 있다 는 의미이다.\n주의할 점은 static 메서드는 객체랑 분리되어 있기 때문에 메서드 내부에서 super, this 같은 키워드를 사용할 수도 없고, 클래스의 멤버변수에도 접근할 수가 없다.\n왜? static 은 객체를 만들지 않아도 호출 가능한데 super, this 나 멤버변수에 접근하려면 객체를 만들어야 하기 때문이다.\n그럼 언제 쓰느냐?\n⇒ Utils, Helper 클래스를 만드는데 사용된다.\n예를 들어 Math 라는 Utils 클래스를 만든다고 하자.\n123456789public class Math &#123;    public static double sqrt(double num) &#123;        // ....    &#125;    public static double sum(double num1, double num2) &#123;        // ....    &#125;&#125;\n\n이렇게 하면 수학과 관련된 메서드 들은 Math 라는 클래스 아래로 접근 가능하게 그룹화 해준다는 장점이 있다.\n어디서든 Math.sqrt(a) 이런 식으로 호출하면 사용 가능하다.\n심화. Static (Inner) 클래스일반 클래스는 static 을 붙일 수 없지만,static 키워드를 사용해서 하위 클래스를 선언할 수 있는데, 이렇게 선언하면 상위 클래스와 분리를 해 준다.\n예를 들어서, Car 클래스의 하위 클래스로 Wheels 클래스를 선언한다고 하면\nWheels 클래스는 상위인 Car 클래스의 멤버변수에도 접근이 가능한 특징을 가지게 된다.\n여기서 Wheels 클래스를 static 으로 선언할 경우\n\n상위 클래스와 분리되므로 Car 클래스의 멤버변수에 접근이 안되고\nstatic 의 특성을 가지고 있으므로 어디에서든 생성자로 접근이 가능하다.원래는 Car car = new Car(); 로 상위 객체를 생성하고  Car.Wheel car1 = car.new Wheel();이렇게 해야 할 것을Car.Wheel wheel = new Car.Wheel(); 이렇게 한번에 접근이 가능하다.\n","dateCreated":"2023-04-26T00:16:40+09:00","dateModified":"2023-05-03T15:11:17+09:00","datePublished":"2023-04-26T00:16:40+09:00","description":"","headline":"[Java] 메모리 구조 및 static","image":["Java.png","wallpaper.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2023/04/26/[Java]%20%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EA%B5%AC%EC%A1%B0%20%EB%B0%8F%20static/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2023/04/26/[Java]%20%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EA%B5%AC%EC%A1%B0%20%EB%B0%8F%20static/","thumbnailUrl":"Java.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n메모리 구조static 을 알려면 먼저 메모리의 구조를 알아야 하는데,\n메모리의 공간은 크게 스택, 힙, 스태틱 으로 구분 되어져 있다.\nStack 메모리영역\nStack(스택) 메모리 영역은 기본형 데이터(int, byte, boolean 등)에 해당하는 지역변수, 매개변수 데이터값이 저장된다.\n\n메서드가 호출될 때 메모리에 할당되고 종료되면 메모리에서 사라진다.\n\n스택은 후입선출(나중에 들어온게 먼저 나가는) 방식을 가지며, 스코프의 범위(중괄호)를 벗어나면 스택 메모리에서 사라진다.\n  \n  \n  main 메서드의 a 가 먼저 선언 되고 그 다음에 m1 메서드, m2 메서드 순으로 Stack 메모리에 저장된다.\n  \n  m2 메서드가 변수 c, z 를 선언하고 스코프 범위를 벗어나 종료되었으므로 Stack 메모리에서 삭제된다.\n  \n  \n  출처 : https://devlogofchris.tistory.com/77\n\n\n메서드가 종료되면 자동으로 메모리가 종료된다.\nHeap 메모리 영역\nJVM 이 관리하는 프로그램 상에서 데이터를 저장하기 위해서 런타임 시에 동적으로 할당하여 사용하는 영역이다.\n\n참조형 데이터 타입을 갖는 객체(String 이나 인스턴스 등등)나 배열 등이 저장되는 공간\n\n단, Heap 영역에 있는 오브젝트들을 가리키는 레퍼런스 변수는 Stack 영역에 적재\n\nHeap 영역은 Stack 영역과는 다르게 메모리 호출이 끝나더라도 삭제되지 않고 유지된다.그러다가 어떤 참조 변수도 Heap 영역에 있는 인스턴스를 참조하지 않게 된다면 가비지컬렉터 에 의해서 메모리에서 청소된다.\n  \n  처음에 Stack 영역의 m3 메서드를 호출해서 str &#x3D; “크리스입니다.” 를 실행하여 Heap 영역에 저장한다.\n  \n  그 뒤에 str 을 한번 더 초기화 해서 Heap 영역에 저장한다.  이 때 먼저 초기화 되었던 str 은 사라지지 않는다..!\n  \n  먼저 초기화 된 str 은 Heap 영역에서 사라지진 않았지만 Stack 영역에서 참조하고 있지는 않는 상태이다.\n  \n  가비지 컬렉터(GC) 가 Heap 영역의 참조하지 않는 데이터를 제거한다.\n  \n  Heap 영역에는 참조하고 있는 데이터만 남게 된다.  만약 메서드가 종료되면 Stack 메모리의 데이터가 없어지므로 Heap 도 없어지게 되는 구조이다.  출처 : https://devlogofchris.tistory.com/77\n\n\nStatic 메모리 영역\nStatic 영역에 있는 데이터들은 프로그램이 실행될 때 생성 및 초기화가 된다.따라서 Stack 이나 Heap 영역에 있는 데이터들은 객체를 생성해서 접근을 하는데,Static 영역의 데이터들은 객체를 생성 안 해도 처음부터 접근이 가능하다.\n\nStatic 영역의 데이터들은 객체를 생성해도, 안 해도 접근이 가능하지만, 클래스를 통해서 접근해야 한다.왜?\n  12345678910111213Car car1 = new Car();Car car2 = new Car();Car car3 = new Car();// 올바른 접근(Car 의 멤버변수로 접근함)System.out.println(Car.CAR_NAME);System.out.println(Car.MANUFACTURE_NAME);System.out.println(&quot;Number of cars : &quot; + Car.sNumberOfCars);// 잘못된 접근(car1의 변수인지 static 변수인지 구분하기 힘듬)System.out.println(car1.CAR_NAME);System.out.println(car1.MANUFACTURE_NAME);System.out.println(&quot;Number of cars : &quot; + car1.sNumberOfCars);\n  다음과 같은 예시에서 멤버 변수에 접근하고 있는건지, static 변수에 접근하고 있는건지 구별하기가 어렵기 때문이다.\n\n많은 개발자들이 static 으로 변수 선언하는 것을 꺼려한다.\n\n덜 객체 지향적이다.\n무분별하게 사용했을 때 문제의 발생원인을 찾기 힘들다.\n\n\nstatic 선언으로 이득보는 게 많거나, 잘 관리할 수 있겠다 싶으면 써도 된다.그러나 static 으로 변수를 많이 선언하게 되면 객체지향과 거리가 점점 멀어지게 된다.\n\n\nStatic 메모리 영역은 프로그램 실행시 선언 및 초기화가 된다. main 함수도 static 함수이기 때문에 프로그램을 실행하면 바로 선언 및 초기화가 되어서 프로그램이 돌아가는 구조이다.\n\n프로그램 실행 → Static 변수, 메서드 들이 생성됨 → 그 안에 Stack 메모리 영역에 들어가 있는 데이터들을 호출함 → 경우에 맞게 맨 위 Stack 그림처럼 차례대로 실행됨 → 그에 맞는 Heap 메모리 영역을 참조함→ 프로그램이 종료 되어도 Static 메모리 영역은 Garbage Collector 가 관여하지 않는다.\nStatic 메서드static 메서드도 static 필드와 비슷하다. 객체를 생성하지 않아도 호출할 수 있다.\n즉, 객체랑 분리되어 있다 는 의미이다.\n주의할 점은 static 메서드는 객체랑 분리되어 있기 때문에 메서드 내부에서 super, this 같은 키워드를 사용할 수도 없고, 클래스의 멤버변수에도 접근할 수가 없다.\n왜? static 은 객체를 만들지 않아도 호출 가능한데 super, this 나 멤버변수에 접근하려면 객체를 만들어야 하기 때문이다.\n그럼 언제 쓰느냐?\n⇒ Utils, Helper 클래스를 만드는데 사용된다.\n예를 들어 Math 라는 Utils 클래스를 만든다고 하자.\n123456789public class Math &#123;    public static double sqrt(double num) &#123;        // ....    &#125;    public static double sum(double num1, double num2) &#123;        // ....    &#125;&#125;\n\n이렇게 하면 수학과 관련된 메서드 들은 Math 라는 클래스 아래로 접근 가능하게 그룹화 해준다는 장점이 있다.\n어디서든 Math.sqrt(a) 이런 식으로 호출하면 사용 가능하다.\n심화. Static (Inner) 클래스일반 클래스는 static 을 붙일 수 없지만,static 키워드를 사용해서 하위 클래스를 선언할 수 있는데, 이렇게 선언하면 상위 클래스와 분리를 해 준다.\n예를 들어서, Car 클래스의 하위 클래스로 Wheels 클래스를 선언한다고 하면\nWheels 클래스는 상위인 Car 클래스의 멤버변수에도 접근이 가능한 특징을 가지게 된다.\n여기서 Wheels 클래스를 static 으로 선언할 경우\n\n상위 클래스와 분리되므로 Car 클래스의 멤버변수에 접근이 안되고\nstatic 의 특성을 가지고 있으므로 어디에서든 생성자로 접근이 가능하다.원래는 Car car = new Car(); 로 상위 객체를 생성하고  Car.Wheel car1 = car.new Wheel();이렇게 해야 할 것을Car.Wheel wheel = new Car.Wheel(); 이렇게 한번에 접근이 가능하다.\n","dateCreated":"2023-04-26T00:16:40+09:00","dateModified":"2023-05-03T15:11:17+09:00","datePublished":"2023-04-26T00:16:40+09:00","description":"","headline":"[Java] 메모리 구조 및 static","image":["Java.png","wallpaper.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2023/04/26/[Java]%20%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EA%B5%AC%EC%A1%B0%20%EB%B0%8F%20static/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2023/04/26/[Java]%20%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EA%B5%AC%EC%A1%B0%20%EB%B0%8F%20static/","thumbnailUrl":"Java.png"}</script>
     <meta property="og:type" content="blog">
 <meta property="og:title" content="[Java] 메모리 구조 및 static">
 <meta property="og:url" content="https://neewlife.github.io/2023/04/26/[Java]%20%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EA%B5%AC%EC%A1%B0%20%EB%B0%8F%20static/index.html">
@@ -49,7 +49,16 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
 
     <!--STYLES END-->
     
@@ -72,7 +81,7 @@
 
     
 
-<header id="header" data-behavior="3">
+<header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a
@@ -99,7 +108,7 @@
             <!-- Define author's picture -->
 
 
-<nav id="sidebar" data-behavior="3">
+<nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
         
         
@@ -147,10 +156,6 @@
                     </a>
             </li>
             
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
                 <li class="sidebar-button">
                     
                         <a
@@ -169,21 +174,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="#about"
-                            
-                            rel="noopener"
-                            title="About"
-                        >
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://github.com/NeewLife?tab=repositories/"
+                            href="https://github.com/"
                             
                                 target="_blank"
                             
@@ -205,7 +196,7 @@
                     text-center
                     post-header-cover--full"
              style="background-image:url('/2023/04/26/%5BJava%5D%20%EB%A9%94%EB%AA%A8%EB%A6%AC%20%EA%B5%AC%EC%A1%B0%20%EB%B0%8F%20static/wallpaper.jpg');"
-             data-behavior="3">
+             data-behavior="5">
             
                 <div class="post-header main-content-wrap text-center">
     
@@ -235,7 +226,7 @@
             
         </div>
 
-            <div id="main" data-behavior="3"
+            <div id="main" data-behavior="5"
                  class="hasCover
                         hasCoverMetaIn
                         ">
@@ -462,7 +453,7 @@
 
             </div>
             
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
                     <div class="post-actions-wrap">
     <nav>
         <ul class="post-actions post-action-nav">
@@ -572,7 +563,7 @@
 
                 </div>
                 
-    <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
         <i id="btn-close-shareoptions" class="fa fa-times"></i>
         <ul class="share-options">
             
@@ -632,23 +623,17 @@
         
             <h4 id="about-card-name">오세영</h4>
         
-            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+            <div id="about-card-bio"><p>author.bio</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>웹 백앤드 지망생</p>
+                <p>author.job</p>
 
             </div>
         
-        
-            <div id="about-card-location">
-                <i class="fa fa-map-marker-alt"></i>
-                <br/>
-                경기 광명시
-            </div>
         
     </div>
 </div>
@@ -658,7 +643,16 @@
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
 
 <!--SCRIPTS END-->
 

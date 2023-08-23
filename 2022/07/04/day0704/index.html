@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n\n캐글 데이터\nX_train, X_test, Y_train, Y_test\nX_train, X_val, Y_train, Y-val  같은 함수들을 사용\n\n확률적 경사 하강법\n이 이론이 단독적으로 의미있지는 않지만, 여기서 파생된 이론이 많아서 중요!!\n점진적 학습 (step, 보폭(&#x3D;학습속도)\n보폭이 클 수록 산에서 빠르게 내려올 수 있지만 여러 경치는 못 본다(좁게 본다)\n\n\n학습률\nXGBoost, LightGBM, 딥러닝(이미지 분류, 자연어 처리, 옵티마이저)\n\n손실 함수\n신경망 이미지 데이터, 자연어\n자율주행 하루 데이터 1TB –&gt; 이걸 다 학습\n한꺼번에 전부 모델 학습하기는 어려움\n샘플링, 배치, 에포크, 오차(&#x3D;손실&#x3D;loss)가 가장 작은 지점을 찾아야 함.\n\n\n결론적으로, 확률적 경사 하강법\n\n로지스틱 손실 함수123import pandas as pdfish = pd.read_csv(&quot;https://bit.ly/fish_csv_data&quot;)fish.info()\n\n&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;\nRangeIndex: 159 entries, 0 to 158\nData columns (total 6 columns):\n #   Column    Non-Null Count  Dtype  \n---  ------    --------------  -----  \n 0   Species   159 non-null    object \n 1   Weight    159 non-null    float64\n 2   Length    159 non-null    float64\n 3   Diagonal  159 non-null    float64\n 4   Height    159 non-null    float64\n 5   Width     159 non-null    float64\ndtypes: float64(5), object(1)\nmemory usage: 7.6+ KB\n\n\n입력 데이터와 타깃 데이터 분리\n\n123fish_input = fish[[&#x27;Weight&#x27;, &#x27;Length&#x27;, &#x27;Diagonal&#x27;, &#x27;Height&#x27;, &#x27;Width&#x27;]].to_numpy()fish_target = fish[&#x27;Species&#x27;].to_numpy()fish_input.shape, fish_target.shape\n\n\n\n\n((159, 5), (159,))\n\n\n훈련 세트와 테스트 데이터 분리\n\n12345from sklearn.model_selection import train_test_splittrain_input, test_input, train_target, test_target = train_test_split(    # input, target, 옵션...    fish_input, fish_target, random_state=42)\n\n\n훈련 세트와 테스트 세트의 특성 표준화\n무게, 길이, 대각선 길이, 높이, 너비\n\n\n단위 표준화 처리 진행\n\n12345678from sklearn.preprocessing import StandardScalerss = StandardScaler()ss.fit(train_input)train_scaled = ss.transform(train_input)test_scaled = ss.transform(test_input)\n\n모델링\n확률적 경사 하강법\n\n12345678from sklearn.linear_model import SGDClassifiersc = SGDClassifier(loss = &#x27;log&#x27;, max_iter = 10, random_state = 42)sc.fit(train_scaled, train_target)print(sc.score(train_scaled, train_target))print(sc.score(test_scaled, test_target))# 최적의 장소가 아니라 더 분석해볼 수 있는데 왜 멈췄냐는 메세지가 뜸\n\n0.773109243697479\n0.775\n\n\n/usr/local/lib/python3.7/dist-packages/sklearn/linear_model/_stochastic_gradient.py:700: ConvergenceWarning: Maximum number of iteration reached before convergence. Consider increasing max_iter to improve the fit.\n  ConvergenceWarning,\n\n\npartial_fit() 메서드 사용하면 추가 학습.\n\n123sc.partial_fit(train_scaled, train_target)print(sc.score(train_scaled, train_target))print(sc.score(test_scaled, test_target))\n\n0.865546218487395\n0.9\n\n에포크와 과대&#x2F;과소적합\n에포크 숫자가 적으면 –&gt; 덜 학습\nearly_stopping\n에포크 숫자를 1000, 손실 10, 9, 8, … ,3\n3에 도달한 시점이 150\n강제로 끊어주는 느낌\n\n\n\n12345678910111213import numpy as npsc = SGDClassifier(loss=&#x27;log&#x27;, random_state = 42)train_score = []test_score = []classes = np.unique(train_target)# 300번 에포크 훈련을 반복# 훈련 할 때마다, train_score, test_score 추가를 한다.for _ in range(0, 300):  sc.partial_fit(train_scaled, train_target, classes = classes)  train_score.append(sc.score(train_scaled, train_target))  test_score.append(sc.score(test_scaled, test_target))\n\n\n시각화\n\n123456import matplotlib.pyplot as pltplt.plot(train_score)plt.plot(test_score)plt.legend([&quot;train&quot;, &quot;test&quot;])plt.show()# X축 = 에포크, Y축 = 정확도\n\n\n\n결정 트리(중요!!)\nwine 데이터 가져오기\n\n123import pandas as pdwine = pd.read_csv(&#x27;https://bit.ly/wine_csv_data&#x27;)print(wine.head())\n\n   alcohol  sugar    pH  class\n0      9.4    1.9  3.51    0.0\n1      9.8    2.6  3.20    0.0\n2      9.8    2.3  3.26    0.0\n3      9.8    1.9  3.16    0.0\n4      9.4    1.9  3.51    0.0\n\n\n데이터 가공하기\n\n12data = wine[[&#x27;alcohol&#x27;, &#x27;sugar&#x27;, &#x27;pH&#x27;]].to_numpy()target = wine[&#x27;class&#x27;].to_numpy()\n\n\n훈련데이터 분리\n\n123456from sklearn.model_selection import train_test_splittrain_input, test_input, train_target, test_target = train_test_split(    data, target, test_size = 0.2, random_state = 42)train_input.shape, test_input.shape, train_target.shape, test_target.shape\n\n\n\n\n((5197, 3), (1300, 3), (5197,), (1300,))\n\n\n단위 표준화 처리\n\n123456from sklearn.preprocessing import StandardScalerss = StandardScaler()ss.fit(train_input)train_scaled = ss.transform(train_input)test_scaled = ss.transform(test_input)\n\n\n123456789101112from sklearn.tree import DecisionTreeClassifierimport matplotlib.pyplot as pltfrom sklearn.tree import plot_treedt = DecisionTreeClassifier(max_depth = 8, random_state = 42)  # 깊이dt.fit(train_scaled, train_target)print(dt.score(train_scaled, train_target))   # 훈련 세트print(dt.score(test_scaled, test_target))     # 테스트 세트plt.figure(figsize = (10, 7))plot_tree(dt)plt.show()\n\n0.9003271117952665\n0.8576923076923076\n\n\n\n훈련 데이터 정확도는 99.7%\n테스트 데이터 정확도는 85.9%\n과대적합이 일어남\n정확도가 낮은 이유 : 너무 깊이 세부적으로 들어가기보다 깊이를 1번정도만 했기 때문에\n\n\n정확도가 중요한게 아니고 과대적합이 일어나느냐 마느냐가 중요함\n“max_depth” 의 값을 바꿔가면서 검토\nmax_depth 값을 7로 넣었을 때 보다 8로 넣었을 때 과대적합이 크게 일어난다.\n8보다 7이 적합한 수이다.\n\n\n","dateCreated":"2022-07-04T12:50:55+09:00","dateModified":"2022-07-21T21:49:15+09:00","datePublished":"2022-07-04T12:50:55+09:00","description":"로지스틱 함수","headline":"day 0704","image":["python.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/07/04/day0704/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/07/04/day0704/","thumbnailUrl":"python.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n\n캐글 데이터\nX_train, X_test, Y_train, Y_test\nX_train, X_val, Y_train, Y-val  같은 함수들을 사용\n\n확률적 경사 하강법\n이 이론이 단독적으로 의미있지는 않지만, 여기서 파생된 이론이 많아서 중요!!\n점진적 학습 (step, 보폭(&#x3D;학습속도)\n보폭이 클 수록 산에서 빠르게 내려올 수 있지만 여러 경치는 못 본다(좁게 본다)\n\n\n학습률\nXGBoost, LightGBM, 딥러닝(이미지 분류, 자연어 처리, 옵티마이저)\n\n손실 함수\n신경망 이미지 데이터, 자연어\n자율주행 하루 데이터 1TB –&gt; 이걸 다 학습\n한꺼번에 전부 모델 학습하기는 어려움\n샘플링, 배치, 에포크, 오차(&#x3D;손실&#x3D;loss)가 가장 작은 지점을 찾아야 함.\n\n\n결론적으로, 확률적 경사 하강법\n\n로지스틱 손실 함수123import pandas as pdfish = pd.read_csv(&quot;https://bit.ly/fish_csv_data&quot;)fish.info()\n\n&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;\nRangeIndex: 159 entries, 0 to 158\nData columns (total 6 columns):\n #   Column    Non-Null Count  Dtype  \n---  ------    --------------  -----  \n 0   Species   159 non-null    object \n 1   Weight    159 non-null    float64\n 2   Length    159 non-null    float64\n 3   Diagonal  159 non-null    float64\n 4   Height    159 non-null    float64\n 5   Width     159 non-null    float64\ndtypes: float64(5), object(1)\nmemory usage: 7.6+ KB\n\n\n입력 데이터와 타깃 데이터 분리\n\n123fish_input = fish[[&#x27;Weight&#x27;, &#x27;Length&#x27;, &#x27;Diagonal&#x27;, &#x27;Height&#x27;, &#x27;Width&#x27;]].to_numpy()fish_target = fish[&#x27;Species&#x27;].to_numpy()fish_input.shape, fish_target.shape\n\n\n\n\n((159, 5), (159,))\n\n\n훈련 세트와 테스트 데이터 분리\n\n12345from sklearn.model_selection import train_test_splittrain_input, test_input, train_target, test_target = train_test_split(    # input, target, 옵션...    fish_input, fish_target, random_state=42)\n\n\n훈련 세트와 테스트 세트의 특성 표준화\n무게, 길이, 대각선 길이, 높이, 너비\n\n\n단위 표준화 처리 진행\n\n12345678from sklearn.preprocessing import StandardScalerss = StandardScaler()ss.fit(train_input)train_scaled = ss.transform(train_input)test_scaled = ss.transform(test_input)\n\n모델링\n확률적 경사 하강법\n\n12345678from sklearn.linear_model import SGDClassifiersc = SGDClassifier(loss = &#x27;log&#x27;, max_iter = 10, random_state = 42)sc.fit(train_scaled, train_target)print(sc.score(train_scaled, train_target))print(sc.score(test_scaled, test_target))# 최적의 장소가 아니라 더 분석해볼 수 있는데 왜 멈췄냐는 메세지가 뜸\n\n0.773109243697479\n0.775\n\n\n/usr/local/lib/python3.7/dist-packages/sklearn/linear_model/_stochastic_gradient.py:700: ConvergenceWarning: Maximum number of iteration reached before convergence. Consider increasing max_iter to improve the fit.\n  ConvergenceWarning,\n\n\npartial_fit() 메서드 사용하면 추가 학습.\n\n123sc.partial_fit(train_scaled, train_target)print(sc.score(train_scaled, train_target))print(sc.score(test_scaled, test_target))\n\n0.865546218487395\n0.9\n\n에포크와 과대&#x2F;과소적합\n에포크 숫자가 적으면 –&gt; 덜 학습\nearly_stopping\n에포크 숫자를 1000, 손실 10, 9, 8, … ,3\n3에 도달한 시점이 150\n강제로 끊어주는 느낌\n\n\n\n12345678910111213import numpy as npsc = SGDClassifier(loss=&#x27;log&#x27;, random_state = 42)train_score = []test_score = []classes = np.unique(train_target)# 300번 에포크 훈련을 반복# 훈련 할 때마다, train_score, test_score 추가를 한다.for _ in range(0, 300):  sc.partial_fit(train_scaled, train_target, classes = classes)  train_score.append(sc.score(train_scaled, train_target))  test_score.append(sc.score(test_scaled, test_target))\n\n\n시각화\n\n123456import matplotlib.pyplot as pltplt.plot(train_score)plt.plot(test_score)plt.legend([&quot;train&quot;, &quot;test&quot;])plt.show()# X축 = 에포크, Y축 = 정확도\n\n\n\n결정 트리(중요!!)\nwine 데이터 가져오기\n\n123import pandas as pdwine = pd.read_csv(&#x27;https://bit.ly/wine_csv_data&#x27;)print(wine.head())\n\n   alcohol  sugar    pH  class\n0      9.4    1.9  3.51    0.0\n1      9.8    2.6  3.20    0.0\n2      9.8    2.3  3.26    0.0\n3      9.8    1.9  3.16    0.0\n4      9.4    1.9  3.51    0.0\n\n\n데이터 가공하기\n\n12data = wine[[&#x27;alcohol&#x27;, &#x27;sugar&#x27;, &#x27;pH&#x27;]].to_numpy()target = wine[&#x27;class&#x27;].to_numpy()\n\n\n훈련데이터 분리\n\n123456from sklearn.model_selection import train_test_splittrain_input, test_input, train_target, test_target = train_test_split(    data, target, test_size = 0.2, random_state = 42)train_input.shape, test_input.shape, train_target.shape, test_target.shape\n\n\n\n\n((5197, 3), (1300, 3), (5197,), (1300,))\n\n\n단위 표준화 처리\n\n123456from sklearn.preprocessing import StandardScalerss = StandardScaler()ss.fit(train_input)train_scaled = ss.transform(train_input)test_scaled = ss.transform(test_input)\n\n\n123456789101112from sklearn.tree import DecisionTreeClassifierimport matplotlib.pyplot as pltfrom sklearn.tree import plot_treedt = DecisionTreeClassifier(max_depth = 8, random_state = 42)  # 깊이dt.fit(train_scaled, train_target)print(dt.score(train_scaled, train_target))   # 훈련 세트print(dt.score(test_scaled, test_target))     # 테스트 세트plt.figure(figsize = (10, 7))plot_tree(dt)plt.show()\n\n0.9003271117952665\n0.8576923076923076\n\n\n\n훈련 데이터 정확도는 99.7%\n테스트 데이터 정확도는 85.9%\n과대적합이 일어남\n정확도가 낮은 이유 : 너무 깊이 세부적으로 들어가기보다 깊이를 1번정도만 했기 때문에\n\n\n정확도가 중요한게 아니고 과대적합이 일어나느냐 마느냐가 중요함\n“max_depth” 의 값을 바꿔가면서 검토\nmax_depth 값을 7로 넣었을 때 보다 8로 넣었을 때 과대적합이 크게 일어난다.\n8보다 7이 적합한 수이다.\n\n\n","dateCreated":"2022-07-04T12:50:55+09:00","dateModified":"2022-07-21T21:49:15+09:00","datePublished":"2022-07-04T12:50:55+09:00","description":"로지스틱 함수","headline":"day 0704","image":["python.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/07/04/day0704/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2022/07/04/day0704/","thumbnailUrl":"python.png"}</script>
     <meta name="description" content="로지스틱 함수">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="day 0704">
@@ -39,7 +39,16 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
 
     <!--STYLES END-->
     
@@ -62,7 +71,7 @@
 
     
 
-<header id="header" data-behavior="3">
+<header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a
@@ -89,7 +98,7 @@
             <!-- Define author's picture -->
 
 
-<nav id="sidebar" data-behavior="3">
+<nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
         
         
@@ -137,10 +146,6 @@
                     </a>
             </li>
             
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
                 <li class="sidebar-button">
                     
                         <a
@@ -159,21 +164,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="#about"
-                            
-                            rel="noopener"
-                            title="About"
-                        >
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://github.com/NeewLife?tab=repositories/"
+                            href="https://github.com/"
                             
                                 target="_blank"
                             
@@ -191,7 +182,7 @@
 </nav>
 
             
-            <div id="main" data-behavior="3"
+            <div id="main" data-behavior="5"
                  class="
                         hasCoverMetaIn
                         ">
@@ -517,7 +508,7 @@ memory usage: 7.6+ KB
 
             </div>
             
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
                     <div class="post-actions-wrap">
     <nav>
         <ul class="post-actions post-action-nav">
@@ -627,7 +618,7 @@ memory usage: 7.6+ KB
 
                 </div>
                 
-    <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
         <i id="btn-close-shareoptions" class="fa fa-times"></i>
         <ul class="share-options">
             
@@ -687,23 +678,17 @@ memory usage: 7.6+ KB
         
             <h4 id="about-card-name">오세영</h4>
         
-            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+            <div id="about-card-bio"><p>author.bio</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>웹 백앤드 지망생</p>
+                <p>author.job</p>
 
             </div>
         
-        
-            <div id="about-card-location">
-                <i class="fa fa-map-marker-alt"></i>
-                <br/>
-                경기 광명시
-            </div>
         
     </div>
 </div>
@@ -713,7 +698,16 @@ memory usage: 7.6+ KB
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
 
 <!--SCRIPTS END-->
 

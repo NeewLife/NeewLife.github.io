@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n8장통계\n기술통계 : 평균, 최솟값, 최댓값\n\n추론통계 : 변수 간의 관계를 파악 &#x2F; 새로운 사실을 추정  \n\n(중요)평균차이 검정\n\n수치형 데이터 + 범주형 데이터\n가설검정 : 각 그룹간의 평균의 차이를 검정ex) ‘남자’의 평균 키와 ‘여자’의 평균 키는 “차이”가 있을 것이다.\n‘남자’의 평균 키가 ‘여자’의 평균 키보다 크다. 라는 결론을 내리려면이번 측정의 결과가 우연한 측정이 아니라는 것을 통계적으로 검정해야된다.ex) ‘여자’ 배구선수 평균 키는 ‘남자’의 평균 키보다 큰데?‘여자’ 배구선수의 측정은 우연한 측정이라서 결과에 사용할 수 없음\n\n\n교차분석 (&#x3D; 빈도분석)\n\n범주형 데이터\n가설검정 : 각 범주별 빈도를 활용해서 관계성을 검정ex) ‘아파트의 크기’는 ‘TV의 크기’와 관계가 있을 것이다.\n‘아파트의 크기’ &#x3D; ‘소형 아파트’,’대형 아파트’\n‘TV의 크기’ &#x3D; ‘소형 TV’,’대형 TV’\n\n\n\n\n상관관계 분석\n\n수치형 데이터\n-1 &lt;&#x3D; r &lt;&#x3D; 1 로 두 변수간의 상관관계를 의미한다.\n절댓값이 1에 가까울 수록 완전 정의 관계, 역의 관계이다.\n절댓값이 0에 가까울 수록 상관관계가 거의 없다고 해석한다.\n\n\n\n\n(중요)단순회귀분석 : 인과관계 분석\n\ny &#x3D; ax + b\n\nex1) 기온, 판매량\n\n가설검정\n\n기온(독립변수&#x3D;x)이 판매량(종속변수&#x3D;y)에 긍정적 or 부정적 영향을 주고 있을 것이다.\n\n\nex2) 월급, 외식횟수\n\n가설검정\n\n월급(독립변수&#x3D;x)이 증가하면 외식횟수(종속변수&#x3D;y)가 증가할 것 이다.\n\n\n\n\n\n\n\n통계 검정가설\nHypothesis—&gt; 공부 방법 : 선행연구, 해당 분석방법의 가설 설정 예시 참고\n\n연구 -&gt; 내가 궁금한 것을 찾는 것\n\n남자의 평균 키와 여자의 평균 키는 차이가 있을 것인가?\n\n\n귀무가설 : 두 그룹간의 평균 차이가 없다.\n\n대립가설 : 두 그룹간의 평균 차이가 있다. (보통 내가 궁금한 것)  \n\n유의수준 : 오류를 범할 확률\n\n가설검정에서 인정하는 유의수준(&lt;&#x3D;&#x3D;&gt; 신뢰수준)\n\n5%, 1%, 0.1%, 또는 10%(각 분야마다 기준이 달라진다)\n\n\n오차범위\n\nA후보의 44%\nB후보의 42%\n오차범위 안에 있다 -&gt; 다시 조사하면 바뀔 수 있다.\n오차범위 밖에 있다 -&gt; 바뀔 수 없다.\n\n\n\n\n어떻게 데이터를 입력하는지 확인\n\np-value, 유의수준 0.05 이상 : 귀무가설, 0.05 이내 –&gt; 대립가설\n\n데이터 불러오기\n\n\n12mpg1 &lt;- read.csv(&quot;mpg1.csv&quot;, stringsAsFactors = FALSE)str(mpg1)\n\n123456## &#x27;data.frame&#x27;:\t234 obs. of  5 variables:##  $ manufacturer: chr  &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; ...##  $ trans       : chr  &quot;auto&quot; &quot;manual&quot; &quot;manual&quot; &quot;auto&quot; ...##  $ drv         : chr  &quot;f&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; ...##  $ cty         : int  18 21 20 21 16 18 18 18 16 20 ...##  $ hwy         : int  29 29 31 30 26 26 27 26 25 28 ...\n\n\n시각화\n\n1234library(ggplot2)ggplot(mpg1, aes(x = trans, y = cty)) +  # trans 변수는 chr(문자형)이고, cty 변수는 int(정수형)이므로 boxplot 그래프를 쓴다.  geom_boxplot()\n\n\n\nt.test 검정\n귀무가설 : auto와 manual의 cty 평균은 차이가 없다.\n대립가설 : auto와 manual의 cty 평균은 차이가 있다.\n\n\n\n1t.test(data = mpg1, cty ~ trans)\n\n1234567891011## ## \tWelch Two Sample t-test## ## data:  cty by trans## t = -4.5375, df = 132.32, p-value = 1.263e-05## alternative hypothesis: true difference in means between group auto and group manual is not equal to 0## 95 percent confidence interval:##  -3.887311 -1.527033## sample estimates:##   mean in group auto mean in group manual ##             15.96815             18.67532\n\n123# 종속변수 ~ 독립변수# 반응변수 ~ 설명변수#     y          x\n\n‘p-value &#x3D; 1.263e-05’ 에서 p-value 값이 유의수준이 0.05보다 작으므로,\n\n  이 결과는 대립가설인 ‘auto와 manual의 cty 평균은 차이가 있다.’ 로 설명할 수 있다.\n\n두 그룹의 평균 차이 검정\n사전 필수 검정\n등분산 검정\n두 그룹간의 분산이 비슷하면 –&gt; t.test (모수 검정)\n두 그룹간의 분산이 다르면   –&gt; 비모수 검정\n\n\n\n\n보통 대립가설에 알고 싶은 결과를 대입하지만, 등분산 검정에서의 귀무가설, 대립가설은 정의된 것임\n귀무가설 : 두 그룹간의 분산이 비슷하다\n등분산 검정 에서 p-value &gt; 0.05 되어야 t.test가 가능\n\n\n대립가설 : 두 그룹간의 분산이 다르다\n\n\n\n\n\n1var.test(data = mpg1, cty~trans)\n\n1234567891011## ## \tF test to compare two variances## ## data:  cty by trans## F = 0.73539, num df = 156, denom df = 76, p-value = 0.1101## alternative hypothesis: true ratio of variances is not equal to 1## 95 percent confidence interval:##  0.4912917 1.0719468## sample estimates:## ratio of variances ##          0.7353887\n\n\n123ggplot(mpg1, aes(x = cty, fill = trans)) +  # geom_histogram() +  geom_density(alpha = 0.1)\n\n\n교차 분석\n범주형 변수들이 관계가 있다는 것을 검정\n비율에 차이가 있는지 검정\n교차분석 검정은 chisq.test() 함수로 진행\n귀무가설 : trans에 따라 drv(4, f, r)의 (비율)차이가 없다.\n대립가설 : trans에 따라 drv의 차이가 있다.\n\n\n\n  \n\n\n빈도표 &#x2F; 비율\n\n1table(mpg1$trans, mpg1$drv)   # 교차분석\n\n1234##         ##           4  f  r##   auto   75 65 17##   manual 28 41  8\n\n\n비율\n\n1prop.table(table(mpg1$trans, mpg1$drv), 1)\n\n1234##         ##                  4         f         r##   auto   0.4777070 0.4140127 0.1082803##   manual 0.3636364 0.5324675 0.1038961\n\n\nauto 4륜 구동(4)인 47.8%\nmanual 전륜 구동(f) 53.2% 가장 많음\n별 차이 없어보이는데.. 실제 통계적으로 차이가 있는지 검정\n귀무가설 : trans에 따라 drv(4, f, r)의 (비율)차이가 없다.\n대립가설 : trans에 따라 drv의 차이가 있다.\n\n\n\n1chisq.test(mpg1$trans, mpg1$drv)\n\n12345## ## \tPearson&#x27;s Chi-squared test## ## data:  mpg1$trans and mpg1$drv## X-squared = 3.1368, df = 2, p-value = 0.2084\n\np-value 값이 0.05 보다 크므로 귀무가설이 성립된다.\n결론 : “trans에 따라 drv(4, f, r)의 (비율)차이가 없다.”\n\n상관관계분석\n변수들의 상관관계를 증명()\ncty와 hwy는 상관관계가 있는지를 증명\n상관관계분석은 cor.test() 함수로 진행\n귀무가설 : cty와 hwy는 상관관계가 없다.\n대립가설 : cty와 hwy는 상관관계가 있다.\n\n\n\n12mpg1 &lt;-read.csv(&quot;mpg1.csv&quot;, stringsAsFactors = FALSE)cor.test(mpg1$cty, mpg1$hwy)    # 상관관계분석\n\n1234567891011## ## \tPearson&#x27;s product-moment correlation## ## data:  mpg1$cty and mpg1$hwy## t = 49.585, df = 232, p-value &lt; 2.2e-16## alternative hypothesis: true correlation is not equal to 0## 95 percent confidence interval:##  0.9433129 0.9657663## sample estimates:##       cor ## 0.9559159\n\n\n‘p-value &lt; 2.2e-16’ 에서 p-value 값이 0.05보다 작으므로 대립가설이 성립한다.\ncor(상관관계계수) &#x3D; 0.9559159 이므로 상관관계가 1에 가까워서 매우 높다.\n결론 : “cty와 hwy는 유의미하게 매우 높은 상관관계에 있다.”\n\n회귀분석\n기초통계 : 특정한 결과에 영향을 주는 주 요인이 무엇인지 찾는 것\n\n회귀분석과 종료\n\n1세대 회귀 방법론 : 다항회귀분석, 다중회귀분석, 포아송 회귀분석, etc\n2세대 회귀 방법론 : 구조방정식\n\n\n귀무가설, 대립가설 존재\n\n귀무가설 : x(&#x3D;독립변수)가 y(&#x3D;종속변수)에 영향을 주지 않는다\n대립가설 : x가 y에 영향을 준다\n\n\nlm(종속변수 ~ 독립변수, data)\n\np-value\n\n\n\n12RA &lt;- lm(data=mtcars, mpg ~ disp)  # 종속변수 ~ 독립변수+독립변수+...summary(RA)\n\n123456789101112131415161718## ## Call:## lm(formula = mpg ~ disp, data = mtcars)## ## Residuals:##     Min      1Q  Median      3Q     Max ## -4.8922 -2.2022 -0.9631  1.6272  7.2305 ## ## Coefficients:##              Estimate Std. Error t value Pr(&gt;|t|)    ## (Intercept) 29.599855   1.229720  24.070  &lt; 2e-16 ***## disp        -0.041215   0.004712  -8.747 9.38e-10 ***## ---## Signif. codes:  0 &#x27;***&#x27; 0.001 &#x27;**&#x27; 0.01 &#x27;*&#x27; 0.05 &#x27;.&#x27; 0.1 &#x27; &#x27; 1## ## Residual standard error: 3.251 on 30 degrees of freedom## Multiple R-squared:  0.7183,\tAdjusted R-squared:  0.709 ## F-statistic: 76.51 on 1 and 30 DF,  p-value: 9.38e-10\n\n12# 맨 밑의 p-value 값은 전체식에 해당하는 값이다.# 여러 변수들 중 &#x27;Pr(&gt;|t|)&#x27;값이(=p-value) 0.05 이상이면 그 변수는 제외한다.\n\n\n\n머신러닝, 인공지능\n주 목적은 예측\ny &#x3D; ax + b\n\n\n\n\nCoefficients:             Estimate Std. Error t value Pr(&gt;|t|)(Intercept) 29.599855   1.229720  24.070  &lt; 2e-16 ***disp        -0.041215   0.004712  -8.747 9.38e-10 ***var1                                     0.10var2                                     9.38e-10var3                                     3.14e-9Residual standard error: 3.251 on 30 degrees of freedomMultiple R-squared:  0.7183,\tAdjusted R-squared:  0.709F-statistic: 76.51 on 1 and 30 DF,  p-value: 9.38e-10\n\nEstimate값 해석 : y(mpg) &#x3D; 29.599855 - 0.041215 x disp\n\n우하향 하는 그래프\n\n\n에서 ANOVA (분산분석) 을 통해서 식1, 식2, 식3, … 을 해서 괜찮은 식을 도출해야한다\n\np-value 값은 항상 0.05 미만식1 : y &#x3D; disp + var1 + var2 + var3식2 : y &#x3D; disp + var1 + var2식3 : y &#x3D; disp + var1\n\nResidual standard error: 3.251 on 30 degrees of freedomMultiple R-squared:  0.7183,\tAdjusted R-squared:  0.709 에서\n\nR-squared (결정계수) &#x3D; 설명력 &#x3D; 0 ~ 1\n\n1로 수렴할수록 설명력이 좋다\n\n‘Multiple R-squared:   0.7183’ 의 의미는 해당 변수들이 71.83% 만큼 영향을 준다는 뜻\n\n\n회귀분석에서 고려해야할 것들\n전체식의 p-value 값이 0.05 보다 작은가?\nANOVA를 통해서 변하는 p-value 값이 0.05 미만인가를 체크한다.\nR-squared(결정계수)가 1에 가까운 변수 식을 찾는다.\n","dateCreated":"2022-06-23T17:31:30+09:00","dateModified":"2022-07-11T00:28:20+09:00","datePublished":"2022-06-23T17:31:30+09:00","description":"시각화, 교차분석","headline":"8장","image":["R_logo.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/23/day0623/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/06/23/day0623/","thumbnailUrl":"R_logo.jpg"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n8장통계\n기술통계 : 평균, 최솟값, 최댓값\n\n추론통계 : 변수 간의 관계를 파악 &#x2F; 새로운 사실을 추정  \n\n(중요)평균차이 검정\n\n수치형 데이터 + 범주형 데이터\n가설검정 : 각 그룹간의 평균의 차이를 검정ex) ‘남자’의 평균 키와 ‘여자’의 평균 키는 “차이”가 있을 것이다.\n‘남자’의 평균 키가 ‘여자’의 평균 키보다 크다. 라는 결론을 내리려면이번 측정의 결과가 우연한 측정이 아니라는 것을 통계적으로 검정해야된다.ex) ‘여자’ 배구선수 평균 키는 ‘남자’의 평균 키보다 큰데?‘여자’ 배구선수의 측정은 우연한 측정이라서 결과에 사용할 수 없음\n\n\n교차분석 (&#x3D; 빈도분석)\n\n범주형 데이터\n가설검정 : 각 범주별 빈도를 활용해서 관계성을 검정ex) ‘아파트의 크기’는 ‘TV의 크기’와 관계가 있을 것이다.\n‘아파트의 크기’ &#x3D; ‘소형 아파트’,’대형 아파트’\n‘TV의 크기’ &#x3D; ‘소형 TV’,’대형 TV’\n\n\n\n\n상관관계 분석\n\n수치형 데이터\n-1 &lt;&#x3D; r &lt;&#x3D; 1 로 두 변수간의 상관관계를 의미한다.\n절댓값이 1에 가까울 수록 완전 정의 관계, 역의 관계이다.\n절댓값이 0에 가까울 수록 상관관계가 거의 없다고 해석한다.\n\n\n\n\n(중요)단순회귀분석 : 인과관계 분석\n\ny &#x3D; ax + b\n\nex1) 기온, 판매량\n\n가설검정\n\n기온(독립변수&#x3D;x)이 판매량(종속변수&#x3D;y)에 긍정적 or 부정적 영향을 주고 있을 것이다.\n\n\nex2) 월급, 외식횟수\n\n가설검정\n\n월급(독립변수&#x3D;x)이 증가하면 외식횟수(종속변수&#x3D;y)가 증가할 것 이다.\n\n\n\n\n\n\n\n통계 검정가설\nHypothesis—&gt; 공부 방법 : 선행연구, 해당 분석방법의 가설 설정 예시 참고\n\n연구 -&gt; 내가 궁금한 것을 찾는 것\n\n남자의 평균 키와 여자의 평균 키는 차이가 있을 것인가?\n\n\n귀무가설 : 두 그룹간의 평균 차이가 없다.\n\n대립가설 : 두 그룹간의 평균 차이가 있다. (보통 내가 궁금한 것)  \n\n유의수준 : 오류를 범할 확률\n\n가설검정에서 인정하는 유의수준(&lt;&#x3D;&#x3D;&gt; 신뢰수준)\n\n5%, 1%, 0.1%, 또는 10%(각 분야마다 기준이 달라진다)\n\n\n오차범위\n\nA후보의 44%\nB후보의 42%\n오차범위 안에 있다 -&gt; 다시 조사하면 바뀔 수 있다.\n오차범위 밖에 있다 -&gt; 바뀔 수 없다.\n\n\n\n\n어떻게 데이터를 입력하는지 확인\n\np-value, 유의수준 0.05 이상 : 귀무가설, 0.05 이내 –&gt; 대립가설\n\n데이터 불러오기\n\n\n12mpg1 &lt;- read.csv(&quot;mpg1.csv&quot;, stringsAsFactors = FALSE)str(mpg1)\n\n123456## &#x27;data.frame&#x27;:\t234 obs. of  5 variables:##  $ manufacturer: chr  &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; &quot;audi&quot; ...##  $ trans       : chr  &quot;auto&quot; &quot;manual&quot; &quot;manual&quot; &quot;auto&quot; ...##  $ drv         : chr  &quot;f&quot; &quot;f&quot; &quot;f&quot; &quot;f&quot; ...##  $ cty         : int  18 21 20 21 16 18 18 18 16 20 ...##  $ hwy         : int  29 29 31 30 26 26 27 26 25 28 ...\n\n\n시각화\n\n1234library(ggplot2)ggplot(mpg1, aes(x = trans, y = cty)) +  # trans 변수는 chr(문자형)이고, cty 변수는 int(정수형)이므로 boxplot 그래프를 쓴다.  geom_boxplot()\n\n\n\nt.test 검정\n귀무가설 : auto와 manual의 cty 평균은 차이가 없다.\n대립가설 : auto와 manual의 cty 평균은 차이가 있다.\n\n\n\n1t.test(data = mpg1, cty ~ trans)\n\n1234567891011## ## \tWelch Two Sample t-test## ## data:  cty by trans## t = -4.5375, df = 132.32, p-value = 1.263e-05## alternative hypothesis: true difference in means between group auto and group manual is not equal to 0## 95 percent confidence interval:##  -3.887311 -1.527033## sample estimates:##   mean in group auto mean in group manual ##             15.96815             18.67532\n\n123# 종속변수 ~ 독립변수# 반응변수 ~ 설명변수#     y          x\n\n‘p-value &#x3D; 1.263e-05’ 에서 p-value 값이 유의수준이 0.05보다 작으므로,\n\n  이 결과는 대립가설인 ‘auto와 manual의 cty 평균은 차이가 있다.’ 로 설명할 수 있다.\n\n두 그룹의 평균 차이 검정\n사전 필수 검정\n등분산 검정\n두 그룹간의 분산이 비슷하면 –&gt; t.test (모수 검정)\n두 그룹간의 분산이 다르면   –&gt; 비모수 검정\n\n\n\n\n보통 대립가설에 알고 싶은 결과를 대입하지만, 등분산 검정에서의 귀무가설, 대립가설은 정의된 것임\n귀무가설 : 두 그룹간의 분산이 비슷하다\n등분산 검정 에서 p-value &gt; 0.05 되어야 t.test가 가능\n\n\n대립가설 : 두 그룹간의 분산이 다르다\n\n\n\n\n\n1var.test(data = mpg1, cty~trans)\n\n1234567891011## ## \tF test to compare two variances## ## data:  cty by trans## F = 0.73539, num df = 156, denom df = 76, p-value = 0.1101## alternative hypothesis: true ratio of variances is not equal to 1## 95 percent confidence interval:##  0.4912917 1.0719468## sample estimates:## ratio of variances ##          0.7353887\n\n\n123ggplot(mpg1, aes(x = cty, fill = trans)) +  # geom_histogram() +  geom_density(alpha = 0.1)\n\n\n교차 분석\n범주형 변수들이 관계가 있다는 것을 검정\n비율에 차이가 있는지 검정\n교차분석 검정은 chisq.test() 함수로 진행\n귀무가설 : trans에 따라 drv(4, f, r)의 (비율)차이가 없다.\n대립가설 : trans에 따라 drv의 차이가 있다.\n\n\n\n  \n\n\n빈도표 &#x2F; 비율\n\n1table(mpg1$trans, mpg1$drv)   # 교차분석\n\n1234##         ##           4  f  r##   auto   75 65 17##   manual 28 41  8\n\n\n비율\n\n1prop.table(table(mpg1$trans, mpg1$drv), 1)\n\n1234##         ##                  4         f         r##   auto   0.4777070 0.4140127 0.1082803##   manual 0.3636364 0.5324675 0.1038961\n\n\nauto 4륜 구동(4)인 47.8%\nmanual 전륜 구동(f) 53.2% 가장 많음\n별 차이 없어보이는데.. 실제 통계적으로 차이가 있는지 검정\n귀무가설 : trans에 따라 drv(4, f, r)의 (비율)차이가 없다.\n대립가설 : trans에 따라 drv의 차이가 있다.\n\n\n\n1chisq.test(mpg1$trans, mpg1$drv)\n\n12345## ## \tPearson&#x27;s Chi-squared test## ## data:  mpg1$trans and mpg1$drv## X-squared = 3.1368, df = 2, p-value = 0.2084\n\np-value 값이 0.05 보다 크므로 귀무가설이 성립된다.\n결론 : “trans에 따라 drv(4, f, r)의 (비율)차이가 없다.”\n\n상관관계분석\n변수들의 상관관계를 증명()\ncty와 hwy는 상관관계가 있는지를 증명\n상관관계분석은 cor.test() 함수로 진행\n귀무가설 : cty와 hwy는 상관관계가 없다.\n대립가설 : cty와 hwy는 상관관계가 있다.\n\n\n\n12mpg1 &lt;-read.csv(&quot;mpg1.csv&quot;, stringsAsFactors = FALSE)cor.test(mpg1$cty, mpg1$hwy)    # 상관관계분석\n\n1234567891011## ## \tPearson&#x27;s product-moment correlation## ## data:  mpg1$cty and mpg1$hwy## t = 49.585, df = 232, p-value &lt; 2.2e-16## alternative hypothesis: true correlation is not equal to 0## 95 percent confidence interval:##  0.9433129 0.9657663## sample estimates:##       cor ## 0.9559159\n\n\n‘p-value &lt; 2.2e-16’ 에서 p-value 값이 0.05보다 작으므로 대립가설이 성립한다.\ncor(상관관계계수) &#x3D; 0.9559159 이므로 상관관계가 1에 가까워서 매우 높다.\n결론 : “cty와 hwy는 유의미하게 매우 높은 상관관계에 있다.”\n\n회귀분석\n기초통계 : 특정한 결과에 영향을 주는 주 요인이 무엇인지 찾는 것\n\n회귀분석과 종료\n\n1세대 회귀 방법론 : 다항회귀분석, 다중회귀분석, 포아송 회귀분석, etc\n2세대 회귀 방법론 : 구조방정식\n\n\n귀무가설, 대립가설 존재\n\n귀무가설 : x(&#x3D;독립변수)가 y(&#x3D;종속변수)에 영향을 주지 않는다\n대립가설 : x가 y에 영향을 준다\n\n\nlm(종속변수 ~ 독립변수, data)\n\np-value\n\n\n\n12RA &lt;- lm(data=mtcars, mpg ~ disp)  # 종속변수 ~ 독립변수+독립변수+...summary(RA)\n\n123456789101112131415161718## ## Call:## lm(formula = mpg ~ disp, data = mtcars)## ## Residuals:##     Min      1Q  Median      3Q     Max ## -4.8922 -2.2022 -0.9631  1.6272  7.2305 ## ## Coefficients:##              Estimate Std. Error t value Pr(&gt;|t|)    ## (Intercept) 29.599855   1.229720  24.070  &lt; 2e-16 ***## disp        -0.041215   0.004712  -8.747 9.38e-10 ***## ---## Signif. codes:  0 &#x27;***&#x27; 0.001 &#x27;**&#x27; 0.01 &#x27;*&#x27; 0.05 &#x27;.&#x27; 0.1 &#x27; &#x27; 1## ## Residual standard error: 3.251 on 30 degrees of freedom## Multiple R-squared:  0.7183,\tAdjusted R-squared:  0.709 ## F-statistic: 76.51 on 1 and 30 DF,  p-value: 9.38e-10\n\n12# 맨 밑의 p-value 값은 전체식에 해당하는 값이다.# 여러 변수들 중 &#x27;Pr(&gt;|t|)&#x27;값이(=p-value) 0.05 이상이면 그 변수는 제외한다.\n\n\n\n머신러닝, 인공지능\n주 목적은 예측\ny &#x3D; ax + b\n\n\n\n\nCoefficients:             Estimate Std. Error t value Pr(&gt;|t|)(Intercept) 29.599855   1.229720  24.070  &lt; 2e-16 ***disp        -0.041215   0.004712  -8.747 9.38e-10 ***var1                                     0.10var2                                     9.38e-10var3                                     3.14e-9Residual standard error: 3.251 on 30 degrees of freedomMultiple R-squared:  0.7183,\tAdjusted R-squared:  0.709F-statistic: 76.51 on 1 and 30 DF,  p-value: 9.38e-10\n\nEstimate값 해석 : y(mpg) &#x3D; 29.599855 - 0.041215 x disp\n\n우하향 하는 그래프\n\n\n에서 ANOVA (분산분석) 을 통해서 식1, 식2, 식3, … 을 해서 괜찮은 식을 도출해야한다\n\np-value 값은 항상 0.05 미만식1 : y &#x3D; disp + var1 + var2 + var3식2 : y &#x3D; disp + var1 + var2식3 : y &#x3D; disp + var1\n\nResidual standard error: 3.251 on 30 degrees of freedomMultiple R-squared:  0.7183,\tAdjusted R-squared:  0.709 에서\n\nR-squared (결정계수) &#x3D; 설명력 &#x3D; 0 ~ 1\n\n1로 수렴할수록 설명력이 좋다\n\n‘Multiple R-squared:   0.7183’ 의 의미는 해당 변수들이 71.83% 만큼 영향을 준다는 뜻\n\n\n회귀분석에서 고려해야할 것들\n전체식의 p-value 값이 0.05 보다 작은가?\nANOVA를 통해서 변하는 p-value 값이 0.05 미만인가를 체크한다.\nR-squared(결정계수)가 1에 가까운 변수 식을 찾는다.\n","dateCreated":"2022-06-23T17:31:30+09:00","dateModified":"2022-07-11T00:28:20+09:00","datePublished":"2022-06-23T17:31:30+09:00","description":"시각화, 교차분석","headline":"8장","image":["R_logo.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/06/23/day0623/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2022/06/23/day0623/","thumbnailUrl":"R_logo.jpg"}</script>
     <meta name="description" content="시각화, 교차분석">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="8장">
@@ -39,7 +39,16 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
 
     <!--STYLES END-->
     
@@ -62,7 +71,7 @@
 
     
 
-<header id="header" data-behavior="3">
+<header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a
@@ -89,7 +98,7 @@
             <!-- Define author's picture -->
 
 
-<nav id="sidebar" data-behavior="3">
+<nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
         
         
@@ -137,10 +146,6 @@
                     </a>
             </li>
             
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
                 <li class="sidebar-button">
                     
                         <a
@@ -159,21 +164,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="#about"
-                            
-                            rel="noopener"
-                            title="About"
-                        >
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://github.com/NeewLife?tab=repositories/"
+                            href="https://github.com/"
                             
                                 target="_blank"
                             
@@ -191,7 +182,7 @@
 </nav>
 
             
-            <div id="main" data-behavior="3"
+            <div id="main" data-behavior="5"
                  class="
                         hasCoverMetaIn
                         ">
@@ -628,7 +619,7 @@
 
             </div>
             
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
                     <div class="post-actions-wrap">
     <nav>
         <ul class="post-actions post-action-nav">
@@ -738,7 +729,7 @@
 
                 </div>
                 
-    <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
         <i id="btn-close-shareoptions" class="fa fa-times"></i>
         <ul class="share-options">
             
@@ -798,23 +789,17 @@
         
             <h4 id="about-card-name">오세영</h4>
         
-            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+            <div id="about-card-bio"><p>author.bio</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>웹 백앤드 지망생</p>
+                <p>author.job</p>
 
             </div>
         
-        
-            <div id="about-card-location">
-                <i class="fa fa-map-marker-alt"></i>
-                <br/>
-                경기 광명시
-            </div>
         
     </div>
 </div>
@@ -824,7 +809,16 @@
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
 
 <!--SCRIPTS END-->
 

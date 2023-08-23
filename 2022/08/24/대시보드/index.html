@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"},"articleBody":"\n\n대시보드\n웹 개발 프로젝트\n대시보드 오픈소스 &#x2F; 유료 툴\n\nFlask 관련\n효율적으로 디자인 패턴하기(중요)\n웹 개발도 가능하게\n\nR\nShiny 대시보드 프레임워크 로 통합되어있음\n\nPython\n웹 개발 프레임워크가 Django, Flask 가 있는 것처럼\n  Python 프레임워크는 한두개가 아니라 다양하다.\n\n\n대시보드 &#x3D; 시각화를 예쁘게 해주는 코드\n좀 더 세부적으로 하고 싶다면 plotly 를 써야 함\n\n구글에 python dashboard framework 만 쳐도 엄청 나옴\ndash python 주로 쓴다\n\nPython(유료툴)\n대세 : 태블로, PowerBi\n\nJava 스크립트 내 Python 코드 호출\nJpython (에러가 많음)\n차라리 외부에서 만들고 iframe 형태로 만들어라\n\n\nFlask를 가지고 대시보드 만들기폴더를 하나 생성 후 VSCode 로 연다.\n가상환경 설정 후, 다음 코드를 입력한다.\n\n1pip install dash plotly Flask pandas gunicorn psycopg2-binary SQLAlchemy Flask-SQLAlchemy\n\n\n지금까지는 app.py에 전부 다 스킬 코드를 집어 넣었지만,\n  이렇게 app 객체를 전역으로 사용하면 “순환참조오류” 가 발생할 확률이 높음\n\n순환참조오류 : A → B , B → A  가 발생하는 경우. 무한반복됨\n\n그렇다면 어떻게 해야되냐\n  app ‘폴더’ 를 하나 만들고 ‘init.py’ 라는 ‘파일’ 을 하나 생성한다.\n\n\n\n\n가상환경에 접속한다.\n\n12virtualenv venv # 가상환경 생성source venv/Scripts/activate # 가상환경 접속\n\n\n필수 라이브러리를 설치한다\n\n1pip install dash plotly Flask pandas gunicorn psycopg2-binary SQLAlchemy Flask-SQLAlchemy\n\n\n__init__.py 파일에 다음 코드를 작성한다.\n\n12345678910111213141516171819202122# app/__init__.pyimport osfrom flask import Flaskdef create_app(test_config=None):    app = Flask(__name__, instance_relative_config=True)    app.config.from_mapping(        SECRET_KEY = &#x27;development&#x27;    )    if test_config is None:        app.config.from_pyfile(&#x27;config.py&#x27;, silent=True)    else:        app.config.from_mapping(test_config)    try:        os.makedirs(app.instance_path)    except OSError:        pass    return app\n\n\nmain 파일을 하나 만들고 다음 블루프린트 코드를 작성한다\n\n12345678# app/main.pyfrom flask import Blueprint, render_templatebp = Blueprint(&#x27;main&#x27;, __name__, url_prefix=&#x27;/&#x27;)@bp.route(&#x27;/&#x27;)def main():    return &quot;Hello World!&quot;\n\n\n__init__.py 와 main 을 연결시키기 위해서 __init__.py 파일에 경로를 추가한다.\n  \n\n\n12from . import mainapp.register_blueprint(main.bp)\n\n\n이번에는 wsgi.py 파일을 만들고 그 안에 코드를 작성한다\n\n123456from app import create_appapp = create_app()if __name__ == &quot;__main__&quot;:    app.run(host=&#x27;0.0.0.0&#x27;, debug=True)\n\n\n이제 flask run 을 터미널에 입력해서 서버테스트를 한다.(파일 위치는 다음과 같음)\n  \n  \n\n\ntemplates 폴더\n이번에는 templates 폴더를 하나 만든다.\nbootstrap 5.2.0 버전을 활용하여 base.html 및 main.html 파일을 생성하여 Manu Bar와 Hello World를 출력하는 코드를 작성한다.\n이 때 확장자명 html 파일은 모두 jinja2로 저장하는 것에 주의한다.\n\n1. header.jinja2 파일 작성\napp&#x2F;templates&#x2F;header.jinja2   이렇게 파일을 만든다.\n\nheader.jinja2 파일에 아래 코드를 작성한다.\n\n  12345678&lt;ul class=&quot;nav&quot;&gt;  &lt;li class=&quot;nav-item&quot;&gt;    &lt;a class=&quot;nav-link active&quot; aria-current=&quot;page&quot; href=&quot;/main&quot;&gt;Main&lt;/a&gt;  &lt;/li&gt;  &lt;li class=&quot;nav-item&quot;&gt;    &lt;a class=&quot;nav-link active&quot; href=&quot;/dashapp1&quot;&gt;Dashapp1&lt;/a&gt;  &lt;/li&gt;&lt;/ul&gt;\n\n2. base.jinja2 파일 작성\n이번에는 base.jinja2 파일을 만들고 header.jinja2 파일을 불러오자\n\n123456789101112131415161718192021222324&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;  &lt;head&gt;    &lt;meta charset=&quot;utf-8&quot; /&gt;    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; /&gt;    &lt;title&gt;Bootstrap demo&lt;/title&gt;    &lt;link      href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css&quot;      rel=&quot;stylesheet&quot;      integrity=&quot;sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx&quot;      crossorigin=&quot;anonymous&quot;    /&gt;    &lt;script      src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js&quot;      integrity=&quot;sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa&quot;      crossorigin=&quot;anonymous&quot;    &gt;&lt;/script&gt;  &lt;/head&gt;  &lt;body&gt;    &#123;% include &#x27;header.jinja2&#x27; %&#125;    &lt;br /&gt;    &lt;div class=&quot;container&quot;&gt;&#123;% block content %&#125; &#123;% endblock %&#125;&lt;/div&gt;  &lt;/body&gt;&lt;/html&gt;\n\nmain 페이지 작성\napp폴더에 main “폴더” 를 만든다\n\nmain 폴더 내부에 templates 폴더와 [main.py](http://main.py) 를 생성한다\n\ntemplates 폴더 내부에 main.jinja2 파일을 만든 후 다음 코드를 작성한다\\\n\n\n123456&#123;% extends &quot;base.jinja2&quot; %&#125;&#123;% block content %&#125;&lt;h1&gt;Hello World&lt;/h1&gt;&#123;% endblock %&#125;\n\n\n[main.py](http://main.py) 에 다음 코드를 입력한다\n\n12345678# app/main/main.pyfrom flask import Blueprint, render_templatebp = Blueprint(&#x27;main&#x27;, __name__, template_folder = &quot;templates&quot;, url_prefix=&#x27;/&#x27;)@bp.route(&#x27;/&#x27;)def main():    return render_template(&quot;main.jinja2&quot;, title = &#x27;main page&#x27;)\n\n\napp/__init__.py 파일에서 main 코드의 일부 경로를 수정한다\n  \n\n\n12345678910111213141516# app/__init__.pyimport osfrom flask import Flaskdef create_app(test_config=None):    app = Flask(__name__, instance_relative_config=True)    app.config.from_mapping(        SECRET_KEY = &#x27;development&#x27;    )..from .main import mainapp.register_blueprint(main.bp)return app\n\n\n이제 flask run 을 해서 서버테스트를 한다.\n\nflask 애플리케이션 팩토리 블루프린트를 이해해야함","dateCreated":"2022-08-24T23:27:20+09:00","dateModified":"2022-09-07T19:19:55+09:00","datePublished":"2022-08-24T23:27:20+09:00","description":"홈페이지 만들기","headline":"Python 대시보드 만들기","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/08/24/%EB%8C%80%EC%8B%9C%EB%B3%B4%EB%93%9C/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[],"image":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4","logo":{"@type":"ImageObject","url":"https://www.gravatar.com/avatar/54b39dd7beade1e993c6b9047cc1a4f4"}},"url":"https://neewlife.github.io/2022/08/24/%EB%8C%80%EC%8B%9C%EB%B3%B4%EB%93%9C/"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n대시보드\n웹 개발 프로젝트\n대시보드 오픈소스 &#x2F; 유료 툴\n\nFlask 관련\n효율적으로 디자인 패턴하기(중요)\n웹 개발도 가능하게\n\nR\nShiny 대시보드 프레임워크 로 통합되어있음\n\nPython\n웹 개발 프레임워크가 Django, Flask 가 있는 것처럼\n  Python 프레임워크는 한두개가 아니라 다양하다.\n\n\n대시보드 &#x3D; 시각화를 예쁘게 해주는 코드\n좀 더 세부적으로 하고 싶다면 plotly 를 써야 함\n\n구글에 python dashboard framework 만 쳐도 엄청 나옴\ndash python 주로 쓴다\n\nPython(유료툴)\n대세 : 태블로, PowerBi\n\nJava 스크립트 내 Python 코드 호출\nJpython (에러가 많음)\n차라리 외부에서 만들고 iframe 형태로 만들어라\n\n\nFlask를 가지고 대시보드 만들기폴더를 하나 생성 후 VSCode 로 연다.\n가상환경 설정 후, 다음 코드를 입력한다.\n\n1pip install dash plotly Flask pandas gunicorn psycopg2-binary SQLAlchemy Flask-SQLAlchemy\n\n\n지금까지는 app.py에 전부 다 스킬 코드를 집어 넣었지만,\n  이렇게 app 객체를 전역으로 사용하면 “순환참조오류” 가 발생할 확률이 높음\n\n순환참조오류 : A → B , B → A  가 발생하는 경우. 무한반복됨\n\n그렇다면 어떻게 해야되냐\n  app ‘폴더’ 를 하나 만들고 ‘init.py’ 라는 ‘파일’ 을 하나 생성한다.\n\n\n\n\n가상환경에 접속한다.\n\n12virtualenv venv # 가상환경 생성source venv/Scripts/activate # 가상환경 접속\n\n\n필수 라이브러리를 설치한다\n\n1pip install dash plotly Flask pandas gunicorn psycopg2-binary SQLAlchemy Flask-SQLAlchemy\n\n\n__init__.py 파일에 다음 코드를 작성한다.\n\n12345678910111213141516171819202122# app/__init__.pyimport osfrom flask import Flaskdef create_app(test_config=None):    app = Flask(__name__, instance_relative_config=True)    app.config.from_mapping(        SECRET_KEY = &#x27;development&#x27;    )    if test_config is None:        app.config.from_pyfile(&#x27;config.py&#x27;, silent=True)    else:        app.config.from_mapping(test_config)    try:        os.makedirs(app.instance_path)    except OSError:        pass    return app\n\n\nmain 파일을 하나 만들고 다음 블루프린트 코드를 작성한다\n\n12345678# app/main.pyfrom flask import Blueprint, render_templatebp = Blueprint(&#x27;main&#x27;, __name__, url_prefix=&#x27;/&#x27;)@bp.route(&#x27;/&#x27;)def main():    return &quot;Hello World!&quot;\n\n\n__init__.py 와 main 을 연결시키기 위해서 __init__.py 파일에 경로를 추가한다.\n  \n\n\n12from . import mainapp.register_blueprint(main.bp)\n\n\n이번에는 wsgi.py 파일을 만들고 그 안에 코드를 작성한다\n\n123456from app import create_appapp = create_app()if __name__ == &quot;__main__&quot;:    app.run(host=&#x27;0.0.0.0&#x27;, debug=True)\n\n\n이제 flask run 을 터미널에 입력해서 서버테스트를 한다.(파일 위치는 다음과 같음)\n  \n  \n\n\ntemplates 폴더\n이번에는 templates 폴더를 하나 만든다.\nbootstrap 5.2.0 버전을 활용하여 base.html 및 main.html 파일을 생성하여 Manu Bar와 Hello World를 출력하는 코드를 작성한다.\n이 때 확장자명 html 파일은 모두 jinja2로 저장하는 것에 주의한다.\n\n1. header.jinja2 파일 작성\napp&#x2F;templates&#x2F;header.jinja2   이렇게 파일을 만든다.\n\nheader.jinja2 파일에 아래 코드를 작성한다.\n\n  12345678&lt;ul class=&quot;nav&quot;&gt;  &lt;li class=&quot;nav-item&quot;&gt;    &lt;a class=&quot;nav-link active&quot; aria-current=&quot;page&quot; href=&quot;/main&quot;&gt;Main&lt;/a&gt;  &lt;/li&gt;  &lt;li class=&quot;nav-item&quot;&gt;    &lt;a class=&quot;nav-link active&quot; href=&quot;/dashapp1&quot;&gt;Dashapp1&lt;/a&gt;  &lt;/li&gt;&lt;/ul&gt;\n\n2. base.jinja2 파일 작성\n이번에는 base.jinja2 파일을 만들고 header.jinja2 파일을 불러오자\n\n123456789101112131415161718192021222324&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;  &lt;head&gt;    &lt;meta charset=&quot;utf-8&quot; /&gt;    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; /&gt;    &lt;title&gt;Bootstrap demo&lt;/title&gt;    &lt;link      href=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css&quot;      rel=&quot;stylesheet&quot;      integrity=&quot;sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx&quot;      crossorigin=&quot;anonymous&quot;    /&gt;    &lt;script      src=&quot;https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js&quot;      integrity=&quot;sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa&quot;      crossorigin=&quot;anonymous&quot;    &gt;&lt;/script&gt;  &lt;/head&gt;  &lt;body&gt;    &#123;% include &#x27;header.jinja2&#x27; %&#125;    &lt;br /&gt;    &lt;div class=&quot;container&quot;&gt;&#123;% block content %&#125; &#123;% endblock %&#125;&lt;/div&gt;  &lt;/body&gt;&lt;/html&gt;\n\nmain 페이지 작성\napp폴더에 main “폴더” 를 만든다\n\nmain 폴더 내부에 templates 폴더와 [main.py](http://main.py) 를 생성한다\n\ntemplates 폴더 내부에 main.jinja2 파일을 만든 후 다음 코드를 작성한다\\\n\n\n123456&#123;% extends &quot;base.jinja2&quot; %&#125;&#123;% block content %&#125;&lt;h1&gt;Hello World&lt;/h1&gt;&#123;% endblock %&#125;\n\n\n[main.py](http://main.py) 에 다음 코드를 입력한다\n\n12345678# app/main/main.pyfrom flask import Blueprint, render_templatebp = Blueprint(&#x27;main&#x27;, __name__, template_folder = &quot;templates&quot;, url_prefix=&#x27;/&#x27;)@bp.route(&#x27;/&#x27;)def main():    return render_template(&quot;main.jinja2&quot;, title = &#x27;main page&#x27;)\n\n\napp/__init__.py 파일에서 main 코드의 일부 경로를 수정한다\n  \n\n\n12345678910111213141516# app/__init__.pyimport osfrom flask import Flaskdef create_app(test_config=None):    app = Flask(__name__, instance_relative_config=True)    app.config.from_mapping(        SECRET_KEY = &#x27;development&#x27;    )..from .main import mainapp.register_blueprint(main.bp)return app\n\n\n이제 flask run 을 해서 서버테스트를 한다.\n\nflask 애플리케이션 팩토리 블루프린트를 이해해야함","dateCreated":"2022-08-24T23:27:20+09:00","dateModified":"2022-09-07T19:19:55+09:00","datePublished":"2022-08-24T23:27:20+09:00","description":"홈페이지 만들기","headline":"Python 대시보드 만들기","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/08/24/%EB%8C%80%EC%8B%9C%EB%B3%B4%EB%93%9C/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2022/08/24/%EB%8C%80%EC%8B%9C%EB%B3%B4%EB%93%9C/"}</script>
     <meta name="description" content="홈페이지 만들기">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Python 대시보드 만들기">
@@ -40,7 +40,16 @@
     
     <!--STYLES-->
     
-<link rel="stylesheet" href="/assets/css/style-cmzshscwd70umjgsmxdtieulebe8dy2kz4v9dny3n7k7ghgigzcwws96nkfq.min.css">
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
 
     <!--STYLES END-->
     
@@ -63,7 +72,7 @@
 
     
 
-<header id="header" data-behavior="3">
+<header id="header" data-behavior="5">
     <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
     <div class="header-title">
         <a
@@ -90,7 +99,7 @@
             <!-- Define author's picture -->
 
 
-<nav id="sidebar" data-behavior="3">
+<nav id="sidebar" data-behavior="5">
     <div class="sidebar-container">
         
         
@@ -138,10 +147,6 @@
                     </a>
             </li>
             
-        </ul>
-        
-            <ul class="sidebar-buttons">
-            
                 <li class="sidebar-button">
                     
                         <a
@@ -160,21 +165,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="#about"
-                            
-                            rel="noopener"
-                            title="About"
-                        >
-                        <i class="sidebar-button-icon fa fa-question" aria-hidden="true"></i>
-                        <span class="sidebar-button-desc">About</span>
-                    </a>
-            </li>
-            
-                <li class="sidebar-button">
-                    
-                        <a
-                            class="sidebar-button-link "
-                            href="https://github.com/NeewLife?tab=repositories/"
+                            href="https://github.com/"
                             
                                 target="_blank"
                             
@@ -192,7 +183,7 @@
 </nav>
 
             
-            <div id="main" data-behavior="3"
+            <div id="main" data-behavior="5"
                  class="
                         hasCoverMetaIn
                         ">
@@ -491,7 +482,7 @@
 
             </div>
             
-                <div id="bottom-bar" class="post-bottom-bar" data-behavior="3">
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
                     <div class="post-actions-wrap">
     <nav>
         <ul class="post-actions post-action-nav">
@@ -601,7 +592,7 @@
 
                 </div>
                 
-    <div id="share-options-bar" class="share-options-bar" data-behavior="3">
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
         <i id="btn-close-shareoptions" class="fa fa-times"></i>
         <ul class="share-options">
             
@@ -661,23 +652,17 @@
         
             <h4 id="about-card-name">오세영</h4>
         
-            <div id="about-card-bio"><p>긍정적인 마인드로 오늘도 가보자~</p>
+            <div id="about-card-bio"><p>author.bio</p>
 </div>
         
         
             <div id="about-card-job">
                 <i class="fa fa-briefcase"></i>
                 <br/>
-                <p>웹 백앤드 지망생</p>
+                <p>author.job</p>
 
             </div>
         
-        
-            <div id="about-card-location">
-                <i class="fa fa-map-marker-alt"></i>
-                <br/>
-                경기 광명시
-            </div>
         
     </div>
 </div>
@@ -687,7 +672,16 @@
 <div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
         <!--SCRIPTS-->
 
-<script src="/assets/js/script-2fuib8u2axf9gspqm6aasoaqzlxwxraygijqllh1qbnh6xertrgkmj0rcdyi.min.js"></script>
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
 
 <!--SCRIPTS END-->
 
