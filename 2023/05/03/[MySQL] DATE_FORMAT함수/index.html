@@ -11,7 +11,7 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n최근에 프로그래머스 MYSQL 문제를 풀다가 정리를 해야겠다는 생각이 들었다.‘SQL문으로 데이터를 뽑으면 얼마나 뽑겠어?’ 했지만 너무나 오만한 생각이었을 뿐이고…!최근 본 기술면접에서 떨어진 핵심 키워드가 DATE_FORMAT 함수인 만큼 DATE_FORMAT 함수를 중점으로 정리해보려구 한다.\n사용위치\nSELECT 문의 경우 SELECT와 FROM 쿼리 사이에 사용한다.예시는 다음과 같다\n1234567SELECT DATE_FORMAT(바꿀 것, 바꿀 형식) AS 임의컬럼명 FROM blog# 실제 예시1SELECT DATE_FORMAT(START_DATE, &#x27;%Y-%m-%d&#x27;) AS StartTime FROM blog# 실제 예시2 (함수도 가능하다)SELECT DATE_FORMAT(NOW(), &#x27;%Y/%m/%d&#x27;) AS RightNow FROM blog\n\n 중간에 바꿀 형식은 문자열로 인식되어서 바꾸고 싶은 형태로 다 바꿀 수 있다. 한글도 가능‘2023년 5월 3일  14시 20분 36초’  ← 이런식으로도 가능\n형식\n당연히 이거보다 훨씬 다양한 양식이 쓰이겠지만, 아주 기초적인 부분만 가져왔다.이거보다 더 다양하게 쓸려면 구글링이나 챗GPT를 활용하자!\n\n출처 : https://devjhs.tistory.com/89\n그 외 날짜 관련 함수\nDATE(date) : 주어진 ‘date’ 에 해당하는 날짜 반환\nMONTH(date) : 주어진 date에서 월에 해당하는 숫자 반환(0~12)\nDAY(date) : 주어진 date에서 일자에 해당하는 숫자 반환(0~31)\nHOUR(date) : 주어진 date에서 시간에 해당하는 숫자 반환(0~23)\nMINUTE(date) : 주어진 date에서 분에 해당하는 숫자 반환(0~59)\nSECOND(date) : 주어진 date에서 초에 해당하는 숫자 반환(0~59)\nWEEKDAY(date) : 주어진 date에서 요일에 해당하는 숫자 반환(월요일 &#x3D; 0, 일요일 &#x3D; 6)\nLAST_DAY(date) : 주어진 date에서 해당 월의 마지막 날짜 정보를 반환\nSEC_TO_TIME(seconds) : 주어진 seconds 를 기준으로 시간 정보를 반환(HH:MM:SS 형태)\n등등\n\n현재 날짜와 관련된 함수\nNOW( ), CURRENT_TIMESTAMP( ) : 현재 날짜와 시간 반환\nCURDATE( ), CURRENT_DATE( ) : 현재 날짜 반환\nCURTIME( ), CURRENT_TIME( ) : 현재 시간 반환\n참고 : https://oneul-losnue.tistory.com/123","dateCreated":"2023-05-03T15:10:15+09:00","dateModified":"2023-08-24T04:25:18+09:00","datePublished":"2023-05-03T15:10:15+09:00","description":"","headline":"[MySQL] DATE_FORMAT함수","image":["MySQL.png","wallpaper.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2023/05/03/[MySQL]%20DATE_FORMAT%ED%95%A8%EC%88%98/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2023/05/03/[MySQL]%20DATE_FORMAT%ED%95%A8%EC%88%98/","thumbnailUrl":"MySQL.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n최근에 프로그래머스 MYSQL 문제를 풀다가 정리를 해야겠다는 생각이 들었다.‘SQL문으로 데이터를 뽑으면 얼마나 뽑겠어?’ 했지만 너무나 오만한 생각이었을 뿐이고…!최근 본 기술면접에서 떨어진 핵심 키워드가 DATE_FORMAT 함수인 만큼 DATE_FORMAT 함수를 중점으로 정리해보려고 한다.\n사용위치\nSELECT 문의 경우 SELECT와 FROM 쿼리 사이에 사용한다.예시는 다음과 같다\n1234567SELECT DATE_FORMAT(바꿀 것, 바꿀 형식) AS 임의컬럼명 FROM blog# 실제 예시1SELECT DATE_FORMAT(START_DATE, &#x27;%Y-%m-%d&#x27;) AS StartTime FROM blog# 실제 예시2 (함수도 가능하다)SELECT DATE_FORMAT(NOW(), &#x27;%Y/%m/%d&#x27;) AS RightNow FROM blog\n\n 중간에 바꿀 형식은 문자열로 인식되어서 바꾸고 싶은 형태로 다 바꿀 수 있다. 한글도 가능‘2023년 5월 3일  14시 20분 36초’  ← 이런식으로도 가능\n형식\n당연히 이거보다 훨씬 다양한 양식이 쓰이겠지만, 아주 기초적인 부분만 가져왔다.이거보다 더 다양하게 쓸려면 구글링이나 챗GPT를 활용하자!\n\n출처 : https://devjhs.tistory.com/89\n그 외 날짜 관련 함수\nDATE(date) : 주어진 ‘date’ 에 해당하는 날짜 반환\nMONTH(date) : 주어진 date에서 월에 해당하는 숫자 반환(0~12)\nDAY(date) : 주어진 date에서 일자에 해당하는 숫자 반환(0~31)\nHOUR(date) : 주어진 date에서 시간에 해당하는 숫자 반환(0~23)\nMINUTE(date) : 주어진 date에서 분에 해당하는 숫자 반환(0~59)\nSECOND(date) : 주어진 date에서 초에 해당하는 숫자 반환(0~59)\nWEEKDAY(date) : 주어진 date에서 요일에 해당하는 숫자 반환(월요일 &#x3D; 0, 일요일 &#x3D; 6)\nLAST_DAY(date) : 주어진 date에서 해당 월의 마지막 날짜 정보를 반환\nSEC_TO_TIME(seconds) : 주어진 seconds 를 기준으로 시간 정보를 반환(HH:MM:SS 형태)\n등등\n\n현재 날짜와 관련된 함수\nNOW( ), CURRENT_TIMESTAMP( ) : 현재 날짜와 시간 반환\nCURDATE( ), CURRENT_DATE( ) : 현재 날짜 반환\nCURTIME( ), CURRENT_TIME( ) : 현재 시간 반환\n참고 : https://oneul-losnue.tistory.com/123","dateCreated":"2023-05-03T15:10:15+09:00","dateModified":"2023-09-15T06:47:19+09:00","datePublished":"2023-05-03T15:10:15+09:00","description":"","headline":"[MySQL] DATE_FORMAT함수","image":["https://neewlife.github.io/assets/thumbnails/MySQL.png","https://neewlife.github.io/assets/wallpapers/wallpaper4.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2023/05/03/[MySQL]%20DATE_FORMAT%ED%95%A8%EC%88%98/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2023/05/03/[MySQL]%20DATE_FORMAT%ED%95%A8%EC%88%98/","thumbnailUrl":"https://neewlife.github.io/assets/thumbnails/MySQL.png"}</script>
     <meta property="og:type" content="blog">
 <meta property="og:title" content="[MySQL] DATE_FORMAT함수">
 <meta property="og:url" content="https://neewlife.github.io/2023/05/03/[MySQL]%20DATE_FORMAT%ED%95%A8%EC%88%98/index.html">
@@ -19,7 +19,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://neewlife.github.io/images/%5BMySQL%5D_DATE_FORMAT%ED%95%A8%EC%88%98/Untitled.png">
 <meta property="article:published_time" content="2023-05-03T06:10:15.000Z">
-<meta property="article:modified_time" content="2023-08-23T19:25:18.602Z">
+<meta property="article:modified_time" content="2023-09-14T21:47:19.287Z">
 <meta property="article:author" content="오세영">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://neewlife.github.io/images/%5BMySQL%5D_DATE_FORMAT%ED%95%A8%EC%88%98/Untitled.png">
@@ -29,12 +29,12 @@
     
     
     
-        <meta property="og:image" content="https://NeewLife.github.io/2023/05/03/%5BMySQL%5D%20DATE_FORMAT%ED%95%A8%EC%88%98/MySQL.png"/>
-        <meta class="swiftype" name="image" data-type="enum" content="https://NeewLife.github.io/2023/05/03/%5BMySQL%5D%20DATE_FORMAT%ED%95%A8%EC%88%98/MySQL.png"/>
+        <meta property="og:image" content="https://neewlife.github.io/assets/thumbnails/MySQL.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://neewlife.github.io/assets/thumbnails/MySQL.png"/>
     
     
-        <meta property="og:image" content="https://NeewLife.github.io/2023/05/03/%5BMySQL%5D%20DATE_FORMAT%ED%95%A8%EC%88%98/wallpaper.jpg"/>
-        <meta class="swiftype" name="image" data-type="enum" content="https://NeewLife.github.io/2023/05/03/%5BMySQL%5D%20DATE_FORMAT%ED%95%A8%EC%88%98/wallpaper.jpg"/>
+        <meta property="og:image" content="https://neewlife.github.io/assets/wallpapers/wallpaper4.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://neewlife.github.io/assets/wallpapers/wallpaper4.jpg"/>
     
     
     <!--STYLES-->
@@ -185,7 +185,7 @@
         <div class="post-header-cover
                     text-center
                     post-header-cover--full"
-             style="background-image:url('/2023/05/03/%5BMySQL%5D%20DATE_FORMAT%ED%95%A8%EC%88%98/wallpaper.jpg');"
+             style="background-image:url('https://neewlife.github.io/assets/wallpapers/wallpaper4.jpg');"
              data-behavior="5">
             
         </div>
@@ -228,7 +228,7 @@
         <div class="main-content-wrap">
             <!-- excerpt -->
 
-<p>최근에 프로그래머스 MYSQL 문제를 풀다가 정리를 해야겠다는 생각이 들었다.<br>‘SQL문으로 데이터를 뽑으면 얼마나 뽑겠어?’ 했지만 너무나 오만한 생각이었을 뿐이고…!<br>최근 본 기술면접에서 떨어진 핵심 키워드가 DATE_FORMAT 함수인 만큼 DATE_FORMAT 함수를 중점으로 정리해보려구 한다.</p>
+<p>최근에 프로그래머스 MYSQL 문제를 풀다가 정리를 해야겠다는 생각이 들었다.<br>‘SQL문으로 데이터를 뽑으면 얼마나 뽑겠어?’ 했지만 너무나 오만한 생각이었을 뿐이고…!<br>최근 본 기술면접에서 떨어진 핵심 키워드가 DATE_FORMAT 함수인 만큼 DATE_FORMAT 함수를 중점으로 정리해보려고 한다.</p>
 <h3 id="사용위치"><a href="#사용위치" class="headerlink" title="사용위치"></a>사용위치</h3><hr>
 <p>SELECT 문의 경우 SELECT와 FROM 쿼리 사이에 사용한다.<br>예시는 다음과 같다</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> DATE_FORMAT(바꿀 것, 바꿀 형식) <span class="keyword">AS</span> 임의컬럼명 <span class="keyword">FROM</span> blog</span><br><span class="line"></span><br><span class="line"># 실제 예시<span class="number">1</span></span><br><span class="line"><span class="keyword">SELECT</span> DATE_FORMAT(START_DATE, <span class="string">&#x27;%Y-%m-%d&#x27;</span>) <span class="keyword">AS</span> StartTime <span class="keyword">FROM</span> blog</span><br><span class="line"></span><br><span class="line"># 실제 예시<span class="number">2</span> (함수도 가능하다)</span><br><span class="line"><span class="keyword">SELECT</span> DATE_FORMAT(NOW(), <span class="string">&#x27;%Y/%m/%d&#x27;</span>) <span class="keyword">AS</span> RightNow <span class="keyword">FROM</span> blog</span><br></pre></td></tr></table></figure>
@@ -373,7 +373,9 @@
         
         
             
-                <div id="gitment"></div>
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
             
         
     </div>
@@ -594,21 +596,21 @@
 
 
     
-        
-<script src="/assets/js/gitment.js"></script>
-
-        <script type="text/javascript">
+        <script>
+          var disqus_config = function() {
+            this.page.url = 'https://neewlife.github.io/2023/05/03/[MySQL]%20DATE_FORMAT%ED%95%A8%EC%88%98/';
+              
+            this.page.identifier = '2023/05/03/[MySQL] DATE_FORMAT함수/';
+              
+          };
           (function() {
-            new Gitment({
-              id: 'https://neewlife.github.io/2023/05/03/[MySQL]%20DATE_FORMAT%ED%95%A8%EC%88%98/',
-              owner: '',
-              repo: '',
-              oauth: {
-                client_id: '',
-                client_secret: ''
-              }
-            }).render('gitment')
-          })()
+            var d = document, s = d.createElement('script');
+            var disqus_shortname = 'blog-fk1l8wbpvl';
+            s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
         </script>
     
 

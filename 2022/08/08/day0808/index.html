@@ -11,16 +11,16 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n1234567891011121314151617181920212223242526272829303132333435363738394041from selenium import webdriverfrom selenium.webdriver.common.by import Byimport timefrom bs4 import BeautifulSoupimport requestsimport pandas as pdfrom datetime import datetimeimport timefrom urllib.parse import quotedef subscription():  url = &#x27;https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancListView.do&#x27;  response = requests.get(url)  soup = BeautifulSoup(response.content, &quot;html.parser&quot;)    return soupdef text_many():  soup = subscription()  area = soup.find_all(&#x27;td&#x27;)  for text in area:    print(text.get_text())def detail():    # 크롬드라이버 실행  (경로 예: &#x27;/Users/Roy/Downloads/chromedriver&#x27;)    driver = webdriver.Chrome(&#x27;D:\\Programming\\chromedriver.exe&#x27;)     #크롬 드라이버에 url 주소 넣고 실행    driver.get(&#x27;https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancListView.do&#x27;)    # 페이지가 완전히 로딩되도록 3초동안 기다림    time.sleep(3)    driver.find_element(By.XPATH,(&#x27;//*[@id=&quot;subContent&quot;]/div[4]/table/tbody/tr[1]/td[4]/a/b/text()&#x27;)).click()    # soup = subscription()    # detail = soup.find(&#x27;td.txt_l&#x27;)        # return detail    if __name__ == &quot;__main__&quot;:  print(list(text_many()))  # detail()","dateCreated":"2022-08-08T22:40:23+09:00","dateModified":"2022-09-07T19:19:55+09:00","datePublished":"2022-08-08T22:40:23+09:00","description":"여기까지 크롤링 코드 짜는데만 5시간 ㅜㅜ","headline":"크롤링 작업","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/08/08/day0808/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2022/08/08/day0808/"}</script>
-    <meta name="description" content="여기까지 크롤링 코드 짜는데만 5시간 ㅜㅜ">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n1234567891011121314151617181920212223242526272829303132333435363738394041from selenium import webdriverfrom selenium.webdriver.common.by import Byimport timefrom bs4 import BeautifulSoupimport requestsimport pandas as pdfrom datetime import datetimeimport timefrom urllib.parse import quotedef subscription():  url = &#x27;https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancListView.do&#x27;  response = requests.get(url)  soup = BeautifulSoup(response.content, &quot;html.parser&quot;)    return soupdef text_many():  soup = subscription()  area = soup.find_all(&#x27;td&#x27;)  for text in area:    print(text.get_text())def detail():    # 크롬드라이버 실행  (경로 예: &#x27;/Users/Roy/Downloads/chromedriver&#x27;)    driver = webdriver.Chrome(&#x27;D:\\Programming\\chromedriver.exe&#x27;)     #크롬 드라이버에 url 주소 넣고 실행    driver.get(&#x27;https://www.applyhome.co.kr/ai/aia/selectAPTLttotPblancListView.do&#x27;)    # 페이지가 완전히 로딩되도록 3초동안 기다림    time.sleep(3)    driver.find_element(By.XPATH,(&#x27;//*[@id=&quot;subContent&quot;]/div[4]/table/tbody/tr[1]/td[4]/a/b/text()&#x27;)).click()    # soup = subscription()    # detail = soup.find(&#x27;td.txt_l&#x27;)        # return detail    if __name__ == &quot;__main__&quot;:  print(list(text_many()))  # detail()","dateCreated":"2022-08-08T22:40:23+09:00","dateModified":"2023-09-15T06:26:14+09:00","datePublished":"2022-08-08T22:40:23+09:00","description":"크롤링 어렵다 ㅜㅜ","headline":"크롤링 작업","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/08/08/day0808/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2022/08/08/day0808/"}</script>
+    <meta name="description" content="크롤링 어렵다 ㅜㅜ">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="크롤링 작업">
 <meta property="og:url" content="https://neewlife.github.io/2022/08/08/day0808/index.html">
 <meta property="og:site_name" content="개발 메모장">
-<meta property="og:description" content="여기까지 크롤링 코드 짜는데만 5시간 ㅜㅜ">
+<meta property="og:description" content="크롤링 어렵다 ㅜㅜ">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2022-08-08T13:40:23.000Z">
-<meta property="article:modified_time" content="2022-09-07T10:19:55.605Z">
+<meta property="article:modified_time" content="2023-09-14T21:26:14.535Z">
 <meta property="article:author" content="오세영">
 <meta name="twitter:card" content="summary">
     
@@ -231,9 +231,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2022/08/14/day0814/"
-                    data-tooltip="카카오 챗봇 프로젝트"
-                    aria-label="이전: 카카오 챗봇 프로젝트"
+                    href="/2022/08/24/%EB%8C%80%EC%8B%9C%EB%B3%B4%EB%93%9C/"
+                    data-tooltip="Python 대시보드 만들기"
+                    aria-label="이전: Python 대시보드 만들기"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -333,7 +333,9 @@
         
         
             
-                <div id="gitment"></div>
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
             
         
     </div>
@@ -358,9 +360,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2022/08/14/day0814/"
-                    data-tooltip="카카오 챗봇 프로젝트"
-                    aria-label="이전: 카카오 챗봇 프로젝트"
+                    href="/2022/08/24/%EB%8C%80%EC%8B%9C%EB%B3%B4%EB%93%9C/"
+                    data-tooltip="Python 대시보드 만들기"
+                    aria-label="이전: Python 대시보드 만들기"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -554,21 +556,21 @@
 
 
     
-        
-<script src="/assets/js/gitment.js"></script>
-
-        <script type="text/javascript">
+        <script>
+          var disqus_config = function() {
+            this.page.url = 'https://neewlife.github.io/2022/08/08/day0808/';
+              
+            this.page.identifier = 'fdsF34ff34';
+              
+          };
           (function() {
-            new Gitment({
-              id: 'https://neewlife.github.io/2022/08/08/day0808/',
-              owner: '',
-              repo: '',
-              oauth: {
-                client_id: '',
-                client_secret: ''
-              }
-            }).render('gitment')
-          })()
+            var d = document, s = d.createElement('script');
+            var disqus_shortname = 'blog-fk1l8wbpvl';
+            s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
         </script>
     
 

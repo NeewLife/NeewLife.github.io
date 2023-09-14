@@ -11,13 +11,13 @@
     
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\nvi 편집기 사용 꼭 공부 하기\n윈도우 버전이 20H1, 20H2, 21H1, 21H2 보다 높아야 됨\n\n\n\npowershell 관리자로 실행\n다음 코드 입력\n\n1234dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestartdism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart\n\n\n인터넷 주소창에 다음 코드 입력\n\n1https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi\n\n\n다운 받은 후 설치\nMicrosoft Store 에서 ubuntu 설치\n\n\n\nUbuntu 20.04.4 버전으로 다운로드\n나중에 설정이 꼬였을 때 윈도우 포맷하는 것 처럼 Ubuntu를 삭제하고 다시 설치하면 된다.\n\n\n\n\n\nUbuntu 실행\n\n\n\n만약 다음과 같은 메세지가 뜬다면 가상환경을 확인해야 한다\n\n\n\nWindows 기능 켜기&#x2F;끄기 열기\n\n\n\nWindows 하이퍼바이저 플랫폼 체크 후 재부팅\n\n\n\n재부팅 후 Ubuntu 실행\nUbuntu 아이디 비밀번호 만들기 (비밀번호는 입력해도 안 보인다!!)\n\n\n\n다시 powershell 실행 후 다음 코드 입력\n\n1wsl --set-default-version 2\n\n\n다음과 같이 뜨면 성공!\n\n\n\n코드 wsl -l -v 입력 후 버전이 1이 나오면 Ubuntu 제거 후 다시 설치하고 Ubuntu 로그인 후\n맨 위에 PowerShell 코드 다시 입력\n\n\n\n그 다음 wsl -l -v 치면 버전 2가 나옴(나오면 꺼도 됨)\n\n시스템 환경 변수 들어가서 환경 변수 탭 —&gt; Path 편집\n\n\n\n\n\n\nVS Code 저 경로가 있는지 확인한다.\n\n\n환경변수를 사용하는 이유빅데이터 플랫폼 &#x2F; 웹사이트 구축할 때\n\n레고블록 쌓을때 맞물려 쌓듯이 연결해주는 것이 Configuration(환경 변수) 인데\n  이 환경 변수가 유기적으로 연결 되지 않으면 에러가 뜨거나 실행이 안된다.\n\n\n\n\n다음 사이트 참고하여서 VS Code 에 연결\n\nhttps://dschloe.github.io/settings/vscode_wsl2&#x2F;\n\nC드라이브에 폴더를 만든다(여기에선 dataEngineering)\n\nUbuntu를 열고 다음 코드를 입력해 C\\dataEngineering 폴더에 접속한다.\n\nmkdir abc &#x3D; 새로운 abc 폴더 생성\n\nrm -rm abc : abc폴더 만 지운다\n\nrm -rm * : 전체 삭제\n\n\n12345cd mntcd ccd dataEngineeringcode .\n\n\ncode . 까지 입력하면 VS Code 가 열릴텐데 터미널 열고서 파이썬 버전 확인\n\n\n\nsudo apt-get update 입력\n\n\n\nsudo apt install python3-pip 입력\n\n\n\nsudo pip3 install virtualenv 입력\n\n\n\n가상환경 생성 코드 virtualenv venv 입력\n가상환경 접속 코드 source venv&#x2F;bin&#x2F;activate 입력\n윈도우와 리눅스의 가상환경 차이점 &#x3D;  source venv 다음 &#x2F;bin 으로 시작한다\n\n\n환경 변수 설정하기\npwd 입력 후 경로 확인후 복사\n\n\n\nvi ~&#x2F;.bashrc 입력 하면 환경 변수에 접속한다\n\n\n\n다음과 같은 화면이 뜨면 vi 편집기로 활성화 됨\n여기서 “i” 를 누르면 INSERT 모드로 진입된다. 맨 밑으로 스크롤해서 내림\nexport AIRFLOW_HOME&#x3D;(아까 그 pwd 경로입력)\n\n\n\n중간에 ‘&#x3D;’ 을 띄어쓰기 하면 안됨!!\n입력모드 종료는 ESC 키 누르면 됨\n:wq! 를 입력(저장한다는 뜻)   :q!  는 저장하지 않고 나간다는 뜻, 잘못 만졌을 때 유용하다.\n\n\n\nsource ~&#x2F;.bashrc 까지 입력해야 배포가 완료됨\n\n\n\n배포하면 venv 가 사라지기 때문에 항상 다시 가상환경 설정해야함\necho $AIRFLOW_HOME 입력 해서 배포됐는지 확인\n\n\n\npip3 install ‘apache-airflow[postgres,slack,celery]’  입력\n\n\n\n설치 완료되면 airflow db init 입력\n\n\n\n다음 코드를 입력해서 airflow 입력\n\n1airflow users create --username airflow --password airflow --firstname evan --lastname airflow --role Admin --email your_email@some.com\n\n\nairflow webserver -p 8081 입력\n주소창에 localhost:1234 로 접속하면 airflow 로컬 홈페이지가 나온다\n","dateCreated":"2022-07-27T16:54:02+09:00","dateModified":"2022-07-31T13:29:40+09:00","datePublished":"2022-07-27T16:54:02+09:00","description":"Linux 설치","headline":"Linux 환경 만들기","image":["Linux.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/","thumbnailUrl":"Linux.png"}</script>
-    <meta name="description" content="Linux 설치">
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\nvi 편집기 사용 꼭 공부 하기\n윈도우 버전이 20H1, 20H2, 21H1, 21H2 보다 높아야 됨\n\n\n\npowershell 관리자로 실행\n다음 코드 입력\n\n1234dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestartdism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart\n\n\n인터넷 주소창에 다음 코드 입력\n\n1https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi\n\n\n다운 받은 후 설치\nMicrosoft Store 에서 ubuntu 설치\n\n\n\nUbuntu 20.04.4 버전으로 다운로드\n나중에 설정이 꼬였을 때 윈도우 포맷하는 것 처럼 Ubuntu를 삭제하고 다시 설치하면 된다.\n\n\n\n\n\nUbuntu 실행\n\n\n\n만약 다음과 같은 메세지가 뜬다면 가상환경을 확인해야 한다\n\n\n\nWindows 기능 켜기&#x2F;끄기 열기\n\n\n\nWindows 하이퍼바이저 플랫폼 체크 후 재부팅\n\n\n\n재부팅 후 Ubuntu 실행\nUbuntu 아이디 비밀번호 만들기 (비밀번호는 입력해도 안 보인다!!)\n\n\n\n다시 powershell 실행 후 다음 코드 입력\n\n1wsl --set-default-version 2\n\n\n다음과 같이 뜨면 성공!\n\n\n\n코드 wsl -l -v 입력 후 버전이 1이 나오면 Ubuntu 제거 후 다시 설치하고 Ubuntu 로그인 후\n맨 위에 PowerShell 코드 다시 입력\n\n\n\n그 다음 wsl -l -v 치면 버전 2가 나옴(나오면 꺼도 됨)\n\n시스템 환경 변수 들어가서 환경 변수 탭 —&gt; Path 편집\n\n\n\n\n\n\nVS Code 저 경로가 있는지 확인한다.\n\n\n환경변수를 사용하는 이유빅데이터 플랫폼 &#x2F; 웹사이트 구축할 때\n\n레고블록 쌓을때 맞물려 쌓듯이 연결해주는 것이 Configuration(환경 변수) 인데\n  이 환경 변수가 유기적으로 연결 되지 않으면 에러가 뜨거나 실행이 안된다.\n\n\n\n\n다음 사이트 참고하여서 VS Code 에 연결\n\nhttps://dschloe.github.io/settings/vscode_wsl2&#x2F;\n\nC드라이브에 폴더를 만든다(여기에선 dataEngineering)\n\nUbuntu를 열고 다음 코드를 입력해 C\\dataEngineering 폴더에 접속한다.\n\nmkdir abc &#x3D; 새로운 abc 폴더 생성\n\nrm -rm abc : abc폴더 만 지운다\n\nrm -rm * : 전체 삭제\n\n\n12345cd mntcd ccd dataEngineeringcode .\n\n\ncode . 까지 입력하면 VS Code 가 열릴텐데 터미널 열고서 파이썬 버전 확인\n\n\n\nsudo apt-get update 입력\n\n\n\nsudo apt install python3-pip 입력\n\n\n\nsudo pip3 install virtualenv 입력\n\n\n\n가상환경 생성 코드 virtualenv venv 입력\n가상환경 접속 코드 source venv&#x2F;bin&#x2F;activate 입력\n윈도우와 리눅스의 가상환경 차이점 &#x3D;  source venv 다음 &#x2F;bin 으로 시작한다\n\n\n환경 변수 설정하기\npwd 입력 후 경로 확인후 복사\n\n\n\nvi ~&#x2F;.bashrc 입력 하면 환경 변수에 접속한다\n\n\n\n다음과 같은 화면이 뜨면 vi 편집기로 활성화 됨\n여기서 “i” 를 누르면 INSERT 모드로 진입된다. 맨 밑으로 스크롤해서 내림\nexport AIRFLOW_HOME&#x3D;(아까 그 pwd 경로입력)\n\n\n\n중간에 ‘&#x3D;’ 을 띄어쓰기 하면 안됨!!\n입력모드 종료는 ESC 키 누르면 됨\n:wq! 를 입력(저장한다는 뜻)   :q!  는 저장하지 않고 나간다는 뜻, 잘못 만졌을 때 유용하다.\n\n\n\nsource ~&#x2F;.bashrc 까지 입력해야 배포가 완료됨\n\n\n\n배포하면 venv 가 사라지기 때문에 항상 다시 가상환경 설정해야함\necho $AIRFLOW_HOME 입력 해서 배포됐는지 확인\n\n\n\npip3 install ‘apache-airflow[postgres,slack,celery]’  입력\n\n\n\n설치 완료되면 airflow db init 입력\n\n\n\n다음 코드를 입력해서 airflow 입력\n\n1airflow users create --username airflow --password airflow --firstname evan --lastname airflow --role Admin --email your_email@some.com\n\n\nairflow webserver -p 8081 입력\n주소창에 localhost:1234 로 접속하면 airflow 로컬 홈페이지가 나온다\n","dateCreated":"2022-07-27T16:54:02+09:00","dateModified":"2023-09-15T03:55:58+09:00","datePublished":"2022-07-27T16:54:02+09:00","description":"Linux 설치해보기","headline":"Linux 환경 만들기","image":["Linux.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/","thumbnailUrl":"Linux.png"}</script>
+    <meta name="description" content="Linux 설치해보기">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Linux 환경 만들기">
 <meta property="og:url" content="https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/index.html">
 <meta property="og:site_name" content="개발 메모장">
-<meta property="og:description" content="Linux 설치">
+<meta property="og:description" content="Linux 설치해보기">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled.png">
 <meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%201.png">
@@ -46,7 +46,7 @@
 <meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2024.png">
 <meta property="og:image" content="https://neewlife.github.io/images/Linux/Untitled%2025.png">
 <meta property="article:published_time" content="2022-07-27T07:54:02.000Z">
-<meta property="article:modified_time" content="2022-07-31T04:29:40.883Z">
+<meta property="article:modified_time" content="2023-09-14T18:55:58.727Z">
 <meta property="article:author" content="오세영">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://neewlife.github.io/images/Linux/Untitled.png">
@@ -529,7 +529,9 @@
         
         
             
-                <div id="gitment"></div>
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
             
         
     </div>
@@ -750,21 +752,21 @@
 
 
     
-        
-<script src="/assets/js/gitment.js"></script>
-
-        <script type="text/javascript">
+        <script>
+          var disqus_config = function() {
+            this.page.url = 'https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/';
+              
+            this.page.identifier = 'fdsF34ff34';
+              
+          };
           (function() {
-            new Gitment({
-              id: 'https://neewlife.github.io/2022/07/27/Linux%20%EC%84%A4%EC%B9%98/',
-              owner: '',
-              repo: '',
-              oauth: {
-                client_id: '',
-                client_secret: ''
-              }
-            }).render('gitment')
-          })()
+            var d = document, s = d.createElement('script');
+            var disqus_shortname = 'blog-fk1l8wbpvl';
+            s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
         </script>
     
 
