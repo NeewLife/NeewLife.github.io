@@ -5,22 +5,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="개발 메모장">
-    <title>[Java] 오버로딩 오버라이딩 - 개발 메모장</title>
+    <meta name="generator" content="안되면 될 때 까지">
+    <title>[Java] 오버로딩 오버라이딩 - 안되면 될 때 까지</title>
     <meta name="author" content="오세영">
     
     
+        <link rel="icon" href="https://NeewLife.github.io/assets/images/favicon.png">
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n오버라이딩 : 부모와 자식의 요소가 공통적이라면 자식의 요소를 불러온다.오버로딩 : 함수명이 같은데 변수형태가 다르면 그 변수형태에 맞는 함수를 불러온다.인터페이스 : class 와 비슷하지만 interface 안에는 필수요소를 집어넣는다.예) 동물에 이름&#x2F;나이&#x2F;몸무게 를 넣고 싶은데 이름&#x2F;나이는 필수, 몸무게는 선택요소일 경우이름&#x2F;나이는 interface 에 지정하고 몸무게는 class에 지정\n제네럴 : 자바는 데이터타입을 인스턴스로 만들때 결정 해줘야하지만,임의로 데이터타입을 지정해서 만들 수 있다.\nHashSet : 집합과 구조가 같음 &#x2F; 정렬 안됨 &#x2F;TreeSet : 집합과 구조가 같고 &#x2F; 자동 정렬됨Map : 키와 값의 쌍forEach &#x2F; Iterator : Map 함수로 만든 객체들을 사용해서 객체들의 값을 뽑아오는 함수.(지금은 눈에 안들어오지만 이런것들이 있다 정도 익혀두기. 구글링하다보면발견하게 되는데, 그때 사용할 수 있어야 함)keySet : 위의 forEach &#x2F; Iterator 와 똑같지만, 문법적으로 제일쉬워보이는 것","dateCreated":"2022-10-12T00:19:21+09:00","dateModified":"2023-09-27T23:53:46+09:00","datePublished":"2022-10-12T00:19:21+09:00","description":"오버로딩 &#x2F; 오버라이딩 차이점은? (+ 인터페이스, 제네럴)","headline":"[Java] 오버로딩 오버라이딩","image":["https://neewlife.github.io/assets/thumbnails/Java.png","https://neewlife.github.io/assets/wallpapers/wallpaper6.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/10/12/[Java]%20%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%20%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2022/10/12/[Java]%20%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%20%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9/","thumbnailUrl":"https://neewlife.github.io/assets/thumbnails/Java.png"}</script>
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n오버라이딩 : 부모와 자식의 요소가 공통적이라면 자식의 요소를 불러온다.오버로딩 : 함수명이 같은데 변수형태가 다르면 그 변수형태에 맞는 함수를 불러온다.인터페이스 : class 와 비슷하지만 interface 안에는 필수요소를 집어넣는다.예) 동물에 이름&#x2F;나이&#x2F;몸무게 를 넣고 싶은데 이름&#x2F;나이는 필수, 몸무게는 선택요소일 경우이름&#x2F;나이는 interface 에 지정하고 몸무게는 class에 지정\n제네럴 : 자바는 데이터타입을 인스턴스로 만들때 결정 해줘야하지만,임의로 데이터타입을 지정해서 만들 수 있다.\nHashSet : 집합과 구조가 같음 &#x2F; 정렬 안됨 &#x2F;TreeSet : 집합과 구조가 같고 &#x2F; 자동 정렬됨Map : 키와 값의 쌍forEach &#x2F; Iterator : Map 함수로 만든 객체들을 사용해서 객체들의 값을 뽑아오는 함수.(지금은 눈에 안들어오지만 이런것들이 있다 정도 익혀두기. 구글링하다보면발견하게 되는데, 그때 사용할 수 있어야 함)keySet : 위의 forEach &#x2F; Iterator 와 똑같지만, 문법적으로 제일쉬워보이는 것","dateCreated":"2022-10-12T00:19:21+09:00","dateModified":"2024-01-11T21:35:17+09:00","datePublished":"2022-10-12T00:19:21+09:00","description":"오버로딩 &#x2F; 오버라이딩 차이점은? (+ 인터페이스, 제네럴)","headline":"[Java] 오버로딩 오버라이딩","image":["https://neewlife.github.io/assets/thumbnails/Java.png","https://neewlife.github.io/assets/wallpapers/wallpaper6.png"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/10/12/[Java]%20%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%20%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2022/10/12/[Java]%20%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%20%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9/","thumbnailUrl":"https://neewlife.github.io/assets/thumbnails/Java.png"}</script>
     <meta name="description" content="오버로딩 &#x2F; 오버라이딩 차이점은? (+ 인터페이스, 제네럴)">
 <meta property="og:type" content="blog">
 <meta property="og:title" content="[Java] 오버로딩 오버라이딩">
 <meta property="og:url" content="https://neewlife.github.io/2022/10/12/[Java]%20%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%20%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9/index.html">
-<meta property="og:site_name" content="개발 메모장">
+<meta property="og:site_name" content="안되면 될 때 까지">
 <meta property="og:description" content="오버로딩 &#x2F; 오버라이딩 차이점은? (+ 인터페이스, 제네럴)">
 <meta property="og:locale" content="ko_KR">
 <meta property="article:published_time" content="2022-10-11T15:19:21.000Z">
-<meta property="article:modified_time" content="2023-09-27T14:53:46.527Z">
+<meta property="article:modified_time" content="2024-01-11T12:35:17.460Z">
 <meta property="article:author" content="오세영">
 <meta name="twitter:card" content="summary">
     
@@ -79,7 +81,7 @@
             href="/"
             aria-label=""
         >
-            개발 메모장
+            안되면 될 때 까지
         </a>
     </div>
     
@@ -164,7 +166,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="https://github.com/"
+                            href="https://github.com/NeewLife"
                             
                                 target="_blank"
                             
@@ -247,9 +249,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2022/10/16/STS3%20%EC%9D%B4%ED%81%B4%EB%A6%BD%EC%8A%A4%20GitHub%20%EC%84%A4%EC%A0%95/"
-                    data-tooltip="STS3 이클립스 GitHub 설정"
-                    aria-label="이전: STS3 이클립스 GitHub 설정"
+                    href="/2022/10/17/STS%20%ED%85%8C%EB%A7%88%20%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C%20%EC%97%90%EB%9F%AC%20%ED%95%B4%EA%B2%B0/"
+                    data-tooltip="STS 테마 다운로드 에러 해결"
+                    aria-label="이전: STS 테마 다운로드 에러 해결"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -261,9 +263,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2022/09/18/%5BJava%5D%20%EA%B8%B0%EC%B4%88/"
-                    data-tooltip="Java 문법"
-                    aria-label="다음: Java 문법"
+                    href="/2022/09/16/Java,%20JDK%20%EC%84%A4%EC%B9%98/"
+                    data-tooltip="Java, JDK 설치"
+                    aria-label="다음: Java, JDK 설치"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">다음</span>
@@ -361,7 +363,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2023 오세영. All Rights Reserved.
+        Copyrights &copy; 2024 오세영. All Rights Reserved.
     </span>
 </footer>
 
@@ -376,9 +378,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2022/10/16/STS3%20%EC%9D%B4%ED%81%B4%EB%A6%BD%EC%8A%A4%20GitHub%20%EC%84%A4%EC%A0%95/"
-                    data-tooltip="STS3 이클립스 GitHub 설정"
-                    aria-label="이전: STS3 이클립스 GitHub 설정"
+                    href="/2022/10/17/STS%20%ED%85%8C%EB%A7%88%20%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C%20%EC%97%90%EB%9F%AC%20%ED%95%B4%EA%B2%B0/"
+                    data-tooltip="STS 테마 다운로드 에러 해결"
+                    aria-label="이전: STS 테마 다운로드 에러 해결"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -390,9 +392,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2022/09/18/%5BJava%5D%20%EA%B8%B0%EC%B4%88/"
-                    data-tooltip="Java 문법"
-                    aria-label="다음: Java 문법"
+                    href="/2022/09/16/Java,%20JDK%20%EC%84%A4%EC%B9%98/"
+                    data-tooltip="Java, JDK 설치"
+                    aria-label="다음: Java, JDK 설치"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">다음</span>

@@ -5,10 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="개발 메모장">
-    <title>Hexo 블로그 생성하기 - 개발 메모장</title>
+    <meta name="generator" content="안되면 될 때 까지">
+    <title>Hexo 블로그 생성하기 - 안되면 될 때 까지</title>
     <meta name="author" content="오세영">
     
+    
+        <link rel="icon" href="https://NeewLife.github.io/assets/images/favicon.png">
     
     
     <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n\n블로그 만들기\n\n티스토리 블로그 &#x2F; 네이버 블로그 &#x2F; medium ← 개발\n깃허브 블로그\n\n알아야 할 것 → hugo, hexo, jekyll, html, css, git &amp; github, 터미널 명령어, 마크다운\nHexo 설치nodejs 홈페이지에서\n\n왼쪽꺼 다운로드\n만약 사이트가 바뀌어서 헷갈리면 LTS 버전으로 다운로드\n\nLTS 는 안정적으로 테스트까지 완료한 배포버전이고최신기능은 아직 실험중인 베타테스팅 개념이라고 생각하면 될듯\n\n설치시 Add to PATH 선택 후 다운\n\n\n\n명령 프롬포트(cmd) 진입\n설치 완료 후 cmd 에서 node -v 입력\n\n\nnpm install -g hexo-cli 입력 후 엔터\n\n\n블로그 만들기\n바탕화면에서 git bash 후 hexo init blog 입력\n\n\n\ncd blog —&gt; ls 차례대로 입력\n\n\n\ngithub 에서 0616에서 배웠던 것들 업로드 한다. (git add . 로 모든 파일 업로드)\n바탕화면에 blog 폴더 우클릭 후 PyCharm 으로 열기\n\n\n\n사실 PyCharm 을 쓰던 IntelliJ 를 쓰던 상관없다.요즘은 PyCharm이 너무 무거운거 같아서 Intellij로 시도중임\n\n\n터미널 열고\n\n\nnpm install\nnpm install hexo-server –save\nnpm install hexo-deployer-git –save      차례대로 입력\nhexo server 입력 \n\n\n하이퍼링크 클릭하면 블로그 완성\n\n\n블로그 배포하기\ngithub 들어가서 새 Repository 로 “본인닉네임.github.io” 로 만들기\n  \n\nblog → _config.yml 파일로 들어가서(themes 안에 있는 yml 파일 X)\n\n\n\n저렇게 쓰기(NeewLife 자리에 본인 닉네임)\n\n맨 밑에 내려와서 deploy에 다음과 같이 적어준다\n\n\nhttps://github.com/본인닉네임/본인닉네임.github.io.git 임\nbranch 는 자신의 branch 이름에 맞게\n\n다시 깃배쉬 밑에 “hexo generate, hexo deploy” 입력(단축키로 hexo d -g  로 실행해도 된다.)\n\n\n\n\nhexo generate 는 public 이라는 폴더에 프로토타입을 만들어 자기 로컬 폴더에 변경사항 적용시키는 것이고hexo deploy 는 아까 만든 github.io 서버에 배포해서 모든 사람들에게 변경사항이 적용되게 한다.\n\n\nhexo server(단축키 hexo s) 는 프로토타입도 아닌 와이어프레임? 같은 개념으로 이해하면 될듯주로 hexo server 를 써서 빠르게 테스트 해볼 수 있다.\n\n\n주소창에 “본인닉네임.github.io” 검색하면 Hexo 블로그 배포완료된걸 확인\n\n\n\n다 됐으면 git add . 로 업로드\n\n주의사항_config.yml 파일은 함부로 건들지 말자\n홈페이지 제목을 변경하고 싶으면 title을,\n내 정보를 바꾸고 싶다면 author 를, \n언어를 바꾸고 싶다면 language 를 ko 로 변경하면 된다.\n그 외 테마변경, 한 페이지당 게시물 출력수 등  변경 할 수 있긴하다.\n","dateCreated":"2023-09-15T09:00:00+09:00","dateModified":"2023-09-15T15:56:38+09:00","datePublished":"2023-09-15T09:00:00+09:00","description":"hexo로 Git 블로그를 만들어보자","headline":"Hexo 블로그 생성하기","image":["https://neewlife.github.io/assets/thumbnails/Java.png","https://neewlife.github.io/assets/wallpapers/002.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2023/09/15/Hexo%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2023/09/15/Hexo%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/","thumbnailUrl":"https://neewlife.github.io/assets/thumbnails/Java.png"}</script>
@@ -16,7 +18,7 @@
 <meta property="og:type" content="blog">
 <meta property="og:title" content="Hexo 블로그 생성하기">
 <meta property="og:url" content="https://neewlife.github.io/2023/09/15/Hexo%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/index.html">
-<meta property="og:site_name" content="개발 메모장">
+<meta property="og:site_name" content="안되면 될 때 까지">
 <meta property="og:description" content="hexo로 Git 블로그를 만들어보자">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://neewlife.github.io/images/Hexo_%EB%B8%94%EB%A1%9C%EA%B7%B8_%EC%83%9D%EC%84%B1%ED%95%98%EA%B8%B0/Untitled.png">
@@ -97,7 +99,7 @@
             href="/"
             aria-label=""
         >
-            개발 메모장
+            안되면 될 때 까지
         </a>
     </div>
     
@@ -182,7 +184,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="https://github.com/"
+                            href="https://github.com/NeewLife"
                             
                                 target="_blank"
                             
@@ -366,9 +368,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2023/08/24/0703%20%ED%95%99%EC%8A%B5/"
-                    data-tooltip="2023 0703 학습"
-                    aria-label="다음: 2023 0703 학습"
+                    href="/2023/05/03/%5BMySQL%5D%20DATE_FORMAT%ED%95%A8%EC%88%98/"
+                    data-tooltip="[MySQL] DATE_FORMAT함수"
+                    aria-label="다음: [MySQL] DATE_FORMAT함수"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">다음</span>
@@ -466,7 +468,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2023 오세영. All Rights Reserved.
+        Copyrights &copy; 2024 오세영. All Rights Reserved.
     </span>
 </footer>
 
@@ -492,9 +494,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2023/08/24/0703%20%ED%95%99%EC%8A%B5/"
-                    data-tooltip="2023 0703 학습"
-                    aria-label="다음: 2023 0703 학습"
+                    href="/2023/05/03/%5BMySQL%5D%20DATE_FORMAT%ED%95%A8%EC%88%98/"
+                    data-tooltip="[MySQL] DATE_FORMAT함수"
+                    aria-label="다음: [MySQL] DATE_FORMAT함수"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">다음</span>

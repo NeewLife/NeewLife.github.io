@@ -5,17 +5,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="generator" content="개발 메모장">
-    <title>Java, JDK 설치 - 개발 메모장</title>
+    <meta name="generator" content="안되면 될 때 까지">
+    <title>Java, JDK 설치 - 안되면 될 때 까지</title>
     <meta name="author" content="오세영">
     
+    
+        <link rel="icon" href="https://NeewLife.github.io/assets/images/favicon.png">
     
     
     <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n여기서는 Java 11 버전을 다운받아보자.\n구글에 “JDK 11 download” 이라고 친다.\n  \n\n오라클에서 각 운영체제에 맞게 다운받는다.\n\n“시스템 환경변수 편집” 을 들어가서 Path에 Java 경로가 없는 것을 확인한다.\n\n만약 Java 경로가 있을 시 설치할 때 충돌이 일어날 수 있다!\n  \n\n\n  \n\n자바가 이미 깔려져 있어서 java 경로가 있지만, 원래는 없어야 함\n디폴트 경로는 C:\\Program Files\\Java\\jdk-버전명\n\n\n설치된 자바 경로를 바꾸려면\n\n다시 환경변수를 확인해서 C:\\Program Files\\Java\\jdk-버전명  이 있는 것을 확인하고,\n  시스템 변수에 JAVA_HOME 변수를 새로 만든 후 “C:\\Program Files\\Java\\jdk-버전명” 넣어주고\n  \n\nPATH 에서 %JAVA_HOME%\\bin  을 추가한다\n  \n\n\n\ncmd창을 열어서 “javac -version” 을 입력해서 버전을 확인한다.\n  \n\njava version 도 입력해서 자바 버전을 확인하자.\n  \n\n이클립스 &#x3D; JAVA IDE 의 대표주자\n\n이클립스에 스프링전용 플러그인을 설치하면 이클립스로 스프링 개발을 할 수 있다.\n\nSTS는 아예 스프링전용으로 만들어진 이클립스\n\n\n\nSTS3 다운받기\n구글에 STS3 를 친다.\n  \n\nSTS3 는 STS위키에 들어가서 다운받아야한다\n  \n  \n\n자기 운영체제에 맞는 버전을 다운받는다\n  \n\n\n알집으로 안 풀리기 때문에 구글에서 7zip 을 다운받아서 7zip으로 압축풀어야 한다!!\nsts 압축파일 안에 sts-버전명 폴더(이하 sts 폴더)만 압축풀기 한다.\n  \n\nsts 폴더 안에 STS.exe 파일 실행\n  \n\nWorkspace 설치 경로를 sts 폴더와 같은 경로에 JavaWorkspace 폴더를 만든 후에 설치경로로 잡아준다(체크표시는 덤)\n\n\n\n\n설치가 끝나면 STS가 실행 된다.\n\n다음과 같이 새 java 프로젝트를 만든다\n  \n\n맨 밑에 체크박스는 해제하고 만든다.\n  \n  \n\n\n새 java 파일 만드는 방법\n\nfirstJavaproject 폴더 우클릭 → New → Class 클릭\n  \n\n이름 작성 후 체크박스 체크 하고 만든다.\n\n\n\n\nSystem.out.println(”Hello World!”);  치고 f11을 누르면 실행한다(테마를 바꿨음)\n  \n\n설정(Window  —&gt; Preferences) 들어가서 encoding 검색\n  \n\nGeneral ⇒ Content Types ⇒ Text 찍고 Default encoding 을 utf-8 로 바꾼다음 Update 해주고 저장한다.\n  \n\nText 안에 Java Properties File 도 utf-8로 변환하고 Update 해준다.\n  \n\nWorkspace 에서도 UTF-8 로 입력 해준 뒤 저장한다.\n  \n\n\n이클립스 단축키\n“syso” + ctrl키 + 스페이스바\n“F11” 은 실행단축키\n","dateCreated":"2022-09-16T22:51:21+09:00","dateModified":"2023-09-27T23:51:07+09:00","datePublished":"2022-09-16T22:51:21+09:00","description":"","headline":"Java, JDK 설치","image":[],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2022/09/16/Java,%20JDK%20%EC%84%A4%EC%B9%98/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2022/09/16/Java,%20JDK%20%EC%84%A4%EC%B9%98/"}</script>
     <meta property="og:type" content="blog">
 <meta property="og:title" content="Java, JDK 설치">
 <meta property="og:url" content="https://neewlife.github.io/2022/09/16/Java,%20JDK%20%EC%84%A4%EC%B9%98/index.html">
-<meta property="og:site_name" content="개발 메모장">
+<meta property="og:site_name" content="안되면 될 때 까지">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:image" content="https://neewlife.github.io/images/Java,_JDK_%EC%84%A4%EC%B9%98/Untitled.png">
 <meta property="og:image" content="https://neewlife.github.io/images/Java,_JDK_%EC%84%A4%EC%B9%98/Untitled%201.png">
@@ -96,7 +98,7 @@
             href="/"
             aria-label=""
         >
-            개발 메모장
+            안되면 될 때 까지
         </a>
     </div>
     
@@ -181,7 +183,7 @@
                     
                         <a
                             class="sidebar-button-link "
-                            href="https://github.com/"
+                            href="https://github.com/NeewLife"
                             
                                 target="_blank"
                             
@@ -360,9 +362,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2022/09/18/%5BJava%5D%20%EA%B8%B0%EC%B4%88/"
-                    data-tooltip="Java 문법"
-                    aria-label="이전: Java 문법"
+                    href="/2022/10/12/%5BJava%5D%20%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%20%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9/"
+                    data-tooltip="[Java] 오버로딩 오버라이딩"
+                    aria-label="이전: [Java] 오버로딩 오버라이딩"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
@@ -474,7 +476,7 @@
 
                 <footer id="footer" class="main-content-wrap">
     <span class="copyrights">
-        Copyrights &copy; 2023 오세영. All Rights Reserved.
+        Copyrights &copy; 2024 오세영. All Rights Reserved.
     </span>
 </footer>
 
@@ -489,9 +491,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2022/09/18/%5BJava%5D%20%EA%B8%B0%EC%B4%88/"
-                    data-tooltip="Java 문법"
-                    aria-label="이전: Java 문법"
+                    href="/2022/10/12/%5BJava%5D%20%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9%20%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9/"
+                    data-tooltip="[Java] 오버로딩 오버라이딩"
+                    aria-label="이전: [Java] 오버로딩 오버라이딩"
                 >
                     
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
