@@ -13,7 +13,7 @@
         <link rel="icon" href="https://NeewLife.github.io/assets/images/favicon.png">
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n유닛(Unit) 테스트 (&#x3D;단위 테스트)유닛 테스트(Unit Test)는 각 함수가 맡은 역할을 제대로 수행하는지 하나하나 테스트 하는 것을 말한다.만약 테스트가 네트워크나 데이터베이스 등의 외부 리소스들과 연결되면 유닛 테스트라고 볼 수 없다.\n전체 코드 중 가장 작은 부분을 테스트 하는 것이고, 매우 간단하고 명확하다.\n코드 설계가 좋지 않을 경우에는 유닛테스트를 작성하기도 어려워 진다.통합 테스트를 진행해야 할 때도 분명히 있겠지만, 통합 테스트로 반드시 테스트 해야 하는 경우는 설계가 좋지 않은 코드일 확률이 높다.따라서 유닛 테스트를 작성하려고 하다 보면 좀 더 좋은 코드를 만들 수 있도록 도와준다.\n쉽게 게임으로 비유를 하자면유저가 슬라임을 공격하는 Attack( ), 이동하는 Move( ), 전리품을 얻는 Gather( ) 등 각각 함수의 동작들이 잘 실행이 되는 지를 테스트 하는 것이 유닛 테스트 이다.\n\n\n통합 테스트통합 테스트는 각각의 시스템의 상호작용이 제대로 작동하는지를 테스트 하는 것이다.\n통합 테스트는 유닛 테스트와 다르게 다른 컴포넌트와 연결되는데,예를 들면 유닛 테스트에서는 실제 데이터베이스와 통신하는 것이 아니지만, 통합 테스트는 실제로 통신을 해야 한다.\n통합 테스트는 유닛 테스트로는 부족하다고 느낄 때 작성할 수 있다.다만 범위가 상대적으로 크기 때문에 작성 하는데 오래 걸리고 복잡하다. (데이터베이스 세팅이나 라이브러리를 잘 불러왔나 등등)\n그러나 통합 테스트에서는 유닛 테스트에서 찾기 힘든 버그들을 찾을 수 있다.\n위의 게임 비유로 돌아가면, 유저가 슬라임을 이동하고 공격해서 전리품을 얻은 것이 데이터베이스에 정상적으로 저장 되는지를 확인 하는 것이 통합테스트 라고 할 수 있다.\n\n\n유닛 테스트 방법먼저 Java 유닛 테스트에는 JUnit5나 AssertJ 등의 라이브러리가 필요하다.JUnit5는 대표적인 Java에서 유닛 테스트를 가능하게 해주는 라이브러리이고,AssertJ 는 JUnit5의 가독성이라던지 부족한 부분을 좀 더 도와주는 라이브러리이다.\n다음은 유닛 테스트를 할 때 요새 많이 쓰이는 패턴이라고 하는데 given - when - then 패턴 이다.\n\ngiven : 어떠한 데이터가 주어질 때\nwhen : 어떤 함수를 실행하면\nthen : 어떤 결과가 나와야 한다\n\n예를 들어 고양이와 관련된 함수가 있다고 하자.\n1234567891011public class Cat &#123;    String name;    public String getName() &#123;        return name;    &#125;    public void setName(String name) &#123;        this.name = name;    &#125;&#125;\n\n123456789101112131415public class Pet&#123;    private static Map&lt;Long, Cat&gt; myPet = new HashMap&lt;&gt;();    private static Long id = 0L;    public Long adopt(Cat cat)&#123;        myPet.put(++id, cat);        return id;    &#125;    public Cat getOne(Long id)&#123;        return myPet.get(id);    &#125;&#125;\n\n정상 작동 테스트이때, adopt( ) 함수가 잘 동작하는지(잘 동작하겠지만) 테스트를 해보기 위해서 다음과 같은 테스트 코드를 작성하자.\n123456789101112131415161718192021222324// 테스트 코드는 src/main 말고 src/test 에서 작성하자.class PetTest &#123;    Pet pet = new Pet();    @Test    void adopt() &#123;        // given        Cat cat = new Cat();        cat.setName(&quot;나비&quot;);        // when        Long id = pet.adopt(cat);        // then        Assertions.assertThat(pet.getOne(id)).isEqualTo(cat);    &#125;    @Test    void getOne() &#123;    &#125;&#125;\n\n\n참고로 테스트 코드를 만들고 싶을 때, Intellij 윈도우 기준  Alt + Insert 눌러서 “테스트” 누르면 테스트 클래스를 만들 수 있다.\n  \n  \n\n\n테스트를 실행시켜보면 문제없이 돌아가는 것을 볼 수 있다.\n\nadopt( )가 정상적으로 테스트 되었다면, 예외가 발생하는 것도 테스트를 해야한다.예외의 경우에는 같은 Cat 객체가 중복되게 입양됐는지 등의 로직을 작성하여 검사할 수도 있을 것이다.\n회원가입으로 치면 회원중복, 인증 이메일 양식이 안 맞을 경우 등등의 테스트 예외 검증이 있을 것이다.모든 예외를 검증할 수는 없겠지만, 이러한 예외 검증을 반복한다면 더욱 견고한 애플리케이션을 만들 수 있을 것이다.","dateCreated":"2024-01-16T22:17:56+09:00","dateModified":"2024-01-16T22:23:23+09:00","datePublished":"2024-01-16T22:17:56+09:00","description":"","headline":"[Spring Boot] 유닛 테스트와 통합테스트","image":["https://neewlife.github.io/assets/thumbnails/Spring_Boot.png","https://neewlife.github.io/assets/wallpapers/wallpaper8.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2024/01/16/[Test]%20%EC%9C%A0%EB%8B%9B%20%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80%20%ED%86%B5%ED%95%A9%20%ED%85%8C%EC%8A%A4%ED%8A%B8/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2024/01/16/[Test]%20%EC%9C%A0%EB%8B%9B%20%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80%20%ED%86%B5%ED%95%A9%20%ED%85%8C%EC%8A%A4%ED%8A%B8/","thumbnailUrl":"https://neewlife.github.io/assets/thumbnails/Spring_Boot.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n유닛(Unit) 테스트 (&#x3D;단위 테스트)유닛 테스트(Unit Test)는 각 함수가 맡은 역할을 제대로 수행하는지 하나하나 테스트 하는 것을 말한다.만약 테스트가 네트워크나 데이터베이스 등의 외부 리소스들과 연결되면 유닛 테스트라고 볼 수 없다.\n전체 코드 중 가장 작은 부분을 테스트 하는 것이고, 매우 간단하고 명확하다.\n코드 설계가 좋지 않을 경우에는 유닛테스트를 작성하기도 어려워 진다.통합 테스트를 진행해야 할 때도 분명히 있겠지만, 통합 테스트로 반드시 테스트 해야 하는 경우는 설계가 좋지 않은 코드일 확률이 높다.따라서 유닛 테스트를 작성하려고 하다 보면 좀 더 좋은 코드를 만들 수 있도록 도와준다.\n쉽게 게임으로 비유를 하자면유저가 슬라임을 공격하는 Attack( ), 이동하는 Move( ), 전리품을 얻는 Gather( ) 등 각각 함수의 동작들이 잘 실행이 되는 지를 테스트 하는 것이 유닛 테스트 이다.\n\n\n통합 테스트통합 테스트는 각각의 시스템의 상호작용이 제대로 작동하는지를 테스트 하는 것이다.\n통합 테스트는 유닛 테스트와 다르게 다른 컴포넌트와 연결되는데,예를 들면 유닛 테스트에서는 실제 데이터베이스와 통신하는 것이 아니지만, 통합 테스트는 실제로 통신을 해야 한다.\n통합 테스트는 유닛 테스트로는 부족하다고 느낄 때 작성할 수 있다.다만 범위가 상대적으로 크기 때문에 작성 하는데 오래 걸리고 복잡하다. (데이터베이스 세팅이나 라이브러리를 잘 불러왔나 등등)\n그러나 통합 테스트에서는 유닛 테스트에서 찾기 힘든 버그들을 찾을 수 있다.\n위의 게임 비유로 돌아가면, 유저가 슬라임을 이동하고 공격해서 전리품을 얻은 것이 데이터베이스에 정상적으로 저장 되는지를 확인 하는 것이 통합테스트 라고 할 수 있다.\n\n\n유닛 테스트 방법먼저 Java 유닛 테스트에는 JUnit5나 AssertJ 등의 라이브러리가 필요하다.JUnit5는 대표적인 Java에서 유닛 테스트를 가능하게 해주는 라이브러리이고,AssertJ 는 JUnit5의 가독성이라던지 부족한 부분을 좀 더 도와주는 라이브러리이다.\n다음은 유닛 테스트를 할 때 요새 많이 쓰이는 패턴이라고 하는데 given - when - then 패턴 이다.\n\ngiven : 어떠한 데이터가 주어질 때\nwhen : 어떤 함수를 실행하면\nthen : 어떤 결과가 나와야 한다\n\n예를 들어 고양이와 관련된 함수가 있다고 하자.\n1234567891011public class Cat &#123;    String name;    public String getName() &#123;        return name;    &#125;    public void setName(String name) &#123;        this.name = name;    &#125;&#125;\n\n123456789101112131415public class Pet&#123;    private static Map&lt;Long, Cat&gt; myPet = new HashMap&lt;&gt;();    private static Long id = 0L;    public Long adopt(Cat cat)&#123;        myPet.put(++id, cat);        return id;    &#125;    public Cat getOne(Long id)&#123;        return myPet.get(id);    &#125;&#125;\n\n정상 작동 테스트이때, adopt( ) 함수가 잘 동작하는지(잘 동작하겠지만) 테스트를 해보기 위해서 다음과 같은 테스트 코드를 작성하자.\n123456789101112131415161718192021222324// 테스트 코드는 src/main 말고 src/test 에서 작성하자.class PetTest &#123;    Pet pet = new Pet();    @Test    void adopt() &#123;        // given        Cat cat = new Cat();        cat.setName(&quot;나비&quot;);        // when        Long id = pet.adopt(cat);        // then        Assertions.assertThat(pet.getOne(id)).isEqualTo(cat);    &#125;    @Test    void getOne() &#123;    &#125;&#125;\n\n\n참고로 테스트 코드를 만들고 싶을 때, Intellij 윈도우 기준  Alt + Insert 눌러서 “테스트” 누르면 테스트 클래스를 만들 수 있다.\n  \n  \n\n\n테스트를 실행시켜보면 문제없이 돌아가는 것을 볼 수 있다.\n\nadopt( )가 정상적으로 테스트 되었다면, 예외가 발생하는 것도 테스트를 해야한다.예외의 경우에는 같은 Cat 객체가 중복되게 입양됐는지 등의 로직을 작성하여 검사할 수도 있을 것이다.\n회원가입으로 치면 회원중복, 인증 이메일 양식이 안 맞을 경우 등등의 테스트 예외 검증이 있을 것이다.모든 예외를 검증할 수는 없겠지만, 이러한 예외 검증을 반복한다면 더욱 견고한 애플리케이션을 만들 수 있을 것이다.\n참고https://cjwoov.tistory.com/9https://velog.io/@mon99745/%EC%9C%A0%EB%8B%9B-%ED%85%8C%EC%8A%A4%ED%8A%B8Unit-Test-%ED%86%B5%ED%95%A9-%ED%85%8C%EC%8A%A4%ED%8A%B8Integration-Test-%EA%B8%B0%EB%8A%A5-%ED%85%8C%EC%8A%A4%ED%8A%B8Funcional-Test%EB%9E%80","dateCreated":"2024-01-16T22:17:56+09:00","dateModified":"2024-01-16T23:32:04+09:00","datePublished":"2024-01-16T22:17:56+09:00","description":"","headline":"[Spring Boot] 유닛 테스트와 통합테스트","image":["https://neewlife.github.io/assets/thumbnails/Spring_Boot.png","https://neewlife.github.io/assets/wallpapers/wallpaper8.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2024/01/16/[Test]%20%EC%9C%A0%EB%8B%9B%20%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80%20%ED%86%B5%ED%95%A9%20%ED%85%8C%EC%8A%A4%ED%8A%B8/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2024/01/16/[Test]%20%EC%9C%A0%EB%8B%9B%20%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80%20%ED%86%B5%ED%95%A9%20%ED%85%8C%EC%8A%A4%ED%8A%B8/","thumbnailUrl":"https://neewlife.github.io/assets/thumbnails/Spring_Boot.png"}</script>
     <meta property="og:type" content="blog">
 <meta property="og:title" content="[Spring Boot] 유닛 테스트와 통합테스트">
 <meta property="og:url" content="https://neewlife.github.io/2024/01/16/[Test]%20%EC%9C%A0%EB%8B%9B%20%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80%20%ED%86%B5%ED%95%A9%20%ED%85%8C%EC%8A%A4%ED%8A%B8/index.html">
@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://neewlife.github.io/images/%5BSpring_Boot%5D_%EC%9C%A0%EB%8B%9B_%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80_%ED%86%B5%ED%95%A9_%ED%85%8C%EC%8A%A4%ED%8A%B8/Untitled%201.png">
 <meta property="og:image" content="https://neewlife.github.io/images/%5BSpring_Boot%5D_%EC%9C%A0%EB%8B%9B_%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80_%ED%86%B5%ED%95%A9_%ED%85%8C%EC%8A%A4%ED%8A%B8/Untitled%202.png">
 <meta property="article:published_time" content="2024-01-16T13:17:56.000Z">
-<meta property="article:modified_time" content="2024-01-16T13:23:23.500Z">
+<meta property="article:modified_time" content="2024-01-16T14:32:04.367Z">
 <meta property="article:author" content="오세영">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://neewlife.github.io/images/%5BSpring_Boot%5D_%EC%9C%A0%EB%8B%9B_%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80_%ED%86%B5%ED%95%A9_%ED%85%8C%EC%8A%A4%ED%8A%B8/Untitled.png">
@@ -270,6 +270,7 @@
 <p><img src="/images/%5BSpring_Boot%5D_%EC%9C%A0%EB%8B%9B_%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80_%ED%86%B5%ED%95%A9_%ED%85%8C%EC%8A%A4%ED%8A%B8/Untitled%202.png" alt="Untitled"></p>
 <p>adopt( )가 정상적으로 테스트 되었다면, 예외가 발생하는 것도 테스트를 해야한다.<br>예외의 경우에는 같은 Cat 객체가 중복되게 입양됐는지 등의 로직을 작성하여 검사할 수도 있을 것이다.</p>
 <p>회원가입으로 치면 회원중복, 인증 이메일 양식이 안 맞을 경우 등등의 테스트 예외 검증이 있을 것이다.<br>모든 예외를 검증할 수는 없겠지만, 이러한 예외 검증을 반복한다면 더욱 견고한 애플리케이션을 만들 수 있을 것이다.</p>
+<p>참고<br><a target="_blank" rel="noopener" href="https://cjwoov.tistory.com/9">https://cjwoov.tistory.com/9</a><br><a target="_blank" rel="noopener" href="https://velog.io/@mon99745/%EC%9C%A0%EB%8B%9B-%ED%85%8C%EC%8A%A4%ED%8A%B8Unit-Test-%ED%86%B5%ED%95%A9-%ED%85%8C%EC%8A%A4%ED%8A%B8Integration-Test-%EA%B8%B0%EB%8A%A5-%ED%85%8C%EC%8A%A4%ED%8A%B8Funcional-Test%EB%9E%80">https://velog.io/@mon99745/%EC%9C%A0%EB%8B%9B-%ED%85%8C%EC%8A%A4%ED%8A%B8Unit-Test-%ED%86%B5%ED%95%A9-%ED%85%8C%EC%8A%A4%ED%8A%B8Integration-Test-%EA%B8%B0%EB%8A%A5-%ED%85%8C%EC%8A%A4%ED%8A%B8Funcional-Test%EB%9E%80</a></p>
             
 
 
@@ -283,11 +284,14 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a
-                        class="post-action-btn btn btn--disabled"
-                        aria-hidden="true"
-                    >
-                        
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/01/17/%5BSpring%20Boot%5D%20AOP%20%EB%9E%80/"
+                    data-tooltip="[Spring Boot] AOP 란?"
+                    aria-label="이전: [Spring Boot] AOP 란?"
+                >
+                    
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
@@ -409,11 +413,14 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    <a
-                        class="post-action-btn btn btn--disabled"
-                        aria-hidden="true"
-                    >
-                        
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/01/17/%5BSpring%20Boot%5D%20AOP%20%EB%9E%80/"
+                    data-tooltip="[Spring Boot] AOP 란?"
+                    aria-label="이전: [Spring Boot] AOP 란?"
+                >
+                    
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>

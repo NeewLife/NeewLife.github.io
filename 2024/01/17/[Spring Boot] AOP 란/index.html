@@ -1,0 +1,632 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="안되면 될 때 까지">
+    <title>[Spring Boot] AOP 란? - 안되면 될 때 까지</title>
+    <meta name="author" content="오세영">
+    
+    
+        <link rel="icon" href="https://NeewLife.github.io/assets/images/favicon.png">
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\nAOP란Aspect-Oriented Programming 의 ****줄임말로 해석하면 관점 지향 프로그래밍 이란 뜻이다.\nOOP(객체 지향 프로그래밍) 에서는 객체 중심적으로 프로그래밍을 하는데,예를 들어 만약 회원가입( ), 로그인( ), 회원탈퇴( ) 메서드가 있다고 하자.각각의 기능은 다르겠지만, 공통적으로 유저의 정보를 불러오는 부가기능이 들어가있을 수 있다.\nAOP는 이렇게 핵심로직과 부가기능을 분리하여서 애플리케이션 전체에 관해서 이 부가기능을 모듈화하여 재사용 할 수 있게 지원하는 것이다.\n\n그림으로 보면 조금 이해가 될지도?\n  \n\n\n그럼 언제 AOP가 필요한가?예를 들어 직장 상사가 나한테 “메서드 실행시간을 알고싶다” 하고 주문이 들어왔다고 하자.한두개 쯤이야 메서드 실행시간을 알려줄 수는 있겠지만,회사프로그램에 메서드가 한두개일리가 없음..\n\n이때\n\n메서드 실행시간을 알려주는 로직은 핵심로직이 아님\n그러나 시간을 측정하는 로직은 공통 관심 사항이다.\n하나하나 메서드에 로직을 추가하기도 어렵고,\n유지보수하기도 힘들 것이다\n\n이럴 때 AOP를 적용하여 다음과 같이 “시간 측정 로직” 을 추출해낼 수 있다.\n\n예시 코드이 예시 코드에서는 회원가입, 회원목록조회 메서드의 실행시간을 체크하는 로직을 추가한 코드이다.\n123456789101112131415161718192021222324252627282930313233package hello.hellospring.service;@Transactionalpublic class MemberService &#123; \t\t/**\t\t * 회원가입\t\t */\t\t public Long join(Member member) &#123;\t\t\t\t long start = System.currentTimeMillis();\t\t\t\t try &#123;\t\t\t\t\t\t validateDuplicateMember(member); //중복 회원 검증\t\t\t\t\t\t memberRepository.save(member);\t\t\t\t\t\t return member.getId();\t\t\t\t &#125; finally &#123;\t\t\t\t\t\t long finish = System.currentTimeMillis();\t\t\t\t\t\t long timeMs = finish - start;\t\t\t\t\t\t System.out.println(&quot;join &quot; + timeMs + &quot;ms&quot;);\t\t\t\t &#125;\t\t &#125;\t\t\t /**\t\t * 전체 회원 조회\t\t */\t\t public List&lt;Member&gt; findMembers() &#123;\t\t\t\t long start = System.currentTimeMillis();\t\t\t\t try &#123;\t\t\t\t\t\t return memberRepository.findAll();\t\t\t\t &#125; finally &#123;\t\t\t\t\t\t long finish = System.currentTimeMillis();\t\t\t\t\t\t long timeMs = finish - start;\t\t\t\t\t\t System.out.println(&quot;findMembers &quot; + timeMs + &quot;ms&quot;);\t\t\t\t &#125;\t\t &#125;&#125;\n\n공통관심사항으로 long start 부분부터 finally 부분까지 시간측정 하는 로직이 들어가있고,그 사이에 try 부분에 핵심 로직이 들어가 있는 구조이다.\n이것을 AOP를 적용시켜 시간측정 로직을 추출해서 작성해보면,\n12345678910111213141516@Component@Aspectpublic class TimeTraceAop &#123; @Around(&quot;execution(* hello.hellospring..*(..))&quot;)\t public Object execute(ProceedingJoinPoint joinPoint) throws Throwable &#123;\t\t\t long start = System.currentTimeMillis();\t\t\t System.out.println(&quot;START: &quot; + joinPoint.toString());\t\t\t try &#123;\t\t\t\t\t return joinPoint.proceed();\t\t\t &#125; finally &#123;\t\t\t\t\t long finish = System.currentTimeMillis();\t\t\t\t\t long timeMs = finish - start;\t\t\t\t\t System.out.println(&quot;END: &quot; + joinPoint.toString()+ &quot; &quot; + timeMs +\t\t\t\t\t&quot;ms&quot;);\t\t\t &#125;\t &#125;&#125;\n\n이렇게 작성할 수 있겠다.핵심은 @Aspect 와 @Component 를 적용시켜줘야 한다.여기서 클래스명 옆에 @Around(”execution(~~~)) 부분이 hello.hellospring 패키지 안의 모든 메서드에 적용하겠다는 의미가 되겠다. (자세한 사용법은 구글링 해보기)\nAOP적용 전과 후AOP를 적용하기 전에는 스프링 컨테이너 안에서 실제 서비스나 레포지토리 등을 참조했었는데,\n\nAOP를 적용하고난 후에는 스프링 컨테이너에서 \n\n먼저 각 객체에 프록시를 주입하여 접근한 후에\n\n다시 원래 객체에 접근하게 된다.\n  \n\n\n출처https://adjh54.tistory.com/133#google_vignettehttps:&#x2F;&#x2F;velog.io&#x2F;@backtony&#x2F;Spring-AOP-총정리https://www.inflearn.com/course/lecture?courseSlug=스프링-입문-스프링부트&unitId=49601&tab=curriculum","dateCreated":"2024-01-17T21:50:40+09:00","dateModified":"2024-01-17T21:50:33+09:00","datePublished":"2024-01-17T21:50:40+09:00","description":"","headline":"[Spring Boot] AOP 란?","image":["https://neewlife.github.io/assets/thumbnails/Spring_Boot.png","https://neewlife.github.io/assets/wallpapers/wallpaper9.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2024/01/17/[Spring%20Boot]%20AOP%20%EB%9E%80/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2024/01/17/[Spring%20Boot]%20AOP%20%EB%9E%80/","thumbnailUrl":"https://neewlife.github.io/assets/thumbnails/Spring_Boot.png"}</script>
+    <meta property="og:type" content="blog">
+<meta property="og:title" content="[Spring Boot] AOP 란?">
+<meta property="og:url" content="https://neewlife.github.io/2024/01/17/[Spring%20Boot]%20AOP%20%EB%9E%80/index.html">
+<meta property="og:site_name" content="안되면 될 때 까지">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://neewlife.github.io/images/%5BSpring_Boot%5D_AOP_%EB%9E%80/Untitled.png">
+<meta property="og:image" content="https://neewlife.github.io/images/%5BSpring_Boot%5D_AOP_%EB%9E%80/Untitled%201.png">
+<meta property="og:image" content="https://neewlife.github.io/images/%5BSpring_Boot%5D_AOP_%EB%9E%80/Untitled%202.png">
+<meta property="og:image" content="https://neewlife.github.io/images/%5BSpring_Boot%5D_AOP_%EB%9E%80/Untitled%203.png">
+<meta property="og:image" content="https://neewlife.github.io/images/%5BSpring_Boot%5D_AOP_%EB%9E%80/Untitled%204.png">
+<meta property="article:published_time" content="2024-01-17T12:50:40.000Z">
+<meta property="article:modified_time" content="2024-01-17T12:50:33.889Z">
+<meta property="article:author" content="오세영">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://neewlife.github.io/images/%5BSpring_Boot%5D_AOP_%EB%9E%80/Untitled.png">
+    
+    
+        
+    
+    
+    
+        <meta property="og:image" content="https://neewlife.github.io/assets/thumbnails/Spring_Boot.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://neewlife.github.io/assets/thumbnails/Spring_Boot.png"/>
+    
+    
+        <meta property="og:image" content="https://neewlife.github.io/assets/wallpapers/wallpaper9.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://neewlife.github.io/assets/wallpapers/wallpaper9.jpg"/>
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+            
+<link rel="stylesheet" href="/assets/css/gitment.css">
+
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            안되면 될 때 까지
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/NeewLife"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-center
+                    "
+             style="background-image:url('https://neewlife.github.io/assets/wallpapers/wallpaper9.jpg');"
+             data-behavior="5">
+            
+                <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            [Spring Boot] AOP 란?
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2024-01-17T21:50:40+09:00">
+	
+		    2024/01/17
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Spring-Boot/">Spring Boot</a>
+
+
+    
+</div>
+
+    
+</div>
+
+            
+        </div>
+
+            <div id="main" data-behavior="5"
+                 class="hasCover
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- excerpt -->
+
+<h1 id="AOP란"><a href="#AOP란" class="headerlink" title="AOP란"></a>AOP란</h1><p><strong>Aspect-Oriented Programming</strong> 의 ****줄임말로 해석하면 <strong>관점 지향 프로그래밍</strong> 이란 뜻이다.</p>
+<p>OOP(객체 지향 프로그래밍) 에서는 객체 중심적으로 프로그래밍을 하는데,<br>예를 들어 만약 <strong>회원가입( )</strong>, <strong>로그인( )</strong>, <strong>회원탈퇴( )</strong> 메서드가 있다고 하자.<br>각각의 기능은 다르겠지만, <strong>공통적으로 유저의 정보를 불러오는 부가기능</strong>이 들어가있을 수 있다.</p>
+<p>AOP는 이렇게 핵심로직과 부가기능을 분리하여서 애플리케이션 전체에 관해서 이 <strong>부가기능을 모듈화하여 재사용 할 수 있게 지원하는 것</strong>이다.</p>
+<ul>
+<li><p>그림으로 보면 조금 이해가 될지도?</p>
+<p>  <img src="/images/%5BSpring_Boot%5D_AOP_%EB%9E%80/Untitled.png" alt="Untitled"></p>
+</li>
+</ul>
+<h2 id="그럼-언제-AOP가-필요한가"><a href="#그럼-언제-AOP가-필요한가" class="headerlink" title="그럼 언제 AOP가 필요한가?"></a>그럼 언제 AOP가 필요한가?</h2><p>예를 들어 직장 상사가 나한테 “메서드 실행시간을 알고싶다” 하고 주문이 들어왔다고 하자.<br>한두개 쯤이야 메서드 실행시간을 알려줄 수는 있겠지만,<br>회사프로그램에 메서드가 한두개일리가 없음..</p>
+<p><img src="/images/%5BSpring_Boot%5D_AOP_%EB%9E%80/Untitled%201.png" alt="Untitled"></p>
+<p>이때</p>
+<ul>
+<li>메서드 실행시간을 알려주는 로직은 핵심로직이 아님</li>
+<li>그러나 시간을 측정하는 로직은 공통 관심 사항이다.</li>
+<li>하나하나 메서드에 로직을 추가하기도 어렵고,</li>
+<li>유지보수하기도 힘들 것이다</li>
+</ul>
+<p>이럴 때 AOP를 적용하여 다음과 같이 “시간 측정 로직” 을 추출해낼 수 있다.</p>
+<p><img src="/images/%5BSpring_Boot%5D_AOP_%EB%9E%80/Untitled%202.png" alt="Untitled"></p>
+<h2 id="예시-코드"><a href="#예시-코드" class="headerlink" title="예시 코드"></a>예시 코드</h2><p>이 예시 코드에서는 회원가입, 회원목록조회 메서드의 실행시간을 체크하는 로직을 추가한 코드이다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hello.hellospring.service;</span><br><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MemberService</span> &#123; </span><br><span class="line">		<span class="comment">/**</span></span><br><span class="line"><span class="comment">		 * 회원가입</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		 <span class="keyword">public</span> Long <span class="title function_">join</span><span class="params">(Member member)</span> &#123;</span><br><span class="line">				 <span class="type">long</span> <span class="variable">start</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">				 <span class="keyword">try</span> &#123;</span><br><span class="line">						 validateDuplicateMember(member); <span class="comment">//중복 회원 검증</span></span><br><span class="line">						 memberRepository.save(member);</span><br><span class="line">						 <span class="keyword">return</span> member.getId();</span><br><span class="line">				 &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">						 <span class="type">long</span> <span class="variable">finish</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">						 <span class="type">long</span> <span class="variable">timeMs</span> <span class="operator">=</span> finish - start;</span><br><span class="line">						 System.out.println(<span class="string">&quot;join &quot;</span> + timeMs + <span class="string">&quot;ms&quot;</span>);</span><br><span class="line">				 &#125;</span><br><span class="line">		 &#125;</span><br><span class="line">	</span><br><span class="line">		 <span class="comment">/**</span></span><br><span class="line"><span class="comment">		 * 전체 회원 조회</span></span><br><span class="line"><span class="comment">		 */</span></span><br><span class="line">		 <span class="keyword">public</span> List&lt;Member&gt; <span class="title function_">findMembers</span><span class="params">()</span> &#123;</span><br><span class="line">				 <span class="type">long</span> <span class="variable">start</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">				 <span class="keyword">try</span> &#123;</span><br><span class="line">						 <span class="keyword">return</span> memberRepository.findAll();</span><br><span class="line">				 &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">						 <span class="type">long</span> <span class="variable">finish</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">						 <span class="type">long</span> <span class="variable">timeMs</span> <span class="operator">=</span> finish - start;</span><br><span class="line">						 System.out.println(<span class="string">&quot;findMembers &quot;</span> + timeMs + <span class="string">&quot;ms&quot;</span>);</span><br><span class="line">				 &#125;</span><br><span class="line">		 &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>공통관심사항으로 <code>long start</code> 부분부터 <code>finally</code> 부분까지 <strong>시간측정</strong> 하는 로직이 들어가있고,<br>그 사이에 <code>try</code> 부분에 <strong>핵심</strong> 로직이 들어가 있는 구조이다.</p>
+<p>이것을 AOP를 적용시켜 <strong>시간측정</strong> 로직을 추출해서 작성해보면,</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TimeTraceAop</span> &#123; <span class="meta">@Around(&quot;execution(* hello.hellospring..*(..))&quot;)</span></span><br><span class="line">	 <span class="keyword">public</span> Object <span class="title function_">execute</span><span class="params">(ProceedingJoinPoint joinPoint)</span> <span class="keyword">throws</span> Throwable &#123;</span><br><span class="line">			 <span class="type">long</span> <span class="variable">start</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">			 System.out.println(<span class="string">&quot;START: &quot;</span> + joinPoint.toString());</span><br><span class="line">			 <span class="keyword">try</span> &#123;</span><br><span class="line">					 <span class="keyword">return</span> joinPoint.proceed();</span><br><span class="line">			 &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">					 <span class="type">long</span> <span class="variable">finish</span> <span class="operator">=</span> System.currentTimeMillis();</span><br><span class="line">					 <span class="type">long</span> <span class="variable">timeMs</span> <span class="operator">=</span> finish - start;</span><br><span class="line">					 System.out.println(<span class="string">&quot;END: &quot;</span> + joinPoint.toString()+ <span class="string">&quot; &quot;</span> + timeMs +</span><br><span class="line">					<span class="string">&quot;ms&quot;</span>);</span><br><span class="line">			 &#125;</span><br><span class="line">	 &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>이렇게 작성할 수 있겠다.<br>핵심은 <code>@Aspect</code> 와 <code>@Component</code> 를 적용시켜줘야 한다.<br>여기서 클래스명 옆에 <code>@Around(”execution(~~~))</code> 부분이 hello.hellospring 패키지 안의 모든 메서드에 적용하겠다는 의미가 되겠다. (자세한 사용법은 구글링 해보기)</p>
+<h3 id="AOP적용-전과-후"><a href="#AOP적용-전과-후" class="headerlink" title="AOP적용 전과 후"></a>AOP적용 전과 후</h3><p>AOP를 적용하기 전에는 스프링 컨테이너 안에서 실제 서비스나 레포지토리 등을 참조했었는데,</p>
+<p><img src="/images/%5BSpring_Boot%5D_AOP_%EB%9E%80/Untitled%203.png" alt="Untitled"></p>
+<p>AOP를 적용하고난 후에는 스프링 컨테이너에서 </p>
+<ul>
+<li><p>먼저 각 객체에 프록시를 주입하여 접근한 후에</p>
+</li>
+<li><p>다시 원래 객체에 접근하게 된다.</p>
+<p>  <img src="/images/%5BSpring_Boot%5D_AOP_%EB%9E%80/Untitled%204.png" alt="Untitled"></p>
+</li>
+</ul>
+<p>출처<br><a target="_blank" rel="noopener" href="https://adjh54.tistory.com/133#google_vignette">https://adjh54.tistory.com/133#google_vignette</a><br><a target="_blank" rel="noopener" href="https://velog.io/@backtony/Spring-AOP-%EC%B4%9D%EC%A0%95%EB%A6%AC">https:&#x2F;&#x2F;velog.io&#x2F;@backtony&#x2F;Spring-AOP-총정리</a><br><a target="_blank" rel="noopener" href="https://www.inflearn.com/course/lecture?courseSlug=%EC%8A%A4%ED%94%84%EB%A7%81-%EC%9E%85%EB%AC%B8-%EC%8A%A4%ED%94%84%EB%A7%81%EB%B6%80%ED%8A%B8&unitId=49601&tab=curriculum">https://www.inflearn.com/course/lecture?courseSlug=스프링-입문-스프링부트&unitId=49601&tab=curriculum</a></p>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/01/16/%5BTest%5D%20%EC%9C%A0%EB%8B%9B%20%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80%20%ED%86%B5%ED%95%A9%20%ED%85%8C%EC%8A%A4%ED%8A%B8/"
+                    data-tooltip="[Spring Boot] 유닛 테스트와 통합테스트"
+                    aria-label="다음: [Spring Boot] 유닛 테스트와 통합테스트"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2024/01/17/[Spring%20Boot]%20AOP%20%EB%9E%80/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2024/01/17/[Spring%20Boot]%20AOP%20%EB%9E%80/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2024/01/17/[Spring%20Boot]%20AOP%20%EB%9E%80/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2024 오세영. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/01/16/%5BTest%5D%20%EC%9C%A0%EB%8B%9B%20%ED%85%8C%EC%8A%A4%ED%8A%B8%EC%99%80%20%ED%86%B5%ED%95%A9%20%ED%85%8C%EC%8A%A4%ED%8A%B8/"
+                    data-tooltip="[Spring Boot] 유닛 테스트와 통합테스트"
+                    aria-label="다음: [Spring Boot] 유닛 테스트와 통합테스트"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2024/01/17/[Spring%20Boot]%20AOP%20%EB%9E%80/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2024/01/17/[Spring%20Boot]%20AOP%20%EB%9E%80/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2024/01/17/[Spring%20Boot]%20AOP%20%EB%9E%80/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2024/01/17/[Spring%20Boot]%20AOP%20%EB%9E%80/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2024/01/17/[Spring%20Boot]%20AOP%20%EB%9E%80/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=https://neewlife.github.io/2024/01/17/[Spring%20Boot]%20AOP%20%EB%9E%80/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">오세영</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+        <script>
+          var disqus_config = function() {
+            this.page.url = 'https://neewlife.github.io/2024/01/17/[Spring%20Boot]%20AOP%20%EB%9E%80/';
+              
+            this.page.identifier = '2024/01/17/[Spring Boot] AOP 란/';
+              
+          };
+          (function() {
+            var d = document, s = d.createElement('script');
+            var disqus_shortname = 'blog-fk1l8wbpvl';
+            s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+    
+
+
+
+
+    </body>
+</html>
