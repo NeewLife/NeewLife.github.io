@@ -1,0 +1,687 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="안되면 될 때 까지">
+    <title>[네트워크] REST, RESTful API - 안되면 될 때 까지</title>
+    <meta name="author" content="오세영">
+    
+    
+        <link rel="icon" href="https://NeewLife.github.io/assets/images/favicon.png">
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\nREST란?\nRepresentational State Transfer 의 약자로 자원을 이름으로 구분하여 해당 자원의 상태를 주고 받는 모든 것을 의미한다.\n예를 들어 자원으로 문서, 그림, 데이터, 해당 소프트웨어 자체 등이 있다고 할 때, 학생의 DB 데이터를 ‘student’ 라고 이름으로 구분하고\n해당 자원(student DB)의 상태(정보)를 주고 받는다는 의미이다.\n\nREST방식은 기본적으로 웹의 기존 기술과 HTTP 프로토콜을 그대로 활용하기 때문에 웹의 장점을 최대한 활용할 수 있는 아키텍쳐 스타일이다.\n\n\n\nREST 의 구체적인 개념\n\nHTTP URL 을 통해서 자원을 명시하고,\nHTTP Method(POST, GET, PUT, DELETE, PATCH 등)를 통해서\n해당 자원에 대한 CRUD Operation 을 적용하는 것을 의미한다.\n\n\n\n💡 CRUD Operation 이란기본적인 데이터 처리 기능인 Create(생성), Read(읽기), Update(갱신), Delete(삭제)를 묶어서 부르는 말이다. 통상 CRUD 라고 많이 부르는듯\n\nCreate : 데이터 생성(주로 POST)\nRead : 데이터 조회(주로 GET)\nUpdate : 데이터 수정(주로 PUT, PATCH)\nDelete : 데이터 삭제(주로 DELETE)\n\n\n\nREST 의 구성 요소\n\n자원 : HTTP URL\n자원에 대한 행위 : HTTP Method (GET, POST, PUT, DELETE 등)\n자원에 대한 행위의 내용 : HTTP Message Pay Load (JSON, XML 등)\n\n\n\nREST 의 장단점\n장점\n\nHTTP 프로토콜의 인프라를 그대로 사용하므로 REST API 를 위한 별도의 인프라를 구축할 필요가 없다.\nHTTP 프로토콜의 표준을 최대한 활용하여 여러 추가적인 장점을 함께 가져갈 수 있게 해 준다.\nHTTP 표준 프로토콜을 따르는 모든 플랫폼에서 사용이 가능하다.\nREST API 메세지가 의도하는 바를 명확하게 나타내므로 의도하는 바를 쉽게 파악할 수 있다.\n여러가지 서비스 디자인에서 생길 수 있는 문제점을 최소화 한다.\n서버와 클라이언트의 역할을 명확하게 분리한다.\n\n단점\n\n자체적인 표준이 존재하지 않아서 정의가 필요하다\nHTTP Method 형태가 제한적이다.\n브라우저를 통해 테스트할 일이 많은 서비스라면 쉽게 고칠 수 있는 URL 보다 Header 에 담겨있는 정보의 값을 처리해야 하므로 전문성이 요구된다.\n구형 브라우저(익스플로어 등)에서 호환이 안돼서 지원해주지 못하는 동작이 많다.\n\n\n\nREST API 란?\nREST 의 원리를 따르는 API 를 말한다.\n이렇게 REST API 를 제공하는 서비스를 RESTful 하다고 할 수 있다\n\nRESTful 이란 용어는 공식적으로 발표한 것이 아니라 그냥 REST 원리를 따르는 시스템을 일컫기 위해서 만들어진 용어이다.\n\nREST API 를 작성하기 위해서는 몇가지 규칙이 있다.\n많아보일 수 있지만, 찬찬히 읽다보면 어찌보면 당연한 규칙들이다.\n\nURI 는 동사보다는 명사를, 대문자보다는 소문자를 사용해야 한다.\n  ex) /login/Running —&gt;/login/run\n\nURI 는 정보의 자원을 표시해야 한다.\n\nDocument : 단일 개념 객체 인스턴스나 데이터베이스의 레코드(행)와 유사한 개념  (단수명사 사용)\n 12345http://api.example.com/device-management/managed-devices/&#123;device-id&#125;http://api.example.com/user-management/users/&#123;id&#125;http://api.example.com/user-management/users/admin(/device-management, /user-management) 가 Document 에 해당함\n\nCollection : 서버에서 관리하는 디렉터리 라는 리소스  (복수명사 사용)\n 1234http://api.example.com/user-management/usershttp://api.example.com/user-management/users/&#123;id&#125;(/users)가 Collection에 해당함\n\nStore : 클라이언트에서 관리하는 리소스 저장소  (복수명사 사용)\n 1234http://api.example.com/fileshttp://api.example.com/files/new_file.txt(/files)가 Store에 해당함\n\n\nURI 에 HTTP Method 가 들어가면 안된다.\n  ex) GET /example/delete  —&gt; DELETE /example\n\nURI 에 동사표현(즉, CRUD 기능)이 들어가면 안된다.\n  ex1) GET /members/show  —&gt; GET /members  ex2) GET /members/insert  —&gt; POST /members\n\nURI 의 마지막에 슬래시( “&#x2F;” ) 를 사용하지 않는다.\n  ex) GET /members/view/  —&gt; GET /members/view\n\nURI 에는 언더바( ”_” ) 대신 하이픈( “-” ) 을 사용한다.\n  ex) GET /pages/install_page  —&gt; GET /pages/install-page \n\nURI 에는 파일 확장자를 넣지 않는다.\n  ex) GET /download/nature.png  —&gt; GET/download/nature\n\n\n출처\n\nhttps://khj93.tistory.com/entry/네트워크-REST-API란-REST-RESTful이란\nhttps://www.incodom.kr/REST#h_565e9294ea899706609e2ae2e849f76e\nhttps://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html\nhttps://prohannah.tistory.com/156","dateCreated":"2024-01-20T19:11:21+09:00","dateModified":"2024-01-20T19:14:28+09:00","datePublished":"2024-01-20T19:11:21+09:00","description":"","headline":"[네트워크] REST, RESTful API","image":["https://neewlife.github.io/assets/thumbnails/text/REST_-RESTful-API.png","https://neewlife.github.io/assets/wallpapers/002.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2024/01/20/[%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC]%20REST,%20RESTful%20API/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2024/01/20/[%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC]%20REST,%20RESTful%20API/","thumbnailUrl":"https://neewlife.github.io/assets/thumbnails/text/REST_-RESTful-API.png"}</script>
+    <meta property="og:type" content="blog">
+<meta property="og:title" content="[네트워크] REST, RESTful API">
+<meta property="og:url" content="https://neewlife.github.io/2024/01/20/[%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC]%20REST,%20RESTful%20API/index.html">
+<meta property="og:site_name" content="안되면 될 때 까지">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2024-01-20T10:11:21.000Z">
+<meta property="article:modified_time" content="2024-01-20T10:14:28.963Z">
+<meta property="article:author" content="오세영">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+        <meta property="og:image" content="https://neewlife.github.io/assets/thumbnails/text/REST_-RESTful-API.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://neewlife.github.io/assets/thumbnails/text/REST_-RESTful-API.png"/>
+    
+    
+        <meta property="og:image" content="https://neewlife.github.io/assets/wallpapers/002.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://neewlife.github.io/assets/wallpapers/002.jpg"/>
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+            
+<link rel="stylesheet" href="/assets/css/gitment.css">
+
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            안되면 될 때 까지
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/NeewLife"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-center
+                    "
+             style="background-image:url('https://neewlife.github.io/assets/wallpapers/002.jpg');"
+             data-behavior="5">
+            
+                <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            [네트워크] REST, RESTful API
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2024-01-20T19:11:21+09:00">
+	
+		    2024/01/20
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Network/">Network</a>
+
+
+    
+</div>
+
+    
+</div>
+
+            
+        </div>
+
+            <div id="main" data-behavior="5"
+                 class="hasCover
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- excerpt -->
+
+<h1 id="REST란"><a href="#REST란" class="headerlink" title="REST란?"></a>REST란?</h1><hr>
+<p><strong>Representational State Transfer</strong> 의 약자로 자원을 이름으로 구분하여 해당 자원의 상태를 주고 받는 모든 것을 의미한다.</p>
+<p>예를 들어 자원으로 문서, 그림, 데이터, 해당 소프트웨어 자체 등이 있다고 할 때, 학생의 DB 데이터를 ‘student’ 라고 이름으로 구분하고</p>
+<p>해당 자원(student DB)의 상태(정보)를 주고 받는다는 의미이다.</p>
+<ul>
+<li>REST방식은 기본적으로 웹의 기존 기술과 HTTP 프로토콜을 그대로 활용하기 때문에 웹의 장점을 최대한 활용할 수 있는 아키텍쳐 스타일이다.</li>
+</ul>
+<br>
+
+<h3 id="REST-의-구체적인-개념"><a href="#REST-의-구체적인-개념" class="headerlink" title="REST 의 구체적인 개념"></a>REST 의 구체적인 개념</h3><hr>
+<ul>
+<li>HTTP URL 을 통해서 자원을 명시하고,</li>
+<li>HTTP Method(POST, GET, PUT, DELETE, PATCH 등)를 통해서</li>
+<li>해당 자원에 대한 CRUD Operation 을 적용하는 것을 의미한다.</li>
+</ul>
+<br>
+
+<h3 id="💡-CRUD-Operation-이란"><a href="#💡-CRUD-Operation-이란" class="headerlink" title="💡 CRUD Operation 이란"></a>💡 CRUD Operation 이란</h3><p>기본적인 데이터 처리 기능인 Create(생성), Read(읽기), Update(갱신), Delete(삭제)를 묶어서 부르는 말이다. 통상 CRUD 라고 많이 부르는듯</p>
+<ul>
+<li>Create : 데이터 생성(주로 <strong>POST</strong>)</li>
+<li>Read : 데이터 조회(주로 <strong>GET</strong>)</li>
+<li>Update : 데이터 수정(주로 <strong>PUT</strong>, <strong>PATCH</strong>)</li>
+<li>Delete : 데이터 삭제(주로 <strong>DELETE</strong>)</li>
+</ul>
+<br>
+
+<h3 id="REST-의-구성-요소"><a href="#REST-의-구성-요소" class="headerlink" title="REST 의 구성 요소"></a>REST 의 구성 요소</h3><hr>
+<ol>
+<li>자원 : <strong>HTTP URL</strong></li>
+<li>자원에 대한 행위 : <strong>HTTP Method (GET, POST, PUT, DELETE 등)</strong></li>
+<li>자원에 대한 행위의 내용 : <strong>HTTP Message Pay Load (JSON, XML 등)</strong></li>
+</ol>
+<br>
+
+<h3 id="REST-의-장단점"><a href="#REST-의-장단점" class="headerlink" title="REST 의 장단점"></a>REST 의 장단점</h3><hr>
+<p>장점</p>
+<ul>
+<li>HTTP 프로토콜의 인프라를 그대로 사용하므로 REST API 를 위한 별도의 인프라를 구축할 필요가 없다.</li>
+<li>HTTP 프로토콜의 표준을 최대한 활용하여 여러 추가적인 장점을 함께 가져갈 수 있게 해 준다.</li>
+<li>HTTP 표준 프로토콜을 따르는 모든 플랫폼에서 사용이 가능하다.</li>
+<li>REST API 메세지가 의도하는 바를 명확하게 나타내므로 의도하는 바를 쉽게 파악할 수 있다.</li>
+<li>여러가지 서비스 디자인에서 생길 수 있는 문제점을 최소화 한다.</li>
+<li>서버와 클라이언트의 역할을 명확하게 분리한다.</li>
+</ul>
+<p>단점</p>
+<ul>
+<li>자체적인 표준이 존재하지 않아서 정의가 필요하다</li>
+<li>HTTP Method 형태가 제한적이다.</li>
+<li>브라우저를 통해 테스트할 일이 많은 서비스라면 쉽게 고칠 수 있는 URL 보다 Header 에 담겨있는 정보의 값을 처리해야 하므로 전문성이 요구된다.</li>
+<li>구형 브라우저(익스플로어 등)에서 호환이 안돼서 지원해주지 못하는 동작이 많다.</li>
+</ul>
+<br>
+
+<h2 id="REST-API-란"><a href="#REST-API-란" class="headerlink" title="REST API 란?"></a>REST API 란?</h2><hr>
+<p><strong>REST 의 원리를 따르는 API</strong> 를 말한다.</p>
+<p>이렇게 REST API 를 제공하는 서비스를 <strong>RESTful</strong> 하다고 할 수 있다</p>
+<ul>
+<li>RESTful 이란 용어는 공식적으로 발표한 것이 아니라 그냥 REST 원리를 따르는 시스템을 일컫기 위해서 만들어진 용어이다.</li>
+</ul>
+<p>REST API 를 작성하기 위해서는 몇가지 규칙이 있다.</p>
+<p>많아보일 수 있지만, 찬찬히 읽다보면 어찌보면 당연한 규칙들이다.</p>
+<ul>
+<li><p>URI 는 동사보다는 명사를, 대문자보다는 소문자를 사용해야 한다.</p>
+<p>  ex) <code>/login/Running</code> —&gt;<code>/login/run</code></p>
+</li>
+<li><p>URI 는 정보의 자원을 표시해야 한다.</p>
+<ol>
+<li><p>Document : <strong>단일 개념</strong> 객체 인스턴스나 데이터베이스의 레코드(행)와 유사한 개념<br>  (<strong>단수명사</strong> 사용)</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">http://api.example.com/device-management/managed-devices/&#123;device-id&#125;</span><br><span class="line">http://api.example.com/user-management/users/&#123;id&#125;</span><br><span class="line">http://api.example.com/user-management/users/admin</span><br><span class="line"></span><br><span class="line">(/device-management, /user-management) 가 Document 에 해당함</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Collection : 서버에서 관리하는 디렉터리 라는 리소스<br>  (<strong>복수명사</strong> 사용)</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http://api.example.com/user-management/users</span><br><span class="line">http://api.example.com/user-management/users/&#123;id&#125;</span><br><span class="line"></span><br><span class="line">(/users)가 Collection에 해당함</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Store : 클라이언트에서 관리하는 리소스 저장소<br>  (<strong>복수명사</strong> 사용)</p>
+ <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">http://api.example.com/files</span><br><span class="line">http://api.example.com/files/new_file.txt</span><br><span class="line"></span><br><span class="line">(/files)가 Store에 해당함</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>URI 에 HTTP Method 가 들어가면 안된다.</p>
+<p>  ex) GET <code>/example/delete</code>  —&gt; DELETE <code>/example</code></p>
+</li>
+<li><p>URI 에 동사표현(즉, CRUD 기능)이 들어가면 안된다.</p>
+<p>  ex1) GET <code>/members/show</code>  —&gt; GET <code>/members</code><br>  ex2) GET <code>/members/insert</code>  —&gt; POST <code>/members</code></p>
+</li>
+<li><p>URI 의 마지막에 슬래시( “&#x2F;” ) 를 사용하지 않는다.</p>
+<p>  ex) GET <code>/members/view/</code>  —&gt; GET <code>/members/view</code></p>
+</li>
+<li><p>URI 에는 언더바( ”_” ) 대신 하이픈( “-” ) 을 사용한다.</p>
+<p>  ex) GET <code>/pages/install_page</code>  —&gt; GET <code>/pages/install-page</code> </p>
+</li>
+<li><p>URI 에는 파일 확장자를 넣지 않는다.</p>
+<p>  ex) GET <code>/download/nature.png</code>  —&gt; GET<code>/download/nature</code></p>
+</li>
+</ul>
+<p>출처</p>
+<hr>
+<p><a target="_blank" rel="noopener" href="https://khj93.tistory.com/entry/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-REST-API%EB%9E%80-REST-RESTful%EC%9D%B4%EB%9E%80">https://khj93.tistory.com/entry/네트워크-REST-API란-REST-RESTful이란</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.incodom.kr/REST#h_565e9294ea899706609e2ae2e849f76e">https://www.incodom.kr/REST#h_565e9294ea899706609e2ae2e849f76e</a></p>
+<p><a target="_blank" rel="noopener" href="https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html">https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://prohannah.tistory.com/156">https://prohannah.tistory.com/156</a></p>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/01/19/%5B%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%5D%20%EC%9E%90%EC%A3%BC%20%EB%B3%B4%EB%8A%94%20HTTP%20%EC%83%81%ED%83%9C%20%EC%BD%94%EB%93%9C%EB%93%A4/"
+                    data-tooltip="[네트워크] 자주 보는 HTTP 상태 코드들"
+                    aria-label="다음: [네트워크] 자주 보는 HTTP 상태 코드들"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2024/01/20/[%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC]%20REST,%20RESTful%20API/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2024/01/20/[%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC]%20REST,%20RESTful%20API/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2024/01/20/[%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC]%20REST,%20RESTful%20API/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2024 오세영. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/01/19/%5B%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%5D%20%EC%9E%90%EC%A3%BC%20%EB%B3%B4%EB%8A%94%20HTTP%20%EC%83%81%ED%83%9C%20%EC%BD%94%EB%93%9C%EB%93%A4/"
+                    data-tooltip="[네트워크] 자주 보는 HTTP 상태 코드들"
+                    aria-label="다음: [네트워크] 자주 보는 HTTP 상태 코드들"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2024/01/20/[%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC]%20REST,%20RESTful%20API/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2024/01/20/[%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC]%20REST,%20RESTful%20API/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2024/01/20/[%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC]%20REST,%20RESTful%20API/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2024/01/20/[%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC]%20REST,%20RESTful%20API/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2024/01/20/[%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC]%20REST,%20RESTful%20API/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=https://neewlife.github.io/2024/01/20/[%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC]%20REST,%20RESTful%20API/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">오세영</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+        <script>
+          var disqus_config = function() {
+            this.page.url = 'https://neewlife.github.io/2024/01/20/[%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC]%20REST,%20RESTful%20API/';
+              
+            this.page.identifier = '2024/01/20/[네트워크] REST, RESTful API/';
+              
+          };
+          (function() {
+            var d = document, s = d.createElement('script');
+            var disqus_shortname = 'blog-fk1l8wbpvl';
+            s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+    
+
+
+
+
+    </body>
+</html>
