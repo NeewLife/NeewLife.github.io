@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="안되면 될 때 까지">
+    <title>[Java] 코테 문제풀 때 쓸만한 것들 - 안되면 될 때 까지</title>
+    <meta name="author" content="오세영">
+    
+    
+        <link rel="icon" href="https://NeewLife.github.io/assets/images/favicon.png">
+    
+    
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n숫자를 문자로 바꾸기123456int i = 310;double d = 311;long l = 312L;String s1 = &quot;&quot; + i;String s2 = &quot;&quot; + d;String s3 = &quot;&quot; + l;    // i, d, l 모두 String 으로 형변환됨\n\n오름&#x2F;내림차순 정렬1234567891011int[] arr = &#123;5, 3, 1, 2, 4&#125;;for(int i = 0; i &lt; arr.length; i++)&#123;\tfor(int j = i + 1; j &lt; arr.length; j++)&#123;\t\tif(arr[i] &gt; arr[j])&#123;    // 오름차순이면 &#x27;&gt;&#x27; , 내림차순이면 &#x27;&lt;&#x27;\t\t\tint temp = arr[j];\t\t\tarr[i] = arr[j];\t\t\tarr[j] = temp;\t\t&#125;\t&#125;&#125;","dateCreated":"2024-01-22T23:01:00+09:00","dateModified":"2024-01-22T23:01:26+09:00","datePublished":"2024-01-22T23:01:00+09:00","description":"","headline":"[Java] 코테 문제풀 때 쓸만한 것들","image":["https://neewlife.github.io/assets/thumbnails/Java.png","https://neewlife.github.io/assets/wallpapers/003.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/","thumbnailUrl":"https://neewlife.github.io/assets/thumbnails/Java.png"}</script>
+    <meta property="og:type" content="blog">
+<meta property="og:title" content="[Java] 코테 문제풀 때 쓸만한 것들">
+<meta property="og:url" content="https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/index.html">
+<meta property="og:site_name" content="안되면 될 때 까지">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2024-01-22T14:01:00.000Z">
+<meta property="article:modified_time" content="2024-01-22T14:01:26.745Z">
+<meta property="article:author" content="오세영">
+<meta name="twitter:card" content="summary">
+    
+    
+        
+    
+    
+    
+        <meta property="og:image" content="https://neewlife.github.io/assets/thumbnails/Java.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://neewlife.github.io/assets/thumbnails/Java.png"/>
+    
+    
+        <meta property="og:image" content="https://neewlife.github.io/assets/wallpapers/003.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://neewlife.github.io/assets/wallpapers/003.jpg"/>
+    
+    
+    <!--STYLES-->
+    
+<link rel="stylesheet" href="/assets/css/all.css">
+
+    
+<link rel="stylesheet" href="/assets/css/jquery.fancybox.css">
+
+    
+<link rel="stylesheet" href="/assets/css/thumbs.css">
+
+    
+<link rel="stylesheet" href="/assets/css/tranquilpeak.css">
+
+    <!--STYLES END-->
+    
+
+    
+
+    
+        
+            
+<link rel="stylesheet" href="/assets/css/gitment.css">
+
+        
+    
+</head>
+
+    <body>
+        <div id="blog">
+            <!-- Define author's picture -->
+
+
+    
+
+<header id="header" data-behavior="5">
+    <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+    <div class="header-title">
+        <a
+            class="header-title-link"
+            href="/"
+            aria-label=""
+        >
+            안되면 될 때 까지
+        </a>
+    </div>
+    
+        
+            <a
+                class="header-right-picture "
+                href="#about"
+                aria-label="링크 열기: /#about"
+            >
+        
+        
+        </a>
+    
+</header>
+
+            <!-- Define author's picture -->
+
+
+<nav id="sidebar" data-behavior="5">
+    <div class="sidebar-container">
+        
+        
+            <ul class="sidebar-buttons">
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/"
+                            
+                            rel="noopener"
+                            title="Home"
+                        >
+                        <i class="sidebar-button-icon fa fa-home" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">Home</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-categories"
+                            
+                            rel="noopener"
+                            title="카테고리"
+                        >
+                        <i class="sidebar-button-icon fa fa-bookmark" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">카테고리</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-tags"
+                            
+                            rel="noopener"
+                            title="태그"
+                        >
+                        <i class="sidebar-button-icon fa fa-tags" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">태그</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="/all-archives"
+                            
+                            rel="noopener"
+                            title="아카이브"
+                        >
+                        <i class="sidebar-button-icon fa fa-archive" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">아카이브</span>
+                    </a>
+            </li>
+            
+                <li class="sidebar-button">
+                    
+                        <a
+                            class="sidebar-button-link "
+                            href="https://github.com/NeewLife"
+                            
+                                target="_blank"
+                            
+                            rel="noopener"
+                            title="GitHub"
+                        >
+                        <i class="sidebar-button-icon fab fa-github" aria-hidden="true"></i>
+                        <span class="sidebar-button-desc">GitHub</span>
+                    </a>
+            </li>
+            
+        </ul>
+        
+    </div>
+</nav>
+
+            
+        <div class="post-header-cover
+                    text-center
+                    "
+             style="background-image:url('https://neewlife.github.io/assets/wallpapers/003.jpg');"
+             data-behavior="5">
+            
+                <div class="post-header main-content-wrap text-center">
+    
+        <h1 class="post-title">
+            [Java] 코테 문제풀 때 쓸만한 것들
+        </h1>
+    
+    
+        <div class="post-meta">
+    <time datetime="2024-01-22T23:01:00+09:00">
+	
+		    2024/01/22
+    	
+    </time>
+    
+        <span>카테고리 </span>
+        
+    <a class="category-link" href="/categories/Java/">Java</a>
+
+
+    
+</div>
+
+    
+</div>
+
+            
+        </div>
+
+            <div id="main" data-behavior="5"
+                 class="hasCover
+                        hasCoverMetaIn
+                        ">
+                
+<article class="post">
+    
+    
+    <div class="post-content markdown">
+        <div class="main-content-wrap">
+            <!-- excerpt -->
+
+<h3 id="숫자를-문자로-바꾸기"><a href="#숫자를-문자로-바꾸기" class="headerlink" title="숫자를 문자로 바꾸기"></a>숫자를 문자로 바꾸기</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">310</span>;</span><br><span class="line"><span class="type">double</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">311</span>;</span><br><span class="line"><span class="type">long</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">312L</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span> + i;</span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span> + d;</span><br><span class="line"><span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span> + l;    <span class="comment">// i, d, l 모두 String 으로 형변환됨</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="오름-내림차순-정렬"><a href="#오름-내림차순-정렬" class="headerlink" title="오름&#x2F;내림차순 정렬"></a>오름&#x2F;내림차순 정렬</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = &#123;<span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt; arr.length; j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(arr[i] &gt; arr[j])&#123;    <span class="comment">// 오름차순이면 &#x27;&gt;&#x27; , 내림차순이면 &#x27;&lt;&#x27;</span></span><br><span class="line">			<span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> arr[j];</span><br><span class="line">			arr[i] = arr[j];</span><br><span class="line">			arr[j] = temp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            
+
+
+        </div>
+    </div>
+    <div id="post-footer" class="post-footer main-content-wrap">
+        
+        
+            <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/01/20/%5B%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%5D%20REST,%20RESTful%20API/"
+                    data-tooltip="[네트워크] REST, RESTful API"
+                    aria-label="다음: [네트워크] REST, RESTful API"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+        
+        
+            
+                <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+            
+        
+    </div>
+</article>
+
+
+
+                <footer id="footer" class="main-content-wrap">
+    <span class="copyrights">
+        Copyrights &copy; 2024 오세영. All Rights Reserved.
+    </span>
+</footer>
+
+            </div>
+            
+                <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+                    <div class="post-actions-wrap">
+    <nav>
+        <ul class="post-actions post-action-nav">
+            <li class="post-action">
+                
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                        <span class="hide-xs hide-sm text-small icon-ml">이전</span>
+                    </a>
+            </li>
+            <li class="post-action">
+                
+                    
+                <a
+                    class="post-action-btn btn btn--default tooltip--top"
+                    href="/2024/01/20/%5B%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%5D%20REST,%20RESTful%20API/"
+                    data-tooltip="[네트워크] REST, RESTful API"
+                    aria-label="다음: [네트워크] REST, RESTful API"
+                >
+                    
+                        <span class="hide-xs hide-sm text-small icon-mr">다음</span>
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+            </li>
+        </ul>
+    </nav>
+    <ul class="post-actions post-action-share">
+        <li class="post-action hide-lg hide-md hide-sm">
+            <a
+                class="post-action-btn btn btn--default btn-open-shareoptions"
+                href="#btn-open-shareoptions"
+                aria-label="이 포스트 공유하기"
+            >
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </a>
+        </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                    title="Facebook에 공유하기"
+                    aria-label="Facebook에 공유하기"
+                >
+                    <i class="fab fa-facebook" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                    title="Twitter에 공유하기"
+                    aria-label="Twitter에 공유하기"
+                >
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+            
+            
+            <li class="post-action hide-xs">
+                <a
+                    class="post-action-btn btn btn--default"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                    title="Google+에 공유하기"
+                    aria-label="Google+에 공유하기"
+                >
+                    <i class="fab fa-google-plus" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+        
+            
+                <li class="post-action">
+                    <a
+                        class="post-action-btn btn btn--default"
+                        href="#gitment"
+                        aria-label="댓글을 남겨주세요"
+                    >
+                        <i class="fa fa-comment"></i>
+                    </a>
+                </li>
+            
+        
+        <li class="post-action">
+            
+                <a class="post-action-btn btn btn--default" href="#" aria-label="맨 위로">
+            
+                <i class="fa fa-list" aria-hidden="true"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+                </div>
+                
+    <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+        <i id="btn-close-shareoptions" class="fa fa-times"></i>
+        <ul class="share-options">
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                        aria-label="Facebook에 공유하기"
+                    >
+                        <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                        aria-label="Twitter에 공유하기"
+                    >
+                        <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
+                    </a>
+                </li>
+            
+                
+                
+                <li class="share-option">
+                    <a
+                        class="share-option-btn"
+                        target="new"
+                        href="https://plus.google.com/share?url=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                        aria-label="Google+에 공유하기"
+                    >
+                        <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
+                    </a>
+                </li>
+            
+        </ul>
+    </div>
+
+
+            
+        </div>
+        
+
+
+<div id="about">
+    <div id="about-card">
+        <div id="about-btn-close">
+            <i class="fa fa-times"></i>
+        </div>
+        
+            <h4 id="about-card-name">오세영</h4>
+        
+            <div id="about-card-bio"><p>author.bio</p>
+</div>
+        
+        
+            <div id="about-card-job">
+                <i class="fa fa-briefcase"></i>
+                <br/>
+                <p>author.job</p>
+
+            </div>
+        
+        
+    </div>
+</div>
+
+        
+        
+<div id="cover" style="background-image:url('/assets/images/cover.jpg');"></div>
+        <!--SCRIPTS-->
+
+<script src="/assets/js/jquery.js"></script>
+
+
+<script src="/assets/js/jquery.fancybox.js"></script>
+
+
+<script src="/assets/js/thumbs.js"></script>
+
+
+<script src="/assets/js/tranquilpeak.js"></script>
+
+<!--SCRIPTS END-->
+
+
+    
+        <script>
+          var disqus_config = function() {
+            this.page.url = 'https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/';
+              
+            this.page.identifier = '2024/01/22/[Java] 코테 문제풀 때 쓸만한 것들/';
+              
+          };
+          (function() {
+            var d = document, s = d.createElement('script');
+            var disqus_shortname = 'blog-fk1l8wbpvl';
+            s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+          })();
+        </script>
+    
+
+
+
+
+    </body>
+</html>
