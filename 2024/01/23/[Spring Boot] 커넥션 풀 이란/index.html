@@ -6,35 +6,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="안되면 될 때 까지">
-    <title>[Java] 코테 문제풀 때 쓸만한 것들 - 안되면 될 때 까지</title>
+    <title>[Spring Boot] 커넥션 풀 이란? - 안되면 될 때 까지</title>
     <meta name="author" content="오세영">
     
     
         <link rel="icon" href="https://NeewLife.github.io/assets/images/favicon.png">
     
     
-    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\n숫자를 문자로 바꾸기123456int i = 310;double d = 311;long l = 312L;String s1 = &quot;&quot; + i;String s2 = &quot;&quot; + d;String s3 = &quot;&quot; + l;    // i, d, l 모두 String 으로 형변환됨\n\n오름&#x2F;내림차순 정렬1234567891011int[] arr = &#123;5, 3, 1, 2, 4&#125;;for(int i = 0; i &lt; arr.length; i++)&#123;\tfor(int j = i + 1; j &lt; arr.length; j++)&#123;\t\tif(arr[i] &gt; arr[j])&#123;    // 오름차순이면 &#x27;&gt;&#x27; , 내림차순이면 &#x27;&lt;&#x27;\t\t\tint temp = arr[j];\t\t\tarr[i] = arr[j];\t\t\tarr[j] = temp;\t\t&#125;\t&#125;&#125;","dateCreated":"2024-01-22T23:01:00+09:00","dateModified":"2024-01-22T23:01:26+09:00","datePublished":"2024-01-22T23:01:00+09:00","description":"","headline":"[Java] 코테 문제풀 때 쓸만한 것들","image":["https://neewlife.github.io/assets/thumbnails/Java.png","https://neewlife.github.io/assets/wallpapers/003.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/","thumbnailUrl":"https://neewlife.github.io/assets/thumbnails/Java.png"}</script>
+    <script type="application/ld+json">{"@context":"http://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"오세영","sameAs":[]},"articleBody":"\n\nDB 리소스를 줄이기 위해서는DB에 3번 접속할 것을 1번 접속하는 식으로 로직을 최대한 줄이는 방법도 있고,커넥션 풀 같은 DB에 접속하는 속도 자체를 효율적으로 만드는 방법도 있는듯 하다.\n\n\nJDBC 란?커넥션 풀을 알려면 JDBC를 먼저 알아야 하는데 JDBC란 Java에서 데이터베이스에 접속할 수 있게 해주는 Java API 이다.\n\n\n커넥션 풀 이란?커넥션 풀이란 커넥션들을 관리하는 풀이다.\n기본적으로 애플리케이션과 데이터베이스를 연결하는데에도 굉장히 많은 비용(&#x3D;자원)이 든다.매번 사용자가 요청할 때마다 드라이버를 로드하고, 연결이 필요한 객체를 만들어서 연결하고 종료하는 것은 매우 비효율 적이다.\n\n\n\n이러한 문제를 해결하기 위해서 미리 커넥션들을 만들어 놓고 사용하는 커넥션 풀 방법을 사용한다.(유사 싱글톤 패턴이라 이해하면 편할듯)\n\n커넥션 풀의 작동 및 장점이렇게 커넥션 풀 방법을 사용하게 되면\n\n웹 컨테이너(WAS)가 실행되면서 커넥션 객체들을 미리 Pool 에 생성해놓는다.(default로 10개라고 함)\nPool 에 미리 커넥션이 생성되어있기 때문에 요청마다 새로 커넥션을 생성할 필요가 없게 된다.(시간 단축)\n최초로 생성된 커넥션 Pool 만 사용되므로 무한정 DB에 접속되는 것을 막아줄 수 있다.\n\n출처 : https://thalals.tistory.com/368","dateCreated":"2024-01-23T22:56:18+09:00","dateModified":"2024-01-23T22:59:40+09:00","datePublished":"2024-01-23T22:56:18+09:00","description":"","headline":"[Spring Boot] 커넥션 풀 이란?","image":["https://neewlife.github.io/assets/thumbnails/Spring_Boot.png","https://neewlife.github.io/assets/wallpapers/wallpaper004.jpg"],"mainEntityOfPage":{"@type":"WebPage","@id":"https://neewlife.github.io/2024/01/23/[Spring%20Boot]%20%EC%BB%A4%EB%84%A5%EC%85%98%20%ED%92%80%20%EC%9D%B4%EB%9E%80/"},"publisher":{"@type":"Organization","name":"오세영","sameAs":[]},"url":"https://neewlife.github.io/2024/01/23/[Spring%20Boot]%20%EC%BB%A4%EB%84%A5%EC%85%98%20%ED%92%80%20%EC%9D%B4%EB%9E%80/","thumbnailUrl":"https://neewlife.github.io/assets/thumbnails/Spring_Boot.png"}</script>
     <meta property="og:type" content="blog">
-<meta property="og:title" content="[Java] 코테 문제풀 때 쓸만한 것들">
-<meta property="og:url" content="https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/index.html">
+<meta property="og:title" content="[Spring Boot] 커넥션 풀 이란?">
+<meta property="og:url" content="https://neewlife.github.io/2024/01/23/[Spring%20Boot]%20%EC%BB%A4%EB%84%A5%EC%85%98%20%ED%92%80%20%EC%9D%B4%EB%9E%80/index.html">
 <meta property="og:site_name" content="안되면 될 때 까지">
 <meta property="og:locale" content="ko_KR">
-<meta property="article:published_time" content="2024-01-22T14:01:00.000Z">
-<meta property="article:modified_time" content="2024-01-22T14:01:26.745Z">
+<meta property="og:image" content="https://neewlife.github.io/images/%5BSpring_Boot%5D_%EC%BB%A4%EB%84%A5%EC%85%98_%ED%92%80_%EC%9D%B4%EB%9E%80/Untitled.png">
+<meta property="og:image" content="https://neewlife.github.io/images/%5BSpring_Boot%5D_%EC%BB%A4%EB%84%A5%EC%85%98_%ED%92%80_%EC%9D%B4%EB%9E%80/Untitled%201.png">
+<meta property="article:published_time" content="2024-01-23T13:56:18.000Z">
+<meta property="article:modified_time" content="2024-01-23T13:59:40.533Z">
 <meta property="article:author" content="오세영">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://neewlife.github.io/images/%5BSpring_Boot%5D_%EC%BB%A4%EB%84%A5%EC%85%98_%ED%92%80_%EC%9D%B4%EB%9E%80/Untitled.png">
     
     
         
     
     
     
-        <meta property="og:image" content="https://neewlife.github.io/assets/thumbnails/Java.png"/>
-        <meta class="swiftype" name="image" data-type="enum" content="https://neewlife.github.io/assets/thumbnails/Java.png"/>
+        <meta property="og:image" content="https://neewlife.github.io/assets/thumbnails/Spring_Boot.png"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://neewlife.github.io/assets/thumbnails/Spring_Boot.png"/>
     
     
-        <meta property="og:image" content="https://neewlife.github.io/assets/wallpapers/003.jpg"/>
-        <meta class="swiftype" name="image" data-type="enum" content="https://neewlife.github.io/assets/wallpapers/003.jpg"/>
+        <meta property="og:image" content="https://neewlife.github.io/assets/wallpapers/wallpaper004.jpg"/>
+        <meta class="swiftype" name="image" data-type="enum" content="https://neewlife.github.io/assets/wallpapers/wallpaper004.jpg"/>
     
     
     <!--STYLES-->
@@ -185,26 +188,26 @@
         <div class="post-header-cover
                     text-center
                     "
-             style="background-image:url('https://neewlife.github.io/assets/wallpapers/003.jpg');"
+             style="background-image:url('https://neewlife.github.io/assets/wallpapers/wallpaper004.jpg');"
              data-behavior="5">
             
                 <div class="post-header main-content-wrap text-center">
     
         <h1 class="post-title">
-            [Java] 코테 문제풀 때 쓸만한 것들
+            [Spring Boot] 커넥션 풀 이란?
         </h1>
     
     
         <div class="post-meta">
-    <time datetime="2024-01-22T23:01:00+09:00">
+    <time datetime="2024-01-23T22:56:18+09:00">
 	
-		    2024/01/22
+		    2024/01/23
     	
     </time>
     
         <span>카테고리 </span>
         
-    <a class="category-link" href="/categories/Java/">Java</a>
+    <a class="category-link" href="/categories/Spring-Boot/">Spring Boot</a>
 
 
     
@@ -228,9 +231,26 @@
         <div class="main-content-wrap">
             <!-- excerpt -->
 
-<h3 id="숫자를-문자로-바꾸기"><a href="#숫자를-문자로-바꾸기" class="headerlink" title="숫자를 문자로 바꾸기"></a>숫자를 문자로 바꾸기</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">310</span>;</span><br><span class="line"><span class="type">double</span> <span class="variable">d</span> <span class="operator">=</span> <span class="number">311</span>;</span><br><span class="line"><span class="type">long</span> <span class="variable">l</span> <span class="operator">=</span> <span class="number">312L</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">s1</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span> + i;</span><br><span class="line"><span class="type">String</span> <span class="variable">s2</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span> + d;</span><br><span class="line"><span class="type">String</span> <span class="variable">s3</span> <span class="operator">=</span> <span class="string">&quot;&quot;</span> + l;    <span class="comment">// i, d, l 모두 String 으로 형변환됨</span></span><br></pre></td></tr></table></figure>
+<h1 id="DB-리소스를-줄이기-위해서는"><a href="#DB-리소스를-줄이기-위해서는" class="headerlink" title="DB 리소스를 줄이기 위해서는"></a>DB 리소스를 줄이기 위해서는</h1><p>DB에 3번 접속할 것을 1번 접속하는 식으로 로직을 최대한 줄이는 방법도 있고,<br>커넥션 풀 같은 DB에 접속하는 속도 자체를 효율적으로 만드는 방법도 있는듯 하다.</p>
+<br>
 
-<h3 id="오름-내림차순-정렬"><a href="#오름-내림차순-정렬" class="headerlink" title="오름&#x2F;내림차순 정렬"></a>오름&#x2F;내림차순 정렬</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span>[] arr = &#123;<span class="number">5</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; arr.length; i++)&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> i + <span class="number">1</span>; j &lt; arr.length; j++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(arr[i] &gt; arr[j])&#123;    <span class="comment">// 오름차순이면 &#x27;&gt;&#x27; , 내림차순이면 &#x27;&lt;&#x27;</span></span><br><span class="line">			<span class="type">int</span> <span class="variable">temp</span> <span class="operator">=</span> arr[j];</span><br><span class="line">			arr[i] = arr[j];</span><br><span class="line">			arr[j] = temp;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="JDBC-란"><a href="#JDBC-란" class="headerlink" title="JDBC 란?"></a>JDBC 란?</h2><p>커넥션 풀을 알려면 JDBC를 먼저 알아야 하는데 JDBC란 <strong>Java에서 데이터베이스에 접속할 수 있게 해주는 Java API 이다.</strong></p>
+<br>
+
+<h2 id="커넥션-풀-이란"><a href="#커넥션-풀-이란" class="headerlink" title="커넥션 풀 이란?"></a>커넥션 풀 이란?</h2><p>커넥션 풀이란 <strong>커넥션들을 관리하는 풀</strong>이다.</p>
+<p>기본적으로 애플리케이션과 데이터베이스를 연결하는데에도 굉장히 많은 비용(&#x3D;자원)이 든다.<br>매번 사용자가 요청할 때마다 드라이버를 로드하고, 연결이 필요한 객체를 만들어서 연결하고 종료하는 것은 매우 비효율 적이다.</p>
+<p><img src="/images/%5BSpring_Boot%5D_%EC%BB%A4%EB%84%A5%EC%85%98_%ED%92%80_%EC%9D%B4%EB%9E%80/Untitled.png" alt="Untitled"></p>
+<br>
+
+<p>이러한 문제를 해결하기 위해서 미리 커넥션들을 만들어 놓고 사용하는 커넥션 풀 방법을 사용한다.<br>(유사 싱글톤 패턴이라 이해하면 편할듯)</p>
+<p><img src="/images/%5BSpring_Boot%5D_%EC%BB%A4%EB%84%A5%EC%85%98_%ED%92%80_%EC%9D%B4%EB%9E%80/Untitled%201.png" alt="Untitled"><br><br></p>
+<h2 id="커넥션-풀의-작동-및-장점"><a href="#커넥션-풀의-작동-및-장점" class="headerlink" title="커넥션 풀의 작동 및 장점"></a>커넥션 풀의 작동 및 장점</h2><p>이렇게 커넥션 풀 방법을 사용하게 되면</p>
+<ul>
+<li>웹 컨테이너(WAS)가 실행되면서 <strong>커넥션 객체들을 미리 Pool 에 생성해놓는다</strong>.<br>(default로 10개라고 함)</li>
+<li>Pool 에 미리 커넥션이 생성되어있기 때문에 <strong>요청마다 새로 커넥션을 생성할 필요가 없게 된다</strong>.<br>(시간 단축)</li>
+<li>최초로 생성된 커넥션 Pool 만 사용되므로 <strong>무한정 DB에 접속되는 것을 막아줄 수 있다.</strong></li>
+</ul>
+<p>출처 : <a target="_blank" rel="noopener" href="https://thalals.tistory.com/368">https://thalals.tistory.com/368</a></p>
             
 
 
@@ -244,14 +264,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/01/23/%5BSpring%20Boot%5D%20%EC%BB%A4%EB%84%A5%EC%85%98%20%ED%92%80%20%EC%9D%B4%EB%9E%80/"
-                    data-tooltip="[Spring Boot] 커넥션 풀 이란?"
-                    aria-label="이전: [Spring Boot] 커넥션 풀 이란?"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
@@ -261,9 +278,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/01/20/%5B%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%5D%20REST,%20RESTful%20API/"
-                    data-tooltip="[네트워크] REST, RESTful API"
-                    aria-label="다음: [네트워크] REST, RESTful API"
+                    href="/2024/01/22/%5BJava%5D%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                    data-tooltip="[Java] 코테 문제풀 때 쓸만한 것들"
+                    aria-label="다음: [Java] 코테 문제풀 때 쓸만한 것들"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">다음</span>
@@ -288,7 +305,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2024/01/23/[Spring%20Boot]%20%EC%BB%A4%EB%84%A5%EC%85%98%20%ED%92%80%20%EC%9D%B4%EB%9E%80/"
                     title="Facebook에 공유하기"
                     aria-label="Facebook에 공유하기"
                 >
@@ -301,7 +318,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2024/01/23/[Spring%20Boot]%20%EC%BB%A4%EB%84%A5%EC%85%98%20%ED%92%80%20%EC%9D%B4%EB%9E%80/"
                     title="Twitter에 공유하기"
                     aria-label="Twitter에 공유하기"
                 >
@@ -314,7 +331,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2024/01/23/[Spring%20Boot]%20%EC%BB%A4%EB%84%A5%EC%85%98%20%ED%92%80%20%EC%9D%B4%EB%9E%80/"
                     title="Google+에 공유하기"
                     aria-label="Google+에 공유하기"
                 >
@@ -373,14 +390,11 @@
         <ul class="post-actions post-action-nav">
             <li class="post-action">
                 
-                    
-                <a
-                    class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/01/23/%5BSpring%20Boot%5D%20%EC%BB%A4%EB%84%A5%EC%85%98%20%ED%92%80%20%EC%9D%B4%EB%9E%80/"
-                    data-tooltip="[Spring Boot] 커넥션 풀 이란?"
-                    aria-label="이전: [Spring Boot] 커넥션 풀 이란?"
-                >
-                    
+                    <a
+                        class="post-action-btn btn btn--disabled"
+                        aria-hidden="true"
+                    >
+                        
                         <i class="fa fa-angle-left" aria-hidden="true"></i>
                         <span class="hide-xs hide-sm text-small icon-ml">이전</span>
                     </a>
@@ -390,9 +404,9 @@
                     
                 <a
                     class="post-action-btn btn btn--default tooltip--top"
-                    href="/2024/01/20/%5B%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%5D%20REST,%20RESTful%20API/"
-                    data-tooltip="[네트워크] REST, RESTful API"
-                    aria-label="다음: [네트워크] REST, RESTful API"
+                    href="/2024/01/22/%5BJava%5D%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                    data-tooltip="[Java] 코테 문제풀 때 쓸만한 것들"
+                    aria-label="다음: [Java] 코테 문제풀 때 쓸만한 것들"
                 >
                     
                         <span class="hide-xs hide-sm text-small icon-mr">다음</span>
@@ -417,7 +431,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                    target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2024/01/23/[Spring%20Boot]%20%EC%BB%A4%EB%84%A5%EC%85%98%20%ED%92%80%20%EC%9D%B4%EB%9E%80/"
                     title="Facebook에 공유하기"
                     aria-label="Facebook에 공유하기"
                 >
@@ -430,7 +444,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                    target="new" href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2024/01/23/[Spring%20Boot]%20%EC%BB%A4%EB%84%A5%EC%85%98%20%ED%92%80%20%EC%9D%B4%EB%9E%80/"
                     title="Twitter에 공유하기"
                     aria-label="Twitter에 공유하기"
                 >
@@ -443,7 +457,7 @@
             <li class="post-action hide-xs">
                 <a
                     class="post-action-btn btn btn--default"
-                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                    target="new" href="https://plus.google.com/share?url=https://neewlife.github.io/2024/01/23/[Spring%20Boot]%20%EC%BB%A4%EB%84%A5%EC%85%98%20%ED%92%80%20%EC%9D%B4%EB%9E%80/"
                     title="Google+에 공유하기"
                     aria-label="Google+에 공유하기"
                 >
@@ -487,7 +501,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                        href="https://www.facebook.com/sharer/sharer.php?u=https://neewlife.github.io/2024/01/23/[Spring%20Boot]%20%EC%BB%A4%EB%84%A5%EC%85%98%20%ED%92%80%20%EC%9D%B4%EB%9E%80/"
                         aria-label="Facebook에 공유하기"
                     >
                         <i class="fab fa-facebook" aria-hidden="true"></i><span>Facebook에 공유하기</span>
@@ -500,7 +514,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                        href="https://twitter.com/intent/tweet?text=https://neewlife.github.io/2024/01/23/[Spring%20Boot]%20%EC%BB%A4%EB%84%A5%EC%85%98%20%ED%92%80%20%EC%9D%B4%EB%9E%80/"
                         aria-label="Twitter에 공유하기"
                     >
                         <i class="fab fa-twitter" aria-hidden="true"></i><span>Twitter에 공유하기</span>
@@ -513,7 +527,7 @@
                     <a
                         class="share-option-btn"
                         target="new"
-                        href="https://plus.google.com/share?url=https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/"
+                        href="https://plus.google.com/share?url=https://neewlife.github.io/2024/01/23/[Spring%20Boot]%20%EC%BB%A4%EB%84%A5%EC%85%98%20%ED%92%80%20%EC%9D%B4%EB%9E%80/"
                         aria-label="Google+에 공유하기"
                     >
                         <i class="fab fa-google-plus" aria-hidden="true"></i><span>Google+에 공유하기</span>
@@ -574,9 +588,9 @@
     
         <script>
           var disqus_config = function() {
-            this.page.url = 'https://neewlife.github.io/2024/01/22/[Java]%20%EC%BD%94%ED%85%8C%20%EB%AC%B8%EC%A0%9C%ED%92%80%20%EB%95%8C%20%EC%93%B8%EB%A7%8C%ED%95%9C%20%EA%B2%83%EB%93%A4/';
+            this.page.url = 'https://neewlife.github.io/2024/01/23/[Spring%20Boot]%20%EC%BB%A4%EB%84%A5%EC%85%98%20%ED%92%80%20%EC%9D%B4%EB%9E%80/';
               
-            this.page.identifier = '2024/01/22/[Java] 코테 문제풀 때 쓸만한 것들/';
+            this.page.identifier = '2024/01/23/[Spring Boot] 커넥션 풀 이란/';
               
           };
           (function() {
